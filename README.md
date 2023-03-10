@@ -1,24 +1,7 @@
+<p align="left"><b>**Disclaimer: This is a repository actively used by my Discord bot for personal usage, it may contain inappropriate content. The target audience is my friend groups. This repository is visible only for technical sharing.**</b></p>
+
 # ben-ai-java-frontend
 
-## Project setup
-```
-npm install
-```
+[![Deploy Vue.js to Ubuntu](https://github.com/Benwyw/ben-ai-java-frontend/actions/workflows/npm.yml/badge.svg)](https://github.com/Benwyw/ben-ai-java-frontend/actions/workflows/npm.yml)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+VueJs Frontend for Java Discord Bot
