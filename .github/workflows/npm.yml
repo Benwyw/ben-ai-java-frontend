@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment:
-      name: ${{ vars.ENV_NAME }}
+      name: 'production'
     outputs:
       version: ${{ env.version }}
         
@@ -48,7 +48,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: ${{ vars.ENV_NAME }}
+      name: 'production'
           
     steps:
       - name: Get version
@@ -81,8 +81,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: ${{ vars.ENV_NAME }}
-      url: ${{ vars.SERVER_URL }}
+      name: 'production'
+      url: 'https://bot.benwyw.com'
     
     steps:
       - name: Download Jar Artifact
