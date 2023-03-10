@@ -12,12 +12,16 @@ on:
     paths:
       - 'package.json'
 
+env:
+  name: 'production'
+  server_url: ${{ vars.SERVER_URL }}
+
 jobs:
 
   build:
     runs-on: ubuntu-latest
     environment:
-      name: 'production'
+      name: ${{ env.name }}
     outputs:
       version: ${{ env.version }}
         
@@ -48,7 +52,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: 'production'
+      name: ${{ env.name }}
           
     steps:
       - name: Get version
@@ -81,7 +85,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     environment:
-      name: 'production'
+      name: ${{ env.name }}
+      url: ${{ env.server_url }}
     
     steps:
       - name: Download Jar Artifact
