@@ -58,8 +58,8 @@ jobs:
       - name: Create Release
         id: create-release
         uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        #env:
+          #GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag: "${{ steps.set_tag.outputs.TAG }}"
           name: "${{ steps.set_tag.outputs.TAG }}"
