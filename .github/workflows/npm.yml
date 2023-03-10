@@ -4,16 +4,23 @@ on:
   push:
     branches:
       - master
+    paths:
+      - 'package.json'
   pull_request:
     branches:
       - master
+    paths:
+      - 'package.json'
 
 jobs:
-  deploy:
+
+  build:
     runs-on: ubuntu-latest
     environment:
       name: 'production'
-    
+    outputs:
+      version: ${{ env.version }}
+        
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -23,7 +30,70 @@ jobs:
 
       - name: Build application
         run: npm run build
-
+        
+      - name: Save artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: "dist"
+          path: "dist/"
+          
+      - name: Set version
+        id: set_version
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          echo "version=$version" >> $GITHUB_ENV
+        
+  release:
+  
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: 'production'
+          
+    steps:
+      - name: Get version
+        id: get_version
+        run: |
+          echo "version=${{ needs.build.outputs.version }}" >> $GITHUB_ENV
+          
+      #- name: Set tag name
+        #id: set_tag
+        #run: echo "TAG=$(echo ${GITHUB_SHA::8})-$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
+        
+      - name: Create Release
+        id: create-release
+        uses: ncipollo/release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          #tag: "${{ steps.set_tag.outputs.TAG }}"
+          #name: "${{ steps.set_tag.outputs.TAG }}"
+          tag: "${{ env.version }}"
+          name: "${{ env.version }}"
+          body: |
+              ${{ github.event.pull_request.body }}
+              ${{ github.event.head_commit.message }}
+          draft: false
+          prerelease: false
+    
+  deploy:
+  
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: 'production'
+    
+    steps:
+      - name: Download Jar Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+          
+      #- name: Verify downloaded files
+        #run: ls -R
+        #working-directory: dist/
+      
       - name: Copy files to server
         uses: appleboy/scp-action@master
         with:
@@ -32,11 +102,6 @@ jobs:
           key: ${{ secrets.SERVER_PRIVATE_KEY }}
           source: dist/
           target: /var/www/html/
-
-#       - name: Install Nginx
-#         run: |
-#           sudo apt-get update
-#           sudo apt-get install nginx
 
       - name: Check if Nginx is running
         run: sudo service nginx status
@@ -50,21 +115,3 @@ jobs:
           else
             sudo systemctl start nginx
           fi
-          
-      - name: Set tag name
-        id: set_tag
-        run: echo "TAG=$(echo ${GITHUB_SHA::8})-$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
-        
-      - name: Create Release
-        id: create-release
-        uses: ncipollo/release-action@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag: "${{ steps.set_tag.outputs.TAG }}"
-          name: "${{ steps.set_tag.outputs.TAG }}"
-          body: |
-              ${{ github.event.pull_request.body }}
-              ${{ github.event.head_commit.message }}
-          draft: false
-          prerelease: false
