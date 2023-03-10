@@ -103,15 +103,6 @@ jobs:
           source: dist/*
           target: /var/www/html/
 
-      - name: Check if Nginx is running
-        run: sudo service nginx status
-        continue-on-error: true
-        id: nginx-status
-
       - name: Start or restart Nginx
         run: |
-          if [ ${{ steps.nginx-status.outcome }} == 'success' ]; then
-            sudo systemctl restart nginx
-          else
-            sudo systemctl start nginx
-          fi
+          sudo systemctl restart nginx || sudo systemctl start nginx
