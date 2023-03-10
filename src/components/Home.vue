@@ -51,8 +51,9 @@ export default {
   methods: {
     getTitle() {
       this.isLoading = true;
-      axios.get('http://localhost:8080/misc/title'
-      ).then(response => {
+      axios.get('http://localhost:8080/misc/title', {
+        withCredentials: true
+      }).then(response => {
         this.title = response.data;
       }).catch(error => {
         console.log(error);
