@@ -1,9 +1,14 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <!-- <p>
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p> -->
+  <div :class="['home', { 'is-loading': isLoading }]">
+    <div v-if="isLoading">Loading...</div>
+    <div v-if="!isLoading">
+        <div v-if="title">
+          <h1>{{ title }}</h1>
+        </div>
+        <div v-else>
+          <h1 v-if="title">{{ msg }}</h1>
+      </div>
+    </div>
     <h3>Features</h3>
     <ul>
       <li>TODO</li>
@@ -29,16 +34,45 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
-  name: 'HelloWorld',
+  name: 'HomePage',
+  data() {
+    return {
+      title: '',
+      isLoading: false,
+      isError: false
+    }
+  },
   props: {
     msg: String
+  },
+  methods: {
+    getTitle() {
+      this.isLoading = true;
+      axios.get('http://localhost:8080/misc/title', {
+        withCredentials: true
+      }).then(response => {
+        this.title = response.data;
+      }).catch(error => {
+        console.log(error);
+      }).finally(() => {
+        this.isLoading = false;
+      });
+    }
+  },
+  created() {
+    this.getTitle()
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.is-loading {
+  filter: blur(5px);
+}
 h3 {
   margin: 40px 0 0;
 }
