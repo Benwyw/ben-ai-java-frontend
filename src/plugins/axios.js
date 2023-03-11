@@ -1,7 +1,11 @@
 import axios from 'axios';
+import development from '@/config/production'
+import production from '@/config/production'
 
-const instance = axios.create({
-  baseURL: 'http://localhost:8080/api' // replace with your backend API URL
-});
+// const instance = axios.create({
+//   baseURL: 'http://localhost:8080/api'
+// });
+
+const instance = (process.env.NODE_ENV == 'production') ? axios.create(production) : axios.create(development)
 
 export default instance;
