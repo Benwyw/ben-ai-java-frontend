@@ -117,6 +117,11 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Styles for screens smaller than 768px */
+  header {
+    padding: 0.5rem;
+  }
+  
   nav ul {
     flex-direction: column;
     align-items: flex-start;
@@ -128,6 +133,15 @@ footer {
 
   nav a {
     font-size: 1rem;
+    padding: 0.3rem;
+  }
+
+  main {
+    padding: 0.5rem;
+  }
+
+  footer {
+    padding: 0.5rem;
   }
 }
 </style>
