@@ -1,17 +1,22 @@
 <template>
   <div :class="['home', { 'is-loading': isLoading }]">
-    <div v-if="isLoading">Loading...</div>
-    <div v-if="!isLoading">
-      <div v-if="title">
-        <h1>{{ title }}</h1>
-      </div>
-      <div v-else>
-        <h1 v-if="msg">{{ msg }}</h1>
-      </div>
-    </div>
+
+    <h1 v-if="title">{{ title }}</h1>
+    <h1 v-if="!title && msg">{{ msg }}</h1>
+
+    <p v-if="userBase">Used by <u>{{ userBase }}</u> users.</p>
+
+    <!-- <nav>
+      <ul>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/about">About</router-link></li>
+      </ul>
+    </nav> -->
+
     <h3>Features</h3>
     <ul>
-      <li>TODO</li>
+      <li>Music</li>
+      <li>User details</li>
       <!-- <li><a href="#" target="_blank" rel="noopener">TODO</a></li> -->
     </ul>
     <!-- <h3>Essential Links</h3>
@@ -34,13 +39,14 @@
 </template>
 
 <script>
-import axios from '@/plugins/axios';
+import * as api from '@/api/misc';
 
 export default {
   name: 'HomePage',
   data() {
     return {
       title: '',
+      userBase: '',
       isLoading: false,
       isError: false
     }
@@ -49,21 +55,34 @@ export default {
     msg: String
   },
   methods: {
-    getTitle() {
-      this.isLoading = true;
-      axios.get('/misc/title', {
-        withCredentials: true
-      }).then(response => {
-        this.title = response.data;
-      }).catch(error => {
-        console.log(error);
-      }).finally(() => {
+    async getTitle() {
+      try {
+        this.isLoading = true;
+        const title = await api.getTitle();
+        this.title = title;
+      } catch (error) {
+        console.log(error)
+        this.isError = true;
+      } finally {
         this.isLoading = false;
-      });
+      }
+    },
+    async getUserBase() {
+      try {
+        this.isLoading = true;
+        const userBase = await api.getUserBase();
+        this.userBase = userBase;
+      } catch (error) {
+        console.log(error)
+        this.isError = true;
+      } finally {
+        this.isLoading = false;
+      }
     }
   },
   created() {
     this.getTitle()
+    this.getUserBase()
   }
 }
 </script>
