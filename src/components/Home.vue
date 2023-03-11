@@ -2,11 +2,11 @@
   <div :class="['home', { 'is-loading': isLoading }]">
     <div v-if="isLoading">Loading...</div>
     <div v-if="!isLoading">
-        <div v-if="title">
-          <h1>{{ title }}</h1>
-        </div>
-        <div v-else>
-          <h1 v-if="title">{{ msg }}</h1>
+      <div v-if="title">
+        <h1>{{ title }}</h1>
+      </div>
+      <div v-else>
+        <h1 v-if="msg">{{ msg }}</h1>
       </div>
     </div>
     <h3>Features</h3>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/plugins/axios';
 
 export default {
   name: 'HomePage',
@@ -51,7 +51,7 @@ export default {
   methods: {
     getTitle() {
       this.isLoading = true;
-      axios.get('http://localhost:8080/misc/title', {
+      axios.get('/misc/title', {
         withCredentials: true
       }).then(response => {
         this.title = response.data;
