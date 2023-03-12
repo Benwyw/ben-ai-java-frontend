@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       title: '',
+			msg: '',
       userBase: '',
       isLoading: false,
       isError: false
@@ -83,6 +84,7 @@ export default {
   created() {
     this.getTitle()
     this.getUserBase()
+		this.msg = 'Development in-progress'
   }
 }
 </script>
