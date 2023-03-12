@@ -53,7 +53,7 @@ export default {
     }
   },
   props: {
-    msg: String
+    //msg: String
   },
   methods: {
     async getTitle() {
