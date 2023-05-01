@@ -1,49 +1,28 @@
 <template>
-  <div :class="['about', { 'is-loading': isLoading }]">
+  <v-container class="fill-height">
+    <v-responsive class="d-flex align-center text-center fill-height">
+      <h1>About</h1>
+      <p>Nothing here yet ^^</p>
 
-    <h1>About</h1>
-    <p>Nothing here yet ^^</p>
-  </div>
+      <div class="py-14" />
+      
+      <v-row class="d-flex align-center justify-center"><!-- target="_blank" -->
+        <v-col cols="auto">
+          <v-btn
+                to="/"
+                min-width="164"
+                rel="noopener noreferrer"
+                
+                variant="text"
+          >
+          Back to Home
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-responsive>
+  </v-container>
 </template>
 
-<script>
-// import * as api from '@/api/misc';
-
-export default {
-  name: 'AboutPage',
-  data() {
-    return {
-      isLoading: false,
-      isError: false
-    }
-  },
-  props: {
-    msg: String
-  },
-  methods: {
-  },
-  created() {
-  }
-}
+<script setup>
+  //
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.is-loading {
-  filter: blur(5px);
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

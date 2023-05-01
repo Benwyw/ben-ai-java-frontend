@@ -1,111 +1,118 @@
 <template>
-  <div :class="['home', { 'is-loading': isLoading }]">
+  <v-container class="fill-height" :class="{ 'is-loading': isLoading }">
+    <v-responsive class="d-flex align-center text-center fill-height">
+      <v-img height="120" src="@/assets/logo.png" />
 
-    <h1 v-if="title">{{ title }}</h1>
-    <h1 v-if="!title && msg">{{ msg }}</h1>
+      <div class="text-body-2 font-weight-light mb-n1">Welcome to</div>
 
-    <p v-if="userBase">Used by <u>{{ userBase }}</u> users.</p>
+      <h1 class="text-h2 font-weight-bold">Ben-AI-Java</h1>
 
-    <!-- <nav>
-      <ul>
-        <li><router-link to="/">Home</router-link></li>
-        <li><router-link to="/about">About</router-link></li>
-      </ul>
-    </nav> -->
+      <v-card-text v-if="userBase">Used by <u>{{ userBase }}</u> users</v-card-text>
 
-    <h3>Features</h3>
-    <ul>
-      <li>Music</li>
-      <li>User details</li>
-      <!-- <li><a href="#" target="_blank" rel="noopener">TODO</a></li> -->
-    </ul>
-    <!-- <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul> -->
-  </div>
+      <div class="py-14" />
+
+      <v-row class="d-flex align-center justify-center"><!-- target="_blank" -->
+        <v-col cols="auto">
+          <v-btn
+            to="/About"
+            min-width="164"
+            rel="noopener noreferrer"
+
+            variant="text"
+          >
+            <v-icon
+              icon="mdi-view-dashboard"
+              size="large"
+              start
+            />
+
+            About
+          </v-btn>
+        </v-col>
+
+        <!-- <v-col cols="auto">
+          <v-btn
+            color="primary"
+            href="#"
+            min-width="228"
+            rel="noopener noreferrer"
+            size="x-large"
+            target="_blank"
+            variant="flat"
+          >
+            <v-icon
+              icon="mdi-speedometer"
+              size="large"
+              start
+            />
+
+            Get Started
+          </v-btn>
+        </v-col>
+
+        <v-col cols="auto">
+          <v-btn
+            href="#"
+            min-width="164"
+            rel="noopener noreferrer"
+            target="_blank"
+            variant="text"
+          >
+            <v-icon
+              icon="mdi-account-group"
+              size="large"
+              start
+            />
+
+            Community
+          </v-btn>
+        </v-col> -->
+      </v-row>
+    </v-responsive>
+  </v-container>
 </template>
 
-<script>
+<script setup>
 import * as api from '@/api/misc';
+import {ref} from 'vue';
 
-export default {
-  name: 'HomePage',
-  data() {
-    return {
-      title: '',
-			msg: '',
-      userBase: '',
-      isLoading: false,
-      isError: false
-    }
-  },
-  props: {
-    //msg: String
-  },
-  methods: {
-    async getTitle() {
-      try {
-        this.isLoading = true;
-        const title = await api.getTitle();
-        this.title = title;
-      } catch (error) {
-        console.log(error)
-        this.isError = true;
-      } finally {
-        this.isLoading = false;
-      }
-    },
-    async getUserBase() {
-      try {
-        this.isLoading = true;
-        const userBase = await api.getUserBase();
-        this.userBase = userBase;
-      } catch (error) {
-        console.log(error)
-        this.isError = true;
-      } finally {
-        this.isLoading = false;
-      }
-    }
-  },
-  created() {
-    this.getTitle()
-    this.getUserBase()
-		this.msg = 'Development in-progress'
+const title = ref('');
+const msg = ref('');
+const userBase = ref('');
+const isLoading = ref(false);
+const isError = ref(false);
+
+async function getTitle() {
+  try {
+    isLoading.value = true;
+    title.value = await api.getTitle();
+  } catch (error) {
+    console.log(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
   }
 }
+
+async function getUserBase() {
+  try {
+    isLoading.value = true;
+    userBase.value = await api.getUserBase();
+  } catch (error) {
+    console.log(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+getTitle();
+getUserBase();
+msg.value = 'Development in-progress';
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .is-loading {
   filter: blur(5px);
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>
