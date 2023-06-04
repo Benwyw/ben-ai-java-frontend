@@ -1,0 +1,47 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"version": "1.0",
+		"title": "Sample API",
+		"description": "A sample API with 2 endpoints"
+	},
+	"basePath": "/",
+	"paths": {
+		"/users": {
+			"get": {
+				"tags": [
+					"users"
+				],
+				"summary": "Get all users",
+				"description": "Returns all registered users",
+				"operationId": "getAllUsers",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		},
+		"/products": {
+			"get": {
+				"tags": [
+					"products"
+				],
+				"summary": "Get all products",
+				"description": "Returns all available products",
+				"operationId": "getAllProducts",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Success"
+					}
+				}
+			}
+		}
+	}
+}

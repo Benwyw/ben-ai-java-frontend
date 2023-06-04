@@ -18,25 +18,37 @@
       <div class="py-14" />
 
       <v-row class="d-flex align-center justify-center"><!-- target="_blank" -->
-        <v-col cols="auto">
-          <v-btn
-            @click="loadSampleJson()"
-            min-width="164"
-            rel="noopener noreferrer"
-            variant="text"
-          >
-            Load sample JSON
-          </v-btn>
-          <v-btn
-            @click="generateExcelFromSwaggerJson(jsonString)"
-            min-width="164"
-            rel="noopener noreferrer"
-            variant="text"
-          >
-            Download Excel
-          </v-btn>
-        </v-col>
-        <v-col cols="auto">
+        <v-col cols="6">
+          <v-row class="d-flex align-center justify-center">
+          <v-col cols="6">
+            <v-btn
+              @click="loadSampleJson(3)"
+              min-width="164"
+              rel="noopener noreferrer"
+              variant="text"
+            >
+              Load sample (3 fields)
+            </v-btn>
+            <v-btn
+              @click="loadSampleJson(4)"
+              min-width="164"
+              rel="noopener noreferrer"
+              variant="text"
+            >
+              Load sample (4 fields)
+            </v-btn>
+          </v-col>
+            <v-col cols="6">
+              <v-btn
+                @click="generateExcelFromSwaggerJson(jsonString)"
+                min-width="164"
+                rel="noopener noreferrer"
+                variant="text"
+              >
+                Download Excel
+              </v-btn>
+            </v-col>
+          </v-row>
           <v-btn
                 to="/"
                 min-width="164"
@@ -59,7 +71,8 @@
 <script>
 import * as api from "@/api/swagger";
 import {ref} from "vue";
-import sampleSwaggerJson from "@/assets/swagger.json";
+import sampleSwaggerJson3Fields from "@/assets/swagger.json";
+import sampleSwaggerJson4Fields from "@/assets/swagger4.json";
 
 const isLoading = ref(false);
 const isError = ref(false);
@@ -71,8 +84,11 @@ export default {
     }
   },
   methods: {
-    loadSampleJson() {
-      this.jsonString = JSON.stringify(sampleSwaggerJson)
+    loadSampleJson(numberOfFields) {
+      if (numberOfFields === 3)
+        this.jsonString = JSON.stringify(sampleSwaggerJson3Fields)
+      else if (numberOfFields === 4)
+        this.jsonString = JSON.stringify(sampleSwaggerJson4Fields)
     },
     // Original convertor
     async jsonStringToExcel(jsonString) {
