@@ -121,7 +121,7 @@ async function getUserBase() {
   }
 }
 
-getTitle();
+// getTitle();
 getUserBase();
 msg.value = 'Development in-progress';
 </script>
