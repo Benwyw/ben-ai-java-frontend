@@ -14,7 +14,7 @@
       <v-row class="d-flex align-center justify-center"><!-- target="_blank" -->
         <v-col cols="auto">
           <v-btn
-            to="/About"
+            to="/about"
             min-width="164"
             rel="noopener noreferrer"
 
@@ -27,6 +27,21 @@
             />
 
             About
+          </v-btn>
+          <v-btn
+            to="/swagger"
+            min-width="164"
+            rel="noopener noreferrer"
+
+            variant="text"
+          >
+            <v-icon
+              icon="mdi-view-dashboard"
+              size="large"
+              start
+            />
+
+            Swagger
           </v-btn>
         </v-col>
 

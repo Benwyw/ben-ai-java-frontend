@@ -1,7 +1,7 @@
 <template>
-  <HelloWorld />
+  <About />
 </template>
 
 <script setup>
-  import HelloWorld from '@/components/About.vue'
+  import About from '@/components/About.vue'
 </script>

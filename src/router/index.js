@@ -18,6 +18,11 @@ const routes = [
         path: '/about',
         name: 'About',
         component: () => import('@/views/About.vue'),
+      },
+      {
+        path: '/swagger',
+        name: 'Swagger',
+        component: () => import('@/views/Swagger.vue'),
       }
     ],
   },
