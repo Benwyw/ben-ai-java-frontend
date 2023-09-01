@@ -73,6 +73,7 @@ import * as api from "@/api/swagger";
 import {ref} from "vue";
 import sampleSwaggerJson3Fields from "@/assets/swagger.json";
 import sampleSwaggerJson4Fields from "@/assets/swagger4.json";
+import {calculateAHashFromImage} from "@/api/swagger";
 
 const isLoading = ref(false);
 const isError = ref(false);
@@ -141,7 +142,7 @@ export default {
       } finally {
         isLoading.value = false;
       }
-    }
+    },
     // async jsonStringToExcel(jsonString) {
     //   try {
     //     isLoading.value = true;
@@ -164,6 +165,21 @@ export default {
     //     isLoading.value = false;
     //   }
     // }
+
+    // to be moved
+    async calculateAHashFromImage(base64Image) {
+      try {
+        const response = await api.calculateAHashFromImage(base64Image);
+        const aHash = response.data; // Get the calculated aHash from the response
+
+        // Use the aHash as needed
+        console.log('aHash:', aHash);
+
+      } catch (error) {
+        console.error(error);
+        // Handle error
+      }
+    }
   }
 }
 </script>

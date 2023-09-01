@@ -25,3 +25,17 @@ export function generateExcelFromSwaggerJson(jsonString) {
     throw error;
   });
 }
+
+// to be moved
+export function calculateAHashFromImage(base64Image) {
+  return axios.post('/image/aHash', {
+    base64Image: base64Image
+  }, {
+    withCredentials: true,
+    responseType: 'blob'
+  }).then(response => {
+    return response;
+  }).catch(error => {
+    throw error;
+  });
+}
