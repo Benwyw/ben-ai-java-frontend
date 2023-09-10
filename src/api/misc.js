@@ -19,3 +19,16 @@ export function getUserBase() {
         throw error;
     });
 }
+
+export function getFeatures(pageNumber, limit) {
+    return axios.get("/misc/getFeatures", {
+        params: {
+            pageNumber: pageNumber,
+            limit: limit
+        }
+    }).then(response => {
+        return response.data;
+    }).catch(error => {
+        throw error;
+    });
+}

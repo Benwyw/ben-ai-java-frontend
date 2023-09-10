@@ -8,9 +8,12 @@
       <v-data-table
         v-model:items-per-page="itemsPerPage"
         :headers="headers"
-        :items="features"
-        item-value="name"
+        :items-length="totalItems"
+        :items="serverItems"
+        :loading="loading"
         class="elevation-1"
+        item-value="featureId"
+        @update:options="loadItems"
       ></v-data-table>
 
       <div class="py-14" />
@@ -38,29 +41,66 @@
 </script>
 
 <script>
+import {getFeatures} from "@/api/misc";
+import * as api from "@/api/misc";
+
 export default {
   data() {
     return {
-      itemsPerPage: 5,
+      itemsPerPage: 10,
       headers: [
         {
           title: 'Features',
           align: 'start',
           sortable: false,
-          key: 'name',
+          key: 'featureName',
         },
-        { title: 'Types', align: 'end', key: 'types' }
+        { title: 'Description', align: 'end', key: 'featureDescription' }
       ],
-      features: [
+      serverItems: [],
+      loading: true,
+      totalItems: 0,
+
+      defaultServerItems: [
         {
-          name: 'Music',
-          types: 4
+          featureName: 'Music',
+          featureDescription: 4
         },
         {
-          name: 'News Feed',
-          types: 1
+          featureName: 'News Feed',
+          featureDescription: 1
         }
-      ]
+      ],
+    }
+  },
+  // created() {
+  //   this.getFeatures(this.page, this.itemsPerPage)
+  // },
+  // watch: {
+  //   itemsPerPage: {
+  //     handler(newVal, oldVal) {
+  //       this.getFeatures(this.page, newVal)
+  //     },
+  //     immediate: false
+  //   },
+  //   page: {
+  //     handler(newVal, oldVal) {
+  //       this.getFeatures(newVal, this.itemsPerPage);
+  //     },
+  //     immediate: false
+  //   }
+  // },
+  methods: {
+    async loadItems({ page, itemsPerPage, sortBy }) {
+      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}`)
+      await api.getFeatures(page, itemsPerPage).then(data => {
+        this.serverItems = data.records;
+        this.totalItems = data.total;
+        this.loading = false
+      }).catch(error => {
+        console.error("Using default features due to API failure")
+        this.serverItems = this.defaultServerItems
+      })
     }
   }
 }
