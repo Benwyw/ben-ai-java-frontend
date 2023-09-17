@@ -141,8 +141,8 @@ export default {
       console.log("WebSocket connected");
       this.getOnlineUserCount();
     },
-    websocketonerror(e) {
-      console.log(`WebSocket connection error: ${e}`);
+    websocketonerror(error) {
+      console.error(`WebSocket connection error: ${JSON.stringify(error)}`);
     },
     // websocketsend(message) {
     //   console.log(`WebSocket send message: ${message}`)
