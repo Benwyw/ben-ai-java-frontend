@@ -142,7 +142,7 @@ export default {
       this.getOnlineUserCount();
     },
     websocketonerror(error) {
-      console.error(`WebSocket connection error: ${JSON.stringify(error)}`);
+      console.error(`WebSocket connection error: ${JSON.stringify(error, ["message", "arguments", "type", "name"])}`);
     },
     // websocketsend(message) {
     //   console.log(`WebSocket send message: ${message}`)
