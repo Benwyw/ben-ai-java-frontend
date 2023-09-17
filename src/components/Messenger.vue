@@ -169,6 +169,7 @@ export default {
     sendFromClient() {
       this.websock.send(this.message)
       console.log(`WebSocket sent message: ${this.message}`)
+      this.message = ''
     },
 
     // sendFromServer() {
