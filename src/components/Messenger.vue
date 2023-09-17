@@ -75,6 +75,7 @@
 <script>
 
 import * as api from "@/api/messenger";
+import {webSocketUrl} from "@/api/messenger";
 
 export default {
   data() {
@@ -124,7 +125,7 @@ export default {
     initWebSocket() {
       api.generateUserId().then(userId => {
         console.log(`userId: ${userId}`)
-        this.websock = new WebSocket(`ws:localhost:8080/api/websocket/${userId}`);
+        this.websock = new WebSocket(`${webSocketUrl}${userId}`);
         this.websock.onopen = this.websocketonopen;
         // this.websock.send = this.websocketsend;
         this.websock.onerror = this.websocketonerror;

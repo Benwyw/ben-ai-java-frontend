@@ -6,6 +6,6 @@ import production from '@/config/production'
 //   baseURL: 'http://localhost:8080/api'
 // });
 
-const instance = (process.env.NODE_ENV == 'production') ? axios.create(production) : axios.create(development)
+const instance = (process.env.NODE_ENV === 'production') ? axios.create(production) : axios.create(development)
 
 export default instance;
