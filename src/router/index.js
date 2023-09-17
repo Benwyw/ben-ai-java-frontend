@@ -23,6 +23,11 @@ const routes = [
         path: '/swagger',
         name: 'Swagger',
         component: () => import('@/views/Swagger.vue'),
+      },
+      {
+        path: '/messenger',
+        name: 'Messenger',
+        component: () => import('@/views/Messenger.vue'),
       }
     ],
   },

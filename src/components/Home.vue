@@ -43,6 +43,21 @@
 
             Swagger
           </v-btn>
+          <v-btn
+              to="/messenger"
+              min-width="164"
+              rel="noopener noreferrer"
+
+              variant="text"
+          >
+            <v-icon
+                icon="mdi-view-dashboard"
+                size="large"
+                start
+            />
+
+            Messenger
+          </v-btn>
         </v-col>
 
         <!-- <v-col cols="auto">
