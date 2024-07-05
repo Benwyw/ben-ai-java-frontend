@@ -28,6 +28,16 @@ const routes = [
         path: '/messenger',
         name: 'Messenger',
         component: () => import('@/views/Messenger.vue'),
+      },
+      {
+        path: '/termsofservice',
+        name: 'Terms Of Service',
+        component: () => import('@/views/TermsOfService.vue'),
+      },
+      {
+        path: '/privacypolicy',
+        name: 'Privacy Policy',
+        component: () => import('@/views/PrivacyPolicy.vue'),
       }
     ],
   },
