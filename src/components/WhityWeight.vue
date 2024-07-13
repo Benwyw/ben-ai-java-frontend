@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
-      <h1>About</h1>
-      <p>Multi-purpose private hosted bot for selected servers.</p>
+      <h1>Whity Weight</h1>
+      <p>小白體重記錄</p>
       <br>
 
       <v-data-table
