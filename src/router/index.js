@@ -43,6 +43,10 @@ const routes = [
        path: '/whityweight',
        name: 'Whity Weight',
        component: () => import('@/views/WhityWeight.vue'),
+     },
+     {
+       path: '/:pathMatch(.*)*',
+       redirect: '/',
      }
     ],
   },
