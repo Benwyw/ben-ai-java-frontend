@@ -40,7 +40,7 @@ const routes = [
         component: () => import('@/views/PrivacyPolicy.vue'),
       },
      {
-       path: '/whityWeight',
+       path: '/whityweight',
        name: 'Whity Weight',
        component: () => import('@/views/WhityWeight.vue'),
      }
