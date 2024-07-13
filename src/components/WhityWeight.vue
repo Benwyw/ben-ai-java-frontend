@@ -12,7 +12,7 @@
         :items="serverItems"
         :loading="loading"
         class="elevation-1"
-        item-value="featureId"
+        item-value="recordId"
         @update:options="loadItems"
       ></v-data-table>
 
@@ -41,7 +41,7 @@
 </script>
 
 <script>
-import * as api from "@/api/misc";
+import * as api from "@/api/whity";
 
 export default {
   data() {
@@ -49,12 +49,12 @@ export default {
       itemsPerPage: 10,
       headers: [
         {
-          title: 'Features',
+          title: 'Date',
           align: 'start',
           sortable: false,
-          key: 'featureName',
+          key: 'recordDate',
         },
-        { title: 'Description', align: 'end', key: 'featureDescription' }
+        { title: 'KG', align: 'end', key: 'kg' }
       ],
       serverItems: [],
       loading: true,
@@ -62,37 +62,20 @@ export default {
 
       defaultServerItems: [
         {
-          featureName: 'Music',
-          featureDescription: 4
+          recordDate: '2024-07-01',
+          kg: 3.4
         },
         {
-          featureName: 'News Feed',
-          featureDescription: 1
+          recordDate: '2024-07-06',
+          kg: 3.5
         }
       ],
     }
   },
-  // created() {
-  //   this.getFeatures(this.page, this.itemsPerPage)
-  // },
-  // watch: {
-  //   itemsPerPage: {
-  //     handler(newVal, oldVal) {
-  //       this.getFeatures(this.page, newVal)
-  //     },
-  //     immediate: false
-  //   },
-  //   page: {
-  //     handler(newVal, oldVal) {
-  //       this.getFeatures(newVal, this.itemsPerPage);
-  //     },
-  //     immediate: false
-  //   }
-  // },
   methods: {
     async loadItems({ page, itemsPerPage, sortBy }) {
       console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}`)
-      await api.getFeatures(page, itemsPerPage).then(data => {
+      await api.getWhityWeight(page, itemsPerPage).then(data => {
         this.serverItems = data.records;
         this.totalItems = data.total;
         this.loading = false

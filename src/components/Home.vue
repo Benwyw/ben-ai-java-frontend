@@ -8,6 +8,7 @@
       <h1 class="text-h2 font-weight-bold">Ben Kaneki</h1>
 
       <v-card-text v-if="userBase">Used by <u>{{ userBase }}</u> users</v-card-text>
+      <v-card-text v-if="latestWhityWeight">Latest weight <u>{{ latestWhityWeight }}</u> KG</v-card-text>
 
       <div class="py-14" />
 
@@ -98,17 +99,38 @@
           </v-btn>
         </v-col> -->
       </v-row>
+      <v-row class="d-flex align-center justify-center">
+          <v-col cols="auto">
+            <v-btn
+                to="/whityWeight"
+                min-width="164"
+                rel="noopener noreferrer"
+
+                variant="text"
+            >
+              <v-icon
+                  icon="mdi-view-dashboard"
+                  size="large"
+                  start
+              />
+
+              Whity Weight
+            </v-btn>
+          </v-col>
+      </v-row>
     </v-responsive>
   </v-container>
 </template>
 
 <script setup>
 import * as api from '@/api/misc';
+import * as apiWhity from '@/api/whity'
 import {ref} from 'vue';
 
 const title = ref('');
 const msg = ref('');
 const userBase = ref('');
+const latestWhityWeight = ref('');
 const isLoading = ref(false);
 const isError = ref(false);
 
@@ -136,8 +158,21 @@ async function getUserBase() {
   }
 }
 
+async function getLatestWhityWeight() {
+  try {
+    isLoading.value = true;
+    latestWhityWeight.value = await apiWhity.getLatestWhityWeight();
+  } catch (error) {
+    console.log(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
+  }
+}
+
 // getTitle();
 getUserBase();
+getLatestWhityWeight();
 msg.value = 'Development in-progress';
 </script>
 
