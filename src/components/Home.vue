@@ -102,7 +102,7 @@
       <v-row class="d-flex align-center justify-center">
           <v-col cols="auto">
             <v-btn
-                to="/whityWeight"
+                to="/whityweight"
                 min-width="164"
                 rel="noopener noreferrer"
 

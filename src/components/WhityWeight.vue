@@ -11,6 +11,7 @@
         :items-length="totalItems"
         :items="serverItems"
         :loading="loading"
+        :sort-by="sortBy"
         class="elevation-1"
         item-value="recordId"
         @update:options="loadItems"
@@ -47,14 +48,15 @@ export default {
   data() {
     return {
       itemsPerPage: 10,
+      sortBy: [{ key: 'recordDate', order: 'desc' }],
       headers: [
         {
           title: 'Date',
           align: 'start',
-          sortable: false,
+          sortable: true,
           key: 'recordDate',
         },
-        { title: 'KG', align: 'end', key: 'kg' }
+        { title: 'KG', align: 'end', sortable: true, key: 'kg' }
       ],
       serverItems: [],
       loading: true,
