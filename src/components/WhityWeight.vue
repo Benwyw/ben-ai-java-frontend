@@ -5,17 +5,18 @@
       <p>小白體重記錄</p>
       <br>
 
-      <v-data-table
+      <v-data-table-server
         v-model:items-per-page="itemsPerPage"
         :headers="headers"
         :items-length="totalItems"
         :items="serverItems"
         :loading="loading"
         :sort-by="sortBy"
+        :page="page"
         class="elevation-1"
-        item-value="recordId"
+        item-key="recordId"
         @update:options="loadItems"
-      ></v-data-table>
+      ></v-data-table-server>
 
       <div class="py-14" />
 
@@ -47,6 +48,7 @@ import * as api from "@/api/whity";
 export default {
   data() {
     return {
+      page: 1,
       itemsPerPage: 10,
       sortBy: [{ key: 'recordDate', order: 'desc' }],
       headers: [

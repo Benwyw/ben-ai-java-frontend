@@ -5,16 +5,17 @@
       <p>Multi-purpose private hosted bot for selected servers.</p>
       <br>
 
-      <v-data-table
+      <v-data-table-server
         v-model:items-per-page="itemsPerPage"
         :headers="headers"
         :items-length="totalItems"
         :items="serverItems"
         :loading="loading"
+        :page="page"
         class="elevation-1"
-        item-value="featureId"
+        item-key="featureId"
         @update:options="loadItems"
-      ></v-data-table>
+      ></v-data-table-server>
 
       <div class="py-14" />
 
@@ -46,6 +47,7 @@ import * as api from "@/api/misc";
 export default {
   data() {
     return {
+      page: 1,
       itemsPerPage: 10,
       headers: [
         {
