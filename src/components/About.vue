@@ -36,11 +36,6 @@
   </v-container>
 </template>
 
-<script setup>
-  //
-  import { VDataTableServer } from 'vuetify/labs/VDataTable'
-</script>
-
 <script>
 import * as api from "@/api/misc";
 
@@ -98,7 +93,7 @@ export default {
   // },
   methods: {
     async loadItems({ page, itemsPerPage, sortBy }) {
-      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}`)
+      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}, sortBy: ${sortBy}`)
       this.loading = true
       await api.getFeatures(page, itemsPerPage).then(data => {
         this.serverItems = data.records;
