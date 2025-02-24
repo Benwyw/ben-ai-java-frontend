@@ -50,11 +50,6 @@
   </v-container>
 </template>
 
-<script setup>
-  //
-  import { VDataTable } from 'vuetify/labs/VDataTable'
-</script>
-
 <script>
 import {getFeatures} from "@/api/misc";
 import * as api from "@/api/misc";
