@@ -38,7 +38,7 @@
 
 <script setup>
   //
-  import { VDataTable } from 'vuetify/labs/VDataTable'
+  import { VDataTableServer } from 'vuetify/labs/VDataTable'
 </script>
 
 <script>
@@ -49,14 +49,19 @@ export default {
     return {
       page: 1,
       itemsPerPage: 10,
+      sortBy: [{ key: 'featureId', order: 'asc' }],
       headers: [
         {
           title: 'Features',
           align: 'start',
-          sortable: false,
+          sortable: true,
           key: 'featureName',
         },
-        { title: 'Description', align: 'end', key: 'featureDescription' }
+        { title: 'Description',
+          align: 'end',
+          sortable: true,
+          key: 'featureDescription'
+        }
       ],
       serverItems: [],
       loading: true,
@@ -94,13 +99,15 @@ export default {
   methods: {
     async loadItems({ page, itemsPerPage, sortBy }) {
       console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}`)
+      this.loading = true
       await api.getFeatures(page, itemsPerPage).then(data => {
         this.serverItems = data.records;
         this.totalItems = data.total;
-        this.loading = false
       }).catch(error => {
         console.error("Using default features due to API failure")
         this.serverItems = this.defaultServerItems
+      }).finally(() => {
+        this.loading = false
       })
     }
   }

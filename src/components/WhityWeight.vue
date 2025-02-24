@@ -39,7 +39,7 @@
 
 <script setup>
   //
-  import { VDataTable } from 'vuetify/labs/VDataTable'
+  import { VDataTableServer } from 'vuetify/labs/VDataTable'
 </script>
 
 <script>
@@ -58,7 +58,11 @@ export default {
           sortable: true,
           key: 'recordDate',
         },
-        { title: 'KG', align: 'end', sortable: true, key: 'kg' }
+        { title: 'KG',
+          align: 'end',
+          sortable: true,
+          key: 'kg'
+        }
       ],
       serverItems: [],
       loading: true,
@@ -79,13 +83,15 @@ export default {
   methods: {
     async loadItems({ page, itemsPerPage, sortBy }) {
       console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}`)
+      this.loading = true
       await api.getWhityWeight(page, itemsPerPage).then(data => {
         this.serverItems = data.records;
         this.totalItems = data.total;
-        this.loading = false
       }).catch(error => {
         console.error("Using default features due to API failure")
         this.serverItems = this.defaultServerItems
+      }).finally(() => {
+        this.loading = false
       })
     }
   }
