@@ -37,9 +37,13 @@
 </template>
 
 <script>
+import { VDataTableServer } from 'vuetify/labs/VDataTable'
 import * as api from "@/api/misc";
 
 export default {
+  components: {
+    VDataTableServer
+  },
   data() {
     return {
       page: 1,
