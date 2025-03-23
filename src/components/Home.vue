@@ -116,6 +116,21 @@
 
               Whity Weight
             </v-btn>
+            <v-btn
+              to="/report"
+              min-width="164"
+              rel="noopener noreferrer"
+
+              variant="text"
+            >
+              <v-icon
+                icon="mdi-view-dashboard"
+                size="large"
+                start
+              />
+
+              Report
+            </v-btn>
           </v-col>
       </v-row>
     </v-responsive>

@@ -45,6 +45,11 @@ const routes = [
        component: () => import('@/views/WhityWeight.vue'),
      },
      {
+       path: '/report',
+       name: 'Report',
+       component: () => import('@/views/Report.vue'),
+     },
+     {
        path: '/:pathMatch(.*)*',
        redirect: '/',
      }
