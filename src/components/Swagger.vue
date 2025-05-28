@@ -38,16 +38,24 @@
               Load sample (4 fields)
             </v-btn>
           </v-col>
-            <v-col cols="6">
-              <v-btn
-                @click="generateExcelFromSwaggerJson(jsonString)"
-                min-width="164"
-                rel="noopener noreferrer"
-                variant="text"
-              >
-                Download Excel
-              </v-btn>
-            </v-col>
+          <v-col cols="6">
+            <v-btn
+              @click="generateExcelFromSwaggerJson(jsonString)"
+              min-width="164"
+              rel="noopener noreferrer"
+              variant="text"
+            >
+              Download Excel
+            </v-btn>
+            <v-btn
+              @click="generateExcelZipFromSwaggerJson(jsonString)"
+              min-width="164"
+              rel="noopener noreferrer"
+              variant="text"
+            >
+              Download Excel (Multiple)
+            </v-btn>
+          </v-col>
           </v-row>
           <v-btn
                 to="/"
@@ -141,7 +149,41 @@ export default {
       } finally {
         isLoading.value = false;
       }
+    },
+
+    // multiple excel files
+    async generateExcelZipFromSwaggerJson(jsonString) {
+      try {
+        isLoading.value = true;
+
+        const response = await api.generateExcelZipFromSwaggerJson(jsonString);
+        const headers = response.headers;
+
+        // Create a new Response object from the response body
+        const responseObj = new Response(response.data, {
+          headers: { 'content-type': headers['content-type'] }
+        });
+
+        // Create a new Blob object from the response data
+        const blob = await responseObj.blob();
+
+        // Create a download link for the Blob and trigger a download
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'data.zip');
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+      } catch (error) {
+        console.error(error);
+        isError.value = true;
+      } finally {
+        isLoading.value = false;
+      }
     }
+
     // async jsonStringToExcel(jsonString) {
     //   try {
     //     isLoading.value = true;
