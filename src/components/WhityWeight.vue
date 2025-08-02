@@ -40,6 +40,14 @@
 <script>
 import * as api from "@/api/whity";
 
+const COLUMN_MAP = {
+  recordId: 'RECORD_ID',
+  recordDate: 'RECORD_DATE',
+  kg: 'KG',
+  remarks: 'REMARKS',
+  // add more as needed…
+}
+
 export default {
   data() {
     return {
@@ -76,10 +84,20 @@ export default {
     }
   },
   methods: {
-    async loadItems({ page, itemsPerPage, sortBy }) {
-      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}, sortBy: ${sortBy}`)
+    async loadItems(newOpts = null) {
+      const {page, itemsPerPage, sortBy: sortByDefs} = newOpts || this.$refs.dataTable.options;
+      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}, sortBy: ${JSON.stringify(sortByDefs)}`);
       this.loading = true
-      await api.getWhityWeight(page, itemsPerPage).then(data => {
+
+      const sortBy = sortByDefs.map(def => COLUMN_MAP[def.key] || def.key);
+      const sortDesc = sortByDefs.map(def => def.order === 'desc');
+      let tempReq = {
+        pageNumber: page,
+        limit: itemsPerPage,
+        sortBy,
+        sortDesc
+      }
+      await api.getWhityWeight(tempReq).then(data => {
         this.serverItems = data.records;
         this.totalItems = data.total;
       }).catch(error => {

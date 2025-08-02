@@ -1,4 +1,5 @@
 import axios from '@/plugins/axios';
+import whityWeight from "@/components/WhityWeight.vue";
 
 export function getLatestWhityWeight() {
     return axios.get('/whity/getLatestWhityWeight', {
@@ -10,12 +11,9 @@ export function getLatestWhityWeight() {
     });
 }
 
-export function getWhityWeight(pageNumber, limit) {
-    return axios.get("/whity/getWhityWeight", {
-        params: {
-            pageNumber: pageNumber,
-            limit: limit
-        }
+export function getWhityWeight(whityWeightReq) {
+    return axios.post("/whity/getWhityWeight", whityWeightReq, {
+      withCredentials: true
     }).then(response => {
         return response.data;
     }).catch(error => {
