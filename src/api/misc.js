@@ -1,34 +1,37 @@
 import axios from '@/plugins/axios';
 
-export function getTitle() {
-    return axios.get('/misc/title', {
-        withCredentials: true
-    }).then(response => {
+export async function getTitle() {
+    try {
+        const response = await axios.get('/misc/title', {
+            withCredentials: true
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
-export function getUserBase() {
-    return axios.get('/misc/userBase', {
-        withCredentials: true
-    }).then(response => {
+export async function getUserBase() {
+    try {
+        const response = await axios.get('/misc/userBase', {
+            withCredentials: true
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
-export function getFeatures(pageNumber, limit) {
-    return axios.get("/misc/getFeatures", {
-        params: {
-            pageNumber: pageNumber,
-            limit: limit
-        }
-    }).then(response => {
+export async function getFeatures(pageNumber, limit) {
+    try {
+        const response = await axios.get("/misc/getFeatures", {
+            params: {
+                pageNumber: pageNumber,
+                limit: limit
+            }
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }

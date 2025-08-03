@@ -1,22 +1,23 @@
 import axios from '@/plugins/axios';
-import whityWeight from "@/components/WhityWeight.vue";
 
-export function getLatestWhityWeight() {
-    return axios.get('/whity/getLatestWhityWeight', {
-        withCredentials: true
-    }).then(response => {
+export async function getLatestWhityWeight() {
+    try {
+        const response = await axios.get('/whity/getLatestWhityWeight', {
+            withCredentials: true
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
-export function getWhityWeight(whityWeightReq) {
-    return axios.post("/whity/getWhityWeight", whityWeightReq, {
-      withCredentials: true
-    }).then(response => {
+export async function getWhityWeight(whityWeightReq) {
+    try {
+        const response = await axios.post("/whity/getWhityWeight", whityWeightReq, {
+            withCredentials: true
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }

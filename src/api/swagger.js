@@ -7,17 +7,18 @@ import axios from '@/plugins/axios';
  * @returns {Promise<Blob>} A promise that resolves to the Excel file as a Blob.
  * @throws {Error} If the request fails.
  */
-export function jsonStringToExcel(jsonString) {
-  return axios.post('/swagger/jsonStringToExcel', {
-    jsonString: jsonString
-  }, {
-    withCredentials: true,
-    responseType: 'blob'
-  }).then(response => {
+export async function jsonStringToExcel(jsonString) {
+  try {
+    const response = await axios.post('/swagger/jsonStringToExcel', {
+      jsonString: jsonString
+    }, {
+      withCredentials: true,
+      responseType: 'blob'
+    });
     return response.data;
-  }).catch(error => {
+  } catch (error) {
     throw error;
-  });
+  }
 }
 
 /**
@@ -27,17 +28,18 @@ export function jsonStringToExcel(jsonString) {
  * @returns {Promise<import('axios').AxiosResponse<Blob>>} A promise that resolves to the Axios response containing the Excel file as a Blob.
  * @throws {Error} If the request fails.
  */
-export function generateExcelFromSwaggerJson(jsonString) {
-  return axios.post('/swagger/generateExcelFromSwaggerJson', {
-    jsonString: jsonString
-  }, {
-    withCredentials: true,
-    responseType: 'blob'
-  }).then(response => {
+export async function generateExcelFromSwaggerJson(jsonString) {
+  try {
+    const response = await axios.post('/swagger/generateExcelFromSwaggerJson', {
+      jsonString: jsonString
+    }, {
+      withCredentials: true,
+      responseType: 'blob'
+    });
     return response;
-  }).catch(error => {
+  } catch (error) {
     throw error;
-  });
+  }
 }
 
 /**
@@ -47,15 +49,16 @@ export function generateExcelFromSwaggerJson(jsonString) {
  * @returns {Promise<import('axios').AxiosResponse<Blob>>} A promise that resolves to the Axios response containing the ZIP file as a Blob.
  * @throws {Error} If the request fails.
  */
-export function generateExcelZipFromSwaggerJson(jsonString) {
-  return axios.post('/swagger/generateExcelZipFromSwaggerJson', {
-    jsonString: jsonString
-  }, {
-    withCredentials: true,
-    responseType: 'blob'
-  }).then(response => {
+export async function generateExcelZipFromSwaggerJson(jsonString) {
+  try {
+    const response = await axios.post('/swagger/generateExcelZipFromSwaggerJson', {
+      jsonString: jsonString
+    }, {
+      withCredentials: true,
+      responseType: 'blob'
+    });
     return response;
-  }).catch(error => {
+  } catch (error) {
     throw error;
-  });
+  }
 }

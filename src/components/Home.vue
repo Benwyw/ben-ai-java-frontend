@@ -140,7 +140,7 @@
 <script setup>
 import * as api from '@/api/misc';
 import * as apiWhity from '@/api/whity'
-import {ref} from 'vue';
+import {ref, onMounted} from 'vue';
 
 const title = ref('');
 const msg = ref('');
@@ -152,7 +152,21 @@ const isError = ref(false);
 async function getTitle() {
   try {
     isLoading.value = true;
-    title.value = await api.getTitle();
+    const response = await api.getTitle();
+    title.value = response;
+  } catch (error) {
+    console.log(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
+  }
+}
+
+async function getMessage() {
+  try {
+    isLoading.value = true;
+    const response = await api.getMessage();
+    msg.value = response;
   } catch (error) {
     console.log(error);
     isError.value = true;
@@ -164,7 +178,8 @@ async function getTitle() {
 async function getUserBase() {
   try {
     isLoading.value = true;
-    userBase.value = await api.getUserBase();
+    const response = await api.getUserBase();
+    userBase.value = response;
   } catch (error) {
     console.log(error);
     isError.value = true;
@@ -176,7 +191,8 @@ async function getUserBase() {
 async function getLatestWhityWeight() {
   try {
     isLoading.value = true;
-    latestWhityWeight.value = await apiWhity.getLatestWhityWeight();
+    const response = await apiWhity.getLatestWhityWeight();
+    latestWhityWeight.value = response;
   } catch (error) {
     console.log(error);
     isError.value = true;
@@ -185,10 +201,10 @@ async function getLatestWhityWeight() {
   }
 }
 
-// getTitle();
-getUserBase();
-getLatestWhityWeight();
-msg.value = 'Development in-progress';
+onMounted(() => {
+  getUserBase();
+  getLatestWhityWeight();
+});
 </script>
 
 <style scoped>

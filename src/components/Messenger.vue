@@ -72,112 +72,113 @@
   </v-container>
 </template>
 
-<script>
-
+<script setup>
+import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 import * as api from "@/api/messenger";
-import {webSocketUrl} from "@/api/messenger";
+import { webSocketUrl } from "@/api/messenger";
 
-export default {
-  data() {
-    return {
-      message: "",
-      messages: [],
-      onlineUserCount: 0,
-      clientStatus: 'Disconnected'
-    };
-  },
-  mounted() {
-    this.initWebSocket();
-  },
-  destroyed() {
-    this.websocketclose()
-  },
-  created() {
-    setInterval(this.getOnlineUserCount, 300000); // Check every 5 minutes (5 * 60 * 1000 = 300000 milliseconds)
-  },
-  computed: {
-    isValid() {
-      return this.message !== undefined && this.message !== null && this.message !== '';
-    }
-  },
-  methods: {
-    async getOnlineUserCount() {
-      api.getOnlineUserCount().then(count => {
-        this.onlineUserCount = count
-      }).catch(error => {
-        console.error(`Location: getOnlineUserCount; Error: ${error}`)
-        this.onlineUserCount = 'Server is offline'
-      })
-    },
-    scrollToBottom() {
-      const el = this.$refs.messageContainer;
-      if (el) {
-        el.scrollToIndex(this.messages.length)
-      }
-    },
-    pushMessageToContainer(message) {
-      this.messages.push(message);
-      this.scrollToBottom();
-    },
-    submit() {
-      console.log('tested submit button')
-    },
-    initWebSocket() {
-      api.generateUserId().then(userId => {
-        console.log(`userId: ${userId}`)
-        this.websock = new WebSocket(`${webSocketUrl}${userId}`);
-        this.websock.onopen = this.websocketonopen;
-        // this.websock.send = this.websocketsend;
-        this.websock.onerror = this.websocketonerror;
-        this.websock.onmessage = this.websocketonmessage;
-        this.websock.onclose = this.websocketclose;
-        this.clientStatus = 'Connected'
-      }).catch(error => {
-        console.error(`Location: generateUserId; Error: ${error}`)
-        this.onlineUserCount = 'Server is offline'
-      })
-    },
-    websocketonopen() {
-      console.log("WebSocket connected");
-      this.getOnlineUserCount();
-    },
-    websocketonerror(error) {
-      console.error(`WebSocket connection error: ${JSON.stringify(error, ["message", "arguments", "type", "name"])}`);
-    },
-    // websocketsend(message) {
-    //   console.log(`WebSocket send message: ${message}`)
-    //   this.messages.push(message)
-    //   // this.websock.send(message)
-    // },
-    websocketonmessage(message) {
-      this.pushMessageToContainer(message.data)
-    },
-    websocketclose(e) {
-      console.log("WebSocket connection closed (" + e.code + ")");
-      this.clientStatus = 'Disconnected'
-      this.getOnlineUserCount()
-    },
+const message = ref("");
+const messages = ref([]);
+const onlineUserCount = ref(0);
+const clientStatus = ref('Disconnected');
+const messageContainer = ref(null);
+let websock = null;
+let onlineUserCountInterval = null;
 
-    // Validation
-    handleEnterKey() {
-      if (this.isValid) {
-        this.sendFromClient()
-      }
-    },
+onMounted(() => {
+  initWebSocket();
+  onlineUserCountInterval = setInterval(getOnlineUserCount, 300000); // Check every 5 minutes
+});
 
-    //Server send to client
-    sendFromClient() {
-      this.websock.send(this.message)
-      console.log(`WebSocket sent message: ${this.message}`)
-      this.message = ''
-    },
-
-    // sendFromServer() {
-    //   console.log('Before')
-    //   api.sendOneMessage();
-    // }
+onUnmounted(() => {
+  if (websock) {
+    websock.close();
   }
-};
+  if (onlineUserCountInterval) {
+    clearInterval(onlineUserCountInterval);
+  }
+});
+
+const isValid = computed(() => {
+  return message.value !== undefined && message.value !== null && message.value !== '';
+});
+
+async function getOnlineUserCount() {
+  try {
+    const count = await api.getOnlineUserCount();
+    onlineUserCount.value = count;
+  } catch (error) {
+    console.error(`Location: getOnlineUserCount; Error: ${error}`);
+    onlineUserCount.value = 'Server is offline';
+  }
+}
+
+async function scrollToBottom() {
+  await nextTick();
+  const el = messageContainer.value;
+  if (el) {
+    el.scrollToIndex(messages.value.length - 1);
+  }
+}
+
+function pushMessageToContainer(msg) {
+  messages.value.push(msg);
+  scrollToBottom();
+}
+
+function initWebSocket() {
+  api.generateUserId().then(userId => {
+    console.log(`userId: ${userId}`);
+    websock = new WebSocket(`${webSocketUrl}${userId}`);
+    websock.onopen = websocketonopen;
+    websock.onerror = websocketonerror;
+    websock.onmessage = websocketonmessage;
+    websock.onclose = websocketclose;
+    clientStatus.value = 'Connected';
+  }).catch(error => {
+    console.error(`Location: generateUserId; Error: ${error}`);
+    onlineUserCount.value = 'Server is offline';
+  });
+}
+
+function websocketonopen() {
+  console.log("WebSocket connected");
+  getOnlineUserCount();
+}
+
+function websocketonerror(error) {
+  console.error(`WebSocket connection error: ${JSON.stringify(error, ["message", "arguments", "type", "name"])}`);
+}
+
+function websocketonmessage(e) {
+  const redata = e.data;
+  pushMessageToContainer(redata);
+}
+
+function websocketclose(e) {
+  console.log("connection closed", e);
+  clientStatus.value = 'Disconnected';
+}
+
+function sendFromServer() {
+  // This seems to be a test function, keeping it here.
+  // In a real app, this would likely be triggered by a server event.
+  pushMessageToContainer('A message from the server.');
+}
+
+function sendFromClient() {
+  if (isValid.value) {
+    websock.send(message.value);
+    pushMessageToContainer(`Me: ${message.value}`);
+    message.value = "";
+  }
+}
+
+function handleEnterKey() {
+  if (isValid.value) {
+    sendFromClient();
+  }
+}
 </script>
 
 <style>

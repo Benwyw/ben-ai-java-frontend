@@ -1,24 +1,26 @@
 import axios from '@/plugins/axios';
 
-export function generateUserId() {
-    return axios.get('/ws/generateUserId', {
-        withCredentials: true
-    }).then(response => {
+export async function generateUserId() {
+    try {
+        const response = await axios.get('/ws/generateUserId', {
+            withCredentials: true
+        });
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
-export function getOnlineUserCount() {
-    return axios.get('/ws/getOnlineUserCount', {
-        withCredentials: true
-    }).then(response => {
+export async function getOnlineUserCount() {
+    try {
+        const response = await axios.get('/ws/getOnlineUserCount', {
+            withCredentials: true
+        });
         console.log(`response: ${response.data}`)
         return response.data;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
 export const webSocketUrl = (process.env.NODE_ENV === 'production') ? 'wss:bot.benwyw.com/api/websocket/' : 'ws:localhost:8080/api/websocket/'

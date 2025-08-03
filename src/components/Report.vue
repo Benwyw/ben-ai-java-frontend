@@ -86,98 +86,70 @@
 </template>
 
 <script setup>
-  //
-</script>
-
-<script>
+import { ref, reactive } from 'vue';
 import * as api from "@/api/report";
-import {ref} from "vue";
 
 const isLoading = ref(false);
 const isError = ref(false);
 
-export default {
-  data() {
-    return {
-      report1Params: {
-        dueDays: null,
-        rmName: "",
-        customerNum: null,
-        sccStatus: "",
-        groupNum: null,
-        customerName: "",
-      },
-      report2Params: {
-        userName: "",
-      },
-    }
-  },
-  methods: {
-    // report 1
-    async generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName) {
-      try {
-        isLoading.value = true;
+const report1Params = reactive({
+  dueDays: null,
+  rmName: "",
+  customerNum: null,
+  sccStatus: "",
+  groupNum: null,
+  customerName: "",
+});
 
-        const response = await api.generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName);
-        const headers = response.headers;
-        
-        // Create a new Response object from the response body
-        const responseObj = new Response(response.data, {
-          headers: { 'Content-Type': headers['content-type'] }
-        });
+const report2Params = reactive({
+  userName: "",
+});
 
-        // Create a new Blob object from the response data
-        const blob = await responseObj.blob();
+async function generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName) {
+  try {
+    isLoading.value = true;
+    const response = await api.generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName);
+    const headers = response.headers;
+    const responseObj = new Response(response.data, {
+      headers: { 'Content-Type': headers['content-type'] }
+    });
+    const blob = await responseObj.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'report1.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
+  }
+}
 
-        // Create a download link for the Blob and trigger a download
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'report1.pdf');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-      } catch (error) {
-        console.error(error);
-        isError.value = true;
-      } finally {
-        isLoading.value = false;
-      }
-    },
-
-    // report 2
-    async generateTestReport2(userName) {
-      try {
-        isLoading.value = true;
-
-        const response = await api.generateTestReport2(userName);
-        const headers = response.headers;
-
-        // Create a new Response object from the response body
-        const responseObj = new Response(response.data, {
-          headers: { 'content-type': headers['content-type'] }
-        });
-
-        // Create a new Blob object from the response data
-        const blob = await responseObj.blob();
-
-        // Create a download link for the Blob and trigger a download
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'report2.pdf');
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-      } catch (error) {
-        console.error(error);
-        isError.value = true;
-      } finally {
-        isLoading.value = false;
-      }
-    }
+async function generateTestReport2(userName) {
+  try {
+    isLoading.value = true;
+    const response = await api.generateTestReport2(userName);
+    const headers = response.headers;
+    const responseObj = new Response(response.data, {
+      headers: { 'content-type': headers['content-type'] }
+    });
+    const blob = await responseObj.blob();
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'report2.pdf');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error(error);
+    isError.value = true;
+  } finally {
+    isLoading.value = false;
   }
 }
 </script>

@@ -36,75 +36,55 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import * as api from "@/api/misc";
 
-export default {
-  data() {
-    return {
-      page: 1,
-      itemsPerPage: 10,
-      sortBy: [{ key: 'featureId', order: 'asc' }],
-      headers: [
-        {
-          title: 'Features',
-          align: 'start',
-          sortable: true,
-          key: 'featureName',
-        },
-        { title: 'Description',
-          align: 'end',
-          sortable: true,
-          key: 'featureDescription'
-        }
-      ],
-      serverItems: [],
-      loading: true,
-      totalItems: 0,
-
-      defaultServerItems: [
-        {
-          featureName: 'Music',
-          featureDescription: 4
-        },
-        {
-          featureName: 'News Feed',
-          featureDescription: 1
-        }
-      ],
-    }
+const page = ref(1);
+const itemsPerPage = ref(10);
+const sortBy = ref([{ key: 'featureId', order: 'asc' }]);
+const headers = ref([
+  {
+    title: 'Features',
+    align: 'start',
+    sortable: true,
+    key: 'featureName',
   },
-  // created() {
-  //   this.getFeatures(this.page, this.itemsPerPage)
-  // },
-  // watch: {
-  //   itemsPerPage: {
-  //     handler(newVal, oldVal) {
-  //       this.getFeatures(this.page, newVal)
-  //     },
-  //     immediate: false
-  //   },
-  //   page: {
-  //     handler(newVal, oldVal) {
-  //       this.getFeatures(newVal, this.itemsPerPage);
-  //     },
-  //     immediate: false
-  //   }
-  // },
-  methods: {
-    async loadItems({ page, itemsPerPage, sortBy }) {
-      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}, sortBy: ${sortBy}`)
-      this.loading = true
-      await api.getFeatures(page, itemsPerPage).then(data => {
-        this.serverItems = data.records;
-        this.totalItems = data.total;
-      }).catch(error => {
-        console.error("Using default features due to API failure")
-        this.serverItems = this.defaultServerItems
-      }).finally(() => {
-        this.loading = false
-      })
-    }
+  {
+    title: 'Description',
+    align: 'end',
+    sortable: true,
+    key: 'featureDescription'
+  }
+]);
+const serverItems = ref([]);
+const loading = ref(true);
+const totalItems = ref(0);
+
+const defaultServerItems = [
+  {
+    featureName: 'Music',
+    featureDescription: 4
+  },
+  {
+    featureName: 'News Feed',
+    featureDescription: 1
+  }
+];
+
+async function loadItems({ page: newPage, itemsPerPage: newItemsPerPage, sortBy: newSortBy }) {
+  console.log(`page: ${newPage}, itemsPerPage: ${newItemsPerPage}, sortBy: ${newSortBy}`);
+  loading.value = true;
+  try {
+    const data = await api.getFeatures(newPage, newItemsPerPage);
+    serverItems.value = data.records;
+    totalItems.value = data.total;
+  } catch (error) {
+    console.error("Using default features due to API failure", error);
+    serverItems.value = defaultServerItems;
+    totalItems.value = defaultServerItems.length;
+  } finally {
+    loading.value = false;
   }
 }
 </script>

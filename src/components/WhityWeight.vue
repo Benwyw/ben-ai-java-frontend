@@ -37,7 +37,8 @@
   </v-container>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import * as api from "@/api/whity";
 
 const COLUMN_MAP = {
@@ -48,65 +49,57 @@ const COLUMN_MAP = {
   // add more as needed…
 }
 
-export default {
-  data() {
-    return {
-      page: 1,
-      itemsPerPage: 10,
-      sortBy: [{ key: 'recordDate', order: 'desc' }],
-      headers: [
-        {
-          title: 'Date',
-          align: 'start',
-          sortable: true,
-          key: 'recordDate',
-        },
-        { title: 'KG',
-          align: 'end',
-          sortable: true,
-          key: 'kg'
-        }
-      ],
-      serverItems: [],
-      loading: true,
-      totalItems: 0,
-
-      defaultServerItems: [
-        {
-          recordDate: '2024-07-01',
-          kg: 3.4
-        },
-        {
-          recordDate: '2024-07-06',
-          kg: 3.5
-        }
-      ],
-    }
+const page = ref(1);
+const itemsPerPage = ref(10);
+const sortBy = ref([{ key: 'recordDate', order: 'desc' }]);
+const headers = ref([
+  {
+    title: 'Date',
+    align: 'start',
+    sortable: true,
+    key: 'recordDate',
   },
-  methods: {
-    async loadItems(newOpts = null) {
-      const {page, itemsPerPage, sortBy: sortByDefs} = newOpts || this.$refs.dataTable.options;
-      console.log(`page: ${page}, itemsPerPage: ${itemsPerPage}, sortBy: ${JSON.stringify(sortByDefs)}`);
-      this.loading = true
+  { title: 'KG',
+    align: 'end',
+    sortable: true,
+    key: 'kg'
+  }
+]);
+const serverItems = ref([]);
+const loading = ref(true);
+const totalItems = ref(0);
 
-      const sortBy = sortByDefs.map(def => COLUMN_MAP[def.key] || def.key);
-      const sortDesc = sortByDefs.map(def => def.order === 'desc');
-      let tempReq = {
-        pageNumber: page,
-        limit: itemsPerPage,
-        sortBy,
-        sortDesc
-      }
-      await api.getWhityWeight(tempReq).then(data => {
-        this.serverItems = data.records;
-        this.totalItems = data.total;
-      }).catch(error => {
-        console.error("Using default features due to API failure")
-        this.serverItems = this.defaultServerItems
-      }).finally(() => {
-        this.loading = false
-      })
-    }
+const defaultServerItems = [
+  {
+    recordDate: '2024-07-01',
+    kg: 3.4
+  },
+  {
+    recordDate: '2024-07-06',
+    kg: 3.5
+  }
+];
+
+async function loadItems ({ page: newPage, itemsPerPage: newItemsPerPage, sortBy: sortByDefs }) {
+  loading.value = true
+  const sortByMapped = sortByDefs.map(def => COLUMN_MAP[def.key] || def.key);
+  const sortDesc = sortByDefs.map(def => def.order === 'desc');
+  let tempReq = {
+    pageNumber: newPage,
+    limit: newItemsPerPage,
+    sortBy: sortByMapped,
+    sortDesc
+  }
+  try {
+    const data = await api.getWhityWeight(tempReq);
+    serverItems.value = data.records;
+    totalItems.value = data.total;
+  } catch (error) {
+    console.error("Using default features due to API failure", error);
+    serverItems.value = defaultServerItems;
+    totalItems.value = defaultServerItems.length;
+  } finally {
+    loading.value = false
   }
 }
 </script>

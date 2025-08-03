@@ -1,34 +1,36 @@
 import axios from '@/plugins/axios';
 
-export function generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName) {
-    return axios.get('/report/generate-test-report-1', {
-        params: {
-            dueDays: dueDays,
-            rmName: rmName,
-            customerNum: customerNum,
-            sccStatus: sccStatus,
-            groupNum: groupNum,
-            customerName: customerName
-        },
-        withCredentials: true,
-        responseType: 'blob'
-    }).then(response => {
+export async function generateTestReport1(dueDays, rmName, customerNum, sccStatus, groupNum, customerName) {
+    try {
+        const response = await axios.get('/report/generate-test-report-1', {
+            params: {
+                dueDays,
+                rmName,
+                customerNum,
+                sccStatus,
+                groupNum,
+                customerName
+            },
+            withCredentials: true,
+            responseType: 'blob'
+        });
         return response;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
 
-export function generateTestReport2(userName) {
-    return axios.get('/report/generate-test-report-2', {
-        params: {
-            userName: userName
-        },
-        withCredentials: true,
-        responseType: 'blob'
-    }).then(response => {
+export async function generateTestReport2(userName) {
+    try {
+        const response = await axios.get('/report/generate-test-report-2', {
+            params: {
+                userName
+            },
+            withCredentials: true,
+            responseType: 'blob'
+        });
         return response;
-    }).catch(error => {
+    } catch (error) {
         throw error;
-    });
+    }
 }
