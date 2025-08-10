@@ -131,6 +131,21 @@
 
               Report
             </v-btn>
+            <v-btn
+              to="/login"
+              min-width="164"
+              rel="noopener noreferrer"
+
+              variant="text"
+            >
+              <v-icon
+                icon="mdi-view-dashboard"
+                size="large"
+                start
+              />
+
+              Login
+            </v-btn>
           </v-col>
       </v-row>
     </v-responsive>
