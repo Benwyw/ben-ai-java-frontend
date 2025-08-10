@@ -1,4 +1,12 @@
 <template>
+  <v-alert
+    v-if="lastError"
+    type="error"
+    closable
+    @click:close="lastError = ''"
+  >
+    {{ lastError }}
+  </v-alert>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
       <h1>Messenger</h1>
@@ -76,6 +84,12 @@
 import { ref, onMounted, onUnmounted, computed, nextTick } from 'vue';
 import * as api from "@/api/messenger";
 import { webSocketUrl } from "@/api/messenger";
+import { lastError } from '@/stores/errorStore';
+
+// Clear the error whenever this page is first mounted
+onMounted(() => {
+  lastError.value = '';
+});
 
 const message = ref("");
 const messages = ref([]);
