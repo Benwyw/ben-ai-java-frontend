@@ -1,4 +1,12 @@
 <template>
+  <v-alert
+    v-if="lastError"
+    type="error"
+    closable
+    @click:close="lastError = ''"
+  >
+    {{ lastError }}
+  </v-alert>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
       <h1>Swagger</h1>
@@ -40,6 +48,7 @@
           </v-col>
           <v-col cols="6">
             <v-btn
+              type="button"
               @click="generateExcelFromSwaggerJson(jsonString)"
               min-width="164"
               rel="noopener noreferrer"
@@ -48,6 +57,7 @@
               Download Excel
             </v-btn>
             <v-btn
+              type="button"
               @click="generateExcelZipFromSwaggerJson(jsonString)"
               min-width="164"
               rel="noopener noreferrer"
@@ -73,10 +83,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import {onMounted, ref} from 'vue';
 import * as api from "@/api/swagger";
 import sampleSwaggerJson3Fields from "@/assets/swagger.json";
 import sampleSwaggerJson4Fields from "@/assets/swagger4.json";
+import { lastError } from '@/stores/errorStore';
+
+// Clear the error whenever this page is first mounted
+onMounted(() => {
+  lastError.value = '';
+});
 
 const jsonString = ref("");
 const isLoading = ref(false);
@@ -94,18 +110,26 @@ async function generateExcelFromSwaggerJson(json) {
   try {
     isLoading.value = true;
     const response = await api.generateExcelFromSwaggerJson(json);
-    const headers = response.headers;
-    const responseObj = new Response(response.data, {
-      headers: { 'content-type': headers['content-type'] }
-    });
-    const blob = await responseObj.blob();
+
+    // response.data is already a Blob because of responseType: 'blob'
+    const blob = response.data;
+
+    // If you want to trust server-provided filename
+    // const contentDisposition = response.headers['content-disposition'];
+    // let filename = 'data.xlsx';
+    // if (contentDisposition) {
+    //   const match = contentDisposition.match(/filename="?(.+)"?/);
+    //   if (match?.[1]) filename = match[1];
+    // }
+
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'data.xlsx');
+    link.setAttribute('download', 'data.xlsx'); // or filename variable above
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    link.remove();
+    URL.revokeObjectURL(url); // cleanup
   } catch (error) {
     console.error(error);
     isError.value = true;
@@ -117,19 +141,29 @@ async function generateExcelFromSwaggerJson(json) {
 async function generateExcelZipFromSwaggerJson(json) {
   try {
     isLoading.value = true;
+
+    // api.generateExcelZipFromSwaggerJson must set { responseType: 'blob' }
     const response = await api.generateExcelZipFromSwaggerJson(json);
-    const headers = response.headers;
-    const responseObj = new Response(response.data, {
-      headers: { 'content-type': headers['content-type'] }
-    });
-    const blob = await responseObj.blob();
+
+    // Axios already returns a Blob here
+    const blob = response.data;
+
+    // Optional: extract filename from server headers
+    // const contentDisposition = response.headers['content-disposition'];
+    // let filename = 'data.zip';
+    // if (contentDisposition) {
+    //   const match = contentDisposition.match(/filename="?([^"]+)"?/);
+    //   if (match?.[1]) filename = decodeURIComponent(match[1]);
+    // }
+
     const url = window.URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'data.zip');
+    link.setAttribute('download', 'data.zip'); // or filename variable above
     document.body.appendChild(link);
     link.click();
-    document.body.removeChild(link);
+    link.remove();
+    URL.revokeObjectURL(url); // free up memory
   } catch (error) {
     console.error(error);
     isError.value = true;

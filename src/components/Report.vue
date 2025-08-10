@@ -1,4 +1,12 @@
 <template>
+  <v-alert
+    v-if="lastError"
+    type="error"
+    closable
+    @click:close="lastError = ''"
+  >
+    {{ lastError }}
+  </v-alert>
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
       <h1>Report</h1>
@@ -86,8 +94,14 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import {ref, reactive, onMounted} from 'vue';
 import * as api from "@/api/report";
+import { lastError } from '@/stores/errorStore';
+
+// Clear the error whenever this page is first mounted
+onMounted(() => {
+  lastError.value = '';
+});
 
 const isLoading = ref(false);
 const isError = ref(false);
