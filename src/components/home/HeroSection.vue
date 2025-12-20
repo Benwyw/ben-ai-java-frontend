@@ -1,0 +1,42 @@
+<template>
+  <v-card
+    class="mb-6 bg-gradient-primary"
+    rounded="xl"
+    variant="flat"
+  >
+    <v-card-text class="py-12 text-center">
+      <v-avatar size="120" class="mb-4 elevation-4">
+        <v-img src="@/assets/logo.png" />
+      </v-avatar>
+      <h1 class="text-h3 font-weight-bold text-white mb-2">Ben Kaneki</h1>
+      <p class="text-h6 text-white-darken-1 mb-4">AI Platform</p>
+      <div class="d-flex justify-center ga-3 flex-wrap">
+        <v-chip v-if="userBase" color="white" variant="flat" prepend-icon="mdi-account-group">
+          {{ userBase }} Users
+        </v-chip>
+        <v-chip v-if="latestWhityWeight" color="white" variant="flat" prepend-icon="mdi-scale">
+          {{ latestWhityWeight }} KG
+        </v-chip>
+      </div>
+    </v-card-text>
+  </v-card>
+</template>
+
+<script setup>
+defineProps({
+  userBase: {
+    type: [String, Number],
+    default: ''
+  },
+  latestWhityWeight: {
+    type: [String, Number],
+    default: ''
+  }
+})
+</script>
+
+<style scoped>
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #1867C0 0%, #5CBBF6 100%);
+}
+</style>

@@ -8,3 +8,53 @@
 // @use 'vuetify/settings' with (
 //   $color-pack: false
 // );
+
+// Global utility classes
+:root {
+  --v-border-radius: 12px;
+}
+
+// Smooth transitions
+.v-card {
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+// Navigation drawer customization
+.v-navigation-drawer {
+  border-right: none !important;
+}
+
+// App bar customization
+.v-app-bar {
+  backdrop-filter: blur(10px);
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+// Dark mode scrollbar
+.v-theme--dark {
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}

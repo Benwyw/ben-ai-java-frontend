@@ -1,54 +1,65 @@
 <template>
-  <v-container class="fill-height">
-    <v-responsive class="d-flex align-center text-center fill-height">
-      <h1>Terms of Service</h1>
+  <div>
+    <!-- Page Header -->
+    <PageHeader
+      title="Terms of Service"
+      subtitle="Please read carefully before using our services"
+      icon="mdi-file-document"
+      gradient-class="bg-gradient-cyan"
+    />
 
-      <h2>1. Acceptance of Terms</h2>
-      <p>By using the Ben Kaneki (hereinafter referred to as "the Bot"), you are agreeing to these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Bot.</p>
+    <!-- Terms of Service Content -->
+    <SectionsPanel :sections="sections" :last-updated="lastUpdated" />
 
-      <h2>2. Changes to Terms</h2>
-      <p>We reserve the right to modify these Terms at any time. We recommend users review these Terms periodically.</p>
-
-      <h2>3. Bot Usage</h2>
-      <p>The Bot is provided on an "as is" and "as available" basis for your use. The Bot is meant to be used as per Discord's guidelines and rules.</p>
-
-      <h2>4. User Conduct</h2>
-      <p>You agree not to interfere with or disrupt the Bot's services or servers. You also agree not to disobey any requirements or regulations of networks connected to the Bot's services.</p>
-
-      <h2>5. Intellectual Property</h2>
-      <p>All rights, title, and interest in and to the Bot (excluding content provided by users) are and will remain the exclusive property of the Bot's developers.</p>
-
-      <h2>6. Limitation of Liability</h2>
-      <p>In no event shall the Bot's developers be liable for any direct, indirect, incidental, special, consequential or exemplary damages resulting from your use or inability to use the Bot.</p>
-
-      <h2>7. Termination</h2>
-      <p>We may terminate or suspend access to our Bot immediately, without prior notice or liability, for any reason whatsoever, including, without limitation, if you breach the Terms.</p>
-
-      <h2>8. Governing Law</h2>
-      <p>These Terms shall be governed by the laws of the country where the Bot's developers are based, without regard to its conflict of law provisions.</p>
-
-      <h2>9. Contact Information</h2>
-      <p>If you have any questions about these Terms, please contact us.</p>
-
-      <p><i>Last updated on: 5JUL2024</i></p>
-
-      <div class="py-14" />
-
-      <v-row class="d-flex align-center justify-center">
-        <v-col cols="auto">
-          <v-btn
-            to="/"
-            min-width="164"
-            rel="noopener noreferrer"
-            variant="text"
-          >
-            Back to Home
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-responsive>
-  </v-container>
+    <!-- Back Button -->
+    <BackButton />
+  </div>
 </template>
 
 <script setup>
+import PageHeader from '@/components/shared/PageHeader.vue'
+import BackButton from '@/components/shared/BackButton.vue'
+import SectionsPanel from '@/components/legal/SectionsPanel.vue'
+
+const lastUpdated = '5 JUL 2024'
+
+const sections = [
+  {
+    title: 'Acceptance of Terms',
+    content: 'By using the Ben Kaneki (hereinafter referred to as "the Bot"), you are agreeing to these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Bot.'
+  },
+  {
+    title: 'Changes to Terms',
+    content: 'We reserve the right to modify these Terms at any time. We recommend users review these Terms periodically.'
+  },
+  {
+    title: 'Bot Usage',
+    content: 'The Bot is provided on an "as is" and "as available" basis for your use. The Bot is meant to be used as per Discord\'s guidelines and rules.'
+  },
+  {
+    title: 'User Conduct',
+    content: 'You agree not to interfere with or disrupt the Bot\'s services or servers. You also agree not to disobey any requirements or regulations of networks connected to the Bot\'s services.'
+  },
+  {
+    title: 'Intellectual Property',
+    content: 'All rights, title, and interest in and to the Bot (excluding content provided by users) are and will remain the exclusive property of the Bot\'s developers.'
+  },
+  {
+    title: 'Limitation of Liability',
+    content: 'In no event shall the Bot\'s developers be liable for any direct, indirect, incidental, special, consequential or exemplary damages resulting from your use or inability to use the Bot.'
+  },
+  {
+    title: 'Termination',
+    content: 'We may terminate or suspend access to our Bot immediately, without prior notice or liability, for any reason whatsoever, including, without limitation, if you breach the Terms.'
+  },
+  {
+    title: 'Governing Law',
+    content: 'These Terms shall be governed by the laws of the country where the Bot\'s developers are based, without regard to its conflict of law provisions.'
+  },
+  {
+    title: 'Contact Information',
+    content: 'If you have any questions about these Terms, please contact us.'
+  }
+]
 </script>
+
