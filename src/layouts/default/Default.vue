@@ -144,13 +144,41 @@
           <template #activator="{ props }">
             <v-btn
               v-bind="props"
-              icon="mdi-account-circle"
+              :icon="!isLoggedIn"
               variant="text"
               :size="mobile ? 'small' : 'default'"
-            />
+            >
+              <v-icon v-if="!isLoggedIn">mdi-account-circle</v-icon>
+              <template v-else>
+                <v-icon class="mr-1">mdi-account-circle</v-icon>
+                <span v-if="!mobile" class="text-truncate" style="max-width: 120px;">{{ username }}</span>
+              </template>
+            </v-btn>
           </template>
           <v-list>
+            <template v-if="isLoggedIn">
+              <v-list-item v-if="mobile">
+                <v-list-item-title class="font-weight-medium">{{ username }}</v-list-item-title>
+              </v-list-item>
+              <v-divider v-if="mobile" />
+              <v-list-item
+                prepend-icon="mdi-logout"
+                title="Logout"
+                :disabled="isLoggingOut"
+                @click="handleLogout"
+              >
+                <template #append>
+                  <v-progress-circular
+                    v-if="isLoggingOut"
+                    indeterminate
+                    size="16"
+                    width="2"
+                  />
+                </template>
+              </v-list-item>
+            </template>
             <v-list-item
+              v-else
               prepend-icon="mdi-login"
               title="Login"
               to="/login"
@@ -181,12 +209,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTheme, useDisplay } from 'vuetify'
 import logoSrc from '@/assets/logo.png'
 import SidebarNavItem from '@/components/SidebarNavItem.vue'
 import { mainRouteChildren } from '@/router'
+import { logout as logoutApi } from '@/api/logout'
 
 const route = useRoute()
 const router = useRouter()
@@ -196,6 +225,32 @@ const { mobile } = useDisplay()
 const drawer = ref(true)
 const rail = ref(false)
 const openedGroups = ref([])
+
+// Auth state
+const username = ref(null)
+const isLoggingOut = ref(false)
+
+const isLoggedIn = computed(() => !!username.value)
+
+// Check auth state on mount and when route changes
+const checkAuthState = () => {
+  username.value = localStorage.getItem('username')
+}
+
+onMounted(checkAuthState)
+watch(() => route.path, checkAuthState)
+
+// Handle logout
+const handleLogout = async () => {
+  isLoggingOut.value = true
+  try {
+    await logoutApi()
+    username.value = null
+    router.push('/')
+  } finally {
+    isLoggingOut.value = false
+  }
+}
 
 const isDark = computed(() => theme.global.current.value.dark)
 
