@@ -12,7 +12,12 @@
         min-height="300"
         max-height="400"
       >
-        <v-virtual-scroll :items="messages" height="300" ref="messageContainer">
+        <v-virtual-scroll
+          v-if="messages.length > 0"
+          :items="messages"
+          height="300"
+          ref="messageContainer"
+        >
           <template #default="{ item }">
             <div
               class="message-item py-2 px-3 mb-2 rounded-lg"
@@ -22,7 +27,11 @@
             </div>
           </template>
         </v-virtual-scroll>
-        <div v-if="messages.length === 0" class="text-center text-medium-emphasis pa-8">
+        <div
+          v-else
+          class="d-flex flex-column align-center justify-center text-medium-emphasis"
+          style="height: 300px;"
+        >
           <v-icon size="48" class="mb-2">mdi-chat-outline</v-icon>
           <p>No messages yet. Start the conversation!</p>
         </div>
