@@ -222,7 +222,7 @@ const router = useRouter()
 const theme = useTheme()
 const { mobile } = useDisplay()
 
-const drawer = ref(true)
+const drawer = ref(!mobile.value) // Start closed on mobile
 const rail = ref(false)
 const openedGroups = ref([])
 
