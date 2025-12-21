@@ -3,9 +3,10 @@
     <!-- Modern Navigation Drawer -->
     <v-navigation-drawer
       v-model="drawer"
-      :rail="rail"
-      permanent
-      @click="rail = false"
+      :rail="!mobile && rail"
+      :permanent="!mobile"
+      :temporary="mobile"
+      @click="mobile ? null : rail = false"
     >
       <v-list-item
         :prepend-avatar="logoSrc"
@@ -88,7 +89,7 @@
       </v-list>
 
       <template #append>
-        <v-list density="compact" nav>
+        <v-list v-if="!mobile" density="compact" nav>
           <v-list-item
             :prepend-icon="rail ? 'mdi-chevron-right' : 'mdi-chevron-left'"
             title="Collapse"
@@ -101,23 +102,43 @@
     <!-- Modern App Bar -->
     <v-app-bar flat class="border-b">
       <template #prepend>
-        <v-app-bar-nav-icon @click.stop="rail = !rail" />
+        <v-app-bar-nav-icon @click.stop="mobile ? drawer = !drawer : rail = !rail" />
       </template>
 
-      <v-app-bar-title>
-        <v-breadcrumbs :items="breadcrumbs" density="compact">
+      <v-app-bar-title class="text-truncate">
+        <v-breadcrumbs
+          :items="breadcrumbs"
+          density="compact"
+          class="pa-0"
+        >
           <template #divider>
             <v-icon icon="mdi-chevron-right" size="small" />
+          </template>
+          <template #item="{ item }">
+            <v-breadcrumbs-item
+              :to="item.to"
+              :disabled="item.disabled"
+              class="text-truncate"
+            >
+              {{ item.title }}
+            </v-breadcrumbs-item>
           </template>
         </v-breadcrumbs>
       </v-app-bar-title>
 
       <template #append>
-        <v-btn icon="mdi-weather-partly-cloudy" variant="text" href="https://www.hko.gov.hk/tc/" target="_blank" />
+        <v-btn
+          icon="mdi-weather-partly-cloudy"
+          variant="text"
+          href="https://www.hko.gov.hk/tc/"
+          target="_blank"
+          :size="mobile ? 'small' : 'default'"
+        />
         <v-btn
           :icon="isDark ? 'mdi-weather-sunny' : 'mdi-weather-night'"
           variant="text"
           @click="toggleTheme"
+          :size="mobile ? 'small' : 'default'"
         />
         <v-menu>
           <template #activator="{ props }">
@@ -125,6 +146,7 @@
               v-bind="props"
               icon="mdi-account-circle"
               variant="text"
+              :size="mobile ? 'small' : 'default'"
             />
           </template>
           <v-list>
@@ -140,7 +162,7 @@
 
     <!-- Main Content -->
     <v-main class="bg-grey-lighten-4">
-      <v-container fluid class="pa-6">
+      <v-container fluid :class="mobile ? 'pa-3' : 'pa-6'">
         <router-view />
       </v-container>
     </v-main>
@@ -161,7 +183,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useTheme } from 'vuetify'
+import { useTheme, useDisplay } from 'vuetify'
 import logoSrc from '@/assets/logo.png'
 import SidebarNavItem from '@/components/SidebarNavItem.vue'
 import { mainRouteChildren } from '@/router'
@@ -169,6 +191,7 @@ import { mainRouteChildren } from '@/router'
 const route = useRoute()
 const router = useRouter()
 const theme = useTheme()
+const { mobile } = useDisplay()
 
 const drawer = ref(true)
 const rail = ref(false)
