@@ -205,17 +205,52 @@
         </v-col>
       </v-row>
     </v-footer>
+
+    <!-- Session Expiry Warning Dialog -->
+    <v-dialog v-model="sessionWarning.show" persistent width="400">
+      <v-card>
+        <v-card-title class="text-h5 d-flex align-center justify-space-between">
+          <div>
+            <v-icon class="mr-2" color="warning">mdi-timer-alert</v-icon>
+            Session Expiring Soon
+          </div>
+          <v-btn icon size="small" variant="text" @click="minimizeSessionWarning">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text class="text-body-1">
+          Your session will expire in <b>{{ sessionWarning.timeLeft }}</b> seconds.<br>
+          Would you like to prolong your session?
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer />
+          <v-btn color="primary" :loading="sessionWarning.refreshing" variant="flat" @click="prolongSession">Prolong Session</v-btn>
+          <v-btn color="secondary" variant="text" @click="handleLogout">Logout</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+    <!-- Minimized Session Timer Indicator -->
+    <v-fab-transition>
+      <div v-if="sessionWarning.minimized && sessionWarning.timeLeft > 0" style="position: fixed; bottom: 24px; right: 24px; z-index: 9999;">
+        <v-btn color="warning" elevation="8" @click="restoreSessionWarning">
+          <v-icon class="mr-1">mdi-timer-alert</v-icon>
+          {{ sessionWarning.timeLeft }}s
+        </v-btn>
+      </div>
+    </v-fab-transition>
   </v-app>
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useTheme, useDisplay } from 'vuetify'
 import logoSrc from '@/assets/logo.png'
 import SidebarNavItem from '@/components/SidebarNavItem.vue'
 import { mainRouteChildren } from '@/router'
 import { logout as logoutApi } from '@/api/logout'
+import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
 
 const route = useRoute()
 const router = useRouter()
@@ -232,12 +267,42 @@ const isLoggingOut = ref(false)
 
 const isLoggedIn = computed(() => !!username.value)
 
+// Session warning state
+const SESSION_WARNING_THRESHOLD = 120 // seconds before expiry to show warning
+const sessionWarning = reactive({
+  show: false,
+  timeLeft: 0,
+  timer: null,
+  refreshing: false,
+  warnedForExp: null, // to avoid repeat warnings for same exp
+  minimized: false, // for minimized state
+})
+
+let sessionWarningInterval = null
+
 // Check auth state on mount and when route changes
 const checkAuthState = () => {
   username.value = localStorage.getItem('username')
 }
 
-onMounted(checkAuthState)
+onMounted(() => {
+  checkAuthState()
+  // Start session warning check interval (checks every second)
+  sessionWarningInterval = setInterval(checkSessionWarning, 1000)
+})
+
+// Cleanup on unmount
+onBeforeUnmount(() => {
+  if (sessionWarningInterval) {
+    clearInterval(sessionWarningInterval)
+    sessionWarningInterval = null
+  }
+  if (sessionWarning.timer) {
+    clearInterval(sessionWarning.timer)
+    sessionWarning.timer = null
+  }
+})
+
 watch(() => route.path, checkAuthState)
 
 // Handle logout
@@ -256,6 +321,100 @@ const isDark = computed(() => theme.global.current.value.dark)
 
 const toggleTheme = () => {
   theme.global.name.value = isDark.value ? 'light' : 'dark'
+}
+
+// ========================================================================
+// Session Warning Functions
+// ========================================================================
+
+/**
+ * Check if session is about to expire and show warning dialog
+ * Runs every second via interval
+ */
+function checkSessionWarning() {
+  // Don't check if dialog is showing, minimized, user is not logged in, or on Login page
+  if (sessionWarning.show || sessionWarning.minimized || !isLoggedIn.value) return
+
+  // Don't show session warning on Login page (aligned with reference implementation)
+  if (route.path === '/login' || route.name === 'Login') return
+
+  const exp = getTokenExp()
+  if (!exp) return
+
+  const now = Math.floor(Date.now() / 1000)
+  const timeLeft = exp - now
+
+  // Show warning if token expires within threshold and we haven't warned for this token
+  if (timeLeft <= SESSION_WARNING_THRESHOLD && timeLeft > 0 && sessionWarning.warnedForExp !== exp) {
+    sessionWarning.show = true
+    sessionWarning.timeLeft = timeLeft
+    sessionWarning.warnedForExp = exp
+    startSessionWarningCountdown()
+  }
+}
+
+/**
+ * Start countdown timer for session expiry warning
+ */
+function startSessionWarningCountdown() {
+  if (sessionWarning.timer) clearInterval(sessionWarning.timer)
+
+  sessionWarning.timer = setInterval(() => {
+    sessionWarning.timeLeft--
+    if (sessionWarning.timeLeft <= 0) {
+      clearInterval(sessionWarning.timer)
+      sessionWarning.timer = null
+      sessionWarning.show = false
+      sessionWarning.minimized = false
+      handleLogout()
+    }
+  }, 1000)
+}
+
+/**
+ * Attempt to prolong the session by refreshing the token
+ * Aligned with reference/Layout.vue implementation
+ */
+async function prolongSession() {
+  sessionWarning.refreshing = true
+  // Implement refresh logic using ensureFreshToken
+  // Force refresh (pass true) to ensure we get a new token even if current one is still valid
+  await ensureFreshToken(true)
+    .then(() => {
+      sessionWarning.refreshing = false
+      sessionWarning.show = false
+      sessionWarning.minimized = false
+      sessionWarning.warnedForExp = null // Reset so we can warn again for new token
+      if (sessionWarning.timer) {
+        clearInterval(sessionWarning.timer)
+        sessionWarning.timer = null
+      }
+    })
+    .catch(() => {
+      sessionWarning.refreshing = false
+      sessionWarning.show = false
+      sessionWarning.minimized = false
+      // Session prolong failed, log out after brief delay
+      setTimeout(() => {
+        handleLogout()
+      }, 1000)
+    })
+}
+
+/**
+ * Minimize the session warning dialog (countdown continues in background)
+ */
+function minimizeSessionWarning() {
+  sessionWarning.show = false
+  sessionWarning.minimized = true
+}
+
+/**
+ * Restore the session warning dialog from minimized state
+ */
+function restoreSessionWarning() {
+  sessionWarning.show = true
+  sessionWarning.minimized = false
 }
 
 // ========================================================================

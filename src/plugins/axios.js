@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 import development from '@/config/development'
 import production from '@/config/production'
 import { lastError } from '@/stores/errorStore';
@@ -10,6 +11,97 @@ import router from "@/router";
 // });
 
 const instance = (process.env.NODE_ENV === 'production') ? axios.create(production) : axios.create(development)
+
+// Refresh token concurrency handling (aligned with reference implementation)
+let isRefreshingToken = false;
+let refreshSubscribers = [];
+
+function onTokenRefreshed(token) {
+  for (const cb of refreshSubscribers) {
+    cb(token);
+  }
+  refreshSubscribers = [];
+}
+
+function addRefreshSubscriber(cb) {
+  refreshSubscribers.push(cb);
+}
+
+/**
+ * Get the expiration time of the current access token
+ * @returns {number|null} - Unix timestamp (seconds) or null if no valid token
+ */
+export function getTokenExp() {
+  const token = localStorage.getItem('accessToken');
+  if (!token) return null;
+  try {
+    const { exp } = jwtDecode(token);
+    return exp;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Ensure we have a fresh (non-expired) token
+ * If current token is close to expiry (< 3 min), refresh it
+ * @param {boolean} forceRefresh - Force refresh even if token has time left
+ * @returns {Promise<string|null>} - Fresh token or null
+ */
+export async function ensureFreshToken(forceRefresh = false) {
+  const token = localStorage.getItem('accessToken');
+  if (!token) {
+    return null;
+  }
+
+  // If not forcing refresh, check if token still has time left
+  if (!forceRefresh) {
+    try {
+      const { exp } = jwtDecode(token);
+      const now = Date.now() / 1000;
+      // If token has > 3 minutes left, reuse it
+      if (exp - now >= 180) {
+        return token;
+      }
+    } catch {
+      // invalid token -> attempt refresh below
+    }
+  }
+
+  // Try to refresh the token
+  const refreshToken = localStorage.getItem('refreshToken');
+  if (!refreshToken) {
+    throw new Error('No refresh token available');
+  }
+
+  // Handle concurrent refresh requests (aligned with reference implementation)
+  if (isRefreshingToken) {
+    return new Promise((resolve, reject) => {
+      addRefreshSubscriber(newToken => newToken ? resolve(newToken) : reject(new Error('refresh failed')));
+    });
+  }
+
+  isRefreshingToken = true;
+  try {
+    // Use raw axios to bypass interceptors that would trigger forceLogout on 401
+    const baseURL = instance.defaults.baseURL;
+    const res = await axios.post(`${baseURL}/auth/refresh`, { refreshToken });
+    const newAccess = res.data.accessToken;
+    // Also store new refresh token if provided
+    if (res.data.refreshToken) {
+      localStorage.setItem('refreshToken', res.data.refreshToken);
+    }
+    localStorage.setItem('accessToken', newAccess);
+    onTokenRefreshed(newAccess);
+    return newAccess;
+  } catch (error) {
+    // Refresh failed (likely server-side idle timeout) -> propagate to caller
+    onTokenRefreshed(null);
+    throw error;
+  } finally {
+    isRefreshingToken = false;
+  }
+}
 
 function triggerError(msg) {
   // clear then set to force a reactive flip even for the same text
@@ -69,6 +161,10 @@ instance.interceptors.response.use(
         isRefreshing = true;
         const res = await instance.post('/auth/refresh', { refreshToken });
         const newAccess = res.data.accessToken;
+        // Also store new refresh token if provided (aligned with reference)
+        if (res.data.refreshToken) {
+          localStorage.setItem('refreshToken', res.data.refreshToken);
+        }
         localStorage.setItem('accessToken', newAccess);
         onRefreshed(newAccess);
         original.headers.Authorization = `Bearer ${newAccess}`;
@@ -105,7 +201,6 @@ instance.interceptors.response.use(
 async function forceLogout(message) {
   try {
     await logout(); // revoke server session + clear local storage
-    syncAuthState(); // immediately flip UI store to logged-out
   } finally {
     triggerError(message || 'Signed out.');
     try {

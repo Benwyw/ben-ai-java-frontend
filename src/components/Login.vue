@@ -34,12 +34,15 @@
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { useRouter } from 'vue-router'
 import { login } from '@/api/login'
 import { logout } from '@/api/logout'
 import PageHeader from '@/components/shared/PageHeader.vue'
 import BackButton from '@/components/shared/BackButton.vue'
 import LoginForm from '@/components/login/LoginForm.vue'
 import LoggedInView from '@/components/login/LoggedInView.vue'
+
+const router = useRouter()
 
 const loginUsername = ref('')
 const loginPassword = ref('');
@@ -79,6 +82,8 @@ async function handleLogin() {
     localStorage.setItem('refreshToken', res.refreshToken);
     localStorage.setItem('username', loginUsername.value);
     syncAuthState();
+    // Redirect to Home after successful login
+    router.push('/');
   } catch (err) {
     loginErrorMsg.value = 'Login failed. Please check your credentials.';
   } finally {
