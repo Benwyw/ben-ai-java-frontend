@@ -225,7 +225,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn color="primary" :loading="sessionWarning.refreshing" variant="flat" @click="prolongSession">Prolong Session</v-btn>
-          <v-btn color="secondary" variant="text" @click="handleLogout">Logout</v-btn>
+          <v-btn color="secondary" variant="text" @click="handleSessionLogout">Logout</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -239,6 +239,28 @@
         </v-btn>
       </div>
     </v-fab-transition>
+
+    <!-- Session Logout Notification Snackbar -->
+    <v-snackbar
+      v-model="snackbar.show"
+      :color="snackbar.color"
+      :timeout="snackbar.timeout"
+      location="top"
+      multi-line
+    >
+      <div class="d-flex align-center">
+        <v-icon class="mr-2">mdi-logout</v-icon>
+        {{ snackbar.message }}
+      </div>
+      <template #actions>
+        <v-btn
+          variant="text"
+          @click="snackbar.show = false"
+        >
+          Close
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-app>
 </template>
 
@@ -278,6 +300,14 @@ const sessionWarning = reactive({
   minimized: false, // for minimized state
 })
 
+// Snackbar notification state
+const snackbar = reactive({
+  show: false,
+  message: '',
+  color: 'info',
+  timeout: 4000,
+})
+
 let sessionWarningInterval = null
 
 // Check auth state on mount and when route changes
@@ -305,13 +335,28 @@ onBeforeUnmount(() => {
 
 watch(() => route.path, checkAuthState)
 
-// Handle logout
-const handleLogout = async () => {
+/**
+ * Handle logout
+ * @param {Object} options - Logout options
+ * @param {boolean} options.silent - If true, stay on current page and show notification
+ * @param {string} options.message - Custom message to show in notification
+ */
+const handleLogout = async (options = {}) => {
+  const { silent = false, message = 'You have been logged out.' } = options
   isLoggingOut.value = true
   try {
     await logoutApi()
     username.value = null
-    router.push('/')
+
+    if (silent) {
+      // Stay on current page and show notification
+      snackbar.message = message
+      snackbar.color = 'warning'
+      snackbar.show = true
+    } else {
+      // Normal logout - redirect to home
+      router.push('/')
+    }
   } finally {
     isLoggingOut.value = false
   }
@@ -366,7 +411,8 @@ function startSessionWarningCountdown() {
       sessionWarning.timer = null
       sessionWarning.show = false
       sessionWarning.minimized = false
-      handleLogout()
+      // Session timeout - stay on current page and show notification
+      handleLogout({ silent: true, message: 'Your session has expired. You have been logged out.' })
     }
   }, 1000)
 }
@@ -394,10 +440,10 @@ async function prolongSession() {
       sessionWarning.refreshing = false
       sessionWarning.show = false
       sessionWarning.minimized = false
-      // Session prolong failed, log out after brief delay
+      // Session prolong failed - stay on current page and show notification
       setTimeout(() => {
-        handleLogout()
-      }, 1000)
+        handleLogout({ silent: true, message: 'Session could not be extended. You have been logged out.' })
+      }, 500)
     })
 }
 
@@ -415,6 +461,23 @@ function minimizeSessionWarning() {
 function restoreSessionWarning() {
   sessionWarning.show = true
   sessionWarning.minimized = false
+}
+
+/**
+ * Handle logout from session warning dialog
+ * Properly closes dialog and stops timer before logging out
+ */
+async function handleSessionLogout() {
+  // Stop the countdown timer
+  if (sessionWarning.timer) {
+    clearInterval(sessionWarning.timer)
+    sessionWarning.timer = null
+  }
+  // Close the dialog
+  sessionWarning.show = false
+  sessionWarning.minimized = false
+  // Perform logout (redirect to home since user explicitly clicked logout)
+  await handleLogout()
 }
 
 // ========================================================================
