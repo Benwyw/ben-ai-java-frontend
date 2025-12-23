@@ -13,6 +13,7 @@
       - isOpenFn: Function to check if a group is open
       - onParentClickFn: Handler for clicking parent items
       - onChevronClickFn: Handler for clicking chevron toggle
+      - isLockedFn: Function to check if item should show lock icon (no access)
 
     Usage in router files:
       Define parent-child relationships using meta.parent property:
@@ -45,6 +46,9 @@
       - navOrder: Order within section (optional, lower = higher priority)
       - navHidden: Set to true to hide from sidebar (optional)
       - defaultExpanded: Set to true to expand group by default (optional)
+      - requiresAuth: Set to true to require authentication (optional)
+      - requiredRoles: Array of roles that can access (optional)
+      - hideNavIfNoAccess: Hide from nav if no access (optional, default: false)
   -->
 
   <!-- Has children: render as expandable group -->
@@ -61,6 +65,7 @@
       >
         <!-- Custom chevron toggle button -->
         <template #append>
+          <v-icon v-if="isLockedFn && isLockedFn(item)" class="mr-1" color="grey" size="small">mdi-lock</v-icon>
           <v-btn
             aria-label="Toggle group"
             density="comfortable"
@@ -83,6 +88,7 @@
       :children-map="childrenMap"
       :depth="depth + 1"
       :is-open-fn="isOpenFn"
+      :is-locked-fn="isLockedFn"
       :item="child"
       :on-chevron-click-fn="onChevronClickFn"
       :on-parent-click-fn="onParentClickFn"
@@ -99,7 +105,12 @@
     :exact="item.path === '' || item.path === '/'"
     color="primary"
     rounded="xl"
-  />
+  >
+    <!-- Show lock icon if user doesn't have access -->
+    <template v-if="isLockedFn && isLockedFn(item)" #append>
+      <v-icon color="grey" size="small">mdi-lock</v-icon>
+    </template>
+  </v-list-item>
 </template>
 
 <script setup>
@@ -131,6 +142,10 @@ defineProps({
   isOpenFn: {
     type: Function,
     required: true,
+  },
+  isLockedFn: {
+    type: Function,
+    default: null,
   },
   onParentClickFn: {
     type: Function,

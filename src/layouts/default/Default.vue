@@ -37,6 +37,7 @@
           :children-map="childrenMap"
           :depth="0"
           :is-open-fn="isOpen"
+          :is-locked-fn="isItemLocked"
           :on-parent-click-fn="onParentClick"
           :on-chevron-click-fn="onChevronClick"
         />
@@ -60,6 +61,7 @@
           :children-map="childrenMap"
           :depth="0"
           :is-open-fn="isOpen"
+          :is-locked-fn="isItemLocked"
           :on-parent-click-fn="onParentClick"
           :on-chevron-click-fn="onChevronClick"
         />
@@ -83,6 +85,7 @@
           :children-map="childrenMap"
           :depth="0"
           :is-open-fn="isOpen"
+          :is-locked-fn="isItemLocked"
           :on-parent-click-fn="onParentClick"
           :on-chevron-click-fn="onChevronClick"
         />
@@ -690,6 +693,24 @@ const hasRouteAccess = (routeMeta) => {
   }
 
   return true
+}
+
+/**
+ * Check if a nav item should show a lock icon
+ * Shows lock when: user doesn't have access AND hideNavIfNoAccess is false (item is still visible)
+ * @param {Object} item - Route item object
+ * @returns {boolean} - True if should show lock icon
+ */
+const isItemLocked = (item) => {
+  const meta = item?.meta
+  if (!meta) return false
+
+  // Only show lock if the item doesn't hide when no access
+  // (if hideNavIfNoAccess is true, the item won't be visible anyway)
+  if (meta.hideNavIfNoAccess) return false
+
+  // Check if user lacks access
+  return !hasRouteAccess(meta)
 }
 
 /** Filter visible routes (has title, not hidden, and passes permission check if hideNavIfNoAccess is set) */
