@@ -1,3 +1,3 @@
 export default {
-    baseURL: 'https://bot.benwyw.com/api'
+    baseURL: 'https://www.benwyw.com/api'
 };

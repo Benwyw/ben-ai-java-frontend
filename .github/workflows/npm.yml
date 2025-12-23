@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: 'production'
-      url: 'https://bot.benwyw.com'
+      url: 'https://www.benwyw.com'
     
     steps:
       - name: Download Jar Artifact

@@ -22,7 +22,7 @@ export async function getOnlineUserCount() {
     }
 }
 
-export const webSocketUrl = (process.env.NODE_ENV === 'production') ? 'wss:bot.benwyw.com/api/websocket/' : 'ws:localhost:8080/api/websocket/'
+export const webSocketUrl = (process.env.NODE_ENV === 'production') ? 'wss:www.benwyw.com/api/websocket/' : 'ws:localhost:8080/api/websocket/'
 
 function computeWebSocketBase () {
   let raw = webSocketUrl || ''
