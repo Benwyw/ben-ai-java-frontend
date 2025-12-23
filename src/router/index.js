@@ -2,62 +2,171 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 /**
- * Router Configuration with Navigation Metadata
+ * ============================================================================
+ * Router Configuration with Navigation & Permission Metadata
+ * ============================================================================
  *
- * Each route can have the following meta properties for navigation:
+ * This router configuration controls both routing and the sidebar navigation.
+ * The navigation is dynamically generated from route meta properties.
  *
- * - title: Display name in sidebar (required for nav visibility)
- * - icon: MDI icon name (e.g., 'mdi-home')
- * - navSection: Section grouping - 'main', 'tools', 'legal' (default: 'main')
- * - navOrder: Order within section (lower = higher priority, default: 100)
- * - navHidden: Set to true to hide from sidebar
- * - parent: Parent route name for nesting (enables infinite depth)
- * - defaultExpanded: Set to true to expand group by default
- * - requiresAuth: Set to true to require authentication for this route
- * - requiredRoles: Array of roles that can access this route (e.g., ['ADMIN', 'MODERATOR'])
- *                  If not specified, any authenticated user can access (when requiresAuth is true)
- * - hideNavIfNoAccess: Set to true to hide from navigation if user doesn't have permission (default: false)
- *                      When false, the nav item is always visible but clicking redirects with error message
- *                      When true, the nav item is completely hidden if user lacks permission
+ * ============================================================================
+ * NAVIGATION META PROPERTIES
+ * ============================================================================
  *
- * Example of role-based routes:
+ * @property {string} title - Display name in sidebar (REQUIRED for nav visibility)
+ *   - Routes without a title will not appear in navigation
+ *   - Example: title: 'Dashboard'
+ *
+ * @property {string} icon - MDI icon name for the nav item (optional)
+ *   - Uses Material Design Icons: https://pictogrammers.com/library/mdi/
+ *   - Example: icon: 'mdi-home', icon: 'mdi-cog'
+ *
+ * @property {string} navSection - Section grouping in sidebar (optional)
+ *   - Values: 'main' | 'tools' | 'legal'
+ *   - Default: 'main'
+ *   - Items are grouped into sections with dividers
+ *
+ * @property {number} navOrder - Sort order within section (optional)
+ *   - Lower numbers appear first
+ *   - Default: 100
+ *   - Example: navOrder: 1 (appears first)
+ *
+ * @property {boolean} navHidden - Hide from sidebar navigation (optional)
+ *   - Default: false
+ *   - Set to true for routes that shouldn't appear in nav (e.g., login, error pages)
+ *
+ * @property {string} parent - Parent route name for nesting (optional)
+ *   - Creates hierarchical nav structure with expand/collapse
+ *   - Supports infinite nesting depth
+ *   - Value must match the 'name' of another route
+ *
+ * @property {boolean} defaultExpanded - Auto-expand group on load (optional)
+ *   - Only applies to parent items (items that have children)
+ *   - Default: false
+ *
+ * ============================================================================
+ * AUTHENTICATION & PERMISSION META PROPERTIES
+ * ============================================================================
+ *
+ * @property {boolean} requiresAuth - Require user to be logged in (optional)
+ *   - Default: false
+ *   - If true and user is not logged in:
+ *     - If hideNavIfNoAccess=false: Shows login prompt when accessing
+ *     - If hideNavIfNoAccess=true: Route is hidden from navigation
+ *
+ * @property {string[]} requiredRoles - Array of roles that can access (optional)
+ *   - Uses OR logic: user needs ANY ONE of the listed roles
+ *   - Role values should match backend (e.g., 'USER', 'ADMIN', 'MODERATOR')
+ *   - Example: requiredRoles: ['ADMIN'] - only admins
+ *   - Example: requiredRoles: ['ADMIN', 'MODERATOR'] - admins OR moderators
+ *   - If not specified with requiresAuth=true, any authenticated user can access
+ *
+ * @property {boolean} hideNavIfNoAccess - Control nav visibility when no permission (optional)
+ *   - Default: false
+ *   - When FALSE (default):
+ *     - Nav item is ALWAYS visible to everyone
+ *     - Shows a 🔒 lock icon if user lacks permission
+ *     - Clicking shows error message and redirects to home
+ *   - When TRUE:
+ *     - Nav item is COMPLETELY HIDDEN if user lacks permission
+ *     - Only users with access can see the nav item
+ *
+ * ============================================================================
+ * PERMISSION BEHAVIOR MATRIX
+ * ============================================================================
+ *
+ * | requiresAuth | requiredRoles | hideNavIfNoAccess | User State      | Nav Visibility | Access |
+ * |--------------|---------------|-------------------|-----------------|----------------|--------|
+ * | false        | -             | -                 | Any             | Visible        | ✅ Yes |
+ * | true         | -             | false             | Not logged in   | Visible + 🔒   | ❌ No  |
+ * | true         | -             | false             | Logged in       | Visible        | ✅ Yes |
+ * | true         | -             | true              | Not logged in   | Hidden         | ❌ No  |
+ * | true         | -             | true              | Logged in       | Visible        | ✅ Yes |
+ * | true         | ['ADMIN']     | false             | User role       | Visible + 🔒   | ❌ No  |
+ * | true         | ['ADMIN']     | false             | Admin role      | Visible        | ✅ Yes |
+ * | true         | ['ADMIN']     | true              | User role       | Hidden         | ❌ No  |
+ * | true         | ['ADMIN']     | true              | Admin role      | Visible        | ✅ Yes |
+ *
+ * ============================================================================
+ * EXAMPLES
+ * ============================================================================
+ *
+ * // Public page - visible and accessible to everyone
+ * {
+ *   path: '/about',
+ *   name: 'About',
+ *   meta: { title: 'About', icon: 'mdi-information' }
+ * }
+ *
+ * // Login required - visible to all, but only logged-in users can access
+ * // Shows 🔒 lock icon when not logged in
+ * {
+ *   path: '/dashboard',
+ *   name: 'Dashboard',
+ *   meta: {
+ *     title: 'Dashboard',
+ *     icon: 'mdi-view-dashboard',
+ *     requiresAuth: true,
+ *     hideNavIfNoAccess: false  // Shows with lock icon when logged out
+ *   }
+ * }
+ *
+ * // Login required - hidden from nav when not logged in
+ * {
+ *   path: '/profile',
+ *   name: 'Profile',
+ *   meta: {
+ *     title: 'My Profile',
+ *     icon: 'mdi-account',
+ *     requiresAuth: true,
+ *     hideNavIfNoAccess: true  // Completely hidden when logged out
+ *   }
+ * }
+ *
+ * // Admin only - hidden from non-admins
  * {
  *   path: '/admin',
  *   name: 'Admin',
  *   meta: {
  *     title: 'Admin Panel',
+ *     icon: 'mdi-shield-crown',
  *     requiresAuth: true,
  *     requiredRoles: ['ADMIN'],
- *     hideNavIfNoAccess: true  // Hide from nav if not ADMIN
- *   }
- * },
- * {
- *   path: '/moderator',
- *   name: 'Moderator',
- *   meta: {
- *     title: 'Mod Panel',
- *     requiresAuth: true,
- *     requiredRoles: ['ADMIN', 'MODERATOR']
- *     // hideNavIfNoAccess defaults to false - visible to all, but only accessible by ADMIN/MODERATOR
+ *     hideNavIfNoAccess: true  // Only admins see this in nav
  *   }
  * }
  *
- * Example of nested routes:
+ * // Multiple roles - visible with lock to unauthorized users
  * {
  *   path: '/reports',
  *   name: 'Reports',
- *   meta: { title: 'Reports', icon: 'mdi-file-chart', navSection: 'tools', defaultExpanded: true }
- * },
- * {
- *   path: '/reports/monthly',
- *   name: 'MonthlyReport',
- *   meta: { title: 'Monthly', parent: 'Reports' }
- * },
- * {
- *   path: '/reports/monthly/sales',
- *   name: 'MonthlySalesReport',
- *   meta: { title: 'Sales', parent: 'MonthlyReport' }  // Grandchild - infinite nesting!
+ *   meta: {
+ *     title: 'Reports',
+ *     icon: 'mdi-file-chart',
+ *     requiresAuth: true,
+ *     requiredRoles: ['ADMIN', 'MANAGER'],  // Either role can access
+ *     hideNavIfNoAccess: false  // Visible to all, lock icon for others
+ *   }
  * }
+ *
+ * // Nested routes example
+ * {
+ *   path: '/settings',
+ *   name: 'Settings',
+ *   meta: { title: 'Settings', icon: 'mdi-cog', defaultExpanded: true }
+ * },
+ * {
+ *   path: '/settings/profile',
+ *   name: 'ProfileSettings',
+ *   meta: { title: 'Profile', parent: 'Settings' }  // Child of Settings
+ * },
+ * {
+ *   path: '/settings/profile/avatar',
+ *   name: 'AvatarSettings',
+ *   meta: { title: 'Avatar', parent: 'ProfileSettings' }  // Grandchild
+ * }
+ *
+ * ============================================================================
  */
 
 const routes = [
@@ -66,6 +175,7 @@ const routes = [
     component: () => import('@/layouts/default/Default.vue'),
     children: [
       // ==================== MAIN SECTION ====================
+      // Public pages in the main navigation area
       {
         path: '',
         name: 'Home',
@@ -75,6 +185,7 @@ const routes = [
           icon: 'mdi-home',
           navSection: 'main',
           navOrder: 1
+          // No auth required - public page
         },
       },
       {
@@ -86,6 +197,7 @@ const routes = [
           icon: 'mdi-information',
           navSection: 'main',
           navOrder: 2
+          // No auth required - public page
         },
       },
       {
@@ -98,10 +210,12 @@ const routes = [
           navSection: 'main',
           navOrder: 3,
           requiresAuth: true
+          // hideNavIfNoAccess defaults to false - shows lock icon when logged out
         },
       },
 
       // ==================== TOOLS SECTION ====================
+      // Utility pages, some requiring specific roles
       {
         path: '/swagger',
         name: 'Swagger',
@@ -112,8 +226,8 @@ const routes = [
           navSection: 'tools',
           navOrder: 1,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],  // Only ADMIN can access this page
-          hideNavIfNoAccess: true    // Hide from navigation if not ADMIN
+          requiredRoles: ['USER', 'ADMIN'],  // USER or ADMIN can access
+          hideNavIfNoAccess: true            // Hidden from nav if no permission
         },
       },
       {
@@ -125,7 +239,7 @@ const routes = [
           icon: 'mdi-scale-bathroom',
           navSection: 'tools',
           navOrder: 2,
-          requiresAuth: false
+          requiresAuth: false  // Public page
         },
       },
       {
@@ -138,12 +252,13 @@ const routes = [
           navSection: 'tools',
           navOrder: 3,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],
-          hideNavIfNoAccess: false
+          requiredRoles: ['USER', 'ADMIN'],  // USER or ADMIN can access
+          hideNavIfNoAccess: false           // Visible with lock icon if no permission
         },
       },
 
       // ==================== LEGAL SECTION ====================
+      // Legal/compliance pages - typically public
       {
         path: '/termsofservice',
         name: 'Terms Of Service',
@@ -153,6 +268,7 @@ const routes = [
           icon: 'mdi-file-document',
           navSection: 'legal',
           navOrder: 1
+          // No auth required - public page
         },
       },
       {
@@ -164,21 +280,24 @@ const routes = [
           icon: 'mdi-shield-lock',
           navSection: 'legal',
           navOrder: 2
+          // No auth required - public page
         },
       },
 
-      // ==================== AUTH (Redirect to home - login is now a global dialog) ====================
+      // ==================== AUTH ====================
+      // Login is now a global dialog, this route redirects to home
       {
         path: '/login',
         name: 'Login',
         redirect: '/',
         meta: {
           title: 'Login',
-          navHidden: true  // Hidden from sidebar
+          navHidden: true  // Hidden from sidebar navigation
         },
       },
 
       // ==================== CATCH-ALL ====================
+      // Redirect unknown routes to home
       {
         path: '/:pathMatch(.*)*',
         redirect: '/',
@@ -192,7 +311,7 @@ const router = createRouter({
   routes,
 })
 
-// Export children for use in layout
+// Export children for use in layout navigation
 export const mainRouteChildren = routes[0].children
 
 export default router
