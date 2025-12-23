@@ -181,7 +181,7 @@
               v-else
               prepend-icon="mdi-login"
               title="Login"
-              to="/login"
+              @click="openLoginDialog"
             />
           </v-list>
         </v-menu>
@@ -261,6 +261,67 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+    <!-- Global Login Dialog -->
+    <v-dialog v-model="loginDialog.show" width="400" persistent>
+      <v-card rounded="xl">
+        <v-card-title class="text-h5 d-flex align-center pa-6 pb-2">
+          <v-icon class="mr-2" color="primary">mdi-login</v-icon>
+          Login
+          <v-spacer />
+          <v-btn icon size="small" variant="text" @click="closeLoginDialog">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-card-title>
+        <v-card-text class="pa-6 pt-4">
+          <v-form @submit.prevent="handleLogin">
+            <v-text-field
+              v-model="loginDialog.username"
+              label="Username"
+              prepend-inner-icon="mdi-account"
+              variant="outlined"
+              rounded="lg"
+              class="mb-4"
+              required
+              :disabled="loginDialog.isLoading"
+              autofocus
+            />
+            <v-text-field
+              v-model="loginDialog.password"
+              label="Password"
+              type="password"
+              prepend-inner-icon="mdi-lock"
+              variant="outlined"
+              rounded="lg"
+              class="mb-4"
+              required
+              :disabled="loginDialog.isLoading"
+              @keyup.enter="handleLogin"
+            />
+            <v-alert
+              v-if="loginDialog.errorMsg"
+              type="error"
+              rounded="lg"
+              class="mb-4"
+              density="compact"
+            >
+              {{ loginDialog.errorMsg }}
+            </v-alert>
+            <v-btn
+              type="submit"
+              color="primary"
+              :loading="loginDialog.isLoading"
+              block
+              size="large"
+              rounded="lg"
+            >
+              <v-icon class="mr-2">mdi-login</v-icon>
+              Login
+            </v-btn>
+          </v-form>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-app>
 </template>
 
@@ -272,6 +333,7 @@ import logoSrc from '@/assets/logo.png'
 import SidebarNavItem from '@/components/SidebarNavItem.vue'
 import { mainRouteChildren } from '@/router'
 import { logout as logoutApi } from '@/api/logout'
+import { login as loginApi } from '@/api/login'
 import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
 
 const route = useRoute()
@@ -288,6 +350,15 @@ const username = ref(null)
 const isLoggingOut = ref(false)
 
 const isLoggedIn = computed(() => !!username.value)
+
+// Login dialog state
+const loginDialog = reactive({
+  show: false,
+  username: '',
+  password: '',
+  errorMsg: '',
+  isLoading: false,
+})
 
 // Session warning state
 const SESSION_WARNING_THRESHOLD = 120 // seconds before expiry to show warning
@@ -315,8 +386,30 @@ const checkAuthState = () => {
   username.value = localStorage.getItem('username')
 }
 
+// List of routes that require authentication
+const protectedRoutes = ['/messenger', '/swagger', '/whityweight', '/report']
+
+/**
+ * Check if current route requires authentication and user is not logged in
+ * If so, redirect to home
+ */
+const checkRouteProtection = () => {
+  const isProtected = protectedRoutes.some(path => route.path.startsWith(path))
+  if (isProtected && !isLoggedIn.value) {
+    snackbar.message = 'Please login to access this page.'
+    snackbar.color = 'warning'
+    snackbar.show = true
+    router.push('/')
+    // Show login dialog after redirect
+    setTimeout(() => {
+      loginDialog.show = true
+    }, 100)
+  }
+}
+
 onMounted(() => {
   checkAuthState()
+  checkRouteProtection()
   // Start session warning check interval (checks every second)
   sessionWarningInterval = setInterval(checkSessionWarning, 1000)
 })
@@ -333,7 +426,10 @@ onBeforeUnmount(() => {
   }
 })
 
-watch(() => route.path, checkAuthState)
+watch(() => route.path, () => {
+  checkAuthState()
+  checkRouteProtection()
+})
 
 /**
  * Handle logout
@@ -353,12 +449,69 @@ const handleLogout = async (options = {}) => {
       snackbar.message = message
       snackbar.color = 'warning'
       snackbar.show = true
+      // Check if current page requires auth and redirect if needed
+      checkRouteProtection()
     } else {
       // Normal logout - redirect to home
       router.push('/')
     }
   } finally {
     isLoggingOut.value = false
+  }
+}
+
+/**
+ * Open the login dialog
+ */
+const openLoginDialog = () => {
+  loginDialog.username = ''
+  loginDialog.password = ''
+  loginDialog.errorMsg = ''
+  loginDialog.show = true
+}
+
+/**
+ * Close the login dialog
+ */
+const closeLoginDialog = () => {
+  loginDialog.show = false
+  loginDialog.errorMsg = ''
+}
+
+/**
+ * Handle login form submission
+ */
+const handleLogin = async () => {
+  if (!loginDialog.username || !loginDialog.password) {
+    loginDialog.errorMsg = 'Please enter username and password.'
+    return
+  }
+
+  loginDialog.errorMsg = ''
+  loginDialog.isLoading = true
+
+  try {
+    const res = await loginApi(loginDialog.username, loginDialog.password)
+    localStorage.setItem('accessToken', res.accessToken)
+    localStorage.setItem('refreshToken', res.refreshToken)
+    localStorage.setItem('username', loginDialog.username)
+
+    // Update auth state
+    username.value = loginDialog.username
+
+    // Close dialog and show success
+    loginDialog.show = false
+    snackbar.message = `Welcome back, ${loginDialog.username}!`
+    snackbar.color = 'success'
+    snackbar.show = true
+
+    // Clear form
+    loginDialog.username = ''
+    loginDialog.password = ''
+  } catch (err) {
+    loginDialog.errorMsg = 'Login failed. Please check your credentials.'
+  } finally {
+    loginDialog.isLoading = false
   }
 }
 

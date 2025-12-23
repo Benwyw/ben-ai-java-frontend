@@ -131,11 +131,11 @@ const routes = [
         },
       },
 
-      // ==================== AUTH (Hidden from nav) ====================
+      // ==================== AUTH (Redirect to home - login is now a global dialog) ====================
       {
         path: '/login',
         name: 'Login',
-        component: () => import('@/views/Login.vue'),
+        redirect: '/',
         meta: {
           title: 'Login',
           navHidden: true  // Hidden from sidebar
