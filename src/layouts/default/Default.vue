@@ -335,6 +335,7 @@ import { mainRouteChildren } from '@/router'
 import { logout as logoutApi } from '@/api/logout'
 import { login as loginApi } from '@/api/login'
 import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
+import { authStore } from '@/stores/authStore'
 
 const route = useRoute()
 const router = useRouter()
@@ -384,16 +385,23 @@ let sessionWarningInterval = null
 // Check auth state on mount and when route changes
 const checkAuthState = () => {
   username.value = localStorage.getItem('username')
+  authStore.syncAuthState() // Sync role from JWT token
 }
 
 /**
- * Check if current route requires authentication and user is not logged in
- * Uses route meta.requiresAuth property defined in router/index.js
- * If so, redirect to home and show login dialog
+ * Check if current route requires authentication and/or specific roles
+ * Uses route meta properties defined in router/index.js:
+ * - requiresAuth: boolean - requires user to be logged in
+ * - requiredRoles: string[] - requires user to have one of these roles
+ *
+ * If check fails, redirect to home and show appropriate message
  */
 const checkRouteProtection = () => {
   const meta = route.meta || {}
   const requiresAuth = meta.requiresAuth === true
+  const requiredRoles = meta.requiredRoles
+
+  // Check if authentication is required
   if (requiresAuth && !isLoggedIn.value) {
     snackbar.message = 'Please login to access this page.'
     snackbar.color = 'warning'
@@ -403,6 +411,17 @@ const checkRouteProtection = () => {
     setTimeout(() => {
       loginDialog.show = true
     }, 100)
+    return
+  }
+
+  // Check if specific roles are required
+  if (requiredRoles && Array.isArray(requiredRoles) && requiredRoles.length > 0) {
+    if (!authStore.hasAnyRole(requiredRoles)) {
+      snackbar.message = 'You do not have permission to access this page.'
+      snackbar.color = 'error'
+      snackbar.show = true
+      router.push('/')
+    }
   }
 }
 
@@ -442,6 +461,7 @@ const handleLogout = async (options = {}) => {
   try {
     await logoutApi()
     username.value = null
+    authStore.clearAuthState() // Clear role state
 
     if (silent) {
       // Stay on current page and show notification
@@ -495,8 +515,9 @@ const handleLogin = async () => {
     localStorage.setItem('refreshToken', res.refreshToken)
     localStorage.setItem('username', loginDialog.username)
 
-    // Update auth state
+    // Update auth state (includes role from JWT)
     username.value = loginDialog.username
+    authStore.syncAuthState()
 
     // Close dialog and show success
     loginDialog.show = false

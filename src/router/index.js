@@ -14,6 +14,20 @@ import { createRouter, createWebHistory } from 'vue-router'
  * - parent: Parent route name for nesting (enables infinite depth)
  * - defaultExpanded: Set to true to expand group by default
  * - requiresAuth: Set to true to require authentication for this route
+ * - requiredRoles: Array of roles that can access this route (e.g., ['ADMIN', 'MODERATOR'])
+ *                  If not specified, any authenticated user can access (when requiresAuth is true)
+ *
+ * Example of role-based routes:
+ * {
+ *   path: '/admin',
+ *   name: 'Admin',
+ *   meta: { title: 'Admin Panel', requiresAuth: true, requiredRoles: ['ADMIN'] }
+ * },
+ * {
+ *   path: '/moderator',
+ *   name: 'Moderator',
+ *   meta: { title: 'Mod Panel', requiresAuth: true, requiredRoles: ['ADMIN', 'MODERATOR'] }
+ * }
  *
  * Example of nested routes:
  * {
@@ -84,7 +98,8 @@ const routes = [
           icon: 'mdi-api',
           navSection: 'tools',
           navOrder: 1,
-          requiresAuth: true
+          requiresAuth: true,
+          requiredRoles: ['ADMIN']  // Only ADMIN can access this page
         },
       },
       {
