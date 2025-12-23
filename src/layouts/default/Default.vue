@@ -386,16 +386,15 @@ const checkAuthState = () => {
   username.value = localStorage.getItem('username')
 }
 
-// List of routes that require authentication
-const protectedRoutes = ['/messenger', '/swagger', '/whityweight', '/report']
-
 /**
  * Check if current route requires authentication and user is not logged in
- * If so, redirect to home
+ * Uses route meta.requiresAuth property defined in router/index.js
+ * If so, redirect to home and show login dialog
  */
 const checkRouteProtection = () => {
-  const isProtected = protectedRoutes.some(path => route.path.startsWith(path))
-  if (isProtected && !isLoggedIn.value) {
+  const meta = route.meta || {}
+  const requiresAuth = meta.requiresAuth === true
+  if (requiresAuth && !isLoggedIn.value) {
     snackbar.message = 'Please login to access this page.'
     snackbar.color = 'warning'
     snackbar.show = true

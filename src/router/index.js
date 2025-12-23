@@ -13,6 +13,7 @@ import { createRouter, createWebHistory } from 'vue-router'
  * - navHidden: Set to true to hide from sidebar
  * - parent: Parent route name for nesting (enables infinite depth)
  * - defaultExpanded: Set to true to expand group by default
+ * - requiresAuth: Set to true to require authentication for this route
  *
  * Example of nested routes:
  * {
@@ -68,7 +69,8 @@ const routes = [
           title: 'Messenger',
           icon: 'mdi-message',
           navSection: 'main',
-          navOrder: 3
+          navOrder: 3,
+          requiresAuth: true
         },
       },
 
@@ -81,7 +83,8 @@ const routes = [
           title: 'Swagger',
           icon: 'mdi-api',
           navSection: 'tools',
-          navOrder: 1
+          navOrder: 1,
+          requiresAuth: true
         },
       },
       {
@@ -92,7 +95,8 @@ const routes = [
           title: 'Whity Weight',
           icon: 'mdi-scale-bathroom',
           navSection: 'tools',
-          navOrder: 2
+          navOrder: 2,
+          requiresAuth: true
         },
       },
       {
@@ -103,7 +107,8 @@ const routes = [
           title: 'Report',
           icon: 'mdi-file-chart',
           navSection: 'tools',
-          navOrder: 3
+          navOrder: 3,
+          requiresAuth: true
         },
       },
 
