@@ -16,17 +16,30 @@ import { createRouter, createWebHistory } from 'vue-router'
  * - requiresAuth: Set to true to require authentication for this route
  * - requiredRoles: Array of roles that can access this route (e.g., ['ADMIN', 'MODERATOR'])
  *                  If not specified, any authenticated user can access (when requiresAuth is true)
+ * - hideNavIfNoAccess: Set to true to hide from navigation if user doesn't have permission (default: false)
+ *                      When false, the nav item is always visible but clicking redirects with error message
+ *                      When true, the nav item is completely hidden if user lacks permission
  *
  * Example of role-based routes:
  * {
  *   path: '/admin',
  *   name: 'Admin',
- *   meta: { title: 'Admin Panel', requiresAuth: true, requiredRoles: ['ADMIN'] }
+ *   meta: {
+ *     title: 'Admin Panel',
+ *     requiresAuth: true,
+ *     requiredRoles: ['ADMIN'],
+ *     hideNavIfNoAccess: true  // Hide from nav if not ADMIN
+ *   }
  * },
  * {
  *   path: '/moderator',
  *   name: 'Moderator',
- *   meta: { title: 'Mod Panel', requiresAuth: true, requiredRoles: ['ADMIN', 'MODERATOR'] }
+ *   meta: {
+ *     title: 'Mod Panel',
+ *     requiresAuth: true,
+ *     requiredRoles: ['ADMIN', 'MODERATOR']
+ *     // hideNavIfNoAccess defaults to false - visible to all, but only accessible by ADMIN/MODERATOR
+ *   }
  * }
  *
  * Example of nested routes:
@@ -99,7 +112,8 @@ const routes = [
           navSection: 'tools',
           navOrder: 1,
           requiresAuth: true,
-          requiredRoles: ['ADMIN']  // Only ADMIN can access this page
+          requiredRoles: ['USER', 'ADMIN'],  // Only ADMIN can access this page
+          hideNavIfNoAccess: true    // Hide from navigation if not ADMIN
         },
       },
       {
@@ -111,7 +125,7 @@ const routes = [
           icon: 'mdi-scale-bathroom',
           navSection: 'tools',
           navOrder: 2,
-          requiresAuth: true
+          requiresAuth: false
         },
       },
       {
@@ -123,7 +137,9 @@ const routes = [
           icon: 'mdi-file-chart',
           navSection: 'tools',
           navOrder: 3,
-          requiresAuth: true
+          requiresAuth: true,
+          requiredRoles: ['USER', 'ADMIN'],
+          hideNavIfNoAccess: false
         },
       },
 

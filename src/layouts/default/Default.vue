@@ -667,15 +667,47 @@ async function handleSessionLogout() {
 // - navHidden: Hide from sidebar
 // - parent: Parent route name for nesting
 // - defaultExpanded: Auto-expand group
+// - hideNavIfNoAccess: Hide from nav if user doesn't have permission
 // ========================================================================
 
-/** Filter visible routes (has title, not hidden) */
+/**
+ * Check if user has access to a route based on its meta properties
+ * @param {Object} routeMeta - Route meta object
+ * @returns {boolean} - True if user has access
+ */
+const hasRouteAccess = (routeMeta) => {
+  if (!routeMeta) return true
+
+  // Check if authentication is required
+  if (routeMeta.requiresAuth && !isLoggedIn.value) {
+    return false
+  }
+
+  // Check if specific roles are required
+  const requiredRoles = routeMeta.requiredRoles
+  if (requiredRoles && Array.isArray(requiredRoles) && requiredRoles.length > 0) {
+    return authStore.hasAnyRole(requiredRoles)
+  }
+
+  return true
+}
+
+/** Filter visible routes (has title, not hidden, and passes permission check if hideNavIfNoAccess is set) */
 const visibleRoutes = computed(() => {
-  return (mainRouteChildren || []).filter(r =>
-    r.name &&
-    r.meta?.title &&
-    !r.meta?.navHidden
-  )
+  return (mainRouteChildren || []).filter(r => {
+    // Basic visibility checks
+    if (!r.name || !r.meta?.title || r.meta?.navHidden) {
+      return false
+    }
+
+    // If hideNavIfNoAccess is true, check permissions
+    if (r.meta?.hideNavIfNoAccess) {
+      return hasRouteAccess(r.meta)
+    }
+
+    // Otherwise, show the nav item (access will be checked on click)
+    return true
+  })
 })
 
 /** Map of route name -> route object for quick lookup */
