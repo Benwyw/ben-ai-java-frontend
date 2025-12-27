@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="xl" class="mb-6">
+  <v-card class="mb-6" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2">mdi-chat</v-icon>
       Chat Room
@@ -9,14 +9,14 @@
       <v-sheet
         class="message-container pa-4 mb-4 rounded-lg"
         color="grey-lighten-4"
-        min-height="300"
         max-height="400"
+        min-height="300"
       >
         <v-virtual-scroll
           v-if="messages.length > 0"
-          :items="messages"
-          height="300"
           ref="messageContainer"
+          height="300"
+          :items="messages"
         >
           <template #default="{ item }">
             <div
@@ -32,31 +32,31 @@
           class="d-flex flex-column align-center justify-center text-medium-emphasis"
           style="height: 300px;"
         >
-          <v-icon size="48" class="mb-2">mdi-chat-outline</v-icon>
+          <v-icon class="mb-2" size="48">mdi-chat-outline</v-icon>
           <p>No messages yet. Start the conversation!</p>
         </div>
       </v-sheet>
 
       <!-- Message Input -->
       <v-text-field
-        :model-value="message"
-        label="Type your message..."
-        variant="outlined"
-        rounded="lg"
-        maxlength="100"
-        type="text"
         clearable
         hide-details
-        @update:model-value="$emit('update:message', $event)"
+        label="Type your message..."
+        maxlength="100"
+        :model-value="message"
+        rounded="lg"
+        type="text"
+        variant="outlined"
         @keyup.enter="$emit('send')"
+        @update:model-value="$emit('update:message', $event)"
       >
         <template #append-inner>
           <v-btn
             color="primary"
-            variant="flat"
+            :disabled="!isValid"
             icon="mdi-send"
             size="small"
-            :disabled="!isValid"
+            variant="flat"
             @click="$emit('send')"
           />
         </template>
@@ -66,48 +66,48 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from 'vue'
+  import { nextTick, ref, watch } from 'vue'
 
-const props = defineProps({
-  messages: {
-    type: Array,
-    default: () => []
-  },
-  message: {
-    type: String,
-    default: ''
-  },
-  isValid: {
-    type: Boolean,
-    default: false
-  }
-})
+  const props = defineProps({
+    messages: {
+      type: Array,
+      default: () => [],
+    },
+    message: {
+      type: String,
+      default: '',
+    },
+    isValid: {
+      type: Boolean,
+      default: false,
+    },
+  })
 
-defineEmits(['update:message', 'send'])
+  defineEmits(['update:message', 'send'])
 
-const messageContainer = ref(null)
+  const messageContainer = ref(null)
 
-async function scrollToBottom() {
-  await nextTick()
-  // Small delay to ensure v-virtual-scroll has rendered the new item
-  setTimeout(() => {
-    if (messageContainer.value) {
-      const lastIndex = props.messages.length - 1
-      if (lastIndex >= 0) {
-        messageContainer.value.scrollToIndex(lastIndex)
+  async function scrollToBottom () {
+    await nextTick()
+    // Small delay to ensure v-virtual-scroll has rendered the new item
+    setTimeout(() => {
+      if (messageContainer.value) {
+        const lastIndex = props.messages.length - 1
+        if (lastIndex >= 0) {
+          messageContainer.value.scrollToIndex(lastIndex)
+        }
       }
-    }
-  }, 50)
-}
+    }, 50)
+  }
 
-// Watch for any changes to messages array length
-watch(
-  () => props.messages.length,
-  () => {
-    scrollToBottom()
-  },
-  { immediate: true }
-)
+  // Watch for any changes to messages array length
+  watch(
+    () => props.messages.length,
+    () => {
+      scrollToBottom()
+    },
+    { immediate: true },
+  )
 </script>
 
 <style scoped>

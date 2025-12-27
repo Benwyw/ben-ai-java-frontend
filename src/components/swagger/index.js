@@ -2,10 +2,5 @@
  * Swagger page components barrel export
  */
 
-import JsonInputCard from './JsonInputCard.vue'
-import ActionsCard from './ActionsCard.vue'
-
-export {
-  JsonInputCard,
-  ActionsCard
-}
+export { default as ActionsCard } from './ActionsCard.vue'
+export { default as JsonInputCard } from './JsonInputCard.vue'

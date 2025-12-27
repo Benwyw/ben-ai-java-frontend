@@ -4,12 +4,6 @@
  * Common reusable components used across multiple pages.
  */
 
-import PageHeader from './PageHeader.vue'
-import BackButton from './BackButton.vue'
-import ErrorAlert from './ErrorAlert.vue'
-
-export {
-  PageHeader,
-  BackButton,
-  ErrorAlert
-}
+export { default as BackButton } from './BackButton.vue'
+export { default as ErrorAlert } from './ErrorAlert.vue'
+export { default as PageHeader } from './PageHeader.vue'

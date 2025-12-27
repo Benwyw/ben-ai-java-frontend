@@ -56,11 +56,11 @@
     <template #activator="{ props }">
       <v-list-item
         v-bind="props"
+        color="primary"
         :prepend-icon="item.meta?.icon"
+        rounded="xl"
         :title="item.meta?.title || item.name"
         :value="item.name"
-        color="primary"
-        rounded="xl"
         @click="onParentClickFn(item.name)"
       >
         <!-- Custom chevron toggle button -->
@@ -70,8 +70,8 @@
             aria-label="Toggle group"
             density="comfortable"
             icon
-            variant="text"
             size="small"
+            variant="text"
             @click.stop="onChevronClickFn(item.name)"
           >
             <v-icon :class="isOpenFn(item.name) ? 'rotate-90' : ''">mdi-chevron-right</v-icon>
@@ -87,8 +87,8 @@
       :children="childrenMap.get(child.name) || []"
       :children-map="childrenMap"
       :depth="depth + 1"
-      :is-open-fn="isOpenFn"
       :is-locked-fn="isLockedFn"
+      :is-open-fn="isOpenFn"
       :item="child"
       :on-chevron-click-fn="onChevronClickFn"
       :on-parent-click-fn="onParentClickFn"
@@ -98,13 +98,13 @@
   <!-- No children: render as simple leaf item -->
   <v-list-item
     v-else
+    color="primary"
+    :exact="item.path === '' || item.path === '/'"
     :prepend-icon="item.meta?.icon"
+    rounded="xl"
     :title="item.meta?.title || item.name"
     :to="item.path || '/'"
     :value="item.name"
-    :exact="item.path === '' || item.path === '/'"
-    color="primary"
-    rounded="xl"
   >
     <!-- Show lock icon if user doesn't have access -->
     <template v-if="isLockedFn && isLockedFn(item)" #append>
@@ -122,40 +122,40 @@
  * 'parent' property in route meta configurations.
  */
 
-defineProps({
-  item: {
-    type: Object,
-    required: true,
-  },
-  children: {
-    type: Array,
-    default: () => [],
-  },
-  childrenMap: {
-    type: Map,
-    required: true,
-  },
-  depth: {
-    type: Number,
-    default: 0,
-  },
-  isOpenFn: {
-    type: Function,
-    required: true,
-  },
-  isLockedFn: {
-    type: Function,
-    default: null,
-  },
-  onParentClickFn: {
-    type: Function,
-    required: true,
-  },
-  onChevronClickFn: {
-    type: Function,
-    required: true,
-  },
-})
+  defineProps({
+    item: {
+      type: Object,
+      required: true,
+    },
+    children: {
+      type: Array,
+      default: () => [],
+    },
+    childrenMap: {
+      type: Map,
+      required: true,
+    },
+    depth: {
+      type: Number,
+      default: 0,
+    },
+    isOpenFn: {
+      type: Function,
+      required: true,
+    },
+    isLockedFn: {
+      type: Function,
+      default: null,
+    },
+    onParentClickFn: {
+      type: Function,
+      required: true,
+    },
+    onChevronClickFn: {
+      type: Function,
+      required: true,
+    },
+  })
 </script>
 
 <style scoped>
@@ -168,4 +168,3 @@ defineProps({
   transition: transform 0.2s ease-in-out;
 }
 </style>
-

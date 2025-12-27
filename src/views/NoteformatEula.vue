@@ -3,6 +3,5 @@
 </template>
 
 <script setup>
-import NoteformatEula from '@/components/NoteformatEula.vue'
+  import NoteformatEula from '@/components/NoteformatEula.vue'
 </script>
-

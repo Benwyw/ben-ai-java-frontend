@@ -3,6 +3,5 @@
 </template>
 
 <script setup>
-import NoteformatPrivacy from '@/components/NoteformatPrivacy.vue'
+  import NoteformatPrivacy from '@/components/NoteformatPrivacy.vue'
 </script>
-

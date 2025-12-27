@@ -7,9 +7,9 @@
     <v-card-text>
       <v-row>
         <v-col v-for="feature in features" :key="feature.title" cols="12" md="6">
-          <v-card variant="outlined" rounded="xl" class="h-100">
+          <v-card class="h-100" rounded="xl" variant="outlined">
             <v-card-text class="d-flex align-start">
-              <v-avatar :color="feature.color" size="48" class="mr-4">
+              <v-avatar class="mr-4" :color="feature.color" size="48">
                 <v-icon color="white">{{ feature.icon }}</v-icon>
               </v-avatar>
               <div>
@@ -25,12 +25,12 @@
 </template>
 
 <script setup>
-defineProps({
-  features: {
-    type: Array,
-    default: () => []
-  }
-})
+  defineProps({
+    features: {
+      type: Array,
+      default: () => [],
+    },
+  })
 </script>
 
 <style scoped>
@@ -38,4 +38,3 @@ defineProps({
   height: 100%;
 }
 </style>
-

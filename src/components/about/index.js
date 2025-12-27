@@ -2,8 +2,4 @@
  * About page components barrel export
  */
 
-import FeaturesTable from './FeaturesTable.vue'
-
-export {
-  FeaturesTable
-}
+export { default as FeaturesTable } from './FeaturesTable.vue'

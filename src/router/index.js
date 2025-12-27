@@ -184,7 +184,7 @@ const routes = [
           title: 'Home',
           icon: 'mdi-home',
           navSection: 'main',
-          navOrder: 1
+          navOrder: 1,
           // No auth required - public page
         },
       },
@@ -196,7 +196,7 @@ const routes = [
           title: 'About',
           icon: 'mdi-information',
           navSection: 'main',
-          navOrder: 2
+          navOrder: 2,
           // No auth required - public page
         },
       },
@@ -209,7 +209,7 @@ const routes = [
           icon: 'mdi-message',
           navSection: 'main',
           navOrder: 3,
-          requiresAuth: true
+          requiresAuth: true,
           // hideNavIfNoAccess defaults to false - shows lock icon when logged out
         },
       },
@@ -226,8 +226,8 @@ const routes = [
           navSection: 'tools',
           navOrder: 1,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],  // USER or ADMIN can access
-          hideNavIfNoAccess: true            // Hidden from nav if no permission
+          requiredRoles: ['USER', 'ADMIN'], // USER or ADMIN can access
+          hideNavIfNoAccess: true, // Hidden from nav if no permission
         },
       },
       {
@@ -239,7 +239,7 @@ const routes = [
           icon: 'mdi-scale-bathroom',
           navSection: 'tools',
           navOrder: 2,
-          requiresAuth: false  // Public page
+          requiresAuth: false, // Public page
         },
       },
       {
@@ -252,8 +252,8 @@ const routes = [
           navSection: 'tools',
           navOrder: 3,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],  // USER or ADMIN can access
-          hideNavIfNoAccess: false           // Visible with lock icon if no permission
+          requiredRoles: ['USER', 'ADMIN'], // USER or ADMIN can access
+          hideNavIfNoAccess: false, // Visible with lock icon if no permission
         },
       },
 
@@ -267,7 +267,7 @@ const routes = [
           title: 'Terms of Service',
           icon: 'mdi-file-document',
           navSection: 'legal',
-          navOrder: 1
+          navOrder: 1,
           // No auth required - public page
         },
       },
@@ -279,7 +279,7 @@ const routes = [
           title: 'Privacy Policy',
           icon: 'mdi-shield-lock',
           navSection: 'legal',
-          navOrder: 2
+          navOrder: 2,
           // No auth required - public page
         },
       },
@@ -291,7 +291,7 @@ const routes = [
           title: 'Noteformat Privacy',
           icon: 'mdi-shield-lock',
           navSection: 'legal',
-          navOrder: 3
+          navOrder: 3,
           // No auth required - public page
         },
       },
@@ -303,7 +303,7 @@ const routes = [
           title: 'Noteformat EULA',
           icon: 'mdi-file-document-outline',
           navSection: 'legal',
-          navOrder: 4
+          navOrder: 4,
           // No auth required - public page
         },
       },
@@ -316,7 +316,7 @@ const routes = [
         redirect: '/',
         meta: {
           title: 'Login',
-          navHidden: true  // Hidden from sidebar navigation
+          navHidden: true, // Hidden from sidebar navigation
         },
       },
 
@@ -325,7 +325,7 @@ const routes = [
       {
         path: '/:pathMatch(.*)*',
         redirect: '/',
-      }
+      },
     ],
   },
 ]

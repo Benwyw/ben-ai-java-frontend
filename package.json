@@ -1,13 +1,13 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "private": true,
   "scripts": {
     "serve": "vite",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build --mode production",
     "preview": "vite preview",
-    "lint": "eslint . --fix --ignore-path .gitignore"
+    "lint": "eslint . --config ./eslintrc.config.js --fix"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",

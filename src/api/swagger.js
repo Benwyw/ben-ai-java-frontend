@@ -1,4 +1,4 @@
-import axios from '@/plugins/axios';
+import axios from '@/plugins/axios'
 
 /**
  * Sends a POST request to convert a JSON string to an Excel file.
@@ -7,17 +7,17 @@ import axios from '@/plugins/axios';
  * @returns {Promise<Blob>} A promise that resolves to the Excel file as a Blob.
  * @throws {Error} If the request fails.
  */
-export async function jsonStringToExcel(jsonString) {
+export async function jsonStringToExcel (jsonString) {
   try {
     const response = await axios.post('/swagger/jsonStringToExcel', {
-      jsonString: jsonString
+      jsonString,
     }, {
       withCredentials: true,
-      responseType: 'blob'
-    });
-    return response.data;
+      responseType: 'blob',
+    })
+    return response.data
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -28,17 +28,17 @@ export async function jsonStringToExcel(jsonString) {
  * @returns {Promise<import('axios').AxiosResponse<Blob>>} A promise that resolves to the Axios response containing the Excel file as a Blob.
  * @throws {Error} If the request fails.
  */
-export async function generateExcelFromSwaggerJson(jsonString) {
+export async function generateExcelFromSwaggerJson (jsonString) {
   try {
     const response = await axios.post('/swagger/generateExcelFromSwaggerJson', {
-      jsonString: jsonString
+      jsonString,
     }, {
       withCredentials: true,
-      responseType: 'blob'
-    });
-    return response;
+      responseType: 'blob',
+    })
+    return response
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
@@ -49,16 +49,16 @@ export async function generateExcelFromSwaggerJson(jsonString) {
  * @returns {Promise<import('axios').AxiosResponse<Blob>>} A promise that resolves to the Axios response containing the ZIP file as a Blob.
  * @throws {Error} If the request fails.
  */
-export async function generateExcelZipFromSwaggerJson(jsonString) {
+export async function generateExcelZipFromSwaggerJson (jsonString) {
   try {
     const response = await axios.post('/swagger/generateExcelZipFromSwaggerJson', {
-      jsonString: jsonString
+      jsonString,
     }, {
       withCredentials: true,
-      responseType: 'blob'
-    });
-    return response;
+      responseType: 'blob',
+    })
+    return response
   } catch (error) {
-    throw error;
+    throw error
   }
 }

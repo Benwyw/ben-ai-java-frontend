@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="xl" class="mb-6 h-100">
+  <v-card class="mb-6 h-100" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2" color="primary">mdi-file-document</v-icon>
       Report 1
@@ -7,61 +7,61 @@
     <v-card-text>
       <v-text-field
         v-model="params.dueDays"
+        class="mb-3"
+        density="compact"
         label="Days"
+        rounded="lg"
         type="number"
         variant="outlined"
-        rounded="lg"
-        density="compact"
-        class="mb-3"
       />
       <v-text-field
         v-model="params.rmName"
-        label="RM Name"
-        variant="outlined"
-        rounded="lg"
-        density="compact"
         class="mb-3"
+        density="compact"
+        label="RM Name"
+        rounded="lg"
+        variant="outlined"
       />
       <v-text-field
         v-model="params.customerNum"
+        class="mb-3"
+        density="compact"
         label="User Number"
+        rounded="lg"
         type="number"
         variant="outlined"
-        rounded="lg"
-        density="compact"
-        class="mb-3"
       />
       <v-text-field
         v-model="params.sccStatus"
-        label="DEV"
-        variant="outlined"
-        rounded="lg"
-        density="compact"
         class="mb-3"
+        density="compact"
+        label="DEV"
+        rounded="lg"
+        variant="outlined"
       />
       <v-text-field
         v-model="params.groupNum"
+        class="mb-3"
+        density="compact"
         label="Group Unit Number"
+        rounded="lg"
         type="number"
         variant="outlined"
-        rounded="lg"
-        density="compact"
-        class="mb-3"
       />
       <v-text-field
         v-model="params.customerName"
-        label="User Name"
-        variant="outlined"
-        rounded="lg"
-        density="compact"
         class="mb-3"
+        density="compact"
+        label="User Name"
+        rounded="lg"
+        variant="outlined"
       />
       <v-btn
-        color="primary"
-        variant="flat"
         block
+        color="primary"
         :loading="isLoading"
         prepend-icon="mdi-download"
+        variant="flat"
         @click="$emit('generate', params)"
       >
         Generate Report 1
@@ -71,25 +71,25 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue'
+  import { reactive } from 'vue'
 
-defineProps({
-  isLoading: {
-    type: Boolean,
-    default: false
-  }
-})
+  defineProps({
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
+  })
 
-defineEmits(['generate'])
+  defineEmits(['generate'])
 
-const params = reactive({
-  dueDays: null,
-  rmName: '',
-  customerNum: null,
-  sccStatus: '',
-  groupNum: null,
-  customerName: '',
-})
+  const params = reactive({
+    dueDays: null,
+    rmName: '',
+    customerNum: null,
+    sccStatus: '',
+    groupNum: null,
+    customerName: '',
+  })
 </script>
 
 <style scoped>

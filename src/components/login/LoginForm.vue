@@ -2,41 +2,41 @@
   <v-card-text class="pa-6">
     <v-form @submit.prevent="$emit('submit')">
       <v-text-field
-        :model-value="username"
-        label="Username"
-        prepend-inner-icon="mdi-account"
-        variant="outlined"
-        rounded="lg"
         class="mb-4"
+        label="Username"
+        :model-value="username"
+        prepend-inner-icon="mdi-account"
         required
+        rounded="lg"
+        variant="outlined"
         @update:model-value="$emit('update:username', $event)"
       />
       <v-text-field
-        :model-value="password"
-        label="Password"
-        type="password"
-        prepend-inner-icon="mdi-lock"
-        variant="outlined"
-        rounded="lg"
         class="mb-4"
+        label="Password"
+        :model-value="password"
+        prepend-inner-icon="mdi-lock"
         required
+        rounded="lg"
+        type="password"
+        variant="outlined"
         @update:model-value="$emit('update:password', $event)"
       />
       <v-alert
         v-if="errorMsg"
-        type="error"
-        rounded="lg"
         class="mb-4"
         density="compact"
+        rounded="lg"
+        type="error"
       >
         {{ errorMsg }}
       </v-alert>
       <v-btn
-        type="submit"
+        block
         color="primary"
         :loading="isLoading"
-        block
         size="large"
+        type="submit"
       >
         <v-icon class="mr-2">mdi-login</v-icon>
         Login
@@ -46,24 +46,24 @@
 </template>
 
 <script setup>
-defineProps({
-  username: {
-    type: String,
-    default: ''
-  },
-  password: {
-    type: String,
-    default: ''
-  },
-  errorMsg: {
-    type: String,
-    default: ''
-  },
-  isLoading: {
-    type: Boolean,
-    default: false
-  }
-})
+  defineProps({
+    username: {
+      type: String,
+      default: '',
+    },
+    password: {
+      type: String,
+      default: '',
+    },
+    errorMsg: {
+      type: String,
+      default: '',
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
+  })
 
-defineEmits(['update:username', 'update:password', 'submit'])
+  defineEmits(['update:username', 'update:password', 'submit'])
 </script>

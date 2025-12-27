@@ -13,14 +13,7 @@
  *   3. Import and use it in Home.vue
  */
 
-import HeroSection from './HeroSection.vue'
-import StatsSection from './StatsSection.vue'
-import QuickActionsSection from './QuickActionsSection.vue'
-import FeaturesSection from './FeaturesSection.vue'
-
-export {
-  HeroSection,
-  StatsSection,
-  QuickActionsSection,
-  FeaturesSection
-}
+export { default as FeaturesSection } from './FeaturesSection.vue'
+export { default as HeroSection } from './HeroSection.vue'
+export { default as QuickActionsSection } from './QuickActionsSection.vue'
+export { default as StatsSection } from './StatsSection.vue'

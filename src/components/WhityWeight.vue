@@ -2,10 +2,10 @@
   <div>
     <!-- Page Header -->
     <PageHeader
-      title="Whity Weight"
-      subtitle="小白體重記錄"
-      icon="mdi-scale-bathroom"
       gradient-class="bg-gradient-warning"
+      icon="mdi-scale-bathroom"
+      subtitle="小白體重記錄"
+      title="Whity Weight"
     />
 
     <!-- Weight Table Card -->
@@ -17,8 +17,7 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/shared/PageHeader.vue'
-import BackButton from '@/components/shared/BackButton.vue'
-import WeightTable from '@/components/whityweight/WeightTable.vue'
+  import BackButton from '@/components/shared/BackButton.vue'
+  import PageHeader from '@/components/shared/PageHeader.vue'
+  import WeightTable from '@/components/whityweight/WeightTable.vue'
 </script>
-

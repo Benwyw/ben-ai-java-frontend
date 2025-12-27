@@ -1,10 +1,10 @@
 <template>
   <v-card :class="`mb-6 ${gradientClass}`" rounded="xl" variant="flat">
     <v-card-text class="py-8 text-center">
-      <v-avatar v-if="showAvatar" size="100" class="mb-4 elevation-4">
+      <v-avatar v-if="showAvatar" class="mb-4 elevation-4" size="100">
         <v-img :src="avatarSrc" />
       </v-avatar>
-      <v-icon v-else :color="iconColor" size="64" class="mb-4">{{ icon }}</v-icon>
+      <v-icon v-else class="mb-4" :color="iconColor" size="64">{{ icon }}</v-icon>
       <h1 class="text-h4 font-weight-bold text-white mb-2">{{ title }}</h1>
       <p class="text-body-1 text-white-darken-1">{{ subtitle }}</p>
       <slot name="chips" />
@@ -13,36 +13,36 @@
 </template>
 
 <script setup>
-defineProps({
-  title: {
-    type: String,
-    required: true
-  },
-  subtitle: {
-    type: String,
-    default: ''
-  },
-  icon: {
-    type: String,
-    default: 'mdi-information'
-  },
-  iconColor: {
-    type: String,
-    default: 'white'
-  },
-  gradientClass: {
-    type: String,
-    default: 'bg-gradient-primary'
-  },
-  showAvatar: {
-    type: Boolean,
-    default: false
-  },
-  avatarSrc: {
-    type: String,
-    default: ''
-  }
-})
+  defineProps({
+    title: {
+      type: String,
+      required: true,
+    },
+    subtitle: {
+      type: String,
+      default: '',
+    },
+    icon: {
+      type: String,
+      default: 'mdi-information',
+    },
+    iconColor: {
+      type: String,
+      default: 'white',
+    },
+    gradientClass: {
+      type: String,
+      default: 'bg-gradient-primary',
+    },
+    showAvatar: {
+      type: Boolean,
+      default: false,
+    },
+    avatarSrc: {
+      type: String,
+      default: '',
+    },
+  })
 </script>
 
 <style scoped>

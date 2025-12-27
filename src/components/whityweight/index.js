@@ -2,8 +2,4 @@
  * WhityWeight page components barrel export
  */
 
-import WeightTable from './WeightTable.vue'
-
-export {
-  WeightTable
-}
+export { default as WeightTable } from './WeightTable.vue'

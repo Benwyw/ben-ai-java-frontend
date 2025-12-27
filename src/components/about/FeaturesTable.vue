@@ -1,5 +1,5 @@
 <template>
-  <v-card rounded="xl" class="mb-6">
+  <v-card class="mb-6" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2">mdi-feature-search</v-icon>
       Bot Features
@@ -7,13 +7,13 @@
     <v-card-text>
       <v-data-table-server
         v-model:items-per-page="itemsPerPage"
+        class="rounded-lg"
         :headers="headers"
-        :items-length="totalItems"
+        item-key="featureId"
         :items="serverItems"
+        :items-length="totalItems"
         :loading="loading"
         :page="page"
-        class="rounded-lg"
-        item-key="featureId"
         @update:options="loadItems"
       >
         <template #loading>
@@ -25,46 +25,46 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import * as api from '@/api/misc'
+  import { ref } from 'vue'
+  import * as api from '@/api/misc'
 
-const page = ref(1)
-const itemsPerPage = ref(10)
-const headers = ref([
-  {
-    title: 'Features',
-    align: 'start',
-    sortable: true,
-    key: 'featureName',
-  },
-  {
-    title: 'Description',
-    align: 'end',
-    sortable: true,
-    key: 'featureDescription'
+  const page = ref(1)
+  const itemsPerPage = ref(10)
+  const headers = ref([
+    {
+      title: 'Features',
+      align: 'start',
+      sortable: true,
+      key: 'featureName',
+    },
+    {
+      title: 'Description',
+      align: 'end',
+      sortable: true,
+      key: 'featureDescription',
+    },
+  ])
+  const serverItems = ref([])
+  const loading = ref(true)
+  const totalItems = ref(0)
+
+  const defaultServerItems = [
+    { featureName: 'Music', featureDescription: 4 },
+    { featureName: 'News Feed', featureDescription: 1 },
+  ]
+
+  async function loadItems ({ page: newPage, itemsPerPage: newItemsPerPage }) {
+    loading.value = true
+    try {
+      const data = await api.getFeatures(newPage, newItemsPerPage)
+      serverItems.value = data.records
+      totalItems.value = data.total
+    } catch (error) {
+      console.error('Using default features due to API failure', error)
+      serverItems.value = defaultServerItems
+      totalItems.value = defaultServerItems.length
+    } finally {
+      loading.value = false
+    }
   }
-])
-const serverItems = ref([])
-const loading = ref(true)
-const totalItems = ref(0)
-
-const defaultServerItems = [
-  { featureName: 'Music', featureDescription: 4 },
-  { featureName: 'News Feed', featureDescription: 1 }
-]
-
-async function loadItems({ page: newPage, itemsPerPage: newItemsPerPage }) {
-  loading.value = true
-  try {
-    const data = await api.getFeatures(newPage, newItemsPerPage)
-    serverItems.value = data.records
-    totalItems.value = data.total
-  } catch (error) {
-    console.error('Using default features due to API failure', error)
-    serverItems.value = defaultServerItems
-    totalItems.value = defaultServerItems.length
-  } finally {
-    loading.value = false
-  }
-}
 </script>

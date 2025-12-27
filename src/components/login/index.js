@@ -2,10 +2,5 @@
  * Login page components barrel export
  */
 
-import LoginForm from './LoginForm.vue'
-import LoggedInView from './LoggedInView.vue'
-
-export {
-  LoginForm,
-  LoggedInView
-}
+export { default as LoggedInView } from './LoggedInView.vue'
+export { default as LoginForm } from './LoginForm.vue'

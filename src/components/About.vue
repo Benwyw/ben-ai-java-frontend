@@ -2,10 +2,10 @@
   <div>
     <!-- Page Header -->
     <PageHeader
-      title="About"
-      subtitle="Multi-purpose private hosted bot for selected servers."
-      icon="mdi-information"
       gradient-class="bg-gradient-info"
+      icon="mdi-information"
+      subtitle="Multi-purpose private hosted bot for selected servers."
+      title="About"
     />
 
     <!-- Features Table Card -->
@@ -17,8 +17,7 @@
 </template>
 
 <script setup>
-import PageHeader from '@/components/shared/PageHeader.vue'
-import BackButton from '@/components/shared/BackButton.vue'
-import FeaturesTable from '@/components/about/FeaturesTable.vue'
+  import FeaturesTable from '@/components/about/FeaturesTable.vue'
+  import BackButton from '@/components/shared/BackButton.vue'
+  import PageHeader from '@/components/shared/PageHeader.vue'
 </script>
-

@@ -1,2 +1,2 @@
-import { ref } from 'vue';
-export const lastError = ref('');
+import { ref } from 'vue'
+export const lastError = ref('')

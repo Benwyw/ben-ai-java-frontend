@@ -1,10 +1,10 @@
 <template>
   <v-alert
     v-if="error"
-    type="error"
-    closable
     class="mb-4"
+    closable
     rounded="xl"
+    type="error"
     @click:close="$emit('close')"
   >
     {{ error }}
@@ -12,13 +12,12 @@
 </template>
 
 <script setup>
-defineProps({
-  error: {
-    type: String,
-    default: ''
-  }
-})
+  defineProps({
+    error: {
+      type: String,
+      default: '',
+    },
+  })
 
-defineEmits(['close'])
+  defineEmits(['close'])
 </script>
-

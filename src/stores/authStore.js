@@ -88,8 +88,8 @@
  * ============================================================================
  */
 
-import { reactive } from 'vue'
 import { jwtDecode } from 'jwt-decode'
+import { reactive } from 'vue'
 
 /**
  * Reactive state object - DO NOT export directly
@@ -108,7 +108,7 @@ const state = reactive({
  * - Login success
  * - Storage change events (multi-tab support)
  */
-function syncAuthState() {
+function syncAuthState () {
   state.username = localStorage.getItem('username')
 
   const accessToken = localStorage.getItem('accessToken')
@@ -128,7 +128,7 @@ function syncAuthState() {
  * Clear auth state (call on logout)
  * Resets username and role to null
  */
-function clearAuthState() {
+function clearAuthState () {
   state.username = null
   state.role = null
 }
@@ -140,8 +140,10 @@ function clearAuthState() {
  * @example
  * authStore.hasRole('ADMIN')  // true if user role is 'ADMIN'
  */
-function hasRole(role) {
-  if (!state.role) return false
+function hasRole (role) {
+  if (!state.role) {
+    return false
+  }
   return state.role.toUpperCase() === role.toUpperCase()
 }
 
@@ -152,8 +154,10 @@ function hasRole(role) {
  * @example
  * authStore.hasAnyRole(['ADMIN', 'MODERATOR'])  // true if user is ADMIN or MODERATOR
  */
-function hasAnyRole(roles) {
-  if (!state.role || !Array.isArray(roles)) return false
+function hasAnyRole (roles) {
+  if (!state.role || !Array.isArray(roles)) {
+    return false
+  }
   const userRole = state.role.toUpperCase()
   return roles.some(r => r.toUpperCase() === userRole)
 }
@@ -164,7 +168,7 @@ function hasAnyRole(roles) {
  * @example
  * authStore.isAdmin()  // equivalent to hasRole('ADMIN')
  */
-function isAdmin() {
+function isAdmin () {
   return hasRole('ADMIN')
 }
 
@@ -177,7 +181,7 @@ syncAuthState()
 
 // Listen for storage changes (e.g., login/logout in another tab)
 if (typeof window !== 'undefined') {
-  window.addEventListener('storage', (e) => {
+  window.addEventListener('storage', e => {
     if (e.key === 'accessToken' || e.key === 'username' || e.key === null) {
       syncAuthState()
     }
@@ -195,11 +199,17 @@ if (typeof window !== 'undefined') {
 export const authStore = {
   // ---- Reactive Getters (use in templates) ----
   /** Current username or null if not logged in */
-  get username() { return state.username },
+  get username () {
+    return state.username
+  },
   /** Current role string (e.g., 'ADMIN', 'USER') or null */
-  get role() { return state.role },
+  get role () {
+    return state.role
+  },
   /** True if user is logged in */
-  get isLoggedIn() { return !!state.username },
+  get isLoggedIn () {
+    return !!state.username
+  },
 
   // ---- Methods ----
   /** Sync state from localStorage (call after login) */

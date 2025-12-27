@@ -1,3 +1,3 @@
 export default {
-    baseURL: 'https://www.benwyw.com/api'
-};
+  baseURL: 'https://www.benwyw.com/api',
+}
