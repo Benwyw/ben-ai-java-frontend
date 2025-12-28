@@ -56,7 +56,7 @@
     <template #activator="{ props: activatorProps }">
       <v-list-item
         v-bind="activatorProps"
-        :class="{ 'v-list-item--active': isParentActive }"
+        :class="{ 'v-list-item--active text-primary': isParentActive }"
         color="primary"
         :prepend-icon="item.meta?.icon"
         rounded="xl"
@@ -183,13 +183,12 @@
   transition: transform 0.2s ease-in-out;
 }
 
-/* Ensure active styling for parent items with children */
-:deep(.v-list-item--active) {
-  background: rgb(var(--v-theme-primary));
-  color: white !important;
+/* Match Vuetify's default active state tonal background for parent items */
+.v-list-item--active {
+  background-color: rgba(var(--v-theme-primary), 0.12) !important;
 }
 
-:deep(.v-list-item--active .v-list-item__prepend .v-icon) {
-  color: white !important;
+.v-list-item--active :deep(.v-list-item__prepend > .v-icon) {
+  color: rgb(var(--v-theme-primary)) !important;
 }
 </style>
