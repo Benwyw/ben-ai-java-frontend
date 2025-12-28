@@ -91,6 +91,54 @@
         />
       </v-list>
 
+      <v-divider />
+
+      <!-- NOTEFORMAT Section -->
+      <v-list
+        v-model:opened="openedGroups"
+        density="compact"
+        nav
+        open-strategy="multiple"
+      >
+        <v-list-subheader v-if="!rail">NOTEFORMAT</v-list-subheader>
+        <SidebarNavItem
+          v-for="item in noteformatSectionItems"
+          :key="item.name"
+          :children="childrenMap.get(item.name) || []"
+          :children-map="childrenMap"
+          :depth="0"
+          :is-locked-fn="isItemLocked"
+          :is-open-fn="isOpen"
+          :item="item"
+          :on-chevron-click-fn="onChevronClick"
+          :on-parent-click-fn="onParentClick"
+        />
+      </v-list>
+
+      <!--      &lt;!&ndash; PRODUCTS Section (for future apps) &ndash;&gt;-->
+      <!--      <v-list-->
+      <!--        v-model:opened="openedGroups"-->
+      <!--        density="compact"-->
+      <!--        nav-->
+      <!--        open-strategy="multiple"-->
+      <!--      >-->
+      <!--        <v-list-subheader v-if="!rail">PRODUCTS</v-list-subheader>-->
+      <!--        <SidebarNavItem-->
+      <!--          v-for="item in productsSectionItems"-->
+      <!--          :key="item.name"-->
+      <!--          :children="childrenMap.get(item.name) || []"-->
+      <!--          :children-map="childrenMap"-->
+      <!--          :depth="0"-->
+      <!--          :is-locked-fn="isItemLocked"-->
+      <!--          :is-open-fn="isOpen"-->
+      <!--          :item="item"-->
+      <!--          :on-chevron-click-fn="onChevronClick"-->
+      <!--          :on-parent-click-fn="onParentClick"-->
+      <!--        />-->
+      <!--      </v-list>-->
+
+      <!--      <v-divider />-->
+
       <template #append>
         <v-list v-if="!mobile" density="compact" nav>
           <v-list-item
@@ -663,7 +711,7 @@
   // Supported meta properties:
   // - title: Display name (required for visibility)
   // - icon: MDI icon name
-  // - navSection: 'main' | 'tools' | 'legal' (default: 'main')
+  // - navSection: 'main' | 'tools' | 'noteformat' | 'products' | 'legal' (default: 'main')
   // - navOrder: Sort order within section (lower = higher)
   // - navHidden: Hide from sidebar
   // - parent: Parent route name for nesting
@@ -781,6 +829,8 @@
 
   const mainSectionItems = computed(() => getRootItemsForSection('main'))
   const toolsSectionItems = computed(() => getRootItemsForSection('tools'))
+  const noteformatSectionItems = computed(() => getRootItemsForSection('noteformat'))
+  // const productsSectionItems = computed(() => getRootItemsForSection('products'))
   const legalSectionItems = computed(() => getRootItemsForSection('legal'))
 
   /** Get all group names (items that have children) */

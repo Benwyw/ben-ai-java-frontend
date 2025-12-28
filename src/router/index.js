@@ -22,7 +22,7 @@ import { createRouter, createWebHistory } from 'vue-router'
  *   - Example: icon: 'mdi-home', icon: 'mdi-cog'
  *
  * @property {string} navSection - Section grouping in sidebar (optional)
- *   - Values: 'main' | 'tools' | 'legal'
+ *   - Values: 'main' | 'tools' | 'noteformat' | 'products' | 'legal'
  *   - Default: 'main'
  *   - Items are grouped into sections with dividers
  *
@@ -257,6 +257,75 @@ const routes = [
         },
       },
 
+      // ==================== NOTEFORMAT SECTION ====================
+      // Product-specific legal/help pages (public)
+      {
+        path: '/noteformat',
+        name: 'Noteformat',
+        component: () => import('@/views/noteformat/NoteformatLanding.vue'),
+        meta: {
+          title: 'NoteFormat',
+          icon: 'mdi-notebook-outline',
+          navSection: 'noteformat',
+          navOrder: 1,
+          defaultExpanded: true,
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/noteformat/eula',
+        name: 'Noteformat EULA',
+        component: () => import('@/views/noteformat/NoteformatEula.vue'),
+        meta: {
+          title: 'EULA',
+          icon: 'mdi-file-document-outline',
+          navSection: 'noteformat',
+          navOrder: 1,
+          parent: 'Noteformat',
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/noteformat/privacy',
+        name: 'Noteformat Privacy',
+        component: () => import('@/views/noteformat/NoteformatPrivacy.vue'),
+        meta: {
+          title: 'Privacy',
+          icon: 'mdi-shield-lock',
+          navSection: 'noteformat',
+          navOrder: 2,
+          parent: 'Noteformat',
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/noteformat/tutorials',
+        name: 'Noteformat Tutorials',
+        component: () => import('@/views/noteformat/NoteformatTutorials.vue'),
+        meta: {
+          title: 'Tutorials',
+          icon: 'mdi-school',
+          navSection: 'noteformat',
+          navOrder: 3,
+          parent: 'Noteformat',
+          defaultExpanded: true,
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/noteformat/docs',
+        name: 'Noteformat Docs',
+        component: () => import('@/views/noteformat/NoteformatDocs.vue'),
+        meta: {
+          title: 'Docs & FAQ',
+          icon: 'mdi-file-tree',
+          navSection: 'noteformat',
+          navOrder: 4,
+          parent: 'Noteformat',
+          // No auth required - public page
+        },
+      },
+
       // ==================== LEGAL SECTION ====================
       // Legal/compliance pages - typically public
       {
@@ -283,30 +352,6 @@ const routes = [
           // No auth required - public page
         },
       },
-      {
-        path: '/noteformat/eula',
-        name: 'Noteformat EULA',
-        component: () => import('@/views/noteformat/NoteformatEula.vue'),
-        meta: {
-          title: 'Noteformat EULA',
-          icon: 'mdi-file-document-outline',
-          navSection: 'legal',
-          navOrder: 3,
-          // No auth required - public page
-        },
-      },
-      {
-        path: '/noteformat/privacy',
-        name: 'Noteformat Privacy',
-        component: () => import('@/views/noteformat/NoteformatPrivacy.vue'),
-        meta: {
-          title: 'Noteformat Privacy',
-          icon: 'mdi-shield-lock',
-          navSection: 'legal',
-          navOrder: 4,
-          // No auth required - public page
-        },
-      },
 
       // ==================== AUTH ====================
       // Login is now a global dialog, this route redirects to home
@@ -326,11 +371,6 @@ const routes = [
         path: '/:pathMatch(.*)*',
         redirect: '/',
       },
-      // Redirect /noteformat to /noteformat/eula
-      {
-        path: '/noteformat',
-        redirect: '/noteformat/eula',
-      }
     ],
   },
 ]
