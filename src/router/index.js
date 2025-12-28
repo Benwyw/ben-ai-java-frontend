@@ -42,7 +42,9 @@ import { createRouter, createWebHistory } from 'vue-router'
  *
  * @property {boolean} defaultExpanded - Auto-expand group on load (optional)
  *   - Only applies to parent items (items that have children)
- *   - Default: false
+ *   - Default: false (group is collapsed by default)
+ *   - Set to true to have the group expanded when the page loads
+ *   - Omit or set to false to keep the group collapsed by default
  *
  * ============================================================================
  * AUTHENTICATION & PERMISSION META PROPERTIES
@@ -268,7 +270,7 @@ const routes = [
           icon: 'mdi-notebook-outline',
           navSection: 'noteformat',
           navOrder: 1,
-          defaultExpanded: true,
+           defaultExpanded: true, // Collapsed by default (omit or set to false)
           // No auth required - public page
         },
       },
@@ -308,7 +310,6 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 3,
           parent: 'Noteformat',
-          defaultExpanded: true,
           // No auth required - public page
         },
       },

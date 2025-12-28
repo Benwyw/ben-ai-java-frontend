@@ -53,9 +53,10 @@
 
   <!-- Has children: render as expandable group -->
   <v-list-group v-if="children && children.length > 0" :value="item.name">
-    <template #activator="{ props }">
+    <template #activator="{ props: activatorProps }">
       <v-list-item
-        v-bind="props"
+        v-bind="activatorProps"
+        :active="isParentActive"
         color="primary"
         :prepend-icon="item.meta?.icon"
         rounded="xl"
@@ -122,7 +123,12 @@
  * 'parent' property in route meta configurations.
  */
 
-  defineProps({
+  import { computed } from 'vue'
+  import { useRoute } from 'vue-router'
+
+  const route = useRoute()
+
+  const props = defineProps({
     item: {
       type: Object,
       required: true,
@@ -155,6 +161,15 @@
       type: Function,
       required: true,
     },
+  })
+
+  /**
+   * Check if this parent item is active (current route matches item's path)
+   */
+  const isParentActive = computed(() => {
+    if (!props.item?.path) return false
+    // Exact match for the parent item's path
+    return route.path === props.item.path
   })
 </script>
 
