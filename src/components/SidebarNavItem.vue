@@ -184,11 +184,13 @@
 }
 
 /* Match Vuetify's default active state tonal background for parent items */
+/* noinspection CssUnresolvedCustomProperty */
 .v-list-item--active {
-  background-color: rgba(var(--v-theme-primary), 0.12) !important;
+  background-color: rgba(var(--v-theme-primary, 24, 103, 192), 0.12) !important;
 }
 
+/* noinspection CssUnresolvedCustomProperty */
 .v-list-item--active :deep(.v-list-item__prepend > .v-icon) {
-  color: rgb(var(--v-theme-primary)) !important;
+  color: rgb(var(--v-theme-primary, 24, 103, 192)) !important;
 }
 </style>
