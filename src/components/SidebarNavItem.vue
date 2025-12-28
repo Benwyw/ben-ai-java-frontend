@@ -56,7 +56,7 @@
     <template #activator="{ props: activatorProps }">
       <v-list-item
         v-bind="activatorProps"
-        :active="isParentActive"
+        :class="{ 'v-list-item--active': isParentActive }"
         color="primary"
         :prepend-icon="item.meta?.icon"
         rounded="xl"
@@ -181,5 +181,15 @@
 
 :deep(.v-icon) {
   transition: transform 0.2s ease-in-out;
+}
+
+/* Ensure active styling for parent items with children */
+:deep(.v-list-item--active) {
+  background: rgb(var(--v-theme-primary));
+  color: white !important;
+}
+
+:deep(.v-list-item--active .v-list-item__prepend .v-icon) {
+  color: white !important;
 }
 </style>
