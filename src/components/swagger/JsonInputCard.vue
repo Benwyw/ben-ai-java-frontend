@@ -6,9 +6,9 @@
     </v-card-title>
     <v-card-text>
       <v-textarea
+        clear-icon="mdi-close"
         clearable
         counter
-        clear-icon="mdi-close"
         hint="Paste your Swagger API JSON here"
         label="Enter JSON text"
         :model-value="modelValue"

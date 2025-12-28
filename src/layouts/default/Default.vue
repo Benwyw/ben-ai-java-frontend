@@ -328,8 +328,8 @@
           <v-form @submit.prevent="handleLogin">
             <v-text-field
               v-model="loginDialog.username"
-              class="mb-4"
               autofocus
+              class="mb-4"
               :disabled="loginDialog.isLoading"
               label="Username"
               prepend-inner-icon="mdi-account"
