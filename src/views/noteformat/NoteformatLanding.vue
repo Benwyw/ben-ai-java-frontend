@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-8" fluid>
+  <v-container class="py-8 mx-auto" max-width="1200">
     <v-row class="align-center mb-6" justify="space-between">
       <v-col cols="12" md="8">
         <h1 class="text-h4 font-weight-bold mb-2">NoteFormat</h1>
@@ -13,6 +13,8 @@
         </v-btn>
       </v-col>
     </v-row>
+
+    <v-divider class="mb-4" />
 
     <v-row dense>
       <v-col cols="12" md="6" lg="3">
@@ -58,4 +60,3 @@
 <script setup>
 // Simple landing hub for NoteFormat content
 </script>
-
