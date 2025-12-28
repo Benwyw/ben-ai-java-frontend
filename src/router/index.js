@@ -284,24 +284,24 @@ const routes = [
         },
       },
       {
-        path: '/noteformat/privacy',
-        name: 'Noteformat Privacy',
-        component: () => import('@/views/noteformat/NoteformatPrivacy.vue'),
-        meta: {
-          title: 'Noteformat Privacy',
-          icon: 'mdi-shield-lock',
-          navSection: 'legal',
-          navOrder: 3,
-          // No auth required - public page
-        },
-      },
-      {
         path: '/noteformat/eula',
         name: 'Noteformat EULA',
         component: () => import('@/views/noteformat/NoteformatEula.vue'),
         meta: {
           title: 'Noteformat EULA',
           icon: 'mdi-file-document-outline',
+          navSection: 'legal',
+          navOrder: 3,
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/noteformat/privacy',
+        name: 'Noteformat Privacy',
+        component: () => import('@/views/noteformat/NoteformatPrivacy.vue'),
+        meta: {
+          title: 'Noteformat Privacy',
+          icon: 'mdi-shield-lock',
           navSection: 'legal',
           navOrder: 4,
           // No auth required - public page
@@ -326,6 +326,11 @@ const routes = [
         path: '/:pathMatch(.*)*',
         redirect: '/',
       },
+      // Redirect /noteformat to /noteformat/eula
+      {
+        path: '/noteformat',
+        redirect: '/noteformat/eula',
+      }
     ],
   },
 ]
