@@ -46,8 +46,20 @@
       content: 'Upgrade to Pro to remove ads. Revoke location, notifications, or biometrics in system Settings. Disable iCloud sync in app settings. Opt out of ad personalization in iOS Settings > Privacy > Apple Advertising. Delete app data by removing the app.',
     },
     {
+      title: 'Data Security',
+      content: 'Your data is protected using Apple\'s built-in encryption for on-device storage and iCloud sync. We do not have access to your notes or personal data.',
+    },
+    {
       title: 'Retention',
       content: 'Data stays on your device and in your iCloud (if enabled) until you delete it or remove the app.',
+    },
+    {
+      title: "Children's Privacy",
+      content: 'NoteFormat is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe we have collected data from a child, please contact us.',
+    },
+    {
+      title: 'Changes to This Policy',
+      content: 'We may update this policy from time to time. The "Last updated" date at the top will reflect the most recent revision. Continued use of the app after changes constitutes acceptance of the updated policy.',
     },
     {
       title: 'Contact',

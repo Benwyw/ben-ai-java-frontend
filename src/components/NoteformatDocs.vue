@@ -76,7 +76,7 @@
             <tr>
               <td><code>{date}</code></td>
               <td>Entry date (format configurable)</td>
-              <td>2026-01-01</td>
+              <td>2026-01-01 14:30</td>
             </tr>
             <tr>
               <td><code>{category}</code></td>
@@ -103,10 +103,55 @@
               <td>Comma-separated tags</td>
               <td>Card, Work</td>
             </tr>
+          </tbody>
+        </v-table>
+      </v-card-text>
+    </v-card>
+
+    <v-card class="mb-6" rounded="xl">
+      <v-card-title class="d-flex align-center">
+        <v-icon class="mr-2">mdi-file-document-multiple</v-icon>
+        Default Templates
+      </v-card-title>
+      <v-card-text>
+        <v-table density="compact">
+          <thead>
             <tr>
-              <td><code>{currency}</code></td>
-              <td>Currency symbol only</td>
-              <td>$</td>
+              <th>Template</th>
+              <th>Pattern</th>
+              <th>Date Format</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Full Notes</strong></td>
+              <td><code>{date} ${amount} {category} - {content} ({tags})</code></td>
+              <td>yyyy-MM-dd HH:mm</td>
+            </tr>
+            <tr>
+              <td><strong>Notes</strong></td>
+              <td><code>${amount} {content} ({tags})</code></td>
+              <td>yyyy-MM-dd</td>
+            </tr>
+            <tr>
+              <td><strong>Expense Log</strong></td>
+              <td><code>{date} ${amount} [{category}] {content}</code></td>
+              <td>yyyy-MM-dd</td>
+            </tr>
+            <tr>
+              <td><strong>Quick Entry</strong></td>
+              <td><code>{content} - ${amount}</code></td>
+              <td>yyyy-MM-dd</td>
+            </tr>
+            <tr>
+              <td><strong>CSV</strong></td>
+              <td><code>{date},{category},{amount},{content},{tags}</code></td>
+              <td>yyyy-MM-dd</td>
+            </tr>
+            <tr>
+              <td><strong>Markdown</strong></td>
+              <td><code>- **{date}** | `{category}` | {content} | *${amount}* | {tags}</code></td>
+              <td>yyyy-MM-dd</td>
             </tr>
           </tbody>
         </v-table>
