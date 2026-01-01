@@ -18,7 +18,7 @@
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
-  const lastUpdated = '27 DEC 2025'
+  const lastUpdated = '01 JAN 2026'
 
   const sections = [
     {
@@ -32,14 +32,24 @@
         'You may not copy (except as permitted by law), decompile, reverse engineer, disassemble, attempt to derive the source code of, modify, or create derivative works of the App, or circumvent security features. You may not redistribute or resell the App.',
     },
     {
+      title: 'Free Tier & Advertisements',
+      content:
+        'The App is free to download with basic features. Free users will see advertisements powered by Google AdMob. You may watch rewarded ads to unlock temporary premium features. Ad frequency and placement may vary.',
+    },
+    {
       title: 'Subscriptions & Billing',
       content:
-        'Some features require a monthly or annual subscription. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period. You can manage or cancel subscriptions in Settings > Apple ID > Subscriptions. Refund requests are handled by Apple in accordance with Apple’s policies and applicable law.',
+        "Pro features require a monthly or annual subscription. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period. Pro subscribers enjoy an ad-free experience and access to all premium features. You can manage or cancel subscriptions in Settings > Apple ID > Subscriptions. Refund requests are handled by Apple in accordance with Apple's policies and applicable law.",
+    },
+    {
+      title: 'Pro Features',
+      content:
+        'Pro subscription includes: ad-free experience, unlimited exports, CSV reports, custom themes, biometric lock (Face ID/Touch ID), and detailed category breakdowns in reports.',
     },
     {
       title: 'User Content',
       content:
-        'You retain ownership of notes/expense entries you create in the App (“User Content”). The App is intended to store this content on your device. If you choose to share/export content (for example, exporting a report), you are responsible for where you send it and who can access it.',
+        'You retain ownership of notes/expense entries you create in the App ("User Content"). The App is intended to store this content on your device and optionally in your iCloud. If you choose to share/export content (for example, exporting a report), you are responsible for where you send it and who can access it.',
     },
     {
       title: 'Support & Maintenance',
@@ -49,7 +59,7 @@
     {
       title: 'Disclaimer & Liability',
       content:
-        'The App is provided “as is” and “as available”, without warranties of any kind, to the maximum extent permitted by law. To the maximum extent permitted by law, we disclaim all warranties and we are not liable for indirect, incidental, special, consequential, or punitive damages.',
+        'The App is provided "as is" and "as available", without warranties of any kind, to the maximum extent permitted by law. To the maximum extent permitted by law, we disclaim all warranties and we are not liable for indirect, incidental, special, consequential, or punitive damages.',
     },
     {
       title: 'Product Claims',
@@ -59,7 +69,7 @@
     {
       title: 'Intellectual Property Claims',
       content:
-        'In the event of any third-party claim that the App or your possession and use of the App infringes that third party’s intellectual property rights, we (not Apple) will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.',
+        "In the event of any third-party claim that the App or your possession and use of the App infringes that third party's intellectual property rights, we (not Apple) will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.",
     },
     {
       title: 'Termination',
@@ -79,7 +89,7 @@
     {
       title: 'Apple as Third-Party Beneficiary',
       content:
-        'Apple, and Apple’s subsidiaries, are third-party beneficiaries of this EULA, and upon your acceptance of this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.',
+        "Apple, and Apple's subsidiaries, are third-party beneficiaries of this EULA, and upon your acceptance of this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.",
     },
     {
       title: 'Contact',

@@ -17,6 +17,9 @@
         <v-chip color="white" prepend-icon="mdi-cloud-sync" variant="flat">
           iCloud Sync
         </v-chip>
+        <v-chip color="white" prepend-icon="mdi-trophy" variant="flat">
+          Game Center
+        </v-chip>
       </div>
     </v-card-text>
   </v-card>

@@ -18,12 +18,12 @@
       icon: 'mdi-note-multiple',
       color: 'primary',
       value: 'Notes',
-      label: 'Organize Thoughts',
+      label: 'Organize & Format',
     },
     {
-      icon: 'mdi-cash-multiple',
+      icon: 'mdi-wallet',
       color: 'success',
-      value: 'Expenses',
+      value: 'Budgets',
       label: 'Track Spending',
     },
     {

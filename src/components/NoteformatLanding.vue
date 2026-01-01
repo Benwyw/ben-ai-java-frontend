@@ -36,9 +36,13 @@
    * Add, remove, or modify features here to update the Features section
    */
   const features = [
-    { title: 'Note Organization', description: 'Create and organize notes with categories, tags, and templates.', icon: 'mdi-note-multiple', color: 'primary' },
-    { title: 'Expense Tracking', description: 'Track daily expenses with budgets and visual reports.', icon: 'mdi-cash-multiple', color: 'success' },
+    { title: 'Note Organization', description: 'Create and organize notes with categories, tags, and customizable templates.', icon: 'mdi-note-multiple', color: 'primary' },
+    { title: 'Expense Tracking', description: 'Track daily expenses with budgets, alerts, and visual reports.', icon: 'mdi-cash-multiple', color: 'success' },
+    { title: 'Budget Management', description: 'Set monthly, weekly, or yearly budgets with threshold alerts.', icon: 'mdi-chart-donut', color: 'orange' },
+    { title: 'Reports & Analytics', description: 'Generate daily, weekly, monthly reports with category breakdowns.', icon: 'mdi-chart-pie', color: 'purple' },
     { title: 'iCloud Sync', description: 'Seamlessly sync your data across all your Apple devices.', icon: 'mdi-cloud-sync', color: 'info' },
-    { title: 'Privacy First', description: 'Your data stays on your device and in your iCloud.', icon: 'mdi-shield-check', color: 'warning' },
+    { title: 'Game Center', description: 'Unlock achievements and compete on leaderboards.', icon: 'mdi-trophy', color: 'amber' },
+    { title: 'Siri Shortcuts', description: 'Quick add notes and get reports using Siri commands.', icon: 'mdi-microphone', color: 'pink' },
+    { title: 'Privacy First', description: 'Face ID/Touch ID lock with your data staying on-device and iCloud.', icon: 'mdi-shield-check', color: 'teal' },
   ]
 </script>
