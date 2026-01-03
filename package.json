@@ -1,6 +1,6 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.5.12",
+  "version": "0.5.13",
   "private": true,
   "scripts": {
     "serve": "vite",
