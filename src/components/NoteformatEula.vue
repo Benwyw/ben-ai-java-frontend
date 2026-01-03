@@ -24,7 +24,7 @@
     {
       title: 'License',
       content:
-        'We grant you a personal, non-transferable, non-exclusive license to download and use NoteFormat for your personal use on Apple-branded devices that you own or control, as permitted by the Apple Media Services Terms and Conditions.',
+        'We grant you a personal, non-transferable, non-exclusive license to download and use NoteFormat for your personal, non-commercial use on Apple-branded devices that you own or control, as permitted by the Apple Media Services Terms and Conditions.',
     },
     {
       title: 'Restrictions',
@@ -59,7 +59,7 @@
     {
       title: 'Disclaimer & Liability',
       content:
-        'The App is provided "as is" and "as available", without warranties of any kind, to the maximum extent permitted by law. To the maximum extent permitted by law, we disclaim all warranties and we are not liable for indirect, incidental, special, consequential, or punitive damages.',
+        'The App is provided "as is" and "as available", without warranties of any kind, to the maximum extent permitted by law. Nothing in this EULA excludes or limits any rights you may have under applicable law that cannot be waived. To the maximum extent permitted by law, we are not liable for indirect, incidental, special, consequential, or punitive damages.',
     },
     {
       title: 'Product Claims',
@@ -77,9 +77,19 @@
         'This license is effective until terminated. It terminates automatically if you fail to comply with any term of this EULA. You may stop using the App at any time by deleting it from your device. Cancelling a subscription stops future renewals but does not retroactively refund already-paid periods (unless required by law or granted by Apple).',
     },
     {
-      title: 'Export Compliance',
+      title: 'Eligibility',
       content:
-        'You may not use or export the App except as authorized by United States law, the laws of the jurisdiction in which you obtained the App, and any other applicable laws. In particular, the App may not be exported or re-exported into any U.S.-embargoed countries or to anyone on U.S. restricted lists.',
+        'You must be legally permitted to use the App in your country/region. If you are under the age required to enter into a binding contract where you live, you may use the App only with the consent and involvement of a parent or legal guardian.',
+    },
+    {
+      title: 'Export Compliance & Sanctions',
+      content:
+        'You may not use, export, re-export, or transfer the App except as authorized under applicable export control, sanctions, and other laws and regulations of Hong Kong SAR, the jurisdiction in which you obtained the App, and any other relevant jurisdictions. You represent that you are not located in, and are not a national or resident of, any country/region subject to comprehensive sanctions, and you are not on any restricted or denied party list applicable to you.',
+    },
+    {
+      title: 'Third-Party Services & Terms',
+      content:
+        'The App may integrate with third-party services (for example, iCloud/CloudKit, StoreKit, WeatherKit, Game Center, or advertising services). Your use of those services may be subject to the third parties’ terms and policies. We are not responsible for third-party services.',
     },
     {
       title: 'Governing Law',
@@ -87,9 +97,9 @@
         'This EULA is governed by the laws of Hong Kong SAR, without regard to conflict of law principles, except where prohibited by applicable consumer protection laws that may provide you additional rights.',
     },
     {
-      title: 'Apple as Third-Party Beneficiary',
+      title: 'Severability & Entire Agreement',
       content:
-        "Apple, and Apple's subsidiaries, are third-party beneficiaries of this EULA, and upon your acceptance of this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.",
+        'If any provision of this EULA is held unenforceable, that provision will be modified to the minimum extent necessary to make it enforceable (or, if not possible, severed), and the remaining provisions will remain in full force. This EULA is the entire agreement between you and us regarding the App and supersedes any prior agreements on this subject.',
     },
     {
       title: 'Contact',
