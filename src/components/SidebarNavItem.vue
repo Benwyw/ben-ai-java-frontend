@@ -198,6 +198,7 @@
 /* Custom image icon styling to align with MDI icons */
 .nav-icon-avatar {
   margin-right: 16px;
+  background: transparent !important;
 }
 
 /* Match Vuetify's default active state tonal background for parent items */
