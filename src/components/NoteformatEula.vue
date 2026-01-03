@@ -92,9 +92,14 @@
         'You may not use, export, re-export, or transfer the App except as authorized under applicable export control, sanctions, and other laws and regulations of Hong Kong SAR, the jurisdiction in which you obtained the App, and any other relevant jurisdictions. You represent that you are not located in, and are not a national or resident of, any country/region subject to comprehensive sanctions, and you are not on any restricted or denied party list applicable to you.',
     },
     {
+      title: 'Apple as Third-Party Beneficiary',
+      content:
+        'You acknowledge that Apple and Apple’s subsidiaries are third-party beneficiaries of this EULA and that, upon your acceptance of this EULA, Apple will have the right (and will be deemed to have accepted the right) to enforce this EULA against you as a third-party beneficiary.',
+    },
+    {
       title: 'Third-Party Services & Terms',
       content:
-        'The App may integrate with third-party services (for example, iCloud/CloudKit, StoreKit, WeatherKit, Game Center, or advertising services). Your use of those services may be subject to the third parties’ terms and policies. We are not responsible for third-party services.',
+        'The App may integrate with third-party services (for example, iCloud/CloudKit, StoreKit, WeatherKit, Game Center, or advertising services). You understand that your use of those services may be subject to the third parties’ terms and policies. We do not control and are not responsible for third-party services, their availability, or their content/data practices.',
     },
     {
       title: 'Governing Law',

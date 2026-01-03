@@ -49,7 +49,7 @@
     {
       title: 'Tracking & Personalized Ads (iOS)',
       content:
-        'If the app engages in tracking as defined by Apple (e.g., for cross-app advertising), iOS may prompt you for permission via AppTrackingTransparency (ATT). You can control personalized ads and related settings in iOS Settings (including Privacy & Security and Apple Advertising) and within Google’s ad settings where available. Pro subscribers do not see AdMob ads.',
+        'The free tier displays ads via Google AdMob. Depending on your device settings, AdMob may support personalized ads and related measurement. If our ad configuration uses tracking as defined by Apple (e.g., linking data across apps/websites owned by other companies for advertising), iOS will require your permission through AppTrackingTransparency (ATT). You can control permissions in iOS Settings (Privacy & Security) and manage ad personalization using Apple/Google settings where available. Pro subscribers do not see AdMob ads.',
     },
     {
       title: 'Your Choices',
