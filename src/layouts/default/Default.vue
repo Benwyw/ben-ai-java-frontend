@@ -479,6 +479,10 @@
     checkRouteProtection()
     // Start session warning check interval (checks every second)
     sessionWarningInterval = setInterval(checkSessionWarning, 1000)
+    // Set initial theme based on time of day
+    setThemeBasedOnTime()
+    // Check every minute if theme should change based on time
+    autoThemeInterval = setInterval(setThemeBasedOnTime, 60000)
   })
 
   // Cleanup on unmount
@@ -490,6 +494,10 @@
     if (sessionWarning.timer) {
       clearInterval(sessionWarning.timer)
       sessionWarning.timer = null
+    }
+    if (autoThemeInterval) {
+      clearInterval(autoThemeInterval)
+      autoThemeInterval = null
     }
   })
 
@@ -586,9 +594,32 @@
 
   const isDark = computed(() => theme.global.current.value.dark)
 
+  /**
+   * Check if current time is within dark mode hours (22:00 to 07:00)
+   * @returns {boolean} - True if dark mode should be active
+   */
+  function shouldBeDarkMode () {
+    const hour = new Date().getHours()
+    // Dark mode: 22:00 PM to 07:00 AM (i.e., hour >= 22 or hour < 7)
+    return hour >= 22 || hour < 7
+  }
+
+  /**
+   * Set theme based on current time of day
+   * Dark mode: 22:00 PM to 07:00 AM
+   * Light mode: 07:00 AM to 22:00 PM
+   */
+  function setThemeBasedOnTime () {
+    const shouldBeDark = shouldBeDarkMode()
+    theme.global.name.value = shouldBeDark ? 'dark' : 'light'
+  }
+
   function toggleTheme () {
     theme.global.name.value = isDark.value ? 'light' : 'dark'
   }
+
+  // Auto theme interval reference
+  let autoThemeInterval = null
 
   // ========================================================================
   // Session Warning Functions
