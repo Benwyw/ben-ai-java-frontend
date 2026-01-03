@@ -267,7 +267,7 @@ const routes = [
         component: () => import('@/views/noteformat/NoteformatLanding.vue'),
         meta: {
           title: 'NoteFormat',
-          icon: 'mdi-notebook-outline',
+          iconImage: new URL('@/assets/noteformat-128.png', import.meta.url).href,
           navSection: 'noteformat',
           navOrder: 1,
            defaultExpanded: true, // Collapsed by default (omit or set to false)

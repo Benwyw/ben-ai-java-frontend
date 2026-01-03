@@ -58,12 +58,18 @@
         v-bind="activatorProps"
         :class="{ 'v-list-item--active text-primary': isParentActive }"
         color="primary"
-        :prepend-icon="item.meta?.icon"
+        :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
         rounded="xl"
         :title="item.meta?.title || item.name"
         :value="item.name"
         @click="onParentClickFn(item.name)"
       >
+        <!-- Custom image icon -->
+        <template v-if="item.meta?.iconImage" #prepend>
+          <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+            <v-img :src="item.meta.iconImage" />
+          </v-avatar>
+        </template>
         <!-- Custom chevron toggle button -->
         <template #append>
           <v-icon v-if="isLockedFn && isLockedFn(item)" class="mr-1" color="grey" size="small">mdi-lock</v-icon>
@@ -101,12 +107,18 @@
     v-else
     color="primary"
     :exact="item.path === '' || item.path === '/'"
-    :prepend-icon="item.meta?.icon"
+    :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
     rounded="xl"
     :title="item.meta?.title || item.name"
     :to="item.path || '/'"
     :value="item.name"
   >
+    <!-- Custom image icon -->
+    <template v-if="item.meta?.iconImage" #prepend>
+      <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+        <v-img :src="item.meta.iconImage" />
+      </v-avatar>
+    </template>
     <!-- Show lock icon if user doesn't have access -->
     <template v-if="isLockedFn && isLockedFn(item)" #append>
       <v-icon color="grey" size="small">mdi-lock</v-icon>
@@ -181,6 +193,11 @@
 
 :deep(.v-icon) {
   transition: transform 0.2s ease-in-out;
+}
+
+/* Custom image icon styling to align with MDI icons */
+.nav-icon-avatar {
+  margin-right: 16px;
 }
 
 /* Match Vuetify's default active state tonal background for parent items */
