@@ -79,7 +79,7 @@
     {
       title: "Children's Privacy",
       content:
-        'NoteFormat is a general-audience app and is not specifically directed to children. We do not knowingly collect personal information from children under 13 (or the equivalent minimum age in your jurisdiction). If you are a parent/guardian and believe your child has provided personal information in connection with the app, please contact us so we can review and take appropriate steps. Please note that the free tier may display ads via Google AdMob; third-party advertising providers may process device information under their own policies and settings.',
+        'NoteFormat is a general-audience app (it may be used by both adults and children) and is not specifically directed to children. We do not knowingly collect personal information from children under 13 (or the equivalent minimum age in your jurisdiction). The app does not require users to create an account with us. If you are a parent/guardian and believe a child has provided personal information in connection with the app, please contact us so we can review and take appropriate steps. Please note that the free tier may display ads via Google AdMob; third-party advertising providers may process device information under their own policies and settings.',
     },
     {
       title: 'Changes to This Policy',
