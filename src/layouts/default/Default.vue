@@ -240,7 +240,7 @@
     </v-app-bar>
 
     <!-- Main Content -->
-    <v-main class="bg-grey-lighten-4">
+    <v-main :class="isDark ? 'bg-grey-darken-4' : 'bg-grey-lighten-4'">
       <v-container :class="mobile ? 'pa-3' : 'pa-6'" fluid>
         <router-view />
       </v-container>
