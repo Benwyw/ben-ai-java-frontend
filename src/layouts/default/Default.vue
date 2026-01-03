@@ -251,7 +251,7 @@
       <v-row justify="center" no-gutters>
         <v-col class="text-center" cols="12">
           <span class="text-body-2 text-medium-emphasis">
-            &copy; {{ new Date().getFullYear() }} Ben Kaneki. All rights reserved.
+            Copyright &copy; 2023–{{ new Date().getFullYear() }} WU Yat Wing. All rights reserved.
           </span>
         </v-col>
       </v-row>
