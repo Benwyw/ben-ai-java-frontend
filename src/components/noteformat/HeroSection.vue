@@ -9,7 +9,6 @@
         <v-img
           src="@/assets/noteformat-128.png"
           alt="NoteFormat"
-          width="64"
           cover
         />
       </v-avatar>
