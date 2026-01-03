@@ -594,6 +594,9 @@
 
   const isDark = computed(() => theme.global.current.value.dark)
 
+  // Key for localStorage theme preference
+  const THEME_PREFERENCE_KEY = 'userThemePreference'
+
   /**
    * Check if current time is within dark mode hours (22:00 to 07:00)
    * @returns {boolean} - True if dark mode should be active
@@ -605,17 +608,31 @@
   }
 
   /**
-   * Set theme based on current time of day
+   * Set theme based on current time of day (only if no user preference is saved)
    * Dark mode: 22:00 PM to 07:00 AM
    * Light mode: 07:00 AM to 22:00 PM
    */
   function setThemeBasedOnTime () {
+    // Check if user has a saved theme preference
+    const savedTheme = localStorage.getItem(THEME_PREFERENCE_KEY)
+    if (savedTheme) {
+      // Use user's saved preference instead of auto theme
+      theme.global.name.value = savedTheme
+      return
+    }
+    // No saved preference - use time-based auto theme
     const shouldBeDark = shouldBeDarkMode()
     theme.global.name.value = shouldBeDark ? 'dark' : 'light'
   }
 
+  /**
+   * Toggle theme and save user preference to persist across sessions
+   */
   function toggleTheme () {
-    theme.global.name.value = isDark.value ? 'light' : 'dark'
+    const newTheme = isDark.value ? 'light' : 'dark'
+    theme.global.name.value = newTheme
+    // Save user preference to localStorage
+    localStorage.setItem(THEME_PREFERENCE_KEY, newTheme)
   }
 
   // Auto theme interval reference
