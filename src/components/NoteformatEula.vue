@@ -82,6 +82,11 @@
         'You must be legally permitted to use the App in your country/region. If you are under the age required to enter into a binding contract where you live, you may use the App only with the consent and involvement of a parent or legal guardian.',
     },
     {
+      title: 'Children',
+      content:
+        'The App is a general-audience product and is not specifically directed to children. If a child uses the App, a parent or legal guardian is responsible for supervising the child’s use and managing device/app settings (including privacy and purchase controls).',
+    },
+    {
       title: 'Export Compliance & Sanctions',
       content:
         'You may not use, export, re-export, or transfer the App except as authorized under applicable export control, sanctions, and other laws and regulations of Hong Kong SAR, the jurisdiction in which you obtained the App, and any other relevant jurisdictions. You represent that you are not located in, and are not a national or resident of, any country/region subject to comprehensive sanctions, and you are not on any restricted or denied party list applicable to you.',
