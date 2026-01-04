@@ -7,9 +7,9 @@
     <v-card-text class="py-12 text-center">
       <v-avatar class="mb-4 elevation-4" size="120">
         <v-img
-          src="@/assets/noteformat-128.png"
           alt="NoteFormat"
           cover
+          src="@/assets/noteformat-128.png"
         />
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>

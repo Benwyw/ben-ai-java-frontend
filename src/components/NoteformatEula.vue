@@ -39,7 +39,7 @@
     {
       title: 'Subscriptions & Billing',
       content:
-        "Pro features require a monthly or annual subscription. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period. Pro subscribers enjoy an ad-free experience and access to all premium features. You can manage or cancel subscriptions in Settings > Apple ID > Subscriptions. Refund requests are handled by Apple in accordance with Apple's policies and applicable law.",
+        'Pro features require a monthly or annual subscription. Payment is charged to your Apple ID account at confirmation of purchase. Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period. Pro subscribers enjoy an ad-free experience and access to all premium features. You can manage or cancel subscriptions in Settings > Apple ID > Subscriptions. Refund requests are handled by Apple in accordance with Apple\'s policies and applicable law.',
     },
     {
       title: 'Pro Features',
@@ -69,7 +69,7 @@
     {
       title: 'Intellectual Property Claims',
       content:
-        "In the event of any third-party claim that the App or your possession and use of the App infringes that third party's intellectual property rights, we (not Apple) will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.",
+        'In the event of any third-party claim that the App or your possession and use of the App infringes that third party\'s intellectual property rights, we (not Apple) will be solely responsible for the investigation, defense, settlement, and discharge of any such claim.',
     },
     {
       title: 'Termination',

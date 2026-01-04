@@ -13,7 +13,7 @@
               color="primary"
               prepend-icon="mdi-file-document"
               variant="tonal"
-              @click="$emit('loadSample', 3)"
+              @click="$emit('load-sample', 3)"
             >
               3 Fields Sample
             </v-btn>
@@ -21,7 +21,7 @@
               color="primary"
               prepend-icon="mdi-file-document-multiple"
               variant="tonal"
-              @click="$emit('loadSample', 4)"
+              @click="$emit('load-sample', 4)"
             >
               4 Fields Sample
             </v-btn>
@@ -36,7 +36,7 @@
               :loading="isLoading"
               prepend-icon="mdi-file-excel"
               variant="flat"
-              @click="$emit('exportExcel')"
+              @click="$emit('export-excel')"
             >
               Download Excel
             </v-btn>
@@ -46,7 +46,7 @@
               :loading="isLoading"
               prepend-icon="mdi-folder-zip"
               variant="flat"
-              @click="$emit('exportZip')"
+              @click="$emit('export-zip')"
             >
               Download ZIP
             </v-btn>
@@ -69,5 +69,5 @@
     },
   })
 
-  defineEmits(['loadSample', 'exportExcel', 'exportZip'])
+  defineEmits(['load-sample', 'export-excel', 'export-zip'])
 </script>

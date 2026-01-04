@@ -250,6 +250,12 @@
     <v-footer app class="bg-surface border-t">
       <v-row justify="center" no-gutters>
         <v-col class="text-center" cols="12">
+          <div class="mb-2">
+            <v-btn class="mx-1" size="small" :to="{ path: '/about' }" variant="text">About</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/guides' }" variant="text">Guides</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/privacypolicy' }" variant="text">Privacy</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/termsofservice' }" variant="text">Terms</v-btn>
+          </div>
           <span class="text-body-2 text-medium-emphasis">
             Copyright &copy; 2023–{{ new Date().getFullYear() }} WU Yat Wing. All rights reserved.
           </span>
@@ -482,7 +488,7 @@
     // Set initial theme based on time of day
     setThemeBasedOnTime()
     // Check every minute if theme should change based on time
-    autoThemeInterval = setInterval(setThemeBasedOnTime, 60000)
+    autoThemeInterval = setInterval(setThemeBasedOnTime, 60_000)
   })
 
   // Cleanup on unmount
@@ -847,8 +853,8 @@
     }
 
     // Sort children by navOrder
-    for (const [parentName, children] of map) {
-      children.sort((a, b) => (a.meta?.navOrder ?? 100) - (b.meta?.navOrder ?? 100))
+    for (const [parent, children] of map) {
+      map.set(parent, children.toSorted((a, b) => (a.meta?.navOrder ?? 100) - (b.meta?.navOrder ?? 100)))
     }
 
     return map
@@ -872,7 +878,7 @@
         !allChildNames.value.has(r.name)
         && (r.meta?.navSection || 'main') === section,
       )
-      .sort((a, b) => (a.meta?.navOrder ?? 100) - (b.meta?.navOrder ?? 100))
+      .toSorted((a, b) => (a.meta?.navOrder ?? 100) - (b.meta?.navOrder ?? 100))
   }
 
   const mainSectionItems = computed(() => getRootItemsForSection('main'))

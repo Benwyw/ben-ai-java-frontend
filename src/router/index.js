@@ -187,6 +187,9 @@ const routes = [
           icon: 'mdi-home',
           navSection: 'main',
           navOrder: 1,
+          seoTitle: 'Ben Kaneki — Benwyw',
+          seoDescription: 'Ben Kaneki is a collection of projects, tools, and documentation by Benwyw.',
+          canonicalPath: '/',
           // No auth required - public page
         },
       },
@@ -199,6 +202,24 @@ const routes = [
           icon: 'mdi-information',
           navSection: 'main',
           navOrder: 2,
+          seoTitle: 'About — Benwyw',
+          seoDescription: 'Learn more about Benwyw and the projects on this website.',
+          canonicalPath: '/about',
+          // No auth required - public page
+        },
+      },
+      {
+        path: '/guides',
+        name: 'Guides',
+        component: () => import('@/views/Guides.vue'),
+        meta: {
+          title: 'Guides',
+          icon: 'mdi-book-open-page-variant',
+          navSection: 'main',
+          navOrder: 3,
+          seoTitle: 'Guides — Benwyw',
+          seoDescription: 'Documentation, tutorials, and helpful links for projects on this site.',
+          canonicalPath: '/guides',
           // No auth required - public page
         },
       },
@@ -210,8 +231,9 @@ const routes = [
           title: 'Messenger',
           icon: 'mdi-message',
           navSection: 'main',
-          navOrder: 3,
+          navOrder: 4,
           requiresAuth: true,
+          robots: 'noindex,nofollow',
           // hideNavIfNoAccess defaults to false - shows lock icon when logged out
         },
       },
@@ -228,8 +250,9 @@ const routes = [
           navSection: 'tools',
           navOrder: 1,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'], // USER or ADMIN can access
-          hideNavIfNoAccess: true, // Hidden from nav if no permission
+          requiredRoles: ['USER', 'ADMIN'],
+          hideNavIfNoAccess: true,
+          robots: 'noindex,nofollow',
         },
       },
       {
@@ -254,8 +277,9 @@ const routes = [
           navSection: 'tools',
           navOrder: 3,
           requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'], // USER or ADMIN can access
-          hideNavIfNoAccess: false, // Visible with lock icon if no permission
+          requiredRoles: ['USER', 'ADMIN'],
+          hideNavIfNoAccess: false,
+          robots: 'noindex,nofollow',
         },
       },
 
@@ -270,8 +294,10 @@ const routes = [
           iconImage: new URL('@/assets/noteformat-128.png', import.meta.url).href,
           navSection: 'noteformat',
           navOrder: 1,
-           defaultExpanded: true, // Collapsed by default (omit or set to false)
-          // No auth required - public page
+          defaultExpanded: true,
+          seoTitle: 'NoteFormat — Benwyw',
+          seoDescription: 'Landing page for NoteFormat with guides, tutorials, and documentation.',
+          canonicalPath: '/noteformat',
         },
       },
       {
@@ -284,7 +310,9 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 1,
           parent: 'Noteformat',
-          // No auth required - public page
+          seoTitle: 'NoteFormat EULA — Benwyw',
+          seoDescription: 'End User License Agreement for NoteFormat.',
+          canonicalPath: '/noteformat/eula',
         },
       },
       {
@@ -297,7 +325,9 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 2,
           parent: 'Noteformat',
-          // No auth required - public page
+          seoTitle: 'NoteFormat Privacy — Benwyw',
+          seoDescription: 'Privacy policy and data handling details for NoteFormat.',
+          canonicalPath: '/noteformat/privacy',
         },
       },
       {
@@ -310,7 +340,9 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 3,
           parent: 'Noteformat',
-          // No auth required - public page
+          seoTitle: 'NoteFormat Tutorials — Benwyw',
+          seoDescription: 'Tutorials and walkthroughs for NoteFormat.',
+          canonicalPath: '/noteformat/tutorials',
         },
       },
       {
@@ -323,7 +355,9 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 4,
           parent: 'Noteformat',
-          // No auth required - public page
+          seoTitle: 'NoteFormat Docs & FAQ — Benwyw',
+          seoDescription: 'Documentation and frequently asked questions for NoteFormat.',
+          canonicalPath: '/noteformat/docs',
         },
       },
 
@@ -338,6 +372,9 @@ const routes = [
           icon: 'mdi-file-document',
           navSection: 'legal',
           navOrder: 1,
+          seoTitle: 'Terms of Service — Benwyw',
+          seoDescription: 'Terms of service for using this website and its services.',
+          canonicalPath: '/termsofservice',
           // No auth required - public page
         },
       },
@@ -350,6 +387,9 @@ const routes = [
           icon: 'mdi-shield-lock',
           navSection: 'legal',
           navOrder: 2,
+          seoTitle: 'Privacy Policy — Benwyw',
+          seoDescription: 'Privacy policy describing how data is collected and used on this website.',
+          canonicalPath: '/privacypolicy',
           // No auth required - public page
         },
       },
@@ -379,6 +419,50 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+})
+
+const CANONICAL_ORIGIN = 'https://www.benwyw.com'
+
+function upsertMeta (name, content) {
+  if (!content) {
+    return
+  }
+  let el = document.querySelector(`meta[name="${name}"]`)
+  if (!el) {
+    el = document.createElement('meta')
+    el.setAttribute('name', name)
+    document.head.append(el)
+  }
+  el.setAttribute('content', content)
+}
+
+function upsertLink (rel, href) {
+  if (!href) {
+    return
+  }
+  let el = document.querySelector(`link[rel="${rel}"]`)
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', rel)
+    document.head.append(el)
+  }
+  el.setAttribute('href', href)
+}
+
+router.afterEach(to => {
+  document.title = to.meta?.seoTitle || to.meta?.title || 'Benwyw'
+
+  const description = to.meta?.seoDescription
+  upsertMeta('description', description || 'Benwyw personal website with projects, tools, and documentation.')
+
+  const canonicalPath = to.meta?.canonicalPath || to.path
+  upsertLink('canonical', `${CANONICAL_ORIGIN}${canonicalPath}`)
+
+  const robots = to.meta?.robots
+  // If not set, we don't force robots meta here (index.html can provide baseline).
+  if (robots) {
+    upsertMeta('robots', robots)
+  }
 })
 
 // Export children for use in layout navigation
