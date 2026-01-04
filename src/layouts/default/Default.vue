@@ -16,7 +16,7 @@
           <v-list-item-title class="text-h6 font-weight-bold">
             Ben Kaneki
           </v-list-item-title>
-          <v-list-item-subtitle>AI Platform</v-list-item-subtitle>
+          <v-list-item-subtitle>Discord Bot</v-list-item-subtitle>
         </template>
       </v-list-item>
 

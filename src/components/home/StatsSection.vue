@@ -42,8 +42,8 @@
     {
       icon: 'mdi-robot',
       color: 'info',
-      value: 'AI',
-      label: 'Powered Platform',
+      value: 'Discord',
+      label: 'Bot',
     },
   ])
 </script>

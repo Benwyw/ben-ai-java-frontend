@@ -9,7 +9,7 @@
         <v-img src="@/assets/logo.png" />
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">Ben Kaneki</h1>
-      <p class="text-h6 text-white-darken-1 mb-4">AI Platform</p>
+      <p class="text-h6 text-white-darken-1 mb-4">Discord bot web application</p>
       <div class="d-flex justify-center ga-3 flex-wrap">
         <v-chip v-if="userBase" color="white" prepend-icon="mdi-account-group" variant="flat">
           {{ userBase }} Users

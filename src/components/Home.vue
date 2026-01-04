@@ -52,7 +52,12 @@
    * Add, remove, or modify features here to update the Features section
    */
   const features = [
-    { title: 'AI Integration', description: 'Leverage cutting-edge AI technology for smarter insights and automation.', icon: 'mdi-brain', color: 'primary' },
+    {
+      title: 'Discord Bot',
+      description: 'A multi-purpose Discord bot with a companion web dashboard for utilities and automation.',
+      icon: 'mdi-robot',
+      color: 'primary',
+    },
     { title: 'Real-time Messaging', description: 'Communicate instantly with our secure messenger platform.', icon: 'mdi-message-flash', color: 'success' },
     { title: 'Weight Tracking', description: 'Monitor and track weight data with beautiful visualizations.', icon: 'mdi-chart-line', color: 'info' },
     { title: 'API Documentation', description: 'Comprehensive Swagger docs for seamless integration.', icon: 'mdi-file-document', color: 'warning' },
