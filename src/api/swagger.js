@@ -8,17 +8,13 @@ import axios from '@/plugins/axios'
  * @throws {Error} If the request fails.
  */
 export async function jsonStringToExcel (jsonString) {
-  try {
-    const response = await axios.post('/swagger/jsonStringToExcel', {
-      jsonString,
-    }, {
-      withCredentials: true,
-      responseType: 'blob',
-    })
-    return response.data
-  } catch (error) {
-    throw error
-  }
+  const response = await axios.post('/swagger/jsonStringToExcel', {
+    jsonString,
+  }, {
+    withCredentials: true,
+    responseType: 'blob',
+  })
+  return response.data
 }
 
 /**
@@ -29,17 +25,13 @@ export async function jsonStringToExcel (jsonString) {
  * @throws {Error} If the request fails.
  */
 export async function generateExcelFromSwaggerJson (jsonString) {
-  try {
-    const response = await axios.post('/swagger/generateExcelFromSwaggerJson', {
-      jsonString,
-    }, {
-      withCredentials: true,
-      responseType: 'blob',
-    })
-    return response
-  } catch (error) {
-    throw error
-  }
+  const response = await axios.post('/swagger/generateExcelFromSwaggerJson', {
+    jsonString,
+  }, {
+    withCredentials: true,
+    responseType: 'blob',
+  })
+  return response
 }
 
 /**
@@ -50,15 +42,11 @@ export async function generateExcelFromSwaggerJson (jsonString) {
  * @throws {Error} If the request fails.
  */
 export async function generateExcelZipFromSwaggerJson (jsonString) {
-  try {
-    const response = await axios.post('/swagger/generateExcelZipFromSwaggerJson', {
-      jsonString,
-    }, {
-      withCredentials: true,
-      responseType: 'blob',
-    })
-    return response
-  } catch (error) {
-    throw error
-  }
+  const response = await axios.post('/swagger/generateExcelZipFromSwaggerJson', {
+    jsonString,
+  }, {
+    withCredentials: true,
+    responseType: 'blob',
+  })
+  return response
 }

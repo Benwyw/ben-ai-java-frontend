@@ -175,7 +175,7 @@ instance.interceptors.response.use(
         return instance.request(original)
       } catch (error) {
         await forceLogout('Your session has ended. Please sign in again.')
-        return Promise.reject(error)
+        throw error
       } finally {
         isRefreshing = false
       }

@@ -1,25 +1,17 @@
 import axios from '@/plugins/axios'
 
 export async function generateUserId () {
-  try {
-    const response = await axios.get('/ws/generateUserId', {
-      withCredentials: true,
-    })
-    return response.data
-  } catch (error) {
-    throw error
-  }
+  const response = await axios.get('/ws/generateUserId', {
+    withCredentials: true,
+  })
+  return response.data
 }
 
 export async function getOnlineUserCount () {
-  try {
-    const response = await axios.get('/ws/getOnlineUserCount', {
-      withCredentials: true,
-    })
-    return response.data
-  } catch (error) {
-    throw error
-  }
+  const response = await axios.get('/ws/getOnlineUserCount', {
+    withCredentials: true,
+  })
+  return response.data
 }
 
 export const webSocketUrl = (process.env.NODE_ENV === 'production') ? 'wss:www.benwyw.com/api/websocket/' : 'ws:localhost:8080/api/websocket/'
