@@ -217,6 +217,7 @@ const routes = [
           icon: 'mdi-book-open-page-variant',
           navSection: 'main',
           navOrder: 3,
+          navHidden: true,
           seoTitle: 'Guides — Benwyw',
           seoDescription: 'Documentation, tutorials, and helpful links for projects on this site.',
           canonicalPath: '/guides',
