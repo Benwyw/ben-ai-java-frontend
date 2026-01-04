@@ -8,7 +8,7 @@
       <!-- Messages Container -->
       <v-sheet
         class="message-container pa-4 mb-4 rounded-lg"
-        :class="$vuetify.theme.current.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'"
+        :class="isDark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'"
         max-height="400"
         min-height="300"
       >
@@ -21,7 +21,7 @@
           <template #default="{ item }">
             <div
               class="message-item py-2 px-3 mb-2 rounded-lg"
-              :class="item.startsWith('Me:') ? 'bg-primary text-white ml-auto' : ($vuetify.theme.current.dark ? 'bg-grey-darken-4' : 'bg-white')"
+              :class="item.startsWith('Me:') ? 'bg-primary text-white ml-auto' : (isDark ? 'bg-grey-darken-4' : 'bg-white')"
             >
               {{ item }}
             </div>
@@ -66,7 +66,8 @@
 </template>
 
 <script setup>
-  import { nextTick, ref, watch } from 'vue'
+  import { computed, nextTick, ref, watch } from 'vue'
+  import { useTheme } from 'vuetify'
 
   const props = defineProps({
     messages: {
@@ -86,6 +87,9 @@
   defineEmits(['update:message', 'send'])
 
   const messageContainer = ref(null)
+
+  const theme = useTheme()
+  const isDark = computed(() => theme.global.current.value.dark)
 
   async function scrollToBottom () {
     await nextTick()
