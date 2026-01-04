@@ -8,7 +8,7 @@
       <!-- Messages Container -->
       <v-sheet
         class="message-container pa-4 mb-4 rounded-lg"
-        color="grey-lighten-4"
+        :class="$vuetify.theme.current.dark ? 'bg-grey-darken-3' : 'bg-grey-lighten-4'"
         max-height="400"
         min-height="300"
       >
@@ -21,7 +21,7 @@
           <template #default="{ item }">
             <div
               class="message-item py-2 px-3 mb-2 rounded-lg"
-              :class="item.startsWith('Me:') ? 'bg-primary text-white ml-auto' : 'bg-white'"
+              :class="item.startsWith('Me:') ? 'bg-primary text-white ml-auto' : ($vuetify.theme.current.dark ? 'bg-grey-darken-4' : 'bg-white')"
             >
               {{ item }}
             </div>
