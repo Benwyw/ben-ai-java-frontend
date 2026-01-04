@@ -9,8 +9,7 @@
         </p>
 
         <v-alert class="mt-4" type="info" variant="tonal">
-          Tip: these pages are public and include longer-form documentation, which also helps search engines
-          and AdSense reviewers understand the site.
+          Tip: these pages are public and include longer-form documentation, which also helps user understand the site.
         </v-alert>
       </v-col>
 
@@ -67,7 +66,7 @@
       <v-col cols="12">
         <h2 class="text-h6 font-weight-bold mb-2">Contact</h2>
         <p class="text-body-2">
-          For support or business enquiries, email: <a href="mailto:benwyw@outlook.com">benwyw@outlook.com</a>
+          For support or business enquiries, email: <a href="mailto:support@benwyw.com">support@benwyw.com</a>
         </p>
       </v-col>
     </v-row>
