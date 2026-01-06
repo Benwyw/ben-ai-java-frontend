@@ -18,18 +18,18 @@
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
-  const lastUpdated = '01 JAN 2026'
+  const lastUpdated = '06 JAN 2026'
 
   const sections = [
     {
       title: 'Overview',
       content:
-        'NoteFormat is designed to work primarily on-device and through Apple services you enable (such as iCloud). We collect and use data only as needed to provide app features, subscriptions, and (for the free tier) advertising. We do not sell your personal data.',
+        'NoteFormat is designed to work primarily on-device and through Apple services you enable (such as iCloud). We collect and use data only as needed to provide app features and subscriptions. For the free tier, ads are provided by Google AdMob, which may collect and process certain device and usage data as described below. We do not sell your personal data.',
     },
     {
       title: 'Data We Collect',
       content:
-        'On-device app data: notes, categories, templates, budgets, and achievements stored on your device. iCloud sync (optional): if enabled, your app data may be stored in your iCloud/CloudKit account. Purchases: subscription status and purchase history via Apple StoreKit; we do not receive or store your full payment card details. Advertising (free tier): Google AdMob may collect data such as device identifiers (including the advertising identifier / IDFA if you allow tracking), IP address, and app interaction information for ad delivery, frequency capping, fraud prevention, measurement, and (if enabled) personalized ads. Optional features: biometric capability (Face ID/Touch ID availability only) and Game Center identifiers for achievements/leaderboards.',
+        'On-device app data: notes, categories, templates, budgets, and achievements stored on your device. iCloud sync (optional): if enabled, your app data may be stored in your iCloud/CloudKit account. Purchases: subscription status and purchase history via Apple StoreKit; we do not receive or store your full payment card details. Advertising (free tier): Google AdMob may collect data such as device identifiers (including the advertising identifier / IDFA if you allow tracking), IP address, and app interaction information for ad delivery, frequency capping, fraud prevention, measurement, and (if enabled) personalized ads. Optional features: biometric capability (Face ID/Touch ID availability only; we do not collect or store biometric data) and Game Center identifiers for achievements/leaderboards.',
     },
     {
       title: 'How We Use Data',
@@ -54,7 +54,7 @@
     {
       title: 'Tracking & Personalized Ads (iOS)',
       content:
-        'The free tier displays ads via Google AdMob. We may request permission using AppTrackingTransparency (ATT) to allow tracking for personalized ads and related measurement. If you deny permission, we will still show ads, but they may be less personalized. You can change your choice at any time in iOS Settings (Privacy & Security). Pro subscribers do not see AdMob ads.',
+        'The free tier displays ads via Google AdMob. We may request permission using AppTrackingTransparency (ATT) to allow tracking for personalized ads and related measurement. If you deny permission, we will still show ads, but they will be non-personalized. You can change your choice at any time in iOS Settings (Privacy & Security). Pro subscribers do not see AdMob ads.',
     },
     {
       title: 'Your Choices',
@@ -69,7 +69,7 @@
     {
       title: 'Retention',
       content:
-        'On-device data is retained until you delete it or remove the app. If iCloud sync is enabled, related data may remain in your iCloud until you delete it from iCloud or disable sync and remove the data according to your iCloud settings.',
+        'On-device data is retained until you delete it or remove the app. If iCloud sync is enabled, related data may remain in your iCloud until you delete it from iCloud or disable sync and remove the data according to your iCloud settings. Data processed by Google AdMob is handled under Google’s retention practices and controls as described in Google’s policies.',
     },
     {
       title: 'International Transfers',
@@ -84,7 +84,7 @@
     {
       title: "Children's Privacy",
       content:
-        'NoteFormat is a general-audience app (it may be used by both adults and children) and is not specifically directed to children. We do not knowingly collect personal information from children under 13 (or the equivalent minimum age in your jurisdiction). The app does not require users to create an account with us. If you are a parent/guardian and believe a child has provided personal information in connection with the app, please contact us so we can review and take appropriate steps. Please note that the free tier may display ads via Google AdMob; third-party advertising providers may process device information under their own policies and settings.',
+        'NoteFormat is a general-audience app and is not specifically directed to children under 13 (or the equivalent minimum age in your jurisdiction). We do not knowingly collect personal information from children. The app does not require users to create an account with us. If you are a parent/guardian and believe a child has provided personal information in connection with the app, please contact us so we can review and take appropriate steps. Please note that the free tier may display ads via Google AdMob; third-party advertising providers may process device information under their own policies and settings.',
     },
     {
       title: 'Changes to This Policy',
