@@ -304,7 +304,10 @@ const routes = [
       {
         path: '/noteformat/eula',
         name: 'Noteformat EULA',
-        component: () => import('@/views/noteformat/NoteformatEula.vue'),
+        // External redirect to Apple's Standard EULA (no internal page)
+        beforeEnter() {
+          window.location.replace('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/')
+        },
         meta: {
           title: 'EULA',
           icon: 'mdi-file-document-outline',
@@ -314,6 +317,7 @@ const routes = [
           seoTitle: 'NoteFormat EULA — Benwyw',
           seoDescription: 'End User License Agreement for NoteFormat.',
           canonicalPath: '/noteformat/eula',
+          robots: 'noindex,nofollow',
         },
       },
       {
