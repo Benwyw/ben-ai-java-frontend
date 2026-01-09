@@ -14,7 +14,7 @@
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>
       <p class="text-h6 text-white-darken-1 mb-4">iOS Note & Expense Tracker</p>
-      <div class="d-flex justify-center ga-3 flex-wrap">
+      <div class="d-flex justify-center ga-3 flex-wrap mb-4">
         <v-chip color="white" prepend-icon="mdi-apple" variant="flat">
           iOS App
         </v-chip>
@@ -25,6 +25,18 @@
           Game Center
         </v-chip>
       </div>
+      <v-btn
+        class="text-none"
+        color="white"
+        href="https://apps.apple.com/us/app/noteformat/id6756885265"
+        prepend-icon="mdi-apple"
+        rounded="pill"
+        size="large"
+        target="_blank"
+        variant="flat"
+      >
+        Download on the App Store
+      </v-btn>
     </v-card-text>
   </v-card>
 </template>
