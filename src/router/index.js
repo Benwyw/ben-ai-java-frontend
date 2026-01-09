@@ -187,8 +187,8 @@ const routes = [
           icon: 'mdi-home',
           navSection: 'main',
           navOrder: 1,
-          seoTitle: 'Ben Kaneki — Benwyw',
-          seoDescription: 'Ben Kaneki is a collection of projects, tools, and documentation by Benwyw.',
+          seoTitle: 'Benwyw — Home',
+          seoDescription: 'Welcome to Benwyw. Explore NoteFormat iOS App or Ben Kaneki Discord Bot.',
           canonicalPath: '/',
           // No auth required - public page
         },
@@ -196,91 +196,52 @@ const routes = [
       {
         path: '/about',
         name: 'About',
-        component: () => import('@/views/About.vue'),
+        redirect: '/benkaneki/about',
         meta: {
-          title: 'About',
-          icon: 'mdi-information',
-          navSection: 'main',
-          navOrder: 2,
-          seoTitle: 'About — Benwyw',
-          seoDescription: 'Learn more about Benwyw and the projects on this website.',
-          canonicalPath: '/about',
-          // No auth required - public page
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
       {
         path: '/guides',
         name: 'Guides',
-        component: () => import('@/views/Guides.vue'),
+        redirect: '/benkaneki',
         meta: {
-          title: 'Guides',
-          icon: 'mdi-book-open-page-variant',
-          navSection: 'main',
-          navOrder: 3,
-          navHidden: true,
-          seoTitle: 'Guides — Benwyw',
-          seoDescription: 'Documentation, tutorials, and helpful links for projects on this site.',
-          canonicalPath: '/guides',
-          // No auth required - public page
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
       {
         path: '/messenger',
         name: 'Messenger',
-        component: () => import('@/views/Messenger.vue'),
+        redirect: '/benkaneki/messenger',
         meta: {
-          title: 'Messenger',
-          icon: 'mdi-message',
-          navSection: 'main',
-          navOrder: 4,
-          requiresAuth: true,
-          robots: 'noindex,nofollow',
-          // hideNavIfNoAccess defaults to false - shows lock icon when logged out
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
 
-      // ==================== TOOLS SECTION ====================
-      // Utility pages, some requiring specific roles
+      // ==================== TOOLS SECTION (LEGACY REDIRECTS) ====================
+      // Redirect old tool paths to Ben Kaneki section
       {
         path: '/swagger',
         name: 'Swagger',
-        component: () => import('@/views/Swagger.vue'),
+        redirect: '/benkaneki/swagger',
         meta: {
-          title: 'Swagger',
-          icon: 'mdi-api',
-          navSection: 'tools',
-          navOrder: 1,
-          requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],
-          hideNavIfNoAccess: true,
-          robots: 'noindex,nofollow',
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
       {
         path: '/whityweight',
         name: 'Whity Weight',
-        component: () => import('@/views/WhityWeight.vue'),
+        redirect: '/benkaneki/whityweight',
         meta: {
-          title: 'Whity Weight',
-          icon: 'mdi-scale-bathroom',
-          navSection: 'tools',
-          navOrder: 2,
-          requiresAuth: false, // Public page
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
       {
         path: '/report',
         name: 'Report',
-        component: () => import('@/views/Report.vue'),
+        redirect: '/benkaneki/report',
         meta: {
-          title: 'Report',
-          icon: 'mdi-file-chart',
-          navSection: 'tools',
-          navOrder: 3,
-          requiresAuth: true,
-          requiredRoles: ['USER', 'ADMIN'],
-          hideNavIfNoAccess: false,
-          robots: 'noindex,nofollow',
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
 
@@ -366,36 +327,171 @@ const routes = [
         },
       },
 
-      // ==================== LEGAL SECTION ====================
-      // Legal/compliance pages - typically public
+      // ==================== BEN KANEKI SECTION ====================
+      // Discord Bot - dashboard, tools, and legal pages
       {
-        path: '/termsofservice',
-        name: 'Terms Of Service',
-        component: () => import('@/views/TermsOfService.vue'),
+        path: '/benkaneki',
+        name: 'BenKaneki',
+        component: () => import('@/views/benkaneki/BenKanekiLanding.vue'),
+        meta: {
+          title: 'Ben Kaneki',
+          icon: 'mdi-robot',
+          navSection: 'benkaneki',
+          navOrder: 1,
+          defaultExpanded: true,
+          seoTitle: 'Ben Kaneki — Benwyw',
+          seoDescription: 'Ben Kaneki Discord Bot - A multi-purpose bot with web dashboard for utilities and automation.',
+          canonicalPath: '/benkaneki',
+        },
+      },
+      {
+        path: '/benkaneki/home',
+        name: 'BenKaneki Home',
+        component: () => import('@/views/benkaneki/BenKanekiHome.vue'),
+        meta: {
+          title: 'Home',
+          icon: 'mdi-home',
+          navSection: 'benkaneki',
+          navOrder: 1,
+          parent: 'BenKaneki',
+          seoTitle: 'Ben Kaneki Home — Benwyw',
+          seoDescription: 'Dashboard overview for Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/home',
+          navHidden: true
+        },
+      },
+      {
+        path: '/benkaneki/about',
+        name: 'BenKaneki About',
+        component: () => import('@/views/benkaneki/BenKanekiAbout.vue'),
+        meta: {
+          title: 'About',
+          icon: 'mdi-information',
+          navSection: 'benkaneki',
+          navOrder: 2,
+          parent: 'BenKaneki',
+          seoTitle: 'About Ben Kaneki — Benwyw',
+          seoDescription: 'Learn more about Ben Kaneki Discord Bot and its features.',
+          canonicalPath: '/benkaneki/about',
+        },
+      },
+      {
+        path: '/benkaneki/messenger',
+        name: 'BenKaneki Messenger',
+        component: () => import('@/views/benkaneki/BenKanekiMessenger.vue'),
+        meta: {
+          title: 'Messenger',
+          icon: 'mdi-message',
+          navSection: 'benkaneki',
+          navOrder: 3,
+          parent: 'BenKaneki',
+          requiresAuth: true,
+          robots: 'noindex,nofollow',
+          seoTitle: 'Ben Kaneki Messenger — Benwyw',
+          seoDescription: 'Send messages through Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/messenger',
+        },
+      },
+      {
+        path: '/benkaneki/swagger',
+        name: 'BenKaneki Swagger',
+        component: () => import('@/views/benkaneki/BenKanekiSwagger.vue'),
+        meta: {
+          title: 'Swagger',
+          icon: 'mdi-api',
+          navSection: 'benkaneki',
+          navOrder: 4,
+          parent: 'BenKaneki',
+          requiresAuth: true,
+          requiredRoles: ['USER', 'ADMIN'],
+          hideNavIfNoAccess: true,
+          robots: 'noindex,nofollow',
+          seoTitle: 'Ben Kaneki API Docs — Benwyw',
+          seoDescription: 'API documentation for Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/swagger',
+        },
+      },
+      {
+        path: '/benkaneki/whityweight',
+        name: 'BenKaneki Whity Weight',
+        component: () => import('@/views/benkaneki/BenKanekiWhityWeight.vue'),
+        meta: {
+          title: 'Whity Weight',
+          icon: 'mdi-scale-bathroom',
+          navSection: 'benkaneki',
+          navOrder: 5,
+          parent: 'BenKaneki',
+          seoTitle: 'Whity Weight — Benwyw',
+          seoDescription: 'Track and monitor weight data with Ben Kaneki.',
+          canonicalPath: '/benkaneki/whityweight',
+        },
+      },
+      {
+        path: '/benkaneki/report',
+        name: 'BenKaneki Report',
+        component: () => import('@/views/benkaneki/BenKanekiReport.vue'),
+        meta: {
+          title: 'Report',
+          icon: 'mdi-file-chart',
+          navSection: 'benkaneki',
+          navOrder: 6,
+          parent: 'BenKaneki',
+          requiresAuth: true,
+          requiredRoles: ['USER', 'ADMIN'],
+          hideNavIfNoAccess: false,
+          robots: 'noindex,nofollow',
+          seoTitle: 'Ben Kaneki Reports — Benwyw',
+          seoDescription: 'View reports from Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/report',
+        },
+      },
+      {
+        path: '/benkaneki/termsofservice',
+        name: 'BenKaneki Terms Of Service',
+        component: () => import('@/views/benkaneki/BenKanekiTermsOfService.vue'),
         meta: {
           title: 'Terms of Service',
           icon: 'mdi-file-document',
-          navSection: 'legal',
-          navOrder: 1,
-          seoTitle: 'Terms of Service — Benwyw',
-          seoDescription: 'Terms of service for using this website and its services.',
-          canonicalPath: '/termsofservice',
-          // No auth required - public page
+          navSection: 'benkaneki',
+          navOrder: 7,
+          parent: 'BenKaneki',
+          seoTitle: 'Ben Kaneki Terms of Service — Benwyw',
+          seoDescription: 'Terms of service for using Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/termsofservice',
+        },
+      },
+      {
+        path: '/benkaneki/privacypolicy',
+        name: 'BenKaneki Privacy Policy',
+        component: () => import('@/views/benkaneki/BenKanekiPrivacyPolicy.vue'),
+        meta: {
+          title: 'Privacy Policy',
+          icon: 'mdi-shield-lock',
+          navSection: 'benkaneki',
+          navOrder: 8,
+          parent: 'BenKaneki',
+          seoTitle: 'Ben Kaneki Privacy Policy — Benwyw',
+          seoDescription: 'Privacy policy for Ben Kaneki Discord Bot.',
+          canonicalPath: '/benkaneki/privacypolicy',
+        },
+      },
+
+      // ==================== LEGAL SECTION (LEGACY REDIRECTS) ====================
+      // Redirect old legal paths to Ben Kaneki section
+      {
+        path: '/termsofservice',
+        name: 'Terms Of Service',
+        redirect: '/benkaneki/termsofservice',
+        meta: {
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
       {
         path: '/privacypolicy',
         name: 'Privacy Policy',
-        component: () => import('@/views/PrivacyPolicy.vue'),
+        redirect: '/benkaneki/privacypolicy',
         meta: {
-          title: 'Privacy Policy',
-          icon: 'mdi-shield-lock',
-          navSection: 'legal',
-          navOrder: 2,
-          seoTitle: 'Privacy Policy — Benwyw',
-          seoDescription: 'Privacy policy describing how data is collected and used on this website.',
-          canonicalPath: '/privacypolicy',
-          // No auth required - public page
+          navHidden: true, // Redirect to Ben Kaneki section
         },
       },
 

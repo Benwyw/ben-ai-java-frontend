@@ -46,52 +46,52 @@
       <v-divider />
 
       <!-- TOOLS Section -->
-      <v-list
-        v-model:opened="openedGroups"
-        density="compact"
-        nav
-        open-strategy="multiple"
-      >
-        <v-list-subheader v-if="!rail">TOOLS</v-list-subheader>
-        <SidebarNavItem
-          v-for="item in toolsSectionItems"
-          :key="item.name"
-          :children="childrenMap.get(item.name) || []"
-          :children-map="childrenMap"
-          :depth="0"
-          :is-locked-fn="isItemLocked"
-          :is-open-fn="isOpen"
-          :item="item"
-          :on-chevron-click-fn="onChevronClick"
-          :on-parent-click-fn="onParentClick"
-        />
-      </v-list>
+<!--      <v-list-->
+<!--        v-model:opened="openedGroups"-->
+<!--        density="compact"-->
+<!--        nav-->
+<!--        open-strategy="multiple"-->
+<!--      >-->
+<!--        <v-list-subheader v-if="!rail">TOOLS</v-list-subheader>-->
+<!--        <SidebarNavItem-->
+<!--          v-for="item in toolsSectionItems"-->
+<!--          :key="item.name"-->
+<!--          :children="childrenMap.get(item.name) || []"-->
+<!--          :children-map="childrenMap"-->
+<!--          :depth="0"-->
+<!--          :is-locked-fn="isItemLocked"-->
+<!--          :is-open-fn="isOpen"-->
+<!--          :item="item"-->
+<!--          :on-chevron-click-fn="onChevronClick"-->
+<!--          :on-parent-click-fn="onParentClick"-->
+<!--        />-->
+<!--      </v-list>-->
 
-      <v-divider />
+<!--      <v-divider />-->
 
       <!-- LEGAL Section -->
-      <v-list
-        v-model:opened="openedGroups"
-        density="compact"
-        nav
-        open-strategy="multiple"
-      >
-        <v-list-subheader v-if="!rail">LEGAL</v-list-subheader>
-        <SidebarNavItem
-          v-for="item in legalSectionItems"
-          :key="item.name"
-          :children="childrenMap.get(item.name) || []"
-          :children-map="childrenMap"
-          :depth="0"
-          :is-locked-fn="isItemLocked"
-          :is-open-fn="isOpen"
-          :item="item"
-          :on-chevron-click-fn="onChevronClick"
-          :on-parent-click-fn="onParentClick"
-        />
-      </v-list>
+<!--      <v-list-->
+<!--        v-model:opened="openedGroups"-->
+<!--        density="compact"-->
+<!--        nav-->
+<!--        open-strategy="multiple"-->
+<!--      >-->
+<!--        <v-list-subheader v-if="!rail">LEGAL</v-list-subheader>-->
+<!--        <SidebarNavItem-->
+<!--          v-for="item in legalSectionItems"-->
+<!--          :key="item.name"-->
+<!--          :children="childrenMap.get(item.name) || []"-->
+<!--          :children-map="childrenMap"-->
+<!--          :depth="0"-->
+<!--          :is-locked-fn="isItemLocked"-->
+<!--          :is-open-fn="isOpen"-->
+<!--          :item="item"-->
+<!--          :on-chevron-click-fn="onChevronClick"-->
+<!--          :on-parent-click-fn="onParentClick"-->
+<!--        />-->
+<!--      </v-list>-->
 
-      <v-divider />
+<!--      <v-divider />-->
 
       <!-- NOTEFORMAT Section -->
       <v-list
@@ -103,6 +103,30 @@
         <v-list-subheader v-if="!rail">NOTEFORMAT</v-list-subheader>
         <SidebarNavItem
           v-for="item in noteformatSectionItems"
+          :key="item.name"
+          :children="childrenMap.get(item.name) || []"
+          :children-map="childrenMap"
+          :depth="0"
+          :is-locked-fn="isItemLocked"
+          :is-open-fn="isOpen"
+          :item="item"
+          :on-chevron-click-fn="onChevronClick"
+          :on-parent-click-fn="onParentClick"
+        />
+      </v-list>
+
+      <v-divider />
+
+      <!-- BEN KANEKI Section -->
+      <v-list
+        v-model:opened="openedGroups"
+        density="compact"
+        nav
+        open-strategy="multiple"
+      >
+        <v-list-subheader v-if="!rail">BEN KANEKI</v-list-subheader>
+        <SidebarNavItem
+          v-for="item in benkanekiSectionItems"
           :key="item.name"
           :children="childrenMap.get(item.name) || []"
           :children-map="childrenMap"
@@ -884,6 +908,7 @@
   const mainSectionItems = computed(() => getRootItemsForSection('main'))
   const toolsSectionItems = computed(() => getRootItemsForSection('tools'))
   const noteformatSectionItems = computed(() => getRootItemsForSection('noteformat'))
+  const benkanekiSectionItems = computed(() => getRootItemsForSection('benkaneki'))
   // const productsSectionItems = computed(() => getRootItemsForSection('products'))
   const legalSectionItems = computed(() => getRootItemsForSection('legal'))
 
