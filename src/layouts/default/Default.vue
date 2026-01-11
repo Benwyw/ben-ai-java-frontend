@@ -14,9 +14,9 @@
       >
         <template v-if="!rail">
           <v-list-item-title class="text-h6 font-weight-bold">
-            Ben Kaneki
+            Benwyw
           </v-list-item-title>
-          <v-list-item-subtitle>Discord Bot</v-list-item-subtitle>
+          <v-list-item-subtitle>Development website</v-list-item-subtitle>
         </template>
       </v-list-item>
 

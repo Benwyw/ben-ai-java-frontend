@@ -79,7 +79,7 @@
               A multi-purpose Discord bot with web dashboard for utilities and automation.
             </v-card-text>
             <v-chip color="info" variant="tonal" class="mt-2">
-              <v-icon start>mdi-discord</v-icon>
+              <img :src="discordIcon" alt="Discord" class="discord-icon mr-2" />
               Discord
             </v-chip>
           </v-card>
@@ -93,6 +93,7 @@
   import { useRouter } from 'vue-router'
   import noteformatIcon from '@/assets/noteformat-128.png'
   import benkanekiIcon from '@/assets/logo.png'
+  import discordIcon from '@/assets/discord.svg'
 
   const router = useRouter()
 
@@ -110,5 +111,10 @@
 .product-card.on-hover {
   transform: translateY(-8px);
 }
-</style>
 
+.discord-icon {
+  width: 18px;
+  height: 18px;
+  filter: invert(37%) sepia(98%) saturate(1285%) hue-rotate(196deg) brightness(95%) contrast(87%);
+}
+</style>
