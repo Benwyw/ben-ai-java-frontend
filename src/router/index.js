@@ -335,7 +335,7 @@ const routes = [
         component: () => import('@/views/benkaneki/BenKanekiLanding.vue'),
         meta: {
           title: 'Ben Kaneki',
-          icon: 'mdi-robot',
+          iconImage: new URL('@/assets/logo.png', import.meta.url).href,
           navSection: 'benkaneki',
           navOrder: 1,
           defaultExpanded: true,
