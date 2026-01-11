@@ -62,13 +62,13 @@
             width="100%"
             @click="navigateTo('/benkaneki')"
           >
-            <v-icon
-              size="128"
-              color="primary"
-              class="mb-4"
-            >
-              mdi-robot
-            </v-icon>
+            <v-img
+              :src="benkanekiIcon"
+              alt="NoteFormat"
+              class="mx-auto mb-4"
+              height="128"
+              width="128"
+            />
             <v-card-title class="text-h4 font-weight-bold justify-center">
               Ben Kaneki
             </v-card-title>
@@ -92,6 +92,7 @@
 <script setup>
   import { useRouter } from 'vue-router'
   import noteformatIcon from '@/assets/noteformat-128.png'
+  import benkanekiIcon from '@/assets/logo.png'
 
   const router = useRouter()
 
