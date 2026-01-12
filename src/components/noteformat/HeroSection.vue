@@ -28,7 +28,7 @@
       <v-btn
         class="text-none"
         color="white"
-        href="https://apps.apple.com/us/app/noteformat/id6756885265"
+        href="https://apps.apple.com/app/noteformat/id6756885265"
         prepend-icon="mdi-apple"
         rounded="pill"
         size="large"
