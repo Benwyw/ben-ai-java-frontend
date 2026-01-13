@@ -2,7 +2,7 @@
   <div>
     <!-- Page Header -->
     <PageHeader
-      avatar-src="@/assets/logo.png"
+      avatar-src="@/assets/BenKaneki-120.png"
       gradient-class="bg-gradient-purple"
       :show-avatar="true"
       :subtitle="isLoggedIn ? `Logged in as ${displayName}` : 'Access your account'"

@@ -6,7 +6,7 @@
   >
     <v-card-text class="py-12 text-center">
       <v-avatar class="mb-4 elevation-4" size="120">
-        <v-img src="@/assets/logo.png" />
+        <v-img src="@/assets/BenKaneki-120.png" />
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">Ben Kaneki</h1>
       <p class="text-h6 text-white-darken-1 mb-4">Discord bot web application</p>

@@ -10,7 +10,7 @@
     >
       <v-list-item
         nav
-        :prepend-avatar="logoSrc"
+        :prepend-avatar="benwywIcon"
       >
         <template v-if="!rail">
           <v-list-item-title class="text-h6 font-weight-bold">
@@ -412,7 +412,7 @@
   import { useDisplay, useTheme } from 'vuetify'
   import { login as loginApi } from '@/api/login'
   import { logout as logoutApi } from '@/api/logout'
-  import logoSrc from '@/assets/logo.png'
+  import benwywIcon from '/Benwyw-1024.png'
   import SidebarNavItem from '@/components/SidebarNavItem.vue'
   import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
   import { mainRouteChildren } from '@/router'
