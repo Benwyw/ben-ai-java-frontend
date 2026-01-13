@@ -85,6 +85,44 @@
           </v-card>
         </v-hover>
       </v-col>
+
+      <!-- Deprecated Products Section -->
+      <v-col cols="12" class="mt-8">
+        <v-divider class="mb-4" />
+        <p class="text-body-2 text-medium-emphasis text-center mb-4">
+          Legacy Products
+        </p>
+      </v-col>
+
+      <v-col cols="12" sm="6" md="4" class="d-flex justify-center">
+        <v-card
+          class="deprecated-card pa-4 text-center"
+          rounded="lg"
+          max-width="280"
+          width="100%"
+          variant="outlined"
+          @click="openExternalLink('https://www.instagram.com/mcbenwywcom/')"
+        >
+<!--          <v-icon size="48" color="grey" class="mb-2">mdi-instagram</v-icon>-->
+          <v-img
+            :src="mcbenwywIcon"
+            alt="mcbenwywcom"
+            class="mx-auto mb-2"
+            height="48"
+            width="48"
+          />
+          <v-card-title class="text-subtitle-1 font-weight-medium justify-center text-grey">
+            Ben's Minecraft Server
+          </v-card-title>
+          <v-card-subtitle class="text-caption text-grey-darken-1">
+            Deprecated
+          </v-card-subtitle>
+          <v-chip size="small" color="grey" variant="outlined" class="mt-2">
+            <v-icon start size="small">mdi-instagram</v-icon>
+            View on Instagram
+          </v-chip>
+        </v-card>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -94,11 +132,16 @@
   import noteformatIcon from '@/assets/NoteFormat-1024-transparent.png'
   import benkanekiIcon from '@/assets/logo.png'
   import discordIcon from '@/assets/discord.svg'
+  import mcbenwywIcon from '@/assets/mcbenwywcom_fullsize-1000.png'
 
   const router = useRouter()
 
   function navigateTo (path) {
     router.push(path)
+  }
+
+  function openExternalLink (url) {
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 </script>
 
@@ -116,5 +159,16 @@
   width: 18px;
   height: 18px;
   filter: invert(37%) sepia(98%) saturate(1285%) hue-rotate(196deg) brightness(95%) contrast(87%);
+}
+
+.deprecated-card {
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.2s ease-in-out;
+}
+
+.deprecated-card:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
 }
 </style>
