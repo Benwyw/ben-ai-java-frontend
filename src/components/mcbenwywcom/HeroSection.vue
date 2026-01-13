@@ -20,22 +20,28 @@
         <v-chip color="white" prepend-icon="mdi-tree" variant="flat">
           Survival Mode
         </v-chip>
-        <v-chip color="white" prepend-icon="mdi-archive" variant="flat">
-          Archived
+        <v-chip color="white" variant="flat">
+          <v-icon start color="red">mdi-archive</v-icon>
+          Server Archived
         </v-chip>
       </div>
-      <v-btn
-        class="text-none"
-        color="white"
-        href="https://www.instagram.com/mcbenwywcom/"
-        prepend-icon="mdi-instagram"
-        rounded="pill"
-        size="large"
-        target="_blank"
-        variant="flat"
-      >
-        View on Instagram
-      </v-btn>
+      <v-hover v-slot="{ isHovering, props }">
+        <v-btn
+          v-bind="props"
+          :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+          :elevation="isHovering ? 8 : 2"
+          class="text-none"
+          color="white"
+          href="https://www.instagram.com/mcbenwywcom/"
+          prepend-icon="mdi-instagram"
+          rounded="pill"
+          size="large"
+          target="_blank"
+          variant="flat"
+        >
+          View on Instagram
+        </v-btn>
+      </v-hover>
     </v-card-text>
   </v-card>
 </template>
@@ -48,4 +54,3 @@
   background: linear-gradient(135deg, #4CAF50 0%, #1B5E20 100%);
 }
 </style>
-
