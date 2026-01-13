@@ -476,6 +476,86 @@ const routes = [
         },
       },
 
+      // ==================== Ben's Minecraft Server SECTION ====================
+      // Ben's Minecraft Server (Deprecated) - preserved history and information
+      {
+        path: '/mcbenwywcom',
+        name: 'McBenwywCom',
+        component: () => import('@/views/mcbenwywcom/McBenwywComLanding.vue'),
+        meta: {
+          title: 'Ben\'s Minecraft Server',
+          iconImage: new URL('@/assets/mcbenwywcom/mcbenwywcom_logo-794x439.png', import.meta.url).href,
+          navSection: 'mcbenwywcom',
+          navOrder: 1,
+          defaultExpanded: true,
+          seoTitle: 'Ben\'s Minecraft Server — Benwyw',
+          seoDescription: "Ben's Minecraft Server - A deprecated Minecraft Java Edition server preserved for historical purposes.",
+          canonicalPath: '/mcbenwywcom',
+        },
+      },
+      {
+        path: '/mcbenwywcom/about',
+        name: 'McBenwywCom About',
+        component: () => import('@/views/mcbenwywcom/McBenwywComAbout.vue'),
+        meta: {
+          title: 'About',
+          icon: 'mdi-information',
+          navSection: 'mcbenwywcom',
+          navOrder: 1,
+          parent: 'McBenwywCom',
+          seoTitle: 'Ben\'s Minecraft Server About — Benwyw',
+          seoDescription: "About page for Ben's Minecraft Server with server information and gallery.",
+          canonicalPath: '/mcbenwywcom/about',
+        },
+      },
+      {
+        path: '/mcbenwywcom/staff',
+        name: 'McBenwywCom Staff',
+        component: () => import('@/views/mcbenwywcom/McBenwywComStaff.vue'),
+        meta: {
+          title: 'Staff List',
+          icon: 'mdi-account-group',
+          navSection: 'mcbenwywcom',
+          navOrder: 2,
+          parent: 'McBenwywCom',
+          seoTitle: 'Ben\'s Minecraft Server Staff List — Benwyw',
+          seoDescription: "Staff list for Ben's Minecraft Server - meet the team behind Ben\'s Minecraft Server.",
+          canonicalPath: '/mcbenwywcom/staff',
+        },
+      },
+      {
+        path: '/mcbenwywcom/buildings',
+        name: 'McBenwywCom Buildings',
+        component: () => import('@/views/mcbenwywcom/McBenwywComBuildings.vue'),
+        meta: {
+          title: 'Buildings',
+          icon: 'mdi-domain',
+          navSection: 'mcbenwywcom',
+          navOrder: 3,
+          parent: 'McBenwywCom',
+          navHidden: true, // Hidden for future development
+          seoTitle: 'Ben\'s Minecraft Server Buildings — Benwyw',
+          seoDescription: "Great buildings showcase from Ben's Minecraft Server.",
+          canonicalPath: '/mcbenwywcom/buildings',
+        },
+      },
+      {
+        path: '/mcbenwywcom/events',
+        name: 'McBenwywCom Events',
+        component: () => import('@/views/mcbenwywcom/McBenwywComEvents.vue'),
+        meta: {
+          title: 'Events',
+          icon: 'mdi-calendar-star',
+          navSection: 'mcbenwywcom',
+          navOrder: 4,
+          parent: 'McBenwywCom',
+          navHidden: true, // Hidden for future development
+          seoTitle: 'Ben\'s Minecraft Server Events — Benwyw',
+          seoDescription: "Past events from Ben's Minecraft Server history.",
+          canonicalPath: '/mcbenwywcom/events',
+        },
+      },
+
       // ==================== LEGAL SECTION (LEGACY REDIRECTS) ====================
       // Redirect old legal paths to Ben Kaneki section
       {

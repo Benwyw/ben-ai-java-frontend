@@ -1,0 +1,10 @@
+export { default as McBenwywComLanding } from './McBenwywComLanding.vue'
+export { default as McBenwywComHome } from './McBenwywComAbout.vue'
+export { default as StaffList } from './StaffList.vue'
+export { default as Buildings } from './Buildings.vue'
+export { default as Events } from './Events.vue'
+export { default as HeroSection } from './HeroSection.vue'
+export { default as StatsSection } from './StatsSection.vue'
+export { default as QuickActionsSection } from './QuickActionsSection.vue'
+export { default as FeaturesSection } from './FeaturesSection.vue'
+

@@ -5,13 +5,13 @@
     variant="flat"
   >
     <v-card-text class="py-12 text-center">
-      <v-avatar class="mb-4 elevation-4" size="120">
-        <v-img
-          alt="NoteFormat"
-          cover
-          src="@/assets/NoteFormat-1024-transparent.png"
-        />
-      </v-avatar>
+      <v-img
+        class="mb-4 mx-auto drop-shadow"
+        alt="NoteFormat"
+        src="@/assets/NoteFormat-1024-transparent.png"
+        height="120"
+        width="120"
+      />
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>
       <p class="text-h6 text-white-darken-1 mb-4">iOS Note & Expense Tracker</p>
       <div class="d-flex justify-center ga-3 flex-wrap mb-4">

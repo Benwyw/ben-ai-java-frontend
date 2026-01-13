@@ -101,7 +101,7 @@
           max-width="280"
           width="100%"
           variant="outlined"
-          @click="openExternalLink('https://www.instagram.com/mcbenwywcom/')"
+          @click="navigateTo('/mcbenwywcom')"
         >
 <!--          <v-icon size="48" color="grey" class="mb-2">mdi-instagram</v-icon>-->
           <v-img
@@ -132,7 +132,7 @@
   import noteformatIcon from '@/assets/NoteFormat-1024-transparent.png'
   import benkanekiIcon from '@/assets/BenKaneki-120.png'
   import discordIcon from '@/assets/discord.svg'
-  import mcbenwywIcon from '@/assets/mcbenwywcom_fullsize-1000.png'
+  import mcbenwywIcon from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.png'
 
   const router = useRouter()
 

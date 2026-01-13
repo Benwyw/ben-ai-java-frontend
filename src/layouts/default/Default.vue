@@ -139,6 +139,30 @@
         />
       </v-list>
 
+      <v-divider />
+
+      <!-- MC.BENWYW.COM Section -->
+      <v-list
+        v-model:opened="openedGroups"
+        density="compact"
+        nav
+        open-strategy="multiple"
+      >
+        <v-list-subheader v-if="!rail">BEN'S MINECRAFT SERVER</v-list-subheader>
+        <SidebarNavItem
+          v-for="item in mcbenwywcomSectionItems"
+          :key="item.name"
+          :children="childrenMap.get(item.name) || []"
+          :children-map="childrenMap"
+          :depth="0"
+          :is-locked-fn="isItemLocked"
+          :is-open-fn="isOpen"
+          :item="item"
+          :on-chevron-click-fn="onChevronClick"
+          :on-parent-click-fn="onParentClick"
+        />
+      </v-list>
+
       <!--      &lt;!&ndash; PRODUCTS Section (for future apps) &ndash;&gt;-->
       <!--      <v-list-->
       <!--        v-model:opened="openedGroups"-->
@@ -909,6 +933,7 @@
   const toolsSectionItems = computed(() => getRootItemsForSection('tools'))
   const noteformatSectionItems = computed(() => getRootItemsForSection('noteformat'))
   const benkanekiSectionItems = computed(() => getRootItemsForSection('benkaneki'))
+  const mcbenwywcomSectionItems = computed(() => getRootItemsForSection('mcbenwywcom'))
   // const productsSectionItems = computed(() => getRootItemsForSection('products'))
   const legalSectionItems = computed(() => getRootItemsForSection('legal'))
 
