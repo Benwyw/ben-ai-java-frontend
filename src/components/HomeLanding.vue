@@ -91,7 +91,7 @@
 
 <script setup>
   import { useRouter } from 'vue-router'
-  import noteformatIcon from '@/assets/noteformat-128.png'
+  import noteformatIcon from '@/assets/NoteFormat-1024-transparent.png'
   import benkanekiIcon from '@/assets/logo.png'
   import discordIcon from '@/assets/discord.svg'
 

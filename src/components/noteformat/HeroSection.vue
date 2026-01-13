@@ -9,7 +9,7 @@
         <v-img
           alt="NoteFormat"
           cover
-          src="@/assets/noteformat-128.png"
+          src="@/assets/NoteFormat-1024-transparent.png"
         />
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>

@@ -253,7 +253,7 @@ const routes = [
         component: () => import('@/views/noteformat/NoteformatLanding.vue'),
         meta: {
           title: 'NoteFormat',
-          iconImage: new URL('@/assets/noteformat-128.png', import.meta.url).href,
+          iconImage: new URL('@/assets/NoteFormat-1024-transparent.png', import.meta.url).href,
           navSection: 'noteformat',
           navOrder: 1,
           defaultExpanded: true,
