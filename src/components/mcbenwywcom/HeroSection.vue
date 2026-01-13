@@ -20,10 +20,13 @@
         <v-chip color="white" prepend-icon="mdi-tree" variant="flat">
           Survival Mode
         </v-chip>
-        <v-chip color="white" variant="flat">
-          <v-icon start color="red">mdi-archive</v-icon>
+        <v-chip color="white" prepend-icon="mdi-archive" variant="flat">
           Server Archived
         </v-chip>
+<!--        <v-chip color="white" variant="flat">-->
+<!--          <v-icon start color="red">mdi-archive</v-icon>-->
+<!--          Server Archived-->
+<!--        </v-chip>-->
       </div>
       <v-hover v-slot="{ isHovering, props }">
         <v-btn

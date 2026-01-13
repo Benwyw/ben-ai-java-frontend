@@ -25,18 +25,23 @@
           Game Center
         </v-chip>
       </div>
-      <v-btn
-        class="text-none"
-        color="white"
-        href="https://apps.apple.com/app/noteformat/id6756885265"
-        prepend-icon="mdi-apple"
-        rounded="pill"
-        size="large"
-        target="_blank"
-        variant="flat"
-      >
-        Download on the App Store
-      </v-btn>
+      <v-hover v-slot="{ isHovering, props }">
+        <v-btn
+          v-bind="props"
+          :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+          :elevation="isHovering ? 8 : 2"
+          class="text-none"
+          color="white"
+          href="https://apps.apple.com/app/noteformat/id6756885265"
+          prepend-icon="mdi-apple"
+          rounded="pill"
+          size="large"
+          target="_blank"
+          variant="flat"
+        >
+          Download on the App Store
+        </v-btn>
+      </v-hover>
     </v-card-text>
   </v-card>
 </template>
