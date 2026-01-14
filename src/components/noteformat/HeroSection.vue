@@ -13,7 +13,7 @@
         width="120"
       />
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>
-      <p class="text-h6 text-white-darken-1 mb-4">iOS Note & Expense Tracker</p>
+      <p class="text-h6 text-white-darken-1 mb-4">Custom Templates & Expense Import/Export</p>
       <div class="d-flex justify-center ga-3 flex-wrap mb-4">
         <v-chip color="white" prepend-icon="mdi-apple" variant="flat">
           iOS App
