@@ -1,10 +1,17 @@
 <template>
-  <v-card :class="`mb-6 ${gradientClass}`" rounded="xl" variant="flat">
+  <v-card
+    :class="`mb-6 ${gradientClass}`"
+    rounded="xl"
+    variant="flat"
+    tag="header"
+    role="banner"
+    :aria-label="title"
+  >
     <v-card-text class="py-8 text-center">
       <v-avatar v-if="showAvatar" class="mb-4 elevation-4" size="100">
-        <v-img :src="avatarSrc" />
+        <v-img :src="avatarSrc" :alt="`${title} logo`" />
       </v-avatar>
-      <v-icon v-else class="mb-4" :color="iconColor" size="64">{{ icon }}</v-icon>
+      <v-icon v-else class="mb-4" :color="iconColor" size="64" aria-hidden="true">{{ icon }}</v-icon>
       <h1 class="text-h4 font-weight-bold text-white mb-2">{{ title }}</h1>
       <p class="text-body-1 text-white-darken-1">{{ subtitle }}</p>
       <slot name="chips" />

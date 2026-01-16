@@ -24,23 +24,24 @@
             rounded="xl"
             max-width="400"
             width="100%"
+            tag="article"
             @click="navigateTo('/noteformat')"
           >
             <v-img
               :src="noteformatIcon"
-              alt="NoteFormat"
+              alt="NoteFormat iOS App - Expense Tracker and Note Taking"
               class="mx-auto mb-4"
               height="128"
               width="128"
             />
-            <v-card-title class="text-h4 font-weight-bold justify-center">
+            <v-card-title class="text-h4 font-weight-bold justify-center" tag="h2">
               NoteFormat
             </v-card-title>
             <v-card-subtitle class="text-body-1 mt-2">
-              iOS App
+              iOS Expense Tracker & Note Taking App
             </v-card-subtitle>
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              Expense tracking, budget management and flexible import & export for iOS devices.
+              Track expenses, organize notes with custom templates, set budget alerts, and sync across devices with iCloud. Free on the App Store.
             </v-card-text>
             <v-chip color="primary" variant="tonal" class="mt-2">
               <v-icon start>mdi-apple</v-icon>
@@ -60,11 +61,12 @@
             rounded="xl"
             max-width="400"
             width="100%"
+            tag="article"
             @click="navigateTo('/benkaneki')"
           >
             <v-img
               :src="benkanekiIcon"
-              alt="NoteFormat"
+              alt="Ben Kaneki Discord Bot"
               class="mx-auto mb-4"
               height="128"
               width="128"

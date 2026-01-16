@@ -257,9 +257,26 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 1,
           defaultExpanded: true,
-          seoTitle: 'NoteFormat — Benwyw',
-          seoDescription: 'Landing page for NoteFormat with guides, tutorials, and documentation.',
+          seoTitle: 'NoteFormat — iOS Expense Tracker & Note Taking App',
+          seoDescription: 'NoteFormat is a free iOS app for organizing notes and tracking expenses. Features iCloud sync, budget alerts, custom templates, CSV export, and Game Center achievements. Download from the App Store.',
+          seoKeywords: 'NoteFormat, iOS app, expense tracker, note taking app, budget management, iCloud sync, expense tracking, personal finance, App Store, free iOS app',
+          seoImage: 'https://www.benwyw.com/Benwyw-1024.png',
           canonicalPath: '/noteformat',
+          ogType: 'website',
+          structuredData: {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: 'NoteFormat iOS App',
+            description: 'NoteFormat is a free iOS app for organizing notes and tracking expenses with iCloud sync, budget alerts, and custom export templates.',
+            url: 'https://www.benwyw.com/noteformat',
+            mainEntity: {
+              '@type': 'SoftwareApplication',
+              name: 'NoteFormat',
+              operatingSystem: 'iOS',
+              applicationCategory: 'FinanceApplication',
+              downloadUrl: 'https://apps.apple.com/app/noteformat/id6756885265',
+            },
+          },
         },
       },
       {
@@ -291,8 +308,9 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 2,
           parent: 'Noteformat',
-          seoTitle: 'NoteFormat Privacy — Benwyw',
-          seoDescription: 'Privacy policy and data handling details for NoteFormat.',
+          seoTitle: 'NoteFormat Privacy Policy — Data Protection & iCloud Sync',
+          seoDescription: 'NoteFormat privacy policy explains how we protect your data. Your notes and expenses are stored locally on your device and synced privately via iCloud. No personal data is collected or shared.',
+          seoKeywords: 'NoteFormat privacy, iOS app privacy policy, iCloud data sync, data protection, expense tracker privacy',
           canonicalPath: '/noteformat/privacy',
         },
       },
@@ -306,9 +324,22 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 3,
           parent: 'Noteformat',
-          seoTitle: 'NoteFormat Tutorials — Benwyw',
-          seoDescription: 'Tutorials and walkthroughs for NoteFormat.',
+          seoTitle: 'NoteFormat Tutorials — How to Track Expenses & Organize Notes on iOS',
+          seoDescription: 'Learn how to use NoteFormat iOS app with step-by-step tutorials. Master expense tracking, note organization, budget alerts, custom templates, CSV export, and iCloud sync features.',
+          seoKeywords: 'NoteFormat tutorial, expense tracking tutorial, iOS note taking guide, budget app tutorial, how to track expenses, iCloud sync tutorial',
           canonicalPath: '/noteformat/tutorials',
+          structuredData: {
+            '@context': 'https://schema.org',
+            '@type': 'HowTo',
+            name: 'How to Use NoteFormat iOS App',
+            description: 'Learn how to track expenses, organize notes, set budgets, and export data with NoteFormat.',
+            step: [
+              { '@type': 'HowToStep', position: 1, name: 'Add Notes', text: 'Open NoteFormat, tap Notes tab, then tap + to create your first note with categories and tags.' },
+              { '@type': 'HowToStep', position: 2, name: 'Track Expenses', text: 'Add amounts to notes, categorize spending, and view expense summaries in the Statistics tab.' },
+              { '@type': 'HowToStep', position: 3, name: 'Set Budgets', text: 'Create daily, weekly, or monthly budgets with customizable alert thresholds.' },
+              { '@type': 'HowToStep', position: 4, name: 'Export Data', text: 'Export notes as text, CSV, or custom formats via Share menu.' },
+            ],
+          },
         },
       },
       {
@@ -321,9 +352,21 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 4,
           parent: 'Noteformat',
-          seoTitle: 'NoteFormat Docs & FAQ — Benwyw',
-          seoDescription: 'Documentation and frequently asked questions for NoteFormat.',
+          seoTitle: 'NoteFormat Docs & FAQ — Help Center for iOS Expense Tracker',
+          seoDescription: 'Find answers to frequently asked questions about NoteFormat iOS app. Learn about iCloud sync, budget alerts, Siri shortcuts, Game Center achievements, data export, and more.',
+          seoKeywords: 'NoteFormat FAQ, NoteFormat help, iOS expense tracker FAQ, iCloud sync help, budget alerts, Siri shortcuts, Game Center achievements',
           canonicalPath: '/noteformat/docs',
+          structuredData: {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              { '@type': 'Question', name: 'What is NoteFormat?', acceptedAnswer: { '@type': 'Answer', text: 'NoteFormat is an iOS app for organizing notes and tracking expenses. Create formatted entries with categories, tags, and amounts, then export them in customizable formats.' } },
+              { '@type': 'Question', name: 'Is my data synced across devices?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! NoteFormat uses iCloud to sync your notes and settings across all your Apple devices automatically.' } },
+              { '@type': 'Question', name: 'Does NoteFormat support Siri?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! NoteFormat supports Siri Shortcuts. You can say things like "Add a note with NoteFormat" to quickly create entries or get reports.' } },
+              { '@type': 'Question', name: 'How do budget alerts work?', acceptedAnswer: { '@type': 'Answer', text: 'When you create a budget, you set an alert threshold. When your spending reaches that percentage of your budget, you receive an in-app alert. Budgets can be daily, weekly, monthly, or yearly.' } },
+              { '@type': 'Question', name: 'Is NoteFormat free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, NoteFormat is free to download with core features available at no cost. Pro features are available via in-app purchase.' } },
+            ],
+          },
         },
       },
 
@@ -602,48 +645,12 @@ const router = createRouter({
   routes,
 })
 
-const CANONICAL_ORIGIN = 'https://www.benwyw.com'
-
-function upsertMeta (name, content) {
-  if (!content) {
-    return
-  }
-  let el = document.querySelector(`meta[name="${name}"]`)
-  if (!el) {
-    el = document.createElement('meta')
-    el.setAttribute('name', name)
-    document.head.append(el)
-  }
-  el.setAttribute('content', content)
-}
-
-function upsertLink (rel, href) {
-  if (!href) {
-    return
-  }
-  let el = document.querySelector(`link[rel="${rel}"]`)
-  if (!el) {
-    el = document.createElement('link')
-    el.setAttribute('rel', rel)
-    document.head.append(el)
-  }
-  el.setAttribute('href', href)
-}
+// Import SEO composable
+import { updateSeoMeta, generateBreadcrumbData, generateFaqData } from '@/composables/useSeoMeta'
 
 router.afterEach(to => {
-  document.title = to.meta?.seoTitle || to.meta?.title || 'Benwyw'
-
-  const description = to.meta?.seoDescription
-  upsertMeta('description', description || 'Benwyw personal website with projects, tools, and documentation.')
-
-  const canonicalPath = to.meta?.canonicalPath || to.path
-  upsertLink('canonical', `${CANONICAL_ORIGIN}${canonicalPath}`)
-
-  const robots = to.meta?.robots
-  // If not set, we don't force robots meta here (index.html can provide baseline).
-  if (robots) {
-    upsertMeta('robots', robots)
-  }
+  // Use the enhanced SEO meta composable
+  updateSeoMeta(to.meta, to.path)
 })
 
 // Export children for use in layout navigation
