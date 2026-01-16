@@ -8,7 +8,7 @@
       <v-img
         class="mb-4 mx-auto drop-shadow"
         alt="NoteFormat"
-        src="@/assets/NoteFormat-1024-transparent.png"
+        src="@/assets/NoteFormat-120-transparent.png"
         height="120"
         width="120"
       />
