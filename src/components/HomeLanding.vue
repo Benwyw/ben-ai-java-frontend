@@ -38,10 +38,10 @@
               NoteFormat
             </v-card-title>
             <v-card-subtitle class="text-body-1 mt-2">
-              iOS Expense Tracker & Note Taking App
+              Your Smart Note & Expense Companion
             </v-card-subtitle>
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              Track expenses, organize notes with custom templates, set budget alerts, and sync across devices with iCloud. Free on the App Store.
+              Capture expenses, format with templates, import/export easily. Track spending, budgets and reports. Free on the App Store.
             </v-card-text>
             <v-chip color="primary" variant="tonal" class="mt-2">
               <v-icon start>mdi-apple</v-icon>

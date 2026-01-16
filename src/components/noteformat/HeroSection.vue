@@ -9,7 +9,7 @@
     <v-card-text class="py-12 text-center">
       <v-img
         class="mb-4 mx-auto drop-shadow"
-        alt="NoteFormat iOS App Logo - Expense Tracker and Note Taking"
+        alt="NoteFormat iOS App Logo - Smart Note & Expense Companion"
         src="@/assets/NoteFormat-120-transparent.png"
         height="120"
         width="120"
@@ -17,10 +17,10 @@
       />
       <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>
       <p class="text-h6 text-white-darken-1 mb-4">
-        iOS App for Expense Tracking & Note Organization
+        Your Smart Note & Expense Companion
       </p>
-      <p class="text-body-2 text-white-darken-2 mb-4 mx-auto" style="max-width: 500px;">
-        Track expenses, organize notes with custom templates, set budget alerts, and sync across all your Apple devices with iCloud. Free to download on the App Store.
+      <p class="text-body-2 text-white-darken-2 mb-4 mx-auto" style="max-width: 520px;">
+        Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports—simple, private, and beautiful.
       </p>
       <div class="d-flex justify-center ga-3 flex-wrap mb-4" role="list" aria-label="App Features">
         <v-chip color="white" prepend-icon="mdi-apple" variant="flat" role="listitem">
@@ -32,8 +32,8 @@
         <v-chip color="white" prepend-icon="mdi-trophy" variant="flat" role="listitem">
           Game Center
         </v-chip>
-        <v-chip color="white" prepend-icon="mdi-cash-multiple" variant="flat" role="listitem">
-          Budget Alerts
+        <v-chip color="white" prepend-icon="mdi-microphone" variant="flat" role="listitem">
+          Siri Shortcuts
         </v-chip>
       </div>
       <v-hover v-slot="{ isHovering, props }">
