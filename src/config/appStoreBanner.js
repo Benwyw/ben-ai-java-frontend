@@ -12,7 +12,7 @@
  */
 
 export const appStoreBannerConfig = {
-  /**
+  /*
    * Master toggle - set to false to completely disable the banner
    * Disabled because macOS Safari now shows the native Smart App Banner
    */
