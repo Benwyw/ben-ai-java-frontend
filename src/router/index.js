@@ -615,7 +615,7 @@ const routes = [
       },
 
       // ==================== WHITY (CAT MEMORIAL) SECTION ====================
-      // A loving tribute to Whity the cat
+      // A loving tribute to Whity the cat (12 Jul 2019 - 29 Dec 2024)
       {
         path: '/whity',
         name: 'Whity',
@@ -625,8 +625,8 @@ const routes = [
           icon: 'mdi-cat',
           navSection: 'whity',
           navOrder: 1,
-          seoTitle: 'Whity — In Loving Memory',
-          seoDescription: 'A tribute to Whity, a beloved companion who brought joy, comfort, and endless love.',
+          seoTitle: 'Whity — In Loving Memory (2019-2024)',
+          seoDescription: 'A tribute to Whity, my beloved cat (12 Jul 2019 - 29 Dec 2024). Forever loved, forever missed.',
           canonicalPath: '/whity',
         },
       },

@@ -16,13 +16,14 @@
         />
       </v-avatar>
       <h1 class="text-h3 font-weight-bold text-white mb-2">Whity</h1>
-      <p class="text-h6 text-white-darken-1 mb-4">Forever in our hearts 🐱💕</p>
+      <p class="text-h6 text-white-darken-1 mb-2">12 July 2019 — 29 December 2024</p>
+      <p class="text-body-1 text-white-darken-2 mb-4">Forever loved, forever missed 🐱💕</p>
       <div class="d-flex justify-center ga-3 flex-wrap">
-        <v-chip color="white" prepend-icon="mdi-cat" variant="flat">
-          Beloved Companion
-        </v-chip>
         <v-chip color="white" prepend-icon="mdi-heart" variant="flat">
-          Always Remembered
+          5 Years of Joy
+        </v-chip>
+        <v-chip color="white" prepend-icon="mdi-star" variant="flat">
+          Forever in My Heart
         </v-chip>
       </div>
     </v-card-text>
