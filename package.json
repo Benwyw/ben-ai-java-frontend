@@ -1,6 +1,6 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,8 @@
     "compress": "find dist -type f \\( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.json' -o -name '*.svg' \\) -exec gzip -9 -k {} \\;",
     "preview": "vite preview",
     "lint": "eslint . --config ./eslintrc.config.js --fix",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "optimize:seo-images": "node scripts/optimize-seo-images.js"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",

@@ -260,7 +260,7 @@ const routes = [
           seoTitle: 'NoteFormat - Expense Formatter | Flexible Import/Export for iOS',
           seoDescription: 'NoteFormat – Your Smart Note & Expense Companion. Flexible expense import/export with custom templates. Track spending, budgets, and reports. Free on the App Store with iCloud sync.',
           seoKeywords: 'NoteFormat, expense formatter, flexible import export, iOS app, expense tracker, note taking, budget tracker, iCloud sync, CSV export, Siri shortcuts, Game Center, free iOS app',
-          seoImage: 'https://www.benwyw.com/assets/NoteFormat-120.png',
+          seoImage: 'https://www.benwyw.com/assets/NoteFormat-seo.png',
           canonicalPath: '/noteformat',
           ogType: 'website',
           structuredData: {
@@ -399,7 +399,7 @@ const routes = [
           defaultExpanded: true,
           seoTitle: 'Ben Kaneki Discord Bot — Benwyw',
           seoDescription: 'Ben Kaneki Discord Bot - A multi-purpose bot with web dashboard for utilities and automation.',
-          seoImage: 'https://www.benwyw.com/assets/BenKaneki-120.png',
+          seoImage: 'https://www.benwyw.com/assets/BenKaneki-seo.png',
           canonicalPath: '/benkaneki',
         },
       },
@@ -687,8 +687,8 @@ const router = createRouter({
 import { updateSeoMeta, generateBreadcrumbData, generateFaqData } from '@/composables/useSeoMeta'
 
 router.afterEach(to => {
-  // Use the enhanced SEO meta composable
-  updateSeoMeta(to.meta, to.path)
+  // Use the enhanced SEO meta composable with matched routes for image inheritance
+  updateSeoMeta(to.meta, to.path, to.matched)
 })
 
 // Export children for use in layout navigation

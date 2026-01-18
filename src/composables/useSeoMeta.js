@@ -6,11 +6,38 @@
  *
  * Usage in router afterEach:
  *   import { updateSeoMeta } from '@/composables/useSeoMeta'
- *   router.afterEach(to => updateSeoMeta(to.meta))
+ *   router.afterEach(to => updateSeoMeta(to.meta, to.path, to.matched))
  */
 
 const CANONICAL_ORIGIN = 'https://www.benwyw.com'
 const DEFAULT_IMAGE = 'https://www.benwyw.com/Benwyw-1024.png'
+
+/**
+ * Resolve the SEO image by checking the current route's meta,
+ * then falling back to parent routes' seoImage, and finally the default.
+ *
+ * @param {Object} meta - Current route's meta object
+ * @param {Array} matched - Array of matched route records (from to.matched)
+ * @returns {string} The resolved image URL
+ */
+function resolveImage (meta, matched = []) {
+  // If current route has seoImage, use it
+  if (meta.seoImage) {
+    return meta.seoImage
+  }
+
+  // Walk up the matched routes (from most specific to least) to find a parent's seoImage
+  // matched is ordered from parent to child, so we reverse to check child's parent first
+  for (let i = matched.length - 2; i >= 0; i--) {
+    const parentMeta = matched[i]?.meta
+    if (parentMeta?.seoImage) {
+      return parentMeta.seoImage
+    }
+  }
+
+  // Fall back to default site image
+  return DEFAULT_IMAGE
+}
 
 /**
  * Update or create a meta tag by name attribute
@@ -84,19 +111,21 @@ function removeJsonLd (id) {
  * @param {string} meta.seoTitle - Page title for SEO
  * @param {string} meta.seoDescription - Page description for SEO
  * @param {string} meta.canonicalPath - Canonical URL path
- * @param {string} meta.seoImage - Open Graph image URL (optional)
+ * @param {string} meta.seoImage - Open Graph image URL (optional, inherits from parent if not set)
  * @param {string} meta.seoKeywords - SEO keywords (optional)
  * @param {string} meta.robots - Robots directive (optional)
  * @param {string} meta.ogType - Open Graph type (default: 'website')
  * @param {Object} meta.structuredData - Page-specific JSON-LD data (optional)
  * @param {string} path - Current route path
+ * @param {Array} matched - Array of matched route records for image inheritance
  */
-export function updateSeoMeta (meta = {}, path = '/') {
+export function updateSeoMeta (meta = {}, path = '/', matched = []) {
+
   const title = meta.seoTitle || meta.title || 'Benwyw'
   const description = meta.seoDescription || 'Benwyw personal website with projects, tools, and documentation.'
   const canonicalPath = meta.canonicalPath || path
   const fullUrl = `${CANONICAL_ORIGIN}${canonicalPath}`
-  const image = meta.seoImage || DEFAULT_IMAGE
+  const image = resolveImage(meta, matched)
   const keywords = meta.seoKeywords || ''
   const ogType = meta.ogType || 'website'
 
