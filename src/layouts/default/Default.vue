@@ -1,5 +1,8 @@
 <template>
   <v-app>
+    <!-- App Store Promotional Banner (for macOS Safari/Desktop users) -->
+    <AppStoreBanner />
+
     <!-- Modern Navigation Drawer -->
     <v-navigation-drawer
       v-model="drawer"
@@ -439,6 +442,7 @@
   import { logout as logoutApi } from '@/api/logout'
   import benwywIcon from '/Benwyw-1024.png'
   import SidebarNavItem from '@/components/SidebarNavItem.vue'
+  import AppStoreBanner from '@/components/shared/AppStoreBanner.vue'
   import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
   import { mainRouteChildren } from '@/router'
   import { authStore } from '@/stores/authStore'
