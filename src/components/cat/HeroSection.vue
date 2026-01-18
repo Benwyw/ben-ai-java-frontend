@@ -32,9 +32,9 @@
       <div class="d-flex align-center justify-center fill-height hero-overlay">
         <div class="text-center px-4">
           <p class="text-body-2 text-white mb-1 text-shadow">✨ 🕊️ ✨</p>
-          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-1 text-shadow angel-glow">Whity ｜ 小白</h1>
-          <p class="text-h6 text-white mb-1 text-shadow">12 July 2019 — 29 December 2024</p>
-          <p class="text-body-2 text-white-darken-1 mb-3 text-shadow">2019年7月12日 — 2024年12月29日</p>
+          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-0 text-shadow angel-glow">Whity</h1>
+          <p class="text-h6 text-white-darken-1 mb-2 text-shadow">小白</p>
+          <p class="text-body-1 text-white mb-3 text-shadow">12 July 2019 — 29 December 2024</p>
           <p class="text-body-1 text-white mb-1 text-shadow">Forever loved, forever missed 🐱💫</p>
           <p class="text-body-2 text-white-darken-1 mb-4 text-shadow">永遠愛你，永遠懷念</p>
           <div class="d-flex justify-center ga-2 flex-wrap mb-2">
