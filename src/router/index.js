@@ -615,7 +615,7 @@ const routes = [
       },
 
       // ==================== WHITY (CAT MEMORIAL) ====================
-      // A loving tribute to Whity the cat (12 Jul 2019 - 29 Dec 2024)
+      // A loving tribute to Whity / 小白 (12 Jul 2019 - 29 Dec 2024)
       {
         path: '/whity',
         name: 'Whity',
