@@ -303,7 +303,9 @@ const routes = [
       {
         path: '/noteformat/eula',
         name: 'Noteformat EULA',
-        // Redirect to external link when accessed directly
+        // Handle direct URL access: redirect to external link
+        // Note: Sidebar clicks use externalLink meta (opens in new tab)
+        // Direct URL access redirects in same tab (avoids popup blocker)
         beforeEnter() {
           window.location.href = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'
           return false // Prevent navigation
