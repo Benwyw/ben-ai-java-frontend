@@ -59,11 +59,13 @@
 
 <script setup>
   import { ref } from 'vue'
-  import heroImage from '@/assets/cat/Whity_hero.png'
+  // Use optimized WebP (97%+ browser support)
+  import heroImage from '@/assets/cat/Whity_hero.webp'
   import heroVideo from '@/assets/cat/Whity_hero_video.mp4'
 
   const videoRef = ref(null)
   const videoLoaded = ref(false)
+
 
   const onVideoLoaded = () => {
     videoLoaded.value = true

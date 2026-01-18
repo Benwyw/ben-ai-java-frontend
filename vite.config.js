@@ -40,4 +40,39 @@ export default defineConfig({
   server: {
     port: 3000,
   },
+  build: {
+    // Enable CSS code splitting
+    cssCodeSplit: true,
+    // Optimize chunk sizes
+    chunkSizeWarningLimit: 500,
+    // Terser minification for smaller bundles
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
+    rollupOptions: {
+      output: {
+        // Manual chunks for better caching
+        manualChunks: {
+          'vuetify': ['vuetify'],
+          'vue-vendor': ['vue', 'vue-router'],
+        },
+        // Asset file naming with hash for caching
+        assetFileNames: (assetInfo) => {
+          // Keep images in their own folder
+          if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(assetInfo.name)) {
+            return 'assets/images/[name]-[hash][extname]'
+          }
+          // Videos in their own folder
+          if (/\.(mp4|webm|ogg|mov)$/i.test(assetInfo.name)) {
+            return 'assets/videos/[name]-[hash][extname]'
+          }
+          return 'assets/[name]-[hash][extname]'
+        },
+      },
+    },
+  },
 })

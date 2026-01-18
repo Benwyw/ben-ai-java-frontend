@@ -25,7 +25,7 @@
               @click="openLightbox(index)"
             >
               <v-img
-                :src="photo.src"
+                :src="photo.thumbnail"
                 :alt="`Whity photo ${index + 1}`"
                 aspect-ratio="1"
                 cover
@@ -84,10 +84,11 @@
       </v-toolbar>
       <v-img
         v-if="galleryPhotos[currentIndex]"
-        :src="galleryPhotos[currentIndex].src"
+        :src="getFullImageSrc(currentIndex)"
         :alt="`Whity photo ${currentIndex + 1}`"
         max-height="70vh"
         contain
+        :class="{ 'opacity-50': lightboxLoading }"
       >
         <template #placeholder>
           <v-row
@@ -110,22 +111,35 @@
   import { computed, ref } from 'vue'
 
   /**
-   * Dynamically import all images from the gallery folder
-   * Supports: .jpg, .jpeg, .png, .webp, .gif
+   * Optimized Image Loading Strategy:
+   *
+   * 1. Thumbnails (300px WebP) - Used in gallery grid for fast initial load
+   * 2. Full-size WebP - Used in lightbox for quality viewing
+   *
+   * WebP has 97%+ browser support, so no fallback needed.
    *
    * To add new photos:
    * 1. Add image files to src/assets/cat/gallery/
    * 2. Name them with Whity_ prefix and a number (e.g., Whity_13.jpeg)
-   * 3. They will be automatically loaded and sorted by number
+   * 3. Run: npm run optimize:images
+   * 4. They will be automatically loaded and sorted by number
    */
-  const imageModules = import.meta.glob('@/assets/cat/gallery/Whity_*.(jpg|jpeg|png|webp|gif)', {
+
+  // Optimized WebP thumbnails (small, fast-loading for grid)
+  const thumbnailModules = import.meta.glob('@/assets/cat/gallery/thumbnails/*_thumb.webp', {
     eager: true,
+    import: 'default',
+  })
+
+  // Full-size WebP images (loaded on-demand in lightbox)
+  const fullSizeModules = import.meta.glob('@/assets/cat/gallery/webp/*.webp', {
+    eager: false, // Lazy load full-size images
     import: 'default',
   })
 
   /**
    * Extract number from filename for sorting
-   * e.g., "Whity_1.jpg" -> 1, "Whity_10.jpeg" -> 10
+   * e.g., "Whity_1.jpg" -> 1, "Whity_10_thumb.webp" -> 10
    */
   function extractNumber (filename) {
     const match = filename.match(/Whity_(\d+)/)
@@ -134,19 +148,55 @@
 
   /**
    * Process and sort gallery photos by their numeric suffix
+   * Uses optimized thumbnails for grid, with full-size for lightbox
    */
   const galleryPhotos = computed(() => {
-    return Object.entries(imageModules)
-      .map(([path, src]) => {
+    return Object.entries(thumbnailModules)
+      .map(([path, thumbnailSrc]) => {
         const filename = path.split('/').pop()
+        const baseName = filename.replace('_thumb.webp', '')
+        const number = extractNumber(filename)
+
+        // Find corresponding full-size WebP
+        const fullSizeKey = Object.keys(fullSizeModules).find(k => k.includes(`${baseName}.webp`))
+
         return {
-          name: filename,
-          src,
-          order: extractNumber(filename),
+          name: baseName,
+          thumbnail: thumbnailSrc, // Pre-loaded small thumbnail
+          fullSizeLoader: fullSizeKey ? fullSizeModules[fullSizeKey] : null,
+          order: number,
         }
       })
       .sort((a, b) => a.order - b.order)
   })
+
+  // Cache for loaded full-size images
+  const loadedFullImages = ref({})
+
+  // Load full-size image on demand
+  async function loadFullImage (index) {
+    const photo = galleryPhotos.value[index]
+    if (!photo || loadedFullImages.value[photo.name]) return loadedFullImages.value[photo.name]
+
+    try {
+      if (photo.fullSizeLoader) {
+        loadedFullImages.value[photo.name] = await photo.fullSizeLoader()
+        return loadedFullImages.value[photo.name]
+      }
+    } catch (err) {
+      console.warn('Failed to load full image:', photo.name, err)
+    }
+
+    // Return thumbnail as fallback
+    return photo.thumbnail
+  }
+
+  // Get full image src (cached or thumbnail while loading)
+  function getFullImageSrc (index) {
+    const photo = galleryPhotos.value[index]
+    if (!photo) return ''
+    return loadedFullImages.value[photo.name] || photo.thumbnail
+  }
 
   // Placeholder for lazy loading (lightweight SVG)
   const placeholderImage = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3Crect fill="%23f5f5f5" width="1" height="1"/%3E%3C/svg%3E'
@@ -154,21 +204,35 @@
   // Lightbox state
   const lightboxOpen = ref(false)
   const currentIndex = ref(0)
+  const lightboxLoading = ref(false)
 
-  const openLightbox = index => {
+  const openLightbox = async index => {
     currentIndex.value = index
     lightboxOpen.value = true
+    lightboxLoading.value = true
+
+    // Load current and adjacent images for smooth navigation
+    await Promise.all([
+      loadFullImage(index),
+      loadFullImage(index - 1),
+      loadFullImage(index + 1),
+    ])
+    lightboxLoading.value = false
   }
 
-  const prevPhoto = () => {
+  const prevPhoto = async () => {
     if (currentIndex.value > 0) {
       currentIndex.value--
+      // Preload previous image
+      loadFullImage(currentIndex.value - 1)
     }
   }
 
-  const nextPhoto = () => {
+  const nextPhoto = async () => {
     if (currentIndex.value < galleryPhotos.value.length - 1) {
       currentIndex.value++
+      // Preload next image
+      loadFullImage(currentIndex.value + 1)
     }
   }
 </script>

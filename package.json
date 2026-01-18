@@ -1,13 +1,17 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "private": true,
+  "type": "module",
   "scripts": {
     "serve": "vite",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build --mode production",
+    "build:prod:gzip": "vite build --mode production && npm run compress",
+    "compress": "find dist -type f \\( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.json' -o -name '*.svg' \\) -exec gzip -9 -k {} \\;",
     "preview": "vite preview",
-    "lint": "eslint . --config ./eslintrc.config.js --fix"
+    "lint": "eslint . --config ./eslintrc.config.js --fix",
+    "optimize:images": "node scripts/optimize-images.js"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",
@@ -21,11 +25,14 @@
     "webfontloader": "^1.0.0"
   },
   "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
     "@vitejs/plugin-vue": "^6.0.1",
     "eslint": "^9.5.0",
     "eslint-config-vuetify": "^4.0.0",
     "sass": "^1.89.2",
+    "sharp": "^0.34.5",
     "vite": "^7.0.6",
+    "vite-plugin-imagemin": "^0.6.1",
     "vite-plugin-vuetify": "^2.1.2"
   }
 }
