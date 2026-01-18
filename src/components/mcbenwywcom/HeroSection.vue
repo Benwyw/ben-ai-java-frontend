@@ -8,7 +8,7 @@
       <v-img
         class="mb-4 mx-auto drop-shadow"
         alt="Ben's Minecraft Server"
-        src="@/assets/mcbenwywcom/mcbenwywcom_logo-794x439.png"
+        src="@/assets/mcbenwywcom/mcbenwywcom_logo-794x439.webp"
         height="120"
       />
       <h1 class="text-h3 font-weight-bold text-white mb-2">Ben's Minecraft Server</h1>

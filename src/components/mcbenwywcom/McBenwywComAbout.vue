@@ -174,9 +174,9 @@
 
 <script setup>
   import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom_animated-banner.gif'
-  import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.png'
-  import ownerStatuesImage from '@/assets/mcbenwywcom/mcbenwywcom_owner-statues.png'
-  import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.png'
+  import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
+  import ownerStatuesImage from '@/assets/mcbenwywcom/mcbenwywcom_owner-statues.webp'
+  import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
 </script>
 
 <style scoped>

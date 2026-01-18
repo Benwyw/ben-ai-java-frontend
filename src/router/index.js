@@ -543,7 +543,7 @@ const routes = [
         component: () => import('@/views/mcbenwywcom/McBenwywComLanding.vue'),
         meta: {
           title: 'Ben\'s Minecraft Server',
-          iconImage: new URL('@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.png', import.meta.url).href,
+          iconImage: new URL('@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp', import.meta.url).href,
           navSection: 'mcbenwywcom',
           navOrder: 1,
           defaultExpanded: true,

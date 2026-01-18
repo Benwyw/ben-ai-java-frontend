@@ -125,7 +125,7 @@
 </template>
 
 <script setup>
-  import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.png'
+  import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
 
   const globalStaff = [
     { name: 'Benlien', role: 'Owner' },

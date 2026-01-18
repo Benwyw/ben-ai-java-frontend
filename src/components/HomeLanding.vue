@@ -134,7 +134,7 @@
   import noteformatIcon from '@/assets/NoteFormat-120-transparent.png'
   import benkanekiIcon from '@/assets/BenKaneki-120.png'
   import discordIcon from '@/assets/discord.svg'
-  import mcbenwywIcon from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.png'
+  import mcbenwywIcon from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
 
   const router = useRouter()
 
