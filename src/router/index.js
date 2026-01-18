@@ -614,6 +614,23 @@ const routes = [
         },
       },
 
+      // ==================== WHITY (CAT MEMORIAL) SECTION ====================
+      // A loving tribute to Whity the cat
+      {
+        path: '/whity',
+        name: 'Whity',
+        component: () => import('@/views/cat/CatLanding.vue'),
+        meta: {
+          title: 'Whity',
+          icon: 'mdi-cat',
+          navSection: 'whity',
+          navOrder: 1,
+          seoTitle: 'Whity — In Loving Memory',
+          seoDescription: 'A tribute to Whity, a beloved companion who brought joy, comfort, and endless love.',
+          canonicalPath: '/whity',
+        },
+      },
+
       // ==================== LEGAL SECTION (LEGACY REDIRECTS) ====================
       // Redirect old legal paths to Ben Kaneki section
       {
