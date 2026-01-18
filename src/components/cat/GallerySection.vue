@@ -3,12 +3,15 @@
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2" color="pink">mdi-image-multiple</v-icon>
       Photo Gallery
+      <v-chip class="ml-2" size="small" color="pink" variant="tonal">
+        {{ galleryPhotos.length }} photos
+      </v-chip>
     </v-card-title>
     <v-card-text>
       <v-row>
         <v-col
           v-for="(photo, index) in galleryPhotos"
-          :key="index"
+          :key="photo.name"
           cols="6"
           sm="4"
           md="3"
@@ -37,6 +40,7 @@
                     <v-progress-circular
                       indeterminate
                       color="pink-lighten-3"
+                      size="24"
                     />
                   </v-row>
                 </template>
@@ -84,43 +88,67 @@
         :alt="`Whity photo ${currentIndex + 1}`"
         max-height="70vh"
         contain
-      />
+      >
+        <template #placeholder>
+          <v-row
+            class="fill-height ma-0"
+            align="center"
+            justify="center"
+          >
+            <v-progress-circular
+              indeterminate
+              color="pink"
+            />
+          </v-row>
+        </template>
+      </v-img>
     </v-card>
   </v-dialog>
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
 
-  // Import all gallery images
-  import Whity1 from '@/assets/cat/gallery/Whity_1.jpg'
-  import Whity2 from '@/assets/cat/gallery/Whity_2.jpeg'
-  import Whity3 from '@/assets/cat/gallery/Whity_3.jpeg'
-  import Whity4 from '@/assets/cat/gallery/Whity_4.jpeg'
-  import Whity5 from '@/assets/cat/gallery/Whity_5.jpeg'
-  import Whity6 from '@/assets/cat/gallery/Whity_6.jpeg'
-  import Whity7 from '@/assets/cat/gallery/Whity_7.jpeg'
-  import Whity8 from '@/assets/cat/gallery/Whity_8.jpeg'
-  import Whity10 from '@/assets/cat/gallery/Whity_10.jpeg'
-  import Whity11 from '@/assets/cat/gallery/Whity_11.jpeg'
-  import Whity12 from '@/assets/cat/gallery/Whity_12.jpeg'
+  /**
+   * Dynamically import all images from the gallery folder
+   * Supports: .jpg, .jpeg, .png, .webp, .gif
+   *
+   * To add new photos:
+   * 1. Add image files to src/assets/cat/gallery/
+   * 2. Name them with Whity_ prefix and a number (e.g., Whity_13.jpeg)
+   * 3. They will be automatically loaded and sorted by number
+   */
+  const imageModules = import.meta.glob('@/assets/cat/gallery/Whity_*.(jpg|jpeg|png|webp|gif)', {
+    eager: true,
+    import: 'default',
+  })
 
-  // Gallery photos in display order
-  const galleryPhotos = [
-    { src: Whity1 },
-    { src: Whity2 },
-    { src: Whity3 },
-    { src: Whity4 },
-    { src: Whity5 },
-    { src: Whity6 },
-    { src: Whity7 },
-    { src: Whity8 },
-    { src: Whity10 },
-    { src: Whity11 },
-    { src: Whity12 },
-  ]
+  /**
+   * Extract number from filename for sorting
+   * e.g., "Whity_1.jpg" -> 1, "Whity_10.jpeg" -> 10
+   */
+  function extractNumber (filename) {
+    const match = filename.match(/Whity_(\d+)/)
+    return match ? parseInt(match[1], 10) : 999
+  }
 
-  // Placeholder for lazy loading
+  /**
+   * Process and sort gallery photos by their numeric suffix
+   */
+  const galleryPhotos = computed(() => {
+    return Object.entries(imageModules)
+      .map(([path, src]) => {
+        const filename = path.split('/').pop()
+        return {
+          name: filename,
+          src,
+          order: extractNumber(filename),
+        }
+      })
+      .sort((a, b) => a.order - b.order)
+  })
+
+  // Placeholder for lazy loading (lightweight SVG)
   const placeholderImage = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3Crect fill="%23f5f5f5" width="1" height="1"/%3E%3C/svg%3E'
 
   // Lightbox state
@@ -139,7 +167,7 @@
   }
 
   const nextPhoto = () => {
-    if (currentIndex.value < galleryPhotos.length - 1) {
+    if (currentIndex.value < galleryPhotos.value.length - 1) {
       currentIndex.value++
     }
   }
