@@ -625,7 +625,7 @@ const routes = [
           iconImage: new URL('@/assets/cat/Whity_hero_2_transparent.png', import.meta.url).href,
           navSection: 'main',
           navOrder: 2,
-          glowEffect: 'angel', // Soft steady glow (options: 'angel' | 'pulse' | false)
+          glowEffect: 'angel', // Options: 'angel' | 'angel-soft' | 'pulse' | false
           seoTitle: 'Whity — In Loving Memory (2019-2024)',
           seoDescription: 'A tribute to Whity, my beloved cat (12 Jul 2019 - 29 Dec 2024). Forever loved, forever missed.',
           canonicalPath: '/whity',

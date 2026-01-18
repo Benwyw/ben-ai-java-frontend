@@ -189,10 +189,11 @@
    * Glow effect class based on meta.glowEffect value
    *
    * Usage in router meta:
-   *   glowEffect: 'angel'  - Soft, steady golden glow (memorial/special)
-   *   glowEffect: 'pulse'  - Blinking promotional glow
-   *   glowEffect: true     - Defaults to 'angel'
-   *   glowEffect: false    - No glow (or omit the property)
+   *   glowEffect: 'angel'       - Soft lavender glow with background (memorial/special)
+   *   glowEffect: 'angel-soft'  - Subtle outer halo only, no background (more distinct from active state)
+   *   glowEffect: 'pulse'       - Blinking promotional glow
+   *   glowEffect: true          - Defaults to 'angel'
+   *   glowEffect: false         - No glow (or omit the property)
    */
   const glowEffectClass = computed(() => {
     const effect = props.item?.meta?.glowEffect
@@ -200,6 +201,9 @@
 
     if (effect === 'pulse') {
       return { 'nav-glow-pulse': true }
+    }
+    if (effect === 'angel-soft') {
+      return { 'nav-glow-angel-soft': true }
     }
     // Default to angel for true or 'angel'
     return { 'nav-glow-angel': true }
@@ -252,9 +256,8 @@
  */
 
 /* ==========================================================================
-   ANGEL GLOW - Soft, steady, peaceful (for memorial/special pages)
-   Uses soft lavender/white tones - distinct from blue active state
-   Designed to look ethereal in both light and dark modes
+   ANGEL GLOW - Soft lavender glow with subtle background fill
+   For memorial/special pages - visible but gentle
    ========================================================================== */
 .nav-glow-angel {
   position: relative;
@@ -290,7 +293,7 @@
   pointer-events: none;
 }
 
-/* Dark mode adjustments - softer glow to avoid harshness */
+/* Dark mode for angel */
 @media (prefers-color-scheme: dark) {
   .nav-glow-angel {
     box-shadow:
@@ -307,6 +310,41 @@
   .nav-glow-angel::before {
     opacity: 0.25;
     filter: blur(10px);
+  }
+}
+
+/* ==========================================================================
+   ANGEL-SOFT GLOW - Subtle outer halo only, no background
+   More distinct from active state selection
+   ========================================================================== */
+.nav-glow-angel-soft {
+  position: relative;
+}
+
+.nav-glow-angel-soft::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow:
+    0 0 8px rgba(200, 185, 230, 0.4),
+    0 0 16px rgba(220, 200, 240, 0.25),
+    0 0 24px rgba(240, 220, 250, 0.15);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Dark mode for angel-soft */
+@media (prefers-color-scheme: dark) {
+  .nav-glow-angel-soft::before {
+    box-shadow:
+      0 0 6px rgba(220, 210, 255, 0.3),
+      0 0 14px rgba(235, 225, 255, 0.2),
+      0 0 22px rgba(250, 240, 255, 0.1);
   }
 }
 
