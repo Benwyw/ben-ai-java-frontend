@@ -152,16 +152,19 @@ The Whity gallery uses optimized WebP images with lazy loading for fast performa
 # 1. Add your photo to the gallery folder
 cp ~/Downloads/new_cat_photo.jpg src/assets/cat/gallery/Whity_13.jpeg
 
-# 2. Run the optimization script (creates WebP + thumbnails)
+# 2. Run the optimization script (creates WebP + thumbnails, auto-deletes original)
 npm run optimize:images
 
-# 3. Build and deploy
-npm run build:prod:gzip
+# 3. Commit and push (GitHub Actions will deploy automatically)
+git add .
+git commit -m "Add new Whity photo"
+git push
 ```
 
 The `optimize:images` script automatically:
 - Creates WebP thumbnails (300px) for the gallery grid
 - Creates full-size WebP (1200px) for the lightbox
+- **Auto-deletes the original JPEG/PNG** after conversion
 - Achieves ~70% file size reduction
 
 ### File Naming Convention
@@ -176,12 +179,13 @@ Name files with prefix `Whity_` followed by a number:
 ### Output Structure
 ```
 src/assets/cat/gallery/
-├── Whity_1.jpg              # Original (kept for reference)
 ├── thumbnails/
-│   └── Whity_1_thumb.webp   # 300px thumbnail (~6-10KB)
+│   └── Whity_13_thumb.webp   # 300px thumbnail (~6-10KB)
 └── webp/
-    └── Whity_1.webp         # Full-size WebP (~50-150KB)
+    └── Whity_13.webp         # Full-size WebP (~50-150KB)
 ```
+
+> **Note:** Original files are automatically deleted after optimization to keep the repo clean.
 
 ---
 
