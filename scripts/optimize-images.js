@@ -83,7 +83,14 @@ async function processGalleryImages() {
   await ensureDir(webpDir)
 
   const images = await getImageFiles(GALLERY_DIR)
+
+  if (images.length === 0) {
+    console.log('  ℹ️  No new images to process (only WebP files found)')
+    return []
+  }
+
   const results = []
+  const filesToDelete = []
 
   for (const image of images) {
     const inputPath = path.join(GALLERY_DIR, image)
@@ -104,6 +111,18 @@ async function processGalleryImages() {
       { width: FULL_IMAGE_WIDTH, quality: WEBP_QUALITY }
     )
     results.push({ ...fullResult, type: 'full-webp' })
+
+    // Mark original for deletion after successful conversion
+    filesToDelete.push(inputPath)
+  }
+
+  // Delete original files after all conversions succeed
+  if (filesToDelete.length > 0) {
+    console.log('\n🗑️  Cleaning up original files...\n')
+    for (const file of filesToDelete) {
+      await fs.unlink(file)
+      console.log(`  Deleted: ${path.basename(file)}`)
+    }
   }
 
   return results
@@ -114,32 +133,51 @@ async function processHeroImages() {
 
   const results = []
 
+  // Helper to check if conversion needed
+  async function needsConversion(srcPath, destPath) {
+    try {
+      await fs.access(srcPath)
+      const srcStat = await fs.stat(srcPath)
+      try {
+        const destStat = await fs.stat(destPath)
+        // Skip if WebP exists and is newer than source
+        return srcStat.mtime > destStat.mtime
+      } catch {
+        // WebP doesn't exist, needs conversion
+        return true
+      }
+    } catch {
+      // Source doesn't exist
+      return false
+    }
+  }
+
   // Optimize hero.png to WebP
   const heroPng = path.join(ASSETS_DIR, 'Whity_hero.png')
-  try {
-    await fs.access(heroPng)
+  const heroWebp = path.join(ASSETS_DIR, 'Whity_hero.webp')
+  if (await needsConversion(heroPng, heroWebp)) {
     const heroResult = await optimizeImage(
       heroPng,
-      path.join(ASSETS_DIR, 'Whity_hero.webp'),
+      heroWebp,
       { width: 1920, quality: WEBP_QUALITY }
     )
     results.push({ ...heroResult, type: 'hero' })
-  } catch (err) {
-    console.log('  ⚠️  Whity_hero.png not found, skipping')
+  } else {
+    console.log('  ⏭️  Whity_hero.webp is up to date, skipping')
   }
 
   // Optimize hero_2.jpeg to WebP
   const heroJpeg = path.join(ASSETS_DIR, 'Whity_hero_2.jpeg')
-  try {
-    await fs.access(heroJpeg)
+  const hero2Webp = path.join(ASSETS_DIR, 'Whity_hero_2.webp')
+  if (await needsConversion(heroJpeg, hero2Webp)) {
     const heroResult2 = await optimizeImage(
       heroJpeg,
-      path.join(ASSETS_DIR, 'Whity_hero_2.webp'),
+      hero2Webp,
       { width: 1920, quality: WEBP_QUALITY }
     )
     results.push({ ...heroResult2, type: 'hero-2' })
-  } catch (err) {
-    console.log('  ⚠️  Whity_hero_2.jpeg not found, skipping')
+  } else {
+    console.log('  ⏭️  Whity_hero_2.webp is up to date, skipping')
   }
 
   return results
@@ -154,6 +192,14 @@ async function main() {
     const heroResults = await processHeroImages()
 
     const allResults = [...galleryResults, ...heroResults]
+
+    if (allResults.length === 0) {
+      console.log('\n✅ All images are already optimized. Nothing to do.\n')
+      console.log('To add new photos:')
+      console.log('1. Add .jpg/.jpeg/.png files to src/assets/cat/gallery/')
+      console.log('2. Run: npm run optimize:images\n')
+      return
+    }
 
     console.log('\n📊 Optimization Results:\n')
     console.log('-'.repeat(80))
@@ -184,10 +230,13 @@ async function main() {
 
     console.log('=' .repeat(60))
     console.log('\n🎉 Optimization Complete!\n')
-    console.log('Next steps:')
-    console.log('1. Update GallerySection.vue to use the new optimized images')
-    console.log('2. Update HeroSection.vue to use WebP with fallback')
-    console.log('3. Run: npm run build:prod\n')
+
+    if (allResults.length === 0) {
+      console.log('No new images were processed.')
+      console.log('Add new .jpg/.jpeg/.png files to src/assets/cat/gallery/ and run again.\n')
+    } else {
+      console.log('Original files have been deleted. Only optimized WebP files remain.\n')
+    }
 
   } catch (error) {
     console.error('❌ Error during optimization:', error)
