@@ -303,7 +303,11 @@ const routes = [
       {
         path: '/noteformat/eula',
         name: 'Noteformat EULA',
-        // No component needed - external link handled by sidebar
+        // Redirect to external link when accessed directly
+        beforeEnter() {
+          window.location.href = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'
+          return false // Prevent navigation
+        },
         meta: {
           title: 'EULA',
           icon: 'mdi-file-document-outline',
