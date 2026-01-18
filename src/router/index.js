@@ -621,7 +621,7 @@ const routes = [
         name: 'Whity',
         component: () => import('@/views/cat/CatLanding.vue'),
         meta: {
-          title: 'Whity',
+          title: 'Whity 🕊️',
           iconImage: new URL('@/assets/cat/Whity_hero_2_transparent.png', import.meta.url).href,
           navSection: 'main',
           navOrder: 2,
