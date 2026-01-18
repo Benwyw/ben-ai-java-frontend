@@ -35,6 +35,8 @@ export default defineConfig({
       '.vue',
     ],
   },
+  // Include video files as assets
+  assetsInclude: ['**/*.mp4', '**/*.webm', '**/*.ogg', '**/*.mov'],
   server: {
     port: 3000,
   },

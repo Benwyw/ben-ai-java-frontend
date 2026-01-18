@@ -85,3 +85,49 @@ rm Whity_13.jpg
 # 3. That's it! The gallery will automatically include it
 ```
 
+---
+
+## 🎬 Video Optimization Guide
+
+### Prerequisites
+Install FFmpeg (macOS):
+```bash
+brew install ffmpeg
+```
+
+### Compress Video for Web (Hero Background)
+```bash
+# Optimized for web: 720p, no audio, 10 seconds, fast start
+ffmpeg -i INPUT.MOV -vcodec libx264 -crf 28 -preset fast -vf "scale=720:-2" -an -movflags +faststart -t 10 OUTPUT.mp4
+```
+
+### Parameters Explained
+| Parameter | Description |
+|-----------|-------------|
+| `-vcodec libx264` | H.264 codec (best browser support) |
+| `-crf 28` | Quality (18-28 is good, higher = smaller file) |
+| `-preset fast` | Encoding speed (fast/medium/slow) |
+| `-vf "scale=720:-2"` | Scale to 720p width, auto height |
+| `-an` | Remove audio (for background videos) |
+| `-movflags +faststart` | Enable streaming before full download |
+| `-t 10` | Limit to 10 seconds |
+
+### Alternative Presets
+```bash
+# Higher quality (larger file ~500KB-1MB)
+ffmpeg -i INPUT.MOV -vcodec libx264 -crf 23 -preset medium -vf "scale=1080:-2" -an -movflags +faststart -t 15 OUTPUT.mp4
+
+# Smaller file (lower quality ~100-200KB)
+ffmpeg -i INPUT.MOV -vcodec libx264 -crf 32 -preset fast -vf "scale=480:-2" -an -movflags +faststart -t 10 OUTPUT.mp4
+
+# Keep audio (for videos that need sound)
+ffmpeg -i INPUT.MOV -vcodec libx264 -crf 28 -preset fast -vf "scale=720:-2" -acodec aac -b:a 128k -movflags +faststart OUTPUT.mp4
+```
+
+### Recommended Video Sizes
+| Use Case | Target Size | Settings |
+|----------|-------------|----------|
+| Hero background | 200-500 KB | 720p, CRF 28, 10s max |
+| Feature video | 1-3 MB | 1080p, CRF 23, 30s max |
+| Full video | 5-10 MB | 1080p, CRF 20, with audio |
+

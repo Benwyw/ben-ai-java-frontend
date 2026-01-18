@@ -4,13 +4,31 @@
     rounded="xl"
     variant="flat"
   >
-    <v-img
-      :src="heroImage"
-      alt="Whity the Cat"
-      class="rounded-xl"
-      cover
-      height="350"
-    >
+    <div class="hero-container rounded-xl">
+      <!-- Video Background -->
+      <video
+        ref="videoRef"
+        class="hero-video"
+        autoplay
+        loop
+        muted
+        playsinline
+        preload="metadata"
+        :poster="heroImage"
+        @loadeddata="onVideoLoaded"
+      >
+        <source :src="heroVideo" type="video/mp4">
+      </video>
+
+      <!-- Fallback Image (shows while video loads) -->
+      <img
+        v-if="!videoLoaded"
+        :src="heroImage"
+        alt="Whity the Cat"
+        class="hero-fallback"
+      >
+
+      <!-- Content Overlay -->
       <div class="d-flex align-center justify-center fill-height hero-overlay">
         <div class="text-center px-4">
           <p class="text-body-2 text-white mb-1 text-shadow">✨ 🕊️ ✨</p>
@@ -30,16 +48,70 @@
           </p>
         </div>
       </div>
-    </v-img>
+    </div>
   </v-card>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
   import heroImage from '@/assets/cat/Whity_hero.png'
+  import heroVideo from '@/assets/cat/Whity_hero_video.mp4'
+
+  const videoRef = ref(null)
+  const videoLoaded = ref(false)
+
+  const onVideoLoaded = () => {
+    videoLoaded.value = true
+  }
 </script>
 
 <style scoped>
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 223, 186, 0.9) 50%,
+    rgba(173, 216, 230, 0.9) 100%
+  );
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+}
+
+.hero-fallback {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 1;
+}
+
 .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
   background: linear-gradient(
     to bottom,
     rgba(255, 255, 255, 0.3) 0%,
@@ -47,7 +119,6 @@
     rgba(173, 216, 230, 0.5) 70%,
     rgba(255, 255, 255, 0.4) 100%
   );
-  backdrop-filter: brightness(1.1);
 }
 
 .text-shadow {
