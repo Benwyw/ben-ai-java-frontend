@@ -46,6 +46,12 @@ import { createRouter, createWebHistory } from 'vue-router'
  *   - Set to true to have the group expanded when the page loads
  *   - Omit or set to false to keep the group collapsed by default
  *
+ * @property {string} externalLink - External URL to open in new tab (optional)
+ *   - When set, clicking the nav item opens this URL in a new browser tab
+ *   - Shows an external link icon (mdi-open-in-new) as indicator
+ *   - No component needed for the route when using this
+ *   - Example: externalLink: 'https://example.com/page'
+ *
  * ============================================================================
  * AUTHENTICATION & PERMISSION META PROPERTIES
  * ============================================================================
@@ -297,13 +303,11 @@ const routes = [
       {
         path: '/noteformat/eula',
         name: 'Noteformat EULA',
-        // External redirect to Apple's Standard EULA (no internal page)
-        beforeEnter() {
-          window.location.replace('https://www.apple.com/legal/internet-services/itunes/dev/stdeula/')
-        },
+        // No component needed - external link handled by sidebar
         meta: {
           title: 'EULA',
           icon: 'mdi-file-document-outline',
+          externalLink: 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/',
           navSection: 'noteformat',
           navOrder: 1,
           parent: 'Noteformat',

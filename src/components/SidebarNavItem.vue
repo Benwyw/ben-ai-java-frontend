@@ -46,6 +46,7 @@
       - navOrder: Order within section (optional, lower = higher priority)
       - navHidden: Set to true to hide from sidebar (optional)
       - defaultExpanded: Set to true to expand group by default (optional)
+      - externalLink: External URL to open in new tab (shows mdi-open-in-new icon)
       - requiresAuth: Set to true to require authentication (optional)
       - requiredRoles: Array of roles that can access (optional)
       - hideNavIfNoAccess: Hide from nav if no access (optional, default: false)
@@ -103,6 +104,32 @@
   </v-list-group>
 
   <!-- No children: render as simple leaf item -->
+  <!-- External link: opens in new tab -->
+  <v-list-item
+    v-else-if="item.meta?.externalLink"
+    :class="glowEffectClass"
+    color="primary"
+    :href="item.meta.externalLink"
+    :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+    rounded="xl"
+    target="_blank"
+    rel="noopener noreferrer"
+    :title="item.meta?.title || item.name"
+    :value="item.name"
+  >
+    <!-- Custom image icon -->
+    <template v-if="item.meta?.iconImage" #prepend>
+      <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+        <v-img :src="item.meta.iconImage" />
+      </v-avatar>
+    </template>
+    <!-- Show external link icon -->
+    <template #append>
+      <v-icon color="grey" size="small">mdi-open-in-new</v-icon>
+    </template>
+  </v-list-item>
+
+  <!-- Internal link: uses vue-router -->
   <v-list-item
     v-else
     :class="glowEffectClass"
