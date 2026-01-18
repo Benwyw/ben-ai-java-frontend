@@ -68,6 +68,9 @@
               <div class="text-body-2 text-medium-emphasis mt-1">
                 12 Jul 2019 — 29 Dec 2024
               </div>
+              <div class="text-caption text-medium-emphasis">
+                Always in our hearts
+              </div>
             </v-card-text>
           </v-card>
         </v-col>
