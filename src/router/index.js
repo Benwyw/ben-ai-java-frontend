@@ -622,7 +622,7 @@ const routes = [
         component: () => import('@/views/cat/CatLanding.vue'),
         meta: {
           title: 'Whity 🕊️',
-          iconImage: new URL('@/assets/cat/Whity_hero_2_transparent.png', import.meta.url).href,
+          iconImage: new URL('@/assets/cat/Whity_icon_64.webp', import.meta.url).href,
           navSection: 'main',
           navOrder: 2,
           glowEffect: 'angel', // Options: 'angel' | 'angel-soft' | 'pulse' | false
