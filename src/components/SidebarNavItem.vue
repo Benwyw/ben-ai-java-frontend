@@ -105,24 +105,40 @@
     />
   </v-list-group>
 
-  <!-- Rail mode: render parent with children as simple item (icon only) -->
-  <v-list-item
-    v-else-if="children && children.length > 0 && rail"
-    :class="{ 'v-list-item--active text-primary': isParentActive, ...glowEffectClass }"
-    color="primary"
-    :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
-    rounded="xl"
-    :title="item.meta?.title || item.name"
-    :to="item.path || '/'"
-    :value="item.name"
-  >
-    <!-- Custom image icon -->
-    <template v-if="item.meta?.iconImage" #prepend>
-      <v-avatar class="nav-icon-avatar" rounded="0" size="24">
-        <v-img :src="item.meta.iconImage" />
-      </v-avatar>
-    </template>
-  </v-list-item>
+  <!-- Rail mode: render parent as icon, then flatten children below -->
+  <template v-else-if="children && children.length > 0 && rail">
+    <!-- Parent item as icon -->
+    <v-list-item
+      :class="{ 'v-list-item--active text-primary': isParentActive, ...glowEffectClass }"
+      color="primary"
+      :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+      rounded="xl"
+      :title="item.meta?.title || item.name"
+      :to="item.path || '/'"
+      :value="item.name"
+    >
+      <!-- Custom image icon -->
+      <template v-if="item.meta?.iconImage" #prepend>
+        <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+          <v-img :src="item.meta.iconImage" />
+        </v-avatar>
+      </template>
+    </v-list-item>
+    <!-- Flattened children as icons -->
+    <SidebarNavItem
+      v-for="child in children"
+      :key="child.name"
+      :children="childrenMap.get(child.name) || []"
+      :children-map="childrenMap"
+      :depth="depth + 1"
+      :is-locked-fn="isLockedFn"
+      :is-open-fn="isOpenFn"
+      :item="child"
+      :on-chevron-click-fn="onChevronClickFn"
+      :on-parent-click-fn="onParentClickFn"
+      :rail="rail"
+    />
+  </template>
 
   <!-- No children: render as simple leaf item -->
   <!-- External link: opens in new tab -->
