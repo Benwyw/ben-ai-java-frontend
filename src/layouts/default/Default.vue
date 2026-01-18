@@ -163,29 +163,6 @@
         />
       </v-list>
 
-      <v-divider />
-
-      <!-- Whity (Cat Memorial) Section -->
-      <v-list
-        v-model:opened="openedGroups"
-        density="compact"
-        nav
-        open-strategy="multiple"
-      >
-        <v-list-subheader v-if="!rail">IN LOVING MEMORY</v-list-subheader>
-        <SidebarNavItem
-          v-for="item in whitySectionItems"
-          :key="item.name"
-          :children="childrenMap.get(item.name) || []"
-          :children-map="childrenMap"
-          :depth="0"
-          :is-locked-fn="isItemLocked"
-          :is-open-fn="isOpen"
-          :item="item"
-          :on-chevron-click-fn="onChevronClick"
-          :on-parent-click-fn="onParentClick"
-        />
-      </v-list>
 
       <!--      &lt;!&ndash; PRODUCTS Section (for future apps) &ndash;&gt;-->
       <!--      <v-list-->
@@ -958,7 +935,6 @@
   const noteformatSectionItems = computed(() => getRootItemsForSection('noteformat'))
   const benkanekiSectionItems = computed(() => getRootItemsForSection('benkaneki'))
   const mcbenwywcomSectionItems = computed(() => getRootItemsForSection('mcbenwywcom'))
-  const whitySectionItems = computed(() => getRootItemsForSection('whity'))
   // const productsSectionItems = computed(() => getRootItemsForSection('products'))
   const legalSectionItems = computed(() => getRootItemsForSection('legal'))
 
