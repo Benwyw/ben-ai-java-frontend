@@ -32,19 +32,24 @@
       <div class="d-flex align-center justify-center fill-height hero-overlay">
         <div class="text-center px-4">
           <p class="text-body-2 text-white mb-1 text-shadow">✨ 🕊️ ✨</p>
-          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-2 text-shadow angel-glow">Whity</h1>
-          <p class="text-h6 text-white mb-2 text-shadow">12 July 2019 — 29 December 2024</p>
-          <p class="text-body-1 text-white mb-4 text-shadow">Forever loved, forever missed 🐱💫</p>
-          <div class="d-flex justify-center ga-3 flex-wrap">
-            <v-chip color="white" prepend-icon="mdi-heart" variant="flat">
-              5 Years of Joy
+          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-1 text-shadow angel-glow">Whity</h1>
+          <p class="text-h6 text-white mb-1 text-shadow">12 July 2019 — 29 December 2024</p>
+          <p class="text-body-2 text-white-darken-1 mb-3 text-shadow">2019年7月12日 — 2024年12月29日</p>
+          <p class="text-body-1 text-white mb-1 text-shadow">Forever loved, forever missed 🐱💫</p>
+          <p class="text-body-2 text-white-darken-1 mb-4 text-shadow">永遠愛你，永遠懷念</p>
+          <div class="d-flex justify-center ga-2 flex-wrap mb-2">
+            <v-chip color="white" prepend-icon="mdi-heart" variant="flat" size="small">
+              5 Years of Joy ｜ 五年的快樂時光
             </v-chip>
-            <v-chip color="white" prepend-icon="mdi-star-four-points" variant="flat">
-              Forever in My Heart
+            <v-chip color="white" prepend-icon="mdi-star-four-points" variant="flat" size="small">
+              Forever in My Heart ｜ 永在我心
             </v-chip>
           </div>
-          <p class="text-body-2 text-white mt-4 text-shadow font-italic">
+          <p class="text-body-2 text-white mt-3 text-shadow font-italic">
             "Until we meet again at the rainbow bridge" 🌈
+          </p>
+          <p class="text-caption text-white-darken-1 text-shadow font-italic">
+            「直到我們在彩虹橋再重逢」
           </p>
         </div>
       </div>
