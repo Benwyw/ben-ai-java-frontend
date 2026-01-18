@@ -68,9 +68,6 @@
               <div class="text-body-2 text-medium-emphasis mt-1">
                 12 Jul 2019 — 29 Dec 2024
               </div>
-              <div class="text-caption text-medium-emphasis">
-                2019年7月12日 — 2024年12月29日
-              </div>
             </v-card-text>
           </v-card>
         </v-col>
