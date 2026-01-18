@@ -105,6 +105,7 @@
   <!-- No children: render as simple leaf item -->
   <v-list-item
     v-else
+    :class="glowEffectClass"
     color="primary"
     :exact="item.path === '' || item.path === '/'"
     :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
@@ -183,6 +184,26 @@
     // Exact match for the parent item's path
     return route.path === props.item.path
   })
+
+  /**
+   * Glow effect class based on meta.glowEffect value
+   *
+   * Usage in router meta:
+   *   glowEffect: 'angel'  - Soft, steady golden glow (memorial/special)
+   *   glowEffect: 'pulse'  - Blinking promotional glow
+   *   glowEffect: true     - Defaults to 'angel'
+   *   glowEffect: false    - No glow (or omit the property)
+   */
+  const glowEffectClass = computed(() => {
+    const effect = props.item?.meta?.glowEffect
+    if (!effect) return {}
+
+    if (effect === 'pulse') {
+      return { 'nav-glow-pulse': true }
+    }
+    // Default to angel for true or 'angel'
+    return { 'nav-glow-angel': true }
+  })
 </script>
 
 <style scoped>
@@ -210,5 +231,132 @@
 /* noinspection CssUnresolvedCustomProperty */
 .v-list-item--active :deep(.v-list-item__prepend > .v-icon) {
   color: rgb(var(--v-theme-primary, 24, 103, 192)) !important;
+}
+
+/**
+ * Glow Effects - Reusable glow animations for special nav items
+ *
+ * Usage: Add `glowEffect: 'angel' | 'pulse' | true` to route meta
+ *
+ * Options:
+ *   glowEffect: 'angel'  - Soft, steady golden glow (memorial/special pages)
+ *   glowEffect: 'pulse'  - Blinking promotional glow (announcements/promos)
+ *   glowEffect: true     - Defaults to 'angel'
+ *
+ * Example:
+ *   meta: {
+ *     title: 'Whity',
+ *     icon: 'mdi-cat',
+ *     glowEffect: 'angel',  // Steady angelic glow
+ *   }
+ */
+
+/* ==========================================================================
+   ANGEL GLOW - Soft, steady, peaceful (for memorial/special pages)
+   Uses soft lavender/white tones - distinct from blue active state
+   Designed to look ethereal in both light and dark modes
+   ========================================================================== */
+.nav-glow-angel {
+  position: relative;
+  box-shadow:
+    0 0 12px rgba(200, 180, 230, 0.35),
+    0 0 24px rgba(220, 200, 240, 0.2);
+  background: linear-gradient(
+    135deg,
+    rgba(210, 195, 235, 0.1) 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    rgba(245, 210, 225, 0.1) 100%
+  );
+  border: none;
+}
+
+.nav-glow-angel::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(200, 180, 230, 0.2) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(245, 210, 225, 0.2) 100%
+  );
+  opacity: 0.4;
+  z-index: -1;
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+/* Dark mode adjustments - softer glow to avoid harshness */
+@media (prefers-color-scheme: dark) {
+  .nav-glow-angel {
+    box-shadow:
+      0 0 10px rgba(230, 220, 255, 0.3),
+      0 0 20px rgba(255, 240, 250, 0.15);
+    background: linear-gradient(
+      135deg,
+      rgba(230, 220, 255, 0.06) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(255, 240, 250, 0.06) 100%
+    );
+  }
+
+  .nav-glow-angel::before {
+    opacity: 0.25;
+    filter: blur(10px);
+  }
+}
+
+/* ==========================================================================
+   PULSE GLOW - Blinking, attention-grabbing (for promotions/announcements)
+   ========================================================================== */
+.nav-glow-pulse {
+  position: relative;
+  animation: pulse-glow-animation 3s ease-in-out infinite;
+}
+
+.nav-glow-pulse::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 215, 0, 0.1) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 215, 0, 0.1) 100%
+  );
+  opacity: 0;
+  animation: pulse-bg-animation 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulse-glow-animation {
+  0%, 100% {
+    box-shadow:
+      0 0 4px rgba(255, 215, 0, 0.2),
+      0 0 8px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 8px rgba(255, 215, 0, 0.4),
+      0 0 16px rgba(255, 255, 255, 0.2),
+      0 0 24px rgba(255, 215, 0, 0.15);
+  }
+}
+
+@keyframes pulse-bg-animation {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 </style>
