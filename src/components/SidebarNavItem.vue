@@ -107,8 +107,31 @@
 
   <!-- Rail mode: render parent as icon, then flatten children below -->
   <template v-else-if="children && children.length > 0 && rail">
-    <!-- Parent item as icon -->
+    <!-- Parent item as icon (with tooltip for locked items) -->
+    <v-tooltip v-if="isLocked" location="right" :text="'Login required'">
+      <template #activator="{ props: tooltipProps }">
+        <v-list-item
+          v-bind="tooltipProps"
+          class="nav-item-locked"
+          :class="{ 'v-list-item--active text-primary': isParentActive, ...glowEffectClass }"
+          color="primary"
+          :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+          rounded="xl"
+          :title="item.meta?.title || item.name"
+          :to="item.path || '/'"
+          :value="item.name"
+        >
+          <!-- Custom image icon -->
+          <template v-if="item.meta?.iconImage" #prepend>
+            <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+              <v-img :src="item.meta.iconImage" />
+            </v-avatar>
+          </template>
+        </v-list-item>
+      </template>
+    </v-tooltip>
     <v-list-item
+      v-else
       :class="{ 'v-list-item--active text-primary': isParentActive, ...glowEffectClass }"
       color="primary"
       :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
@@ -167,6 +190,31 @@
   </v-list-item>
 
   <!-- Internal link: uses vue-router -->
+  <!-- Rail mode with locked item: show tooltip -->
+  <v-tooltip v-else-if="rail && isLocked" location="right" :text="'Login required'">
+    <template #activator="{ props: tooltipProps }">
+      <v-list-item
+        v-bind="tooltipProps"
+        class="nav-item-locked"
+        :class="glowEffectClass"
+        color="primary"
+        :exact="item.path === '' || item.path === '/'"
+        :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+        rounded="xl"
+        :title="item.meta?.title || item.name"
+        :to="item.path || '/'"
+        :value="item.name"
+      >
+        <!-- Custom image icon -->
+        <template v-if="item.meta?.iconImage" #prepend>
+          <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+            <v-img :src="item.meta.iconImage" />
+          </v-avatar>
+        </template>
+      </v-list-item>
+    </template>
+  </v-tooltip>
+  <!-- Normal internal link -->
   <v-list-item
     v-else
     :class="glowEffectClass"
@@ -254,6 +302,13 @@
   })
 
   /**
+   * Check if this item is locked (user doesn't have access)
+   */
+  const isLocked = computed(() => {
+    return props.isLockedFn && props.isLockedFn(props.item)
+  })
+
+  /**
    * Glow effect class based on meta.glowEffect value
    *
    * Usage in router meta:
@@ -286,6 +341,15 @@
 
 :deep(.v-icon) {
   transition: transform 0.2s ease-in-out;
+}
+
+/* Locked nav item styling - dimmed appearance to indicate inaccessible */
+.nav-item-locked {
+  opacity: 0.5;
+}
+
+.nav-item-locked:hover {
+  opacity: 0.7;
 }
 
 /* Custom image icon styling to align with MDI icons */
