@@ -9,7 +9,6 @@
       :permanent="!mobile"
       :rail="!mobile && rail"
       :temporary="mobile"
-      @click="mobile ? null : rail = false"
     >
       <v-list-item
         nav
