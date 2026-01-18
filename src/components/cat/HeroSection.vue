@@ -39,7 +39,7 @@
           <p class="text-body-2 text-white-darken-1 mb-4 text-shadow">永遠愛你，永遠懷念</p>
           <div class="d-flex justify-center ga-2 flex-wrap mb-2">
             <v-chip color="white" prepend-icon="mdi-heart" variant="flat" size="small">
-              5 Years of Joy ｜ 五年的快樂時光
+              5 Years of Joy ｜ 五年快樂時光
             </v-chip>
             <v-chip color="white" prepend-icon="mdi-star-four-points" variant="flat" size="small">
               Forever in My Heart ｜ 永在我心
