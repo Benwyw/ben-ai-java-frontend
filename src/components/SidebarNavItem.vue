@@ -10,6 +10,7 @@
       - children: Array of child route items
       - childrenMap: Map of route name -> children array for recursive lookup
       - depth: Current nesting depth (for styling/indentation if needed)
+      - rail: Boolean indicating if sidebar is in collapsed/rail mode
       - isOpenFn: Function to check if a group is open
       - onParentClickFn: Handler for clicking parent items
       - onChevronClickFn: Handler for clicking chevron toggle
@@ -52,8 +53,8 @@
       - hideNavIfNoAccess: Hide from nav if no access (optional, default: false)
   -->
 
-  <!-- Has children: render as expandable group -->
-  <v-list-group v-if="children && children.length > 0" :value="item.name">
+  <!-- Has children: render as expandable group (only when not in rail mode) -->
+  <v-list-group v-if="children && children.length > 0 && !rail" :value="item.name">
     <template #activator="{ props: activatorProps }">
       <v-list-item
         v-bind="activatorProps"
@@ -100,8 +101,28 @@
       :item="child"
       :on-chevron-click-fn="onChevronClickFn"
       :on-parent-click-fn="onParentClickFn"
+      :rail="rail"
     />
   </v-list-group>
+
+  <!-- Rail mode: render parent with children as simple item (icon only) -->
+  <v-list-item
+    v-else-if="children && children.length > 0 && rail"
+    :class="{ 'v-list-item--active text-primary': isParentActive, ...glowEffectClass }"
+    color="primary"
+    :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+    rounded="xl"
+    :title="item.meta?.title || item.name"
+    :to="item.path || '/'"
+    :value="item.name"
+  >
+    <!-- Custom image icon -->
+    <template v-if="item.meta?.iconImage" #prepend>
+      <v-avatar class="nav-icon-avatar" rounded="0" size="24">
+        <v-img :src="item.meta.iconImage" />
+      </v-avatar>
+    </template>
+  </v-list-item>
 
   <!-- No children: render as simple leaf item -->
   <!-- External link: opens in new tab -->
@@ -123,8 +144,8 @@
         <v-img :src="item.meta.iconImage" />
       </v-avatar>
     </template>
-    <!-- Show external link icon -->
-    <template #append>
+    <!-- Show external link icon (hide in rail mode) -->
+    <template v-if="!rail" #append>
       <v-icon color="grey" size="small">mdi-open-in-new</v-icon>
     </template>
   </v-list-item>
@@ -147,8 +168,8 @@
         <v-img :src="item.meta.iconImage" />
       </v-avatar>
     </template>
-    <!-- Show lock icon if user doesn't have access -->
-    <template v-if="isLockedFn && isLockedFn(item)" #append>
+    <!-- Show lock icon if user doesn't have access (hide in rail mode) -->
+    <template v-if="!rail && isLockedFn && isLockedFn(item)" #append>
       <v-icon color="grey" size="small">mdi-lock</v-icon>
     </template>
   </v-list-item>
@@ -184,6 +205,10 @@
     depth: {
       type: Number,
       default: 0,
+    },
+    rail: {
+      type: Boolean,
+      default: false,
     },
     isOpenFn: {
       type: Function,

@@ -43,6 +43,7 @@
           :item="item"
           :on-chevron-click-fn="onChevronClick"
           :on-parent-click-fn="onParentClick"
+          :rail="rail"
         />
       </v-list>
 
@@ -115,6 +116,7 @@
           :item="item"
           :on-chevron-click-fn="onChevronClick"
           :on-parent-click-fn="onParentClick"
+          :rail="rail"
         />
       </v-list>
 
@@ -139,6 +141,7 @@
           :item="item"
           :on-chevron-click-fn="onChevronClick"
           :on-parent-click-fn="onParentClick"
+          :rail="rail"
         />
       </v-list>
 
@@ -163,6 +166,7 @@
           :item="item"
           :on-chevron-click-fn="onChevronClick"
           :on-parent-click-fn="onParentClick"
+          :rail="rail"
         />
       </v-list>
 
