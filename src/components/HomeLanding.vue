@@ -1,6 +1,6 @@
 <template>
-  <v-container class="fill-height" fluid>
-    <v-row align="center" justify="center">
+  <div class="home-landing">
+    <v-row align="center" justify="center" class="ma-0">
       <v-col cols="12">
         <!-- Title Section -->
         <div class="text-center mb-8">
@@ -14,13 +14,13 @@
       </v-col>
 
       <!-- Product Navigation Cards -->
-      <v-col cols="12" md="6" class="d-flex justify-center">
+      <v-col cols="12" md="6" class="d-flex justify-center px-4">
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
             :elevation="isHovering ? 16 : 4"
             :class="{ 'on-hover': isHovering }"
-            class="product-card pa-8 text-center transition-swing"
+            class="product-card pa-4 pa-sm-8 text-center transition-swing"
             rounded="xl"
             max-width="400"
             width="100%"
@@ -51,13 +51,13 @@
         </v-hover>
       </v-col>
 
-      <v-col cols="12" md="6" class="d-flex justify-center">
+      <v-col cols="12" md="6" class="d-flex justify-center px-4">
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
             :elevation="isHovering ? 16 : 4"
             :class="{ 'on-hover': isHovering }"
-            class="product-card pa-8 text-center transition-swing"
+            class="product-card pa-4 pa-sm-8 text-center transition-swing"
             rounded="xl"
             max-width="400"
             width="100%"
@@ -96,7 +96,7 @@
         </p>
       </v-col>
 
-      <v-col cols="12" sm="6" md="4" class="d-flex justify-center">
+      <v-col cols="12" sm="6" md="4" class="d-flex justify-center px-4">
         <v-card
           class="deprecated-card pa-4 text-center"
           rounded="lg"
@@ -126,7 +126,7 @@
         </v-card>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script setup>
@@ -148,9 +148,16 @@
 </script>
 
 <style scoped>
+.home-landing {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 .product-card {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .product-card.on-hover {
