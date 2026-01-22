@@ -691,6 +691,18 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // If the user used browser back/forward, restore the saved position
+    if (savedPosition) {
+      return savedPosition
+    }
+    // If there's a hash (anchor link), scroll to that element
+    if (to.hash) {
+      return { el: to.hash, behavior: 'smooth' }
+    }
+    // Otherwise, scroll to the top of the page
+    return { top: 0, behavior: 'smooth' }
+  },
 })
 
 // Import SEO composable
