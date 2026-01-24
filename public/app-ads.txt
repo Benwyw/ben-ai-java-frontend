@@ -1,1 +1,7 @@
+# Google AdMob
 google.com, pub-3889194826842081, DIRECT, f08c47fec0942fa0
+
+# Appodeal
+appodeal.com, 185621, DIRECT
+appodeal.com, 185621, RESELLER
+appodeal.com, 4, RESELLER
