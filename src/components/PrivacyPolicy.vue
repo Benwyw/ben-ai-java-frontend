@@ -4,8 +4,8 @@
     <PageHeader
       gradient-class="bg-gradient-indigo"
       icon="mdi-shield-lock"
-      subtitle="How we handle your data"
-      title="Privacy Policy"
+      subtitle="How Ben Kaneki Discord Bot handles your data"
+      title="Ben Kaneki Privacy Policy"
     />
 
     <!-- Privacy Policy Content -->
@@ -21,59 +21,49 @@
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
-  // Keep this date in sync with your public policy URL and App Store Connect "Privacy Policy" link.
-  const lastUpdated = '24 JAN 2026'
+  // Keep this date in sync with your public policy URL.
+  const lastUpdated = '25 JAN 2026'
 
   const sections = [
     {
       title: 'Who We Are',
       content:
-        'This Privacy Policy applies to NoteFormat (the "App"). If you have any questions, contact us at support@benwyw.com.',
+        'This Privacy Policy applies to Ben Kaneki (the "Bot"), a Discord bot. If you have any questions, contact us at support@benwyw.com.',
     },
     {
       title: 'What Information We Collect',
       content:
-        'NoteFormat is designed to work primarily on-device. Depending on how you use the App, we may process: (1) Content you create (notes/expenses) stored on your device; (2) Subscription information (e.g., purchase status/entitlement) to unlock premium features; (3) Basic diagnostics/technical information necessary to keep the App working (such as app version, device/OS version, and error information); (4) Advertising identifiers and related data as described in the Advertising section below. We do not ask for your name, address, or contacts to use the App.',
+        'Ben Kaneki collects minimal data necessary to provide bot functionality. This may include: (1) Discord User IDs and Server IDs for command execution and feature personalization; (2) Message content only when directly interacting with the bot (commands); (3) Basic usage data such as command usage statistics. We do not collect or store private messages, personal information, or data from servers where the bot is not actively being used.',
     },
     {
       title: 'How We Use Information',
       content:
-        'We use information to: (1) Provide core features (creating and organizing notes/expenses); (2) Enable premium features (e.g., report export, biometric lock) based on your subscription status; (3) Troubleshoot, improve performance, and fix bugs; (4) Respond to support requests; and (5) Display advertisements in the free version of the App.',
+        'We use information to: (1) Provide bot functionality and respond to commands; (2) Improve bot features and performance; (3) Troubleshoot issues and fix bugs; and (4) Generate anonymized usage statistics.',
     },
     {
-      title: 'Advertising',
+      title: 'Data Storage & Retention',
       content:
-        'The free version of NoteFormat displays advertisements provided by third-party advertising partners, including Appodeal and its mediation partners (such as Google AdMob, and other ad networks). These partners may collect and use certain data to deliver personalized ads, including: device identifiers (such as IDFA, when you grant permission), IP address, device type and operating system, general location (derived from IP), and ad interaction data. This data is used to show relevant ads and measure ad performance. You can limit ad personalization by adjusting your device settings (Settings > Privacy & Security > Tracking) or by declining the App Tracking Transparency prompt. Premium subscribers do not see ads. For more information, see our partners\' privacy policies: Appodeal (https://appodeal.com/privacy-policy/), Google AdMob (https://policies.google.com/privacy).',
-    },
-    {
-      title: 'Subscriptions & Payments (Apple)',
-      content:
-        'Payments and subscription management are handled by Apple through the App Store. We may receive limited information from Apple (such as subscription/entitlement status) to validate access to premium features. We do not receive your full payment card details.',
+        'User preferences and settings are stored to provide personalized bot experiences. Command logs may be temporarily stored for debugging purposes and are regularly purged. We retain data only as long as necessary to provide the bot services.',
     },
     {
       title: 'Information Sharing',
       content:
-        'We do not sell your personal information. We share information only when necessary to operate the App, such as with Apple for in-app purchases/subscriptions, with advertising partners to display ads (as described above), or if required by law.',
-    },
-    {
-      title: 'Data Storage, Retention & Deletion',
-      content:
-        'Your notes/expense entries are intended to be stored on your device. We retain technical/diagnostic data only as long as needed for troubleshooting and improving the App. You can delete your notes/expense data at any time within the App (or by deleting the App). For subscription data, Apple controls billing records; please manage subscriptions through your Apple ID settings.',
+        'We do not sell your personal information. We do not share your data with third parties except: (1) When required by law; (2) To protect against fraud or abuse; (3) With Discord as required by their Terms of Service and API usage.',
     },
     {
       title: 'Security',
       content:
-        'We take reasonable measures to protect information processed by the App. No method of storage or transmission is 100% secure, so we cannot guarantee absolute security.',
+        'We take reasonable measures to protect information processed by the Bot. Access to stored data is restricted. However, no method of storage or transmission is 100% secure, so we cannot guarantee absolute security.',
     },
     {
-      title: 'Children’s Privacy',
+      title: "Children's Privacy",
       content:
-        'NoteFormat is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact us and we will take appropriate steps.',
+        'Ben Kaneki follows Discord\'s Terms of Service, which require users to be at least 13 years old. We do not knowingly collect personal information from children under 13.',
     },
     {
-      title: 'Your Choices & Privacy Requests',
+      title: 'Your Choices & Data Deletion',
       content:
-        'You can control your data by editing or deleting your notes/expenses in the App. You can control ad personalization through your device\'s privacy settings. If you have privacy questions or wish to request access or deletion related to information we may process (such as diagnostics related to a support request), contact support@benwyw.com.',
+        'You can stop using the bot at any time by removing it from your server or not interacting with it. To request deletion of any stored data associated with your Discord User ID, contact support@benwyw.com.',
     },
     {
       title: 'Changes to this Policy',
