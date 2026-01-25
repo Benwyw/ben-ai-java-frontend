@@ -18,7 +18,7 @@
           <v-list-item-title class="text-h6 font-weight-bold">
             Benwyw
           </v-list-item-title>
-          <v-list-item-subtitle>Development website</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ t('common.developmentWebsite') }}</v-list-item-subtitle>
         </template>
       </v-list-item>
 
@@ -197,7 +197,7 @@
         <v-list v-if="!mobile" density="compact" nav>
           <v-list-item
             :prepend-icon="rail ? 'mdi-chevron-right' : 'mdi-chevron-left'"
-            title="Collapse"
+            :title="t('nav.collapse')"
             @click.stop="rail = !rail"
           />
         </v-list>
@@ -249,6 +249,31 @@
           <template #activator="{ props }">
             <v-btn
               v-bind="props"
+              icon
+              :size="mobile ? 'small' : 'default'"
+              variant="text"
+            >
+              <v-icon>mdi-translate</v-icon>
+            </v-btn>
+          </template>
+          <v-list density="compact">
+            <v-list-item
+              v-for="loc in availableLocales"
+              :key="loc.code"
+              :active="locale === loc.code"
+              @click="changeLocale(loc.code)"
+            >
+              <template #prepend>
+                <span class="mr-2">{{ loc.flag }}</span>
+              </template>
+              <v-list-item-title>{{ loc.name }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+        <v-menu>
+          <template #activator="{ props }">
+            <v-btn
+              v-bind="props"
               :icon="!isLoggedIn"
               :size="mobile ? 'small' : 'default'"
               variant="text"
@@ -269,7 +294,7 @@
               <v-list-item
                 :disabled="isLoggingOut"
                 prepend-icon="mdi-logout"
-                title="Logout"
+                :title="t('auth.logout')"
                 @click="handleLogout"
               >
                 <template #append>
@@ -285,7 +310,7 @@
             <v-list-item
               v-else
               prepend-icon="mdi-login"
-              title="Login"
+              :title="t('auth.login')"
               @click="openLoginDialog"
             />
           </v-list>
@@ -305,16 +330,16 @@
       <v-row justify="center" no-gutters>
         <v-col class="text-center" cols="12">
           <div class="mb-2">
-            <v-btn class="mx-1" size="small" :to="{ path: '/about' }" variant="text">About</v-btn>
-            <v-btn class="mx-1" size="small" :to="{ path: '/guides' }" variant="text">Guides</v-btn>
-            <v-btn class="mx-1" size="small" :to="{ path: '/privacy' }" variant="text">Privacy</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/about' }" variant="text">{{ t('nav.about') }}</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/guides' }" variant="text">{{ t('nav.guides') }}</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/privacy' }" variant="text">{{ t('nav.privacy') }}</v-btn>
             <v-btn
               append-icon="mdi-open-in-new"
               class="mx-1"
               size="small"
               variant="text"
               @click="openInNewTab('/noteformat/eula')"
-            >Terms</v-btn>
+            >{{ t('nav.terms') }}</v-btn>
             <v-btn
               append-icon="mdi-heart"
               class="mx-1"
@@ -325,11 +350,11 @@
               target="_blank"
               variant="text"
             >
-              Support
+              {{ t('nav.support') }}
             </v-btn>
           </div>
           <span class="text-body-2 text-medium-emphasis">
-            Copyright &copy; 2023–{{ new Date().getFullYear() }} WU Yat Wing. All rights reserved.
+            {{ t('common.copyright', { year: new Date().getFullYear() }) }}
           </span>
         </v-col>
       </v-row>
@@ -341,7 +366,7 @@
         <v-card-title class="text-h5 d-flex align-center justify-space-between">
           <div>
             <v-icon class="mr-2" color="warning">mdi-timer-alert</v-icon>
-            Session Expiring Soon
+            {{ t('session.expiringTitle') }}
           </div>
           <v-btn icon size="small" variant="text" @click="minimizeSessionWarning">
             <v-icon>mdi-close</v-icon>
@@ -456,6 +481,7 @@
 
 <script setup>
   import { computed, onBeforeUnmount, onMounted, reactive, ref, watch } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { useRoute, useRouter } from 'vue-router'
   import { useDisplay, useTheme } from 'vuetify'
   import { login as loginApi } from '@/api/login'
@@ -463,9 +489,17 @@
   import AppStoreBanner from '@/components/shared/AppStoreBanner.vue'
   import SidebarNavItem from '@/components/SidebarNavItem.vue'
   import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
+  import { availableLocales, setLocale } from '@/plugins/i18n'
   import { mainRouteChildren } from '@/router'
   import { authStore } from '@/stores/authStore'
   import benwywIcon from '/Benwyw-1024.png'
+
+  // i18n
+  const { locale, t } = useI18n()
+
+  function changeLocale (newLocale) {
+    setLocale(newLocale)
+  }
 
   const route = useRoute()
   const router = useRouter()
