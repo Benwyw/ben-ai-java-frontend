@@ -7,7 +7,30 @@
     "terms": "條款",
     "support": "支持",
     "collapse": "收合",
-    "backToHome": "返回主頁"
+    "backToHome": "返回主頁",
+    "landing": "首頁",
+    "docsAndFaq": "文檔與常見問題",
+    "tutorials": "教學",
+    "eula": "使用條款",
+    "messenger": "訊息",
+    "swagger": "Swagger",
+    "whityWeight": "小白體重",
+    "report": "報告",
+    "termsOfService": "服務條款",
+    "privacyPolicy": "私隱政策",
+    "whity": "小白 🕊️",
+    "gallery": "相簿",
+    "memories": "回憶",
+    "events": "活動",
+    "maps": "地圖",
+    "livemap": "即時地圖",
+    "dynmap": "動態地圖",
+    "login": "登入",
+    "staffList": "員工列表",
+    "buildings": "建築物",
+    "bensMinecraftServer": "Ben's Minecraft Server",
+    "noteformat": "NoteFormat",
+    "benKaneki": "Ben Kaneki"
   },
   "sections": {
     "noteformat": "NOTEFORMAT",
@@ -177,7 +200,7 @@
     "botFeatures": "機器人功能"
   },
   "minecraft": {
-    "title": "Ben 的 Minecraft 伺服器",
+    "title": "Ben's Minecraft Server",
     "viewOnInstagram": "在 Instagram 上查看"
   },
   "messenger": {

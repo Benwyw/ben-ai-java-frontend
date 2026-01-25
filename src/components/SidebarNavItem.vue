@@ -62,7 +62,7 @@
         color="primary"
         :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
         rounded="xl"
-        :title="item.meta?.title || item.name"
+        :title="itemTitle"
         :value="item.name"
         @click="onParentClickFn(item.name)"
       >
@@ -117,7 +117,7 @@
           color="primary"
           :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
           rounded="xl"
-          :title="item.meta?.title || item.name"
+          :title="itemTitle"
           :to="item.path || '/'"
           :value="item.name"
         >
@@ -136,7 +136,7 @@
       color="primary"
       :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
       rounded="xl"
-      :title="item.meta?.title || item.name"
+      :title="itemTitle"
       :to="item.path || '/'"
       :value="item.name"
     >
@@ -174,7 +174,7 @@
     rel="noopener noreferrer"
     rounded="xl"
     target="_blank"
-    :title="item.meta?.title || item.name"
+    :title="itemTitle"
     :value="item.name"
   >
     <!-- Custom image icon -->
@@ -201,7 +201,7 @@
         :exact="item.path === '' || item.path === '/'"
         :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
         rounded="xl"
-        :title="item.meta?.title || item.name"
+        :title="itemTitle"
         :to="item.path || '/'"
         :value="item.name"
       >
@@ -222,7 +222,7 @@
     :exact="item.path === '' || item.path === '/'"
     :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
     rounded="xl"
-    :title="item.meta?.title || item.name"
+    :title="itemTitle"
     :to="item.path || '/'"
     :value="item.name"
   >
@@ -249,8 +249,10 @@
  */
 
   import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { useRoute } from 'vue-router'
 
+  const { t, te } = useI18n()
   const route = useRoute()
 
   const props = defineProps({
@@ -290,6 +292,38 @@
       type: Function,
       required: true,
     },
+  })
+
+  /**
+   * Get translated title for navigation item
+   * Automatically looks up translation in nav.* keys based on the title
+   * Falls back to the original title if no translation found
+   */
+  const itemTitle = computed(() => {
+    const title = props.item?.meta?.title || props.item?.name
+    if (!title) return ''
+
+    // First check if there's an explicit titleKey in meta
+    const titleKey = props.item?.meta?.titleKey
+    if (titleKey && te(titleKey)) {
+      return t(titleKey)
+    }
+
+    // Auto-generate translation key from title
+    // Convert "Docs & FAQ" -> "docsAndFaq", "Whity Weight" -> "whityWeight", etc.
+    const autoKey = 'nav.' + title
+      .replace(/&/g, 'And')
+      .replace(/[^a-zA-Z0-9\s]/g, '')
+      .split(' ')
+      .map((word, index) => index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join('')
+
+    if (te(autoKey)) {
+      return t(autoKey)
+    }
+
+    // Fall back to original title
+    return title
   })
 
   /**
