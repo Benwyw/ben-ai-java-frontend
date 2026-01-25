@@ -519,11 +519,7 @@ const routes = [
         name: 'BenKaneki Terms Of Service',
         component: () => import('@/views/benkaneki/BenKanekiTermsOfService.vue'),
         meta: {
-          title: 'Terms of Service',
-          icon: 'mdi-file-document',
-          navSection: 'benkaneki',
-          navOrder: 7,
-          parent: 'BenKaneki',
+          navHidden: true, // Hidden - internal use only
           seoTitle: 'Ben Kaneki Terms of Service — Benwyw',
           seoDescription: 'Terms of service for using Ben Kaneki Discord Bot.',
           canonicalPath: '/benkaneki/termsofservice',
@@ -534,11 +530,7 @@ const routes = [
         name: 'BenKaneki Privacy Policy',
         component: () => import('@/views/benkaneki/BenKanekiPrivacyPolicy.vue'),
         meta: {
-          title: 'Privacy Policy',
-          icon: 'mdi-shield-lock',
-          navSection: 'benkaneki',
-          navOrder: 8,
-          parent: 'BenKaneki',
+          navHidden: true, // Hidden - internal use only
           seoTitle: 'Ben Kaneki Privacy Policy — Benwyw',
           seoDescription: 'Privacy policy for Ben Kaneki Discord Bot.',
           canonicalPath: '/benkaneki/privacypolicy',
@@ -648,21 +640,21 @@ const routes = [
       },
 
       // ==================== LEGAL SECTION (LEGACY REDIRECTS) ====================
-      // Redirect old legal paths to Ben Kaneki section
+      // Redirect old legal paths to NoteFormat section
       {
         path: '/termsofservice',
         name: 'Terms Of Service',
-        redirect: '/benkaneki/termsofservice',
+        redirect: '/noteformat/eula',
         meta: {
-          navHidden: true, // Redirect to Ben Kaneki section
+          navHidden: true, // Redirect to NoteFormat section
         },
       },
       {
         path: '/privacypolicy',
         name: 'Privacy Policy',
-        redirect: '/benkaneki/privacypolicy',
+        redirect: '/noteformat/privacy',
         meta: {
-          navHidden: true, // Redirect to Ben Kaneki section
+          navHidden: true, // Redirect to NoteFormat section
         },
       },
 
