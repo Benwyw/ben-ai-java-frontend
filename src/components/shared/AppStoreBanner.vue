@@ -13,9 +13,9 @@
         <div class="d-flex align-center pa-2 pl-3">
           <!-- App Icon -->
           <v-avatar
-            size="36"
             class="mr-3 flex-shrink-0"
             rounded="lg"
+            size="36"
           >
             <v-img
               :alt="`${displayData.appName} App Icon`"
@@ -35,6 +35,7 @@
 
           <!-- Actions -->
           <v-btn
+            class="mr-1"
             :color="appearance.buttonColor"
             :href="displayData.appStoreUrl"
             rel="noopener"
@@ -42,15 +43,14 @@
             size="small"
             target="_blank"
             variant="flat"
-            class="mr-1"
           >
             {{ displayData.buttonText }}
           </v-btn>
           <v-btn
+            density="comfortable"
             icon="mdi-close"
             size="x-small"
             variant="text"
-            density="comfortable"
             @click="dismiss"
           />
         </div>
@@ -60,14 +60,14 @@
 </template>
 
 <script setup>
-import { useAppStoreBanner } from '@/composables/useAppStoreBanner'
+  import { useAppStoreBanner } from '@/composables/useAppStoreBanner'
 
-const {
-  isVisible,
-  displayData,
-  appearance,
-  dismiss,
-} = useAppStoreBanner()
+  const {
+    isVisible,
+    displayData,
+    appearance,
+    dismiss,
+  } = useAppStoreBanner()
 </script>
 
 <style scoped>

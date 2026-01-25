@@ -1,6 +1,6 @@
 <template>
   <div class="home-landing">
-    <v-row align="center" justify="center" class="ma-0">
+    <v-row align="center" class="ma-0" justify="center">
       <v-col cols="12">
         <!-- Title Section -->
         <div class="text-center mb-8">
@@ -14,24 +14,24 @@
       </v-col>
 
       <!-- Product Navigation Cards -->
-      <v-col cols="12" md="6" class="d-flex justify-center px-4">
+      <v-col class="d-flex justify-center px-4" cols="12" md="6">
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
-            :elevation="isHovering ? 16 : 4"
-            :class="{ 'on-hover': isHovering }"
             class="product-card pa-4 pa-sm-8 text-center transition-swing"
-            rounded="xl"
+            :class="{ 'on-hover': isHovering }"
+            :elevation="isHovering ? 16 : 4"
             max-width="400"
-            width="100%"
+            rounded="xl"
             tag="article"
+            width="100%"
             @click="navigateTo('/noteformat')"
           >
             <v-img
-              :src="noteformatIcon"
               alt="NoteFormat iOS App - Expense Tracker and Note Taking"
               class="mx-auto mb-4"
               height="128"
+              :src="noteformatIcon"
               width="128"
             />
             <v-card-title class="text-h4 font-weight-bold justify-center" tag="h2">
@@ -43,7 +43,7 @@
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
               Capture expenses, format with templates, import/export easily. Track spending, budgets and reports. Free on the App Store.
             </v-card-text>
-            <v-chip color="primary" variant="tonal" class="mt-2">
+            <v-chip class="mt-2" color="primary" variant="tonal">
               <v-icon start>mdi-apple</v-icon>
               App Store
             </v-chip>
@@ -51,24 +51,24 @@
         </v-hover>
       </v-col>
 
-      <v-col cols="12" md="6" class="d-flex justify-center px-4">
+      <v-col class="d-flex justify-center px-4" cols="12" md="6">
         <v-hover v-slot="{ isHovering, props }">
           <v-card
             v-bind="props"
-            :elevation="isHovering ? 16 : 4"
-            :class="{ 'on-hover': isHovering }"
             class="product-card pa-4 pa-sm-8 text-center transition-swing"
-            rounded="xl"
+            :class="{ 'on-hover': isHovering }"
+            :elevation="isHovering ? 16 : 4"
             max-width="400"
-            width="100%"
+            rounded="xl"
             tag="article"
+            width="100%"
             @click="navigateTo('/benkaneki')"
           >
             <v-img
-              :src="benkanekiIcon"
               alt="Ben Kaneki Discord Bot"
               class="mx-auto mb-4"
               height="128"
+              :src="benkanekiIcon"
               width="128"
             />
             <v-card-title class="text-h4 font-weight-bold justify-center">
@@ -80,8 +80,8 @@
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
               A multi-purpose Discord bot with web dashboard for utilities and automation.
             </v-card-text>
-            <v-chip color="info" variant="tonal" class="mt-2">
-              <img :src="discordIcon" alt="Discord" class="discord-icon mr-2" />
+            <v-chip class="mt-2" color="info" variant="tonal">
+              <img alt="Discord" class="discord-icon mr-2" :src="discordIcon">
               Discord
             </v-chip>
           </v-card>
@@ -89,28 +89,28 @@
       </v-col>
 
       <!-- Deprecated Products Section -->
-      <v-col cols="12" class="mt-8">
+      <v-col class="mt-8" cols="12">
         <v-divider class="mb-4" />
         <p class="text-body-2 text-medium-emphasis text-center mb-4">
           Legacy Products
         </p>
       </v-col>
 
-      <v-col cols="12" sm="6" md="4" class="d-flex justify-center px-4">
+      <v-col class="d-flex justify-center px-4" cols="12" md="4" sm="6">
         <v-card
           class="deprecated-card pa-4 text-center"
-          rounded="lg"
           max-width="280"
-          width="100%"
+          rounded="lg"
           variant="outlined"
+          width="100%"
           @click="navigateTo('/mcbenwywcom')"
         >
-<!--          <v-icon size="48" color="grey" class="mb-2">mdi-instagram</v-icon>-->
+          <!--          <v-icon size="48" color="grey" class="mb-2">mdi-instagram</v-icon>-->
           <v-img
-            :src="mcbenwywIcon"
             alt="mcbenwywcom"
             class="mx-auto mb-2"
             height="48"
+            :src="mcbenwywIcon"
             width="48"
           />
           <v-card-title class="text-subtitle-1 font-weight-medium justify-center text-grey">
@@ -119,8 +119,8 @@
           <v-card-subtitle class="text-caption text-grey-darken-1">
             Deprecated
           </v-card-subtitle>
-          <v-chip size="small" color="grey" variant="outlined" class="mt-2">
-            <v-icon start size="small">mdi-instagram</v-icon>
+          <v-chip class="mt-2" color="grey" size="small" variant="outlined">
+            <v-icon size="small" start>mdi-instagram</v-icon>
             View on Instagram
           </v-chip>
         </v-card>
@@ -131,10 +131,10 @@
 
 <script setup>
   import { useRouter } from 'vue-router'
-  import noteformatIcon from '@/assets/NoteFormat-120-transparent.png'
   import benkanekiIcon from '@/assets/BenKaneki-120.png'
   import discordIcon from '@/assets/discord.svg'
   import mcbenwywIcon from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
+  import noteformatIcon from '@/assets/NoteFormat-120-transparent.png'
 
   const router = useRouter()
 

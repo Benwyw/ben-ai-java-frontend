@@ -8,13 +8,13 @@
       <!-- Video Background -->
       <video
         ref="videoRef"
-        class="hero-video"
         autoplay
+        class="hero-video"
         loop
         muted
         playsinline
-        preload="metadata"
         :poster="heroImage"
+        preload="metadata"
         @loadeddata="onVideoLoaded"
       >
         <source :src="heroVideo" type="video/mp4">
@@ -23,9 +23,9 @@
       <!-- Fallback Image (shows while video loads) -->
       <img
         v-if="!videoLoaded"
-        :src="heroImage"
         alt="Whity the Cat"
         class="hero-fallback"
+        :src="heroImage"
       >
 
       <!-- Content Overlay -->
@@ -38,10 +38,10 @@
           <p class="text-body-1 text-white mb-1 text-shadow">Forever loved, forever missed 🐱💫</p>
           <p class="text-body-2 text-white-darken-1 mb-4 text-shadow">永遠愛你，永遠懷念</p>
           <div class="d-flex justify-center ga-2 flex-wrap mb-2">
-            <v-chip color="white" prepend-icon="mdi-heart" variant="flat" size="small">
+            <v-chip color="white" prepend-icon="mdi-heart" size="small" variant="flat">
               5 Years of Joy ｜ 五年快樂時光
             </v-chip>
-            <v-chip color="white" prepend-icon="mdi-star-four-points" variant="flat" size="small">
+            <v-chip color="white" prepend-icon="mdi-star-four-points" size="small" variant="flat">
               Forever in My Heart ｜ 永在我心
             </v-chip>
           </div>
@@ -66,8 +66,7 @@
   const videoRef = ref(null)
   const videoLoaded = ref(false)
 
-
-  const onVideoLoaded = () => {
+  function onVideoLoaded () {
     videoLoaded.value = true
   }
 </script>

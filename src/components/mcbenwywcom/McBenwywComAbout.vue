@@ -7,11 +7,11 @@
       variant="flat"
     >
       <v-img
-        :src="bannerImage"
         alt="Ben's Minecraft Server Banner"
         class="rounded-xl"
         cover
         height="300"
+        :src="bannerImage"
       >
         <div class="d-flex align-center justify-center fill-height" style="background: rgba(0,0,0,0.4);">
           <div class="text-center">
@@ -99,11 +99,11 @@
           <v-col cols="12" md="4">
             <v-card rounded="xl" variant="outlined">
               <v-img
-                :src="fullsizeImage"
                 alt="Server Fullsize"
                 class="rounded-xl"
-                height="200"
                 cover
+                height="200"
+                :src="fullsizeImage"
               />
               <v-card-text class="text-center">
                 <div class="text-subtitle-1 font-weight-bold">Server Spawn</div>
@@ -113,11 +113,11 @@
           <v-col cols="12" md="4">
             <v-card rounded="xl" variant="outlined">
               <v-img
-                :src="ownerStatuesImage"
                 alt="Owner Statues"
                 class="rounded-xl"
-                height="200"
                 cover
+                height="200"
+                :src="ownerStatuesImage"
               />
               <v-card-text class="text-center">
                 <div class="text-subtitle-1 font-weight-bold">Owner Statues</div>
@@ -127,11 +127,11 @@
           <v-col cols="12" md="4">
             <v-card rounded="xl" variant="outlined">
               <v-img
-                :src="staffListImage"
                 alt="Staff List"
                 class="rounded-xl"
-                height="200"
                 cover
+                height="200"
+                :src="staffListImage"
               />
               <v-card-text class="text-center">
                 <div class="text-subtitle-1 font-weight-bold">Staff Team</div>
@@ -150,7 +150,7 @@
       </v-card-title>
       <v-card-text>
         <v-row>
-          <v-col cols="12" sm="6" md="3">
+          <v-col cols="12" md="3" sm="6">
             <v-card
               class="h-100 action-card"
               color="amber"
@@ -192,4 +192,3 @@
   transform: translateY(-4px);
 }
 </style>
-

@@ -43,7 +43,9 @@ function resolveImage (meta, matched = []) {
  * Update or create a meta tag by name attribute
  */
 function upsertMeta (name, content) {
-  if (!content) return
+  if (!content) {
+    return
+  }
   let el = document.querySelector(`meta[name="${name}"]`)
   if (!el) {
     el = document.createElement('meta')
@@ -57,7 +59,9 @@ function upsertMeta (name, content) {
  * Update or create a meta tag by property attribute (for OG tags)
  */
 function upsertMetaProperty (property, content) {
-  if (!content) return
+  if (!content) {
+    return
+  }
   let el = document.querySelector(`meta[property="${property}"]`)
   if (!el) {
     el = document.createElement('meta')
@@ -71,7 +75,9 @@ function upsertMetaProperty (property, content) {
  * Update or create a link tag
  */
 function upsertLink (rel, href) {
-  if (!href) return
+  if (!href) {
+    return
+  }
   let el = document.querySelector(`link[rel="${rel}"]`)
   if (!el) {
     el = document.createElement('link')
@@ -85,12 +91,14 @@ function upsertLink (rel, href) {
  * Update or insert page-specific JSON-LD structured data
  */
 function upsertJsonLd (id, data) {
-  if (!data) return
+  if (!data) {
+    return
+  }
   let el = document.querySelector(`script[data-seo-id="${id}"]`)
   if (!el) {
     el = document.createElement('script')
     el.setAttribute('type', 'application/ld+json')
-    el.setAttribute('data-seo-id', id)
+    el.dataset.seoId = id
     document.head.append(el)
   }
   el.textContent = JSON.stringify(data)
@@ -101,7 +109,9 @@ function upsertJsonLd (id, data) {
  */
 function removeJsonLd (id) {
   const el = document.querySelector(`script[data-seo-id="${id}"]`)
-  if (el) el.remove()
+  if (el) {
+    el.remove()
+  }
 }
 
 /**
@@ -120,7 +130,6 @@ function removeJsonLd (id) {
  * @param {Array} matched - Array of matched route records for image inheritance
  */
 export function updateSeoMeta (meta = {}, path = '/', matched = []) {
-
   const title = meta.seoTitle || meta.title || 'Benwyw'
   const description = meta.seoDescription || 'Benwyw personal website with projects, tools, and documentation.'
   const canonicalPath = meta.canonicalPath || path
@@ -135,8 +144,12 @@ export function updateSeoMeta (meta = {}, path = '/', matched = []) {
   // Primary meta tags
   upsertMeta('title', title)
   upsertMeta('description', description)
-  if (keywords) upsertMeta('keywords', keywords)
-  if (meta.robots) upsertMeta('robots', meta.robots)
+  if (keywords) {
+    upsertMeta('keywords', keywords)
+  }
+  if (meta.robots) {
+    upsertMeta('robots', meta.robots)
+  }
 
   // Canonical link
   upsertLink('canonical', fullUrl)
@@ -172,11 +185,11 @@ export function generateBreadcrumbData (items) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: items.map((item, index) => ({
+    'itemListElement': items.map((item, index) => ({
       '@type': 'ListItem',
-      position: index + 1,
-      name: item.name,
-      item: item.url ? `${CANONICAL_ORIGIN}${item.url}` : undefined,
+      'position': index + 1,
+      'name': item.name,
+      'item': item.url ? `${CANONICAL_ORIGIN}${item.url}` : undefined,
     })),
   }
 }
@@ -188,12 +201,12 @@ export function generateFaqData (faqs) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
+    'mainEntity': faqs.map(faq => ({
       '@type': 'Question',
-      name: faq.question,
-      acceptedAnswer: {
+      'name': faq.question,
+      'acceptedAnswer': {
         '@type': 'Answer',
-        text: faq.answer,
+        'text': faq.answer,
       },
     })),
   }
@@ -206,13 +219,13 @@ export function generateHowToData (title, description, steps) {
   return {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    name: title,
+    'name': title,
     description,
-    step: steps.map((step, index) => ({
+    'step': steps.map((step, index) => ({
       '@type': 'HowToStep',
-      position: index + 1,
-      name: step.name,
-      text: step.text,
+      'position': index + 1,
+      'name': step.name,
+      'text': step.text,
     })),
   }
 }

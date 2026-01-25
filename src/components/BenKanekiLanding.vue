@@ -96,4 +96,3 @@
     getLatestWhityWeight()
   })
 </script>
-

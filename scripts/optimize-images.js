@@ -10,10 +10,10 @@
  * Run: node scripts/optimize-images.js
  */
 
+import { promises as fs } from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
-import { promises as fs } from 'fs'
-import path from 'path'
-import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -27,20 +27,22 @@ const FULL_IMAGE_WIDTH = 1200
 const WEBP_QUALITY = 80
 const JPEG_QUALITY = 80
 
-async function ensureDir(dir) {
+async function ensureDir (dir) {
   try {
     await fs.mkdir(dir, { recursive: true })
-  } catch (err) {
-    if (err.code !== 'EEXIST') throw err
+  } catch (error) {
+    if (error.code !== 'EEXIST') {
+      throw error
+    }
   }
 }
 
-async function getImageFiles(dir) {
+async function getImageFiles (dir) {
   const files = await fs.readdir(dir)
   return files.filter(f => /\.(jpg|jpeg|png)$/i.test(f) && !f.includes('_thumb') && !f.includes('_optimized'))
 }
 
-async function optimizeImage(inputPath, outputPath, options = {}) {
+async function optimizeImage (inputPath, outputPath, options = {}) {
   const { width, quality = WEBP_QUALITY, format = 'webp' } = options
 
   let pipeline = sharp(inputPath)
@@ -48,7 +50,7 @@ async function optimizeImage(inputPath, outputPath, options = {}) {
   if (width) {
     pipeline = pipeline.resize(width, null, {
       withoutEnlargement: true,
-      fit: 'inside'
+      fit: 'inside',
     })
   }
 
@@ -69,11 +71,11 @@ async function optimizeImage(inputPath, outputPath, options = {}) {
     output: path.basename(outputPath),
     inputSize: (inputStats.size / 1024).toFixed(1) + 'KB',
     outputSize: (outputStats.size / 1024).toFixed(1) + 'KB',
-    savings: savings + '%'
+    savings: savings + '%',
   }
 }
 
-async function processGalleryImages() {
+async function processGalleryImages () {
   console.log('\n📸 Processing Gallery Images...\n')
 
   const thumbDir = path.join(GALLERY_DIR, 'thumbnails')
@@ -100,7 +102,7 @@ async function processGalleryImages() {
     const thumbResult = await optimizeImage(
       inputPath,
       path.join(thumbDir, `${baseName}_thumb.webp`),
-      { width: THUMBNAIL_WIDTH, quality: WEBP_QUALITY }
+      { width: THUMBNAIL_WIDTH, quality: WEBP_QUALITY },
     )
     results.push({ ...thumbResult, type: 'thumbnail' })
 
@@ -108,7 +110,7 @@ async function processGalleryImages() {
     const fullResult = await optimizeImage(
       inputPath,
       path.join(webpDir, `${baseName}.webp`),
-      { width: FULL_IMAGE_WIDTH, quality: WEBP_QUALITY }
+      { width: FULL_IMAGE_WIDTH, quality: WEBP_QUALITY },
     )
     results.push({ ...fullResult, type: 'full-webp' })
 
@@ -128,13 +130,13 @@ async function processGalleryImages() {
   return results
 }
 
-async function processHeroImages() {
+async function processHeroImages () {
   console.log('\n🎬 Processing Hero Images...\n')
 
   const results = []
 
   // Helper to check if conversion needed
-  async function needsConversion(srcPath, destPath) {
+  async function needsConversion (srcPath, destPath) {
     try {
       await fs.access(srcPath)
       const srcStat = await fs.stat(srcPath)
@@ -159,7 +161,7 @@ async function processHeroImages() {
     const heroResult = await optimizeImage(
       heroPng,
       heroWebp,
-      { width: 1920, quality: WEBP_QUALITY }
+      { width: 1920, quality: WEBP_QUALITY },
     )
     results.push({ ...heroResult, type: 'hero' })
   } else {
@@ -173,7 +175,7 @@ async function processHeroImages() {
     const heroResult2 = await optimizeImage(
       heroJpeg,
       hero2Webp,
-      { width: 1920, quality: WEBP_QUALITY }
+      { width: 1920, quality: WEBP_QUALITY },
     )
     results.push({ ...heroResult2, type: 'hero-2' })
   } else {
@@ -183,9 +185,9 @@ async function processHeroImages() {
   return results
 }
 
-async function main() {
+async function main () {
   console.log('🚀 Starting Image Optimization for Whity Page\n')
-  console.log('=' .repeat(60))
+  console.log('='.repeat(60))
 
   try {
     const galleryResults = await processGalleryImages()
@@ -210,17 +212,17 @@ async function main() {
     let totalOutputSize = 0
 
     for (const r of allResults) {
-      const inputKB = parseFloat(r.inputSize)
-      const outputKB = parseFloat(r.outputSize)
+      const inputKB = Number.parseFloat(r.inputSize)
+      const outputKB = Number.parseFloat(r.outputSize)
       totalInputSize += inputKB
       totalOutputSize += outputKB
 
       console.log(
-        r.type.padEnd(12) +
-        r.input.substring(0, 20).padEnd(22) +
-        r.output.substring(0, 26).padEnd(28) +
-        (r.inputSize + '→' + r.outputSize).padEnd(10) +
-        r.savings
+        r.type.padEnd(12)
+        + r.input.slice(0, 20).padEnd(22)
+        + r.output.slice(0, 26).padEnd(28)
+        + (r.inputSize + '→' + r.outputSize).padEnd(10)
+        + r.savings,
       )
     }
 
@@ -228,7 +230,7 @@ async function main() {
     console.log(`\n✅ Total: ${totalInputSize.toFixed(1)}KB → ${totalOutputSize.toFixed(1)}KB`)
     console.log(`💾 Total Savings: ${((1 - totalOutputSize / totalInputSize) * 100).toFixed(1)}%\n`)
 
-    console.log('=' .repeat(60))
+    console.log('='.repeat(60))
     console.log('\n🎉 Optimization Complete!\n')
 
     if (allResults.length === 0) {
@@ -237,7 +239,6 @@ async function main() {
     } else {
       console.log('Original files have been deleted. Only optimized WebP files remain.\n')
     }
-
   } catch (error) {
     console.error('❌ Error during optimization:', error)
     process.exit(1)

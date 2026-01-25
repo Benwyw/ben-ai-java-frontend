@@ -8,6 +8,6 @@
  *   import { HeroSection, GallerySection, MemoriesSection } from '@/components/cat'
  */
 
-export { default as HeroSection } from './HeroSection.vue'
 export { default as GallerySection } from './GallerySection.vue'
+export { default as HeroSection } from './HeroSection.vue'
 export { default as MemoriesSection } from './MemoriesSection.vue'

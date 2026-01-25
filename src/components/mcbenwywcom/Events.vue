@@ -31,12 +31,12 @@
         Event Timeline
       </v-card-title>
       <v-card-text>
-        <v-timeline side="end" density="compact">
+        <v-timeline density="compact" side="end">
           <v-timeline-item
             dot-color="grey"
             size="small"
           >
-            <v-card variant="outlined" rounded="xl">
+            <v-card rounded="xl" variant="outlined">
               <v-card-text>
                 <div class="text-subtitle-2 font-weight-bold">Event coming soon...</div>
                 <div class="text-caption text-medium-emphasis">Details to be added</div>
@@ -47,7 +47,7 @@
             dot-color="grey"
             size="small"
           >
-            <v-card variant="outlined" rounded="xl">
+            <v-card rounded="xl" variant="outlined">
               <v-card-text>
                 <div class="text-subtitle-2 font-weight-bold">Event coming soon...</div>
                 <div class="text-caption text-medium-emphasis">Details to be added</div>
@@ -58,7 +58,7 @@
             dot-color="grey"
             size="small"
           >
-            <v-card variant="outlined" rounded="xl">
+            <v-card rounded="xl" variant="outlined">
               <v-card-text>
                 <div class="text-subtitle-2 font-weight-bold">Event coming soon...</div>
                 <div class="text-caption text-medium-emphasis">Details to be added</div>
@@ -79,4 +79,3 @@
   background: linear-gradient(135deg, #9C27B0 0%, #4A148C 100%);
 }
 </style>
-

@@ -29,10 +29,10 @@
 
       <!-- Memory highlights -->
       <v-row>
-        <v-col cols="12" sm="6" md="4">
-          <v-card variant="tonal" color="pink" rounded="lg" class="h-100">
+        <v-col cols="12" md="4" sm="6">
+          <v-card class="h-100" color="pink" rounded="lg" variant="tonal">
             <v-card-text class="text-center">
-              <v-icon size="40" color="pink" class="mb-2">mdi-paw</v-icon>
+              <v-icon class="mb-2" color="pink" size="40">mdi-paw</v-icon>
               <div class="text-h6 font-weight-bold">Playful Spirit</div>
               <div class="text-body-2 font-weight-medium">活潑的心靈</div>
               <div class="text-body-2 text-medium-emphasis mt-1">
@@ -44,10 +44,10 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" md="4">
-          <v-card variant="tonal" color="purple" rounded="lg" class="h-100">
+        <v-col cols="12" md="4" sm="6">
+          <v-card class="h-100" color="purple" rounded="lg" variant="tonal">
             <v-card-text class="text-center">
-              <v-icon size="40" color="purple" class="mb-2">mdi-sofa</v-icon>
+              <v-icon class="mb-2" color="purple" size="40">mdi-sofa</v-icon>
               <div class="text-h6 font-weight-bold">Cuddle Expert</div>
               <div class="text-body-2 font-weight-medium">攬攬專家</div>
               <div class="text-body-2 text-medium-emphasis mt-1">
@@ -59,10 +59,10 @@
             </v-card-text>
           </v-card>
         </v-col>
-        <v-col cols="12" sm="6" md="4">
-          <v-card variant="tonal" color="orange" rounded="lg" class="h-100">
+        <v-col cols="12" md="4" sm="6">
+          <v-card class="h-100" color="orange" rounded="lg" variant="tonal">
             <v-card-text class="text-center">
-              <v-icon size="40" color="orange" class="mb-2">mdi-star</v-icon>
+              <v-icon class="mb-2" color="orange" size="40">mdi-star</v-icon>
               <div class="text-h6 font-weight-bold">Forever Loved</div>
               <div class="text-body-2 font-weight-medium">永遠被愛惜</div>
               <div class="text-body-2 text-medium-emphasis mt-1">

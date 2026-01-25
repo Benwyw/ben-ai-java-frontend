@@ -114,10 +114,10 @@
       </v-card-title>
       <v-card-text>
         <v-img
-          class="rounded-xl"
-          :src="staffListImage"
           alt="mc.benwyw.com Staff List"
+          class="rounded-xl"
           max-height="600"
+          :src="staffListImage"
         />
       </v-card-text>
     </v-card>
@@ -147,23 +147,29 @@
 
   function getRoleColor (role) {
     switch (role) {
-      case 'Owner':
+      case 'Owner': {
         return 'red'
-      case 'Manager':
+      }
+      case 'Manager': {
         return 'orange'
-      default:
+      }
+      default: {
         return 'grey'
+      }
     }
   }
 
   function getRoleIcon (role) {
     switch (role) {
-      case 'Owner':
+      case 'Owner': {
         return 'mdi-crown'
-      case 'Manager':
+      }
+      case 'Manager': {
         return 'mdi-shield-star'
-      default:
+      }
+      default: {
         return 'mdi-account'
+      }
     }
   }
 </script>
@@ -177,4 +183,3 @@
   height: 100%;
 }
 </style>
-

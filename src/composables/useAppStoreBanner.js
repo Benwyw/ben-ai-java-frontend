@@ -12,7 +12,7 @@ import appStoreBannerConfig from '@/config/appStoreBanner'
 /**
  * Detect user's platform and browser
  */
-function detectPlatform() {
+function detectPlatform () {
   const ua = navigator.userAgent
   const platform = navigator.platform || ''
 
@@ -45,16 +45,26 @@ function detectPlatform() {
 /**
  * Check if banner should show based on platform settings
  */
-function shouldShowOnPlatform(platform, config) {
+function shouldShowOnPlatform (platform, config) {
   const { targetPlatforms } = config
 
   // Never show on iOS - native Smart App Banner handles this
-  if (platform.isIOS) return false
+  if (platform.isIOS) {
+    return false
+  }
 
-  if (platform.isMacSafari && targetPlatforms.macSafari) return true
-  if (platform.isMacOtherBrowser && targetPlatforms.macOtherBrowsers) return true
-  if (platform.isWindows && targetPlatforms.windows) return true
-  if (platform.isLinux && targetPlatforms.linux) return true
+  if (platform.isMacSafari && targetPlatforms.macSafari) {
+    return true
+  }
+  if (platform.isMacOtherBrowser && targetPlatforms.macOtherBrowsers) {
+    return true
+  }
+  if (platform.isWindows && targetPlatforms.windows) {
+    return true
+  }
+  if (platform.isLinux && targetPlatforms.linux) {
+    return true
+  }
 
   return platform.isAndroid && targetPlatforms.android
 }
@@ -62,7 +72,7 @@ function shouldShowOnPlatform(platform, config) {
 /**
  * Check if banner should show on current route
  */
-function shouldShowOnRoute(routePath, config) {
+function shouldShowOnRoute (routePath, config) {
   const { excludedRoutes, includedRoutes } = config
 
   // If includedRoutes is specified and not empty, only show on those routes
@@ -77,10 +87,10 @@ function shouldShowOnRoute(routePath, config) {
 /**
  * Get current dismiss count from localStorage
  */
-function getDismissCount(config) {
+function getDismissCount (config) {
   try {
     const count = localStorage.getItem(config.dismissCountKey)
-    return count ? parseInt(count, 10) : 0
+    return count ? Number.parseInt(count, 10) : 0
   } catch {
     return 0
   }
@@ -89,7 +99,7 @@ function getDismissCount(config) {
 /**
  * Get dismissal duration based on dismiss count (progressive)
  */
-function getDismissDuration(config, dismissCount) {
+function getDismissDuration (config, dismissCount) {
   const { dismissDurations } = config
   // Use the last duration for any dismissals beyond the array length
   const index = Math.min(dismissCount, dismissDurations.length - 1)
@@ -99,15 +109,17 @@ function getDismissDuration(config, dismissCount) {
 /**
  * Check if banner was recently dismissed (with progressive duration)
  */
-function isDismissed(config) {
+function isDismissed (config) {
   try {
     const dismissedAt = localStorage.getItem(config.dismissStorageKey)
-    if (!dismissedAt) return false
+    if (!dismissedAt) {
+      return false
+    }
 
     const dismissCount = getDismissCount(config)
     const dismissDuration = getDismissDuration(config, dismissCount - 1) // -1 because count was already incremented
 
-    const dismissedDate = new Date(parseInt(dismissedAt, 10))
+    const dismissedDate = new Date(Number.parseInt(dismissedAt, 10))
     const now = new Date()
     const daysSinceDismissal = (now - dismissedDate) / (1000 * 60 * 60 * 24)
 
@@ -120,7 +132,7 @@ function isDismissed(config) {
 /**
  * Save dismissal timestamp and increment dismiss count
  */
-function saveDismissal(config) {
+function saveDismissal (config) {
   try {
     // Increment dismiss count
     const currentCount = getDismissCount(config)
@@ -136,7 +148,7 @@ function saveDismissal(config) {
 /**
  * Fetch app data from iTunes Lookup API
  */
-async function fetchAppStoreData(config) {
+async function fetchAppStoreData (config) {
   if (!config.fetchFromAppStore) {
     return null
   }
@@ -166,7 +178,7 @@ async function fetchAppStoreData(config) {
     return {
       appName: app.trackName || config.fallbackData.appName,
       appSubtitle: app.subtitle || config.fallbackData.appSubtitle,
-      appDescription: app.description?.substring(0, 100) + '...' || config.fallbackData.appDescription,
+      appDescription: app.description?.slice(0, 100) + '...' || config.fallbackData.appDescription,
       appIcon: app.artworkUrl512 || app.artworkUrl100 || config.fallbackData.appIcon,
       appPrice: app.formattedPrice || (app.price === 0 ? 'Free' : `$${app.price}`),
       appRating: app.averageUserRating?.toFixed(1) || config.fallbackData.appRating,
@@ -182,7 +194,7 @@ async function fetchAppStoreData(config) {
 /**
  * Main composable for App Store Banner
  */
-export function useAppStoreBanner() {
+export function useAppStoreBanner () {
   const route = useRoute()
   const config = appStoreBannerConfig
 
@@ -194,10 +206,18 @@ export function useAppStoreBanner() {
 
   // Computed properties
   const shouldShow = computed(() => {
-    if (!config.enabled) return false
-    if (!platform.value) return false
-    if (!shouldShowOnPlatform(platform.value, config)) return false
-    if (!shouldShowOnRoute(route.path, config)) return false
+    if (!config.enabled) {
+      return false
+    }
+    if (!platform.value) {
+      return false
+    }
+    if (!shouldShowOnPlatform(platform.value, config)) {
+      return false
+    }
+    if (!shouldShowOnRoute(route.path, config)) {
+      return false
+    }
     return !isDismissed(config)
   })
 
@@ -256,4 +276,3 @@ export function useAppStoreBanner() {
     config,
   }
 }
-

@@ -56,7 +56,7 @@
         'We take reasonable measures to protect information processed by the Bot. Access to stored data is restricted. However, no method of storage or transmission is 100% secure, so we cannot guarantee absolute security.',
     },
     {
-      title: "Children's Privacy",
+      title: 'Children\'s Privacy',
       content:
         'Ben Kaneki follows Discord\'s Terms of Service, which require users to be at least 13 years old. We do not knowingly collect personal information from children under 13.',
     },

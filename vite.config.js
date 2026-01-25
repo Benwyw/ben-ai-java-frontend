@@ -61,7 +61,7 @@ export default defineConfig({
           'vue-vendor': ['vue', 'vue-router'],
         },
         // Asset file naming with hash for caching
-        assetFileNames: (assetInfo) => {
+        assetFileNames: assetInfo => {
           // Keep images in their own folder
           if (/\.(png|jpe?g|gif|svg|webp|ico)$/i.test(assetInfo.name)) {
             return 'assets/images/[name]-[hash][extname]'

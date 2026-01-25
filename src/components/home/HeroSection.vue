@@ -6,10 +6,10 @@
   >
     <v-card-text class="py-12 text-center">
       <v-img
-        class="mb-4 mx-auto drop-shadow"
         alt="Ben Kaneki"
-        src="@/assets/BenKaneki-120.png"
+        class="mb-4 mx-auto drop-shadow"
         height="120"
+        src="@/assets/BenKaneki-120.png"
       />
       <h1 class="text-h3 font-weight-bold text-white mb-2">Ben Kaneki</h1>
       <p class="text-h6 text-white-darken-1 mb-4">Discord bot web application</p>

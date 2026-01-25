@@ -171,9 +171,9 @@
     color="primary"
     :href="item.meta.externalLink"
     :prepend-icon="item.meta?.iconImage ? undefined : item.meta?.icon"
+    rel="noopener noreferrer"
     rounded="xl"
     target="_blank"
-    rel="noopener noreferrer"
     :title="item.meta?.title || item.name"
     :value="item.name"
   >

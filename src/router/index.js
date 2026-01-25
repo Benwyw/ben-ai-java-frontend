@@ -1,6 +1,9 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
 
+// Import SEO composable
+import { generateBreadcrumbData, generateFaqData, updateSeoMeta } from '@/composables/useSeoMeta'
+
 /**
  * ============================================================================
  * Router Configuration with Navigation & Permission Metadata
@@ -280,21 +283,21 @@ const routes = [
           structuredData: {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'NoteFormat iOS App',
-            description: 'NoteFormat – Your Smart Note & Expense Companion for iOS. Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports.',
-            url: 'https://www.benwyw.com/noteformat',
-            mainEntity: {
+            'name': 'NoteFormat iOS App',
+            'description': 'NoteFormat – Your Smart Note & Expense Companion for iOS. Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports.',
+            'url': 'https://www.benwyw.com/noteformat',
+            'mainEntity': {
               '@type': 'SoftwareApplication',
-              name: 'NoteFormat',
-              operatingSystem: 'iOS',
-              applicationCategory: 'FinanceApplication',
-              downloadUrl: 'https://apps.apple.com/app/noteformat/id6756885265',
-              offers: {
+              'name': 'NoteFormat',
+              'operatingSystem': 'iOS',
+              'applicationCategory': 'FinanceApplication',
+              'downloadUrl': 'https://apps.apple.com/app/noteformat/id6756885265',
+              'offers': {
                 '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'USD',
+                'price': '0',
+                'priceCurrency': 'USD',
               },
-              featureList: [
+              'featureList': [
                 'Notes & Expense Tracking with categories and tags',
                 'Budget Management (daily, weekly, monthly, yearly)',
                 'Flexible Import & Export with custom templates',
@@ -314,7 +317,7 @@ const routes = [
         // Handle direct URL access: redirect to external link
         // Note: Sidebar clicks use externalLink meta (opens in new tab)
         // Direct URL access redirects in same tab (avoids popup blocker)
-        beforeEnter() {
+        beforeEnter () {
           window.location.href = 'https://www.apple.com/legal/internet-services/itunes/dev/stdeula/'
           return false // Prevent navigation
         },
@@ -364,13 +367,13 @@ const routes = [
           structuredData: {
             '@context': 'https://schema.org',
             '@type': 'HowTo',
-            name: 'How to Use NoteFormat iOS App',
-            description: 'Learn to track expenses, create budgets, and generate reports with NoteFormat.',
-            step: [
-              { '@type': 'HowToStep', position: 1, name: 'Add Notes', text: 'Add notes with optional amounts (expense or income), organize with categories and tags, use quick add mode for rapid entry.' },
-              { '@type': 'HowToStep', position: 2, name: 'Create Budgets', text: 'Create daily, weekly, monthly, or yearly budgets. Set spending alerts at custom thresholds and track progress visually.' },
-              { '@type': 'HowToStep', position: 3, name: 'Use Templates', text: 'Choose built-in templates (Simple, Full Notes, Detailed, CSV, Markdown) or create custom templates with placeholders.' },
-              { '@type': 'HowToStep', position: 4, name: 'Export Data', text: 'Export formatted text, save to Apple Notes, share via system share sheet, or export CSV reports.' },
+            'name': 'How to Use NoteFormat iOS App',
+            'description': 'Learn to track expenses, create budgets, and generate reports with NoteFormat.',
+            'step': [
+              { '@type': 'HowToStep', 'position': 1, 'name': 'Add Notes', 'text': 'Add notes with optional amounts (expense or income), organize with categories and tags, use quick add mode for rapid entry.' },
+              { '@type': 'HowToStep', 'position': 2, 'name': 'Create Budgets', 'text': 'Create daily, weekly, monthly, or yearly budgets. Set spending alerts at custom thresholds and track progress visually.' },
+              { '@type': 'HowToStep', 'position': 3, 'name': 'Use Templates', 'text': 'Choose built-in templates (Simple, Full Notes, Detailed, CSV, Markdown) or create custom templates with placeholders.' },
+              { '@type': 'HowToStep', 'position': 4, 'name': 'Export Data', 'text': 'Export formatted text, save to Apple Notes, share via system share sheet, or export CSV reports.' },
             ],
           },
         },
@@ -392,14 +395,31 @@ const routes = [
           structuredData: {
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: [
-              { '@type': 'Question', name: 'What is NoteFormat?', acceptedAnswer: { '@type': 'Answer', text: 'NoteFormat is your Smart Note & Expense Companion for iOS. Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports—simple, private, and beautiful.' } },
-              { '@type': 'Question', name: 'Is my data synced across devices?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! Enable iCloud sync in Settings to sync your notes, categories, templates, and budgets across all your Apple devices signed into the same iCloud account.' } },
-              { '@type': 'Question', name: 'Does NoteFormat support Siri?', acceptedAnswer: { '@type': 'Answer', text: 'Yes! Use Siri Shortcuts like "Add a note" for quick entry or "Get my report" for instant spending summaries. Works with Shortcuts app automations.' } },
-              { '@type': 'Question', name: 'What export formats are available?', acceptedAnswer: { '@type': 'Answer', text: 'NoteFormat offers built-in templates: Simple, Full Notes, Detailed, CSV, and Markdown. You can also create custom templates with placeholders like {date}, {category}, {content}, {amount}, {tags}, and {currency}.' } },
-              { '@type': 'Question', name: 'Is NoteFormat free?', acceptedAnswer: { '@type': 'Answer', text: 'Yes, core features are free with ads. Watch rewarded ads to export entries (1 CSV export/day free). Upgrade to Pro for ad-free experience, unlimited exports, custom themes, biometric lock, and detailed reports.' } },
+            'mainEntity': [
+              { '@type': 'Question', 'name': 'What is NoteFormat?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'NoteFormat is your Smart Note & Expense Companion for iOS. Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports—simple, private, and beautiful.' } },
+              { '@type': 'Question', 'name': 'Is my data synced across devices?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes! Enable iCloud sync in Settings to sync your notes, categories, templates, and budgets across all your Apple devices signed into the same iCloud account.' } },
+              { '@type': 'Question', 'name': 'Does NoteFormat support Siri?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes! Use Siri Shortcuts like "Add a note" for quick entry or "Get my report" for instant spending summaries. Works with Shortcuts app automations.' } },
+              { '@type': 'Question', 'name': 'What export formats are available?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'NoteFormat offers built-in templates: Simple, Full Notes, Detailed, CSV, and Markdown. You can also create custom templates with placeholders like {date}, {category}, {content}, {amount}, {tags}, and {currency}.' } },
+              { '@type': 'Question', 'name': 'Is NoteFormat free?', 'acceptedAnswer': { '@type': 'Answer', 'text': 'Yes, core features are free with ads. Watch rewarded ads to export entries (1 CSV export/day free). Upgrade to Pro for ad-free experience, unlimited exports, custom themes, biometric lock, and detailed reports.' } },
             ],
           },
+        },
+      },
+      {
+        path: '/noteformat/support',
+        name: 'Noteformat Support',
+        // External link - redirect to PayPal donation page
+        beforeEnter () {
+          window.open('https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU', '_blank', 'noopener')
+          return false // Prevent navigation
+        },
+        meta: {
+          title: 'Support',
+          icon: 'mdi-heart',
+          externalLink: 'https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU',
+          navSection: 'noteformat',
+          navOrder: 5,
+          parent: 'Noteformat',
         },
       },
 
@@ -434,7 +454,7 @@ const routes = [
           seoTitle: 'Ben Kaneki Home — Benwyw',
           seoDescription: 'Dashboard overview for Ben Kaneki Discord Bot.',
           canonicalPath: '/benkaneki/home',
-          navHidden: true
+          navHidden: true,
         },
       },
       {
@@ -558,7 +578,7 @@ const routes = [
           navOrder: 1,
           defaultExpanded: true,
           seoTitle: 'Ben\'s Minecraft Server — Benwyw',
-          seoDescription: "Ben's Minecraft Server - A deprecated Minecraft Java Edition server preserved for historical purposes.",
+          seoDescription: 'Ben\'s Minecraft Server - A deprecated Minecraft Java Edition server preserved for historical purposes.',
           seoImage: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom_logo.png',
           canonicalPath: '/mcbenwywcom',
         },
@@ -574,7 +594,7 @@ const routes = [
           navOrder: 1,
           parent: 'McBenwywCom',
           seoTitle: 'Ben\'s Minecraft Server About — Benwyw',
-          seoDescription: "About page for Ben's Minecraft Server with server information and gallery.",
+          seoDescription: 'About page for Ben\'s Minecraft Server with server information and gallery.',
           canonicalPath: '/mcbenwywcom/about',
         },
       },
@@ -589,7 +609,7 @@ const routes = [
           navOrder: 2,
           parent: 'McBenwywCom',
           seoTitle: 'Ben\'s Minecraft Server Staff List — Benwyw',
-          seoDescription: "Staff list for Ben's Minecraft Server - meet the team behind Ben\'s Minecraft Server.",
+          seoDescription: 'Staff list for Ben\'s Minecraft Server - meet the team behind Ben\'s Minecraft Server.',
           canonicalPath: '/mcbenwywcom/staff',
         },
       },
@@ -605,7 +625,7 @@ const routes = [
           parent: 'McBenwywCom',
           navHidden: true, // Hidden for future development
           seoTitle: 'Ben\'s Minecraft Server Buildings — Benwyw',
-          seoDescription: "Great buildings showcase from Ben's Minecraft Server.",
+          seoDescription: 'Great buildings showcase from Ben\'s Minecraft Server.',
           canonicalPath: '/mcbenwywcom/buildings',
         },
       },
@@ -621,7 +641,7 @@ const routes = [
           parent: 'McBenwywCom',
           navHidden: true, // Hidden for future development
           seoTitle: 'Ben\'s Minecraft Server Events — Benwyw',
-          seoDescription: "Past events from Ben's Minecraft Server history.",
+          seoDescription: 'Past events from Ben\'s Minecraft Server history.',
           canonicalPath: '/mcbenwywcom/events',
         },
       },
@@ -691,7 +711,7 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior (to, from, savedPosition) {
     // If the user used browser back/forward, restore the saved position
     if (savedPosition) {
       return savedPosition
@@ -704,9 +724,6 @@ const router = createRouter({
     return { top: 0, behavior: 'smooth' }
   },
 })
-
-// Import SEO composable
-import { updateSeoMeta, generateBreadcrumbData, generateFaqData } from '@/composables/useSeoMeta'
 
 router.afterEach(to => {
   // Use the enhanced SEO meta composable with matched routes for image inheritance

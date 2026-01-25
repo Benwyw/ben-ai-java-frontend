@@ -49,52 +49,52 @@
       <v-divider />
 
       <!-- TOOLS Section -->
-<!--      <v-list-->
-<!--        v-model:opened="openedGroups"-->
-<!--        density="compact"-->
-<!--        nav-->
-<!--        open-strategy="multiple"-->
-<!--      >-->
-<!--        <v-list-subheader v-if="!rail">TOOLS</v-list-subheader>-->
-<!--        <SidebarNavItem-->
-<!--          v-for="item in toolsSectionItems"-->
-<!--          :key="item.name"-->
-<!--          :children="childrenMap.get(item.name) || []"-->
-<!--          :children-map="childrenMap"-->
-<!--          :depth="0"-->
-<!--          :is-locked-fn="isItemLocked"-->
-<!--          :is-open-fn="isOpen"-->
-<!--          :item="item"-->
-<!--          :on-chevron-click-fn="onChevronClick"-->
-<!--          :on-parent-click-fn="onParentClick"-->
-<!--        />-->
-<!--      </v-list>-->
+      <!--      <v-list-->
+      <!--        v-model:opened="openedGroups"-->
+      <!--        density="compact"-->
+      <!--        nav-->
+      <!--        open-strategy="multiple"-->
+      <!--      >-->
+      <!--        <v-list-subheader v-if="!rail">TOOLS</v-list-subheader>-->
+      <!--        <SidebarNavItem-->
+      <!--          v-for="item in toolsSectionItems"-->
+      <!--          :key="item.name"-->
+      <!--          :children="childrenMap.get(item.name) || []"-->
+      <!--          :children-map="childrenMap"-->
+      <!--          :depth="0"-->
+      <!--          :is-locked-fn="isItemLocked"-->
+      <!--          :is-open-fn="isOpen"-->
+      <!--          :item="item"-->
+      <!--          :on-chevron-click-fn="onChevronClick"-->
+      <!--          :on-parent-click-fn="onParentClick"-->
+      <!--        />-->
+      <!--      </v-list>-->
 
-<!--      <v-divider />-->
+      <!--      <v-divider />-->
 
       <!-- LEGAL Section -->
-<!--      <v-list-->
-<!--        v-model:opened="openedGroups"-->
-<!--        density="compact"-->
-<!--        nav-->
-<!--        open-strategy="multiple"-->
-<!--      >-->
-<!--        <v-list-subheader v-if="!rail">LEGAL</v-list-subheader>-->
-<!--        <SidebarNavItem-->
-<!--          v-for="item in legalSectionItems"-->
-<!--          :key="item.name"-->
-<!--          :children="childrenMap.get(item.name) || []"-->
-<!--          :children-map="childrenMap"-->
-<!--          :depth="0"-->
-<!--          :is-locked-fn="isItemLocked"-->
-<!--          :is-open-fn="isOpen"-->
-<!--          :item="item"-->
-<!--          :on-chevron-click-fn="onChevronClick"-->
-<!--          :on-parent-click-fn="onParentClick"-->
-<!--        />-->
-<!--      </v-list>-->
+      <!--      <v-list-->
+      <!--        v-model:opened="openedGroups"-->
+      <!--        density="compact"-->
+      <!--        nav-->
+      <!--        open-strategy="multiple"-->
+      <!--      >-->
+      <!--        <v-list-subheader v-if="!rail">LEGAL</v-list-subheader>-->
+      <!--        <SidebarNavItem-->
+      <!--          v-for="item in legalSectionItems"-->
+      <!--          :key="item.name"-->
+      <!--          :children="childrenMap.get(item.name) || []"-->
+      <!--          :children-map="childrenMap"-->
+      <!--          :depth="0"-->
+      <!--          :is-locked-fn="isItemLocked"-->
+      <!--          :is-open-fn="isOpen"-->
+      <!--          :item="item"-->
+      <!--          :on-chevron-click-fn="onChevronClick"-->
+      <!--          :on-parent-click-fn="onParentClick"-->
+      <!--        />-->
+      <!--      </v-list>-->
 
-<!--      <v-divider />-->
+      <!--      <v-divider />-->
 
       <!-- NOTEFORMAT Section -->
       <v-list
@@ -168,7 +168,6 @@
           :rail="rail"
         />
       </v-list>
-
 
       <!--      &lt;!&ndash; PRODUCTS Section (for future apps) &ndash;&gt;-->
       <!--      <v-list-->
@@ -309,7 +308,25 @@
             <v-btn class="mx-1" size="small" :to="{ path: '/about' }" variant="text">About</v-btn>
             <v-btn class="mx-1" size="small" :to="{ path: '/guides' }" variant="text">Guides</v-btn>
             <v-btn class="mx-1" size="small" :to="{ path: '/privacy' }" variant="text">Privacy</v-btn>
-            <v-btn append-icon="mdi-open-in-new" class="mx-1" size="small" variant="text" @click="openInNewTab('/noteformat/eula')">Terms</v-btn>
+            <v-btn
+              append-icon="mdi-open-in-new"
+              class="mx-1"
+              size="small"
+              variant="text"
+              @click="openInNewTab('/noteformat/eula')"
+            >Terms</v-btn>
+            <v-btn
+              append-icon="mdi-heart"
+              class="mx-1"
+              color="pink"
+              href="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
+              rel="noopener"
+              size="small"
+              target="_blank"
+              variant="text"
+            >
+              Support
+            </v-btn>
           </div>
           <span class="text-body-2 text-medium-emphasis">
             Copyright &copy; 2023–{{ new Date().getFullYear() }} WU Yat Wing. All rights reserved.
@@ -443,12 +460,12 @@
   import { useDisplay, useTheme } from 'vuetify'
   import { login as loginApi } from '@/api/login'
   import { logout as logoutApi } from '@/api/logout'
-  import benwywIcon from '/Benwyw-1024.png'
-  import SidebarNavItem from '@/components/SidebarNavItem.vue'
   import AppStoreBanner from '@/components/shared/AppStoreBanner.vue'
+  import SidebarNavItem from '@/components/SidebarNavItem.vue'
   import { ensureFreshToken, getTokenExp } from '@/plugins/axios'
   import { mainRouteChildren } from '@/router'
   import { authStore } from '@/stores/authStore'
+  import benwywIcon from '/Benwyw-1024.png'
 
   const route = useRoute()
   const router = useRouter()

@@ -172,7 +172,6 @@ export const appStoreBannerConfig = {
      */
     linux: false,
 
-
     /**
      * Show on Android (for users who might be interested)
      */

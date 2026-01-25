@@ -3,7 +3,7 @@
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2" color="pink">mdi-image-multiple</v-icon>
       Photo Gallery
-      <v-chip class="ml-2" size="small" color="pink" variant="tonal">
+      <v-chip class="ml-2" color="pink" size="small" variant="tonal">
         {{ galleryPhotos.length }} photos
       </v-chip>
     </v-card-title>
@@ -13,33 +13,33 @@
           v-for="(photo, index) in galleryPhotos"
           :key="photo.name"
           cols="6"
-          sm="4"
           md="3"
+          sm="4"
         >
           <v-hover v-slot="{ isHovering, props }">
             <v-card
               v-bind="props"
-              :elevation="isHovering ? 12 : 2"
               class="transition-swing cursor-pointer"
+              :elevation="isHovering ? 12 : 2"
               rounded="lg"
               @click="openLightbox(index)"
             >
               <v-img
-                :src="photo.thumbnail"
                 :alt="`Whity photo ${index + 1}`"
                 aspect-ratio="1"
                 cover
                 :lazy-src="placeholderImage"
+                :src="photo.thumbnail"
               >
                 <template #placeholder>
                   <v-row
-                    class="fill-height ma-0"
                     align="center"
+                    class="fill-height ma-0"
                     justify="center"
                   >
                     <v-progress-circular
-                      indeterminate
                       color="pink-lighten-3"
+                      indeterminate
                       size="24"
                     />
                   </v-row>
@@ -60,9 +60,9 @@
     <v-card rounded="xl">
       <v-toolbar color="transparent" density="compact">
         <v-btn
+          :disabled="currentIndex === 0"
           icon="mdi-chevron-left"
           variant="text"
-          :disabled="currentIndex === 0"
           @click="prevPhoto"
         />
         <v-spacer />
@@ -71,9 +71,9 @@
         </span>
         <v-spacer />
         <v-btn
+          :disabled="currentIndex === galleryPhotos.length - 1"
           icon="mdi-chevron-right"
           variant="text"
-          :disabled="currentIndex === galleryPhotos.length - 1"
           @click="nextPhoto"
         />
         <v-btn
@@ -84,21 +84,21 @@
       </v-toolbar>
       <v-img
         v-if="galleryPhotos[currentIndex]"
-        :src="getFullImageSrc(currentIndex)"
         :alt="`Whity photo ${currentIndex + 1}`"
-        max-height="70vh"
-        contain
         :class="{ 'opacity-50': lightboxLoading }"
+        contain
+        max-height="70vh"
+        :src="getFullImageSrc(currentIndex)"
       >
         <template #placeholder>
           <v-row
-            class="fill-height ma-0"
             align="center"
+            class="fill-height ma-0"
             justify="center"
           >
             <v-progress-circular
-              indeterminate
               color="pink"
+              indeterminate
             />
           </v-row>
         </template>
@@ -143,7 +143,7 @@
    */
   function extractNumber (filename) {
     const match = filename.match(/Whity_(\d+)/)
-    return match ? parseInt(match[1], 10) : 999
+    return match ? Number.parseInt(match[1], 10) : 999
   }
 
   /**
@@ -183,8 +183,8 @@
         loadedFullImages.value[photo.name] = await photo.fullSizeLoader()
         return loadedFullImages.value[photo.name]
       }
-    } catch (err) {
-      console.warn('Failed to load full image:', photo.name, err)
+    } catch (error) {
+      console.warn('Failed to load full image:', photo.name, error)
     }
 
     // Return thumbnail as fallback
@@ -206,7 +206,7 @@
   const currentIndex = ref(0)
   const lightboxLoading = ref(false)
 
-  const openLightbox = async index => {
+  async function openLightbox (index) {
     currentIndex.value = index
     lightboxOpen.value = true
     lightboxLoading.value = true
@@ -220,7 +220,7 @@
     lightboxLoading.value = false
   }
 
-  const prevPhoto = async () => {
+  async function prevPhoto () {
     if (currentIndex.value > 0) {
       currentIndex.value--
       // Preload previous image
@@ -228,7 +228,7 @@
     }
   }
 
-  const nextPhoto = async () => {
+  async function nextPhoto () {
     if (currentIndex.value < galleryPhotos.value.length - 1) {
       currentIndex.value++
       // Preload next image

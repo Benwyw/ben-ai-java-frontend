@@ -11,6 +11,9 @@
 
     <!-- Features Section -->
     <FeaturesSection :features="features" />
+
+    <!-- Support Section -->
+    <SupportSection />
   </div>
 </template>
 
@@ -19,6 +22,7 @@
   import HeroSection from '@/components/noteformat/HeroSection.vue'
   import QuickActionsSection from '@/components/noteformat/QuickActionsSection.vue'
   import StatsSection from '@/components/noteformat/StatsSection.vue'
+  import SupportSection from '@/components/noteformat/SupportSection.vue'
 
   /**
    * Quick Actions Configuration

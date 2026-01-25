@@ -5,4 +5,3 @@
 <script setup>
   import Swagger from '@/components/Swagger.vue'
 </script>
-
