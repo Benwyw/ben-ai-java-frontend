@@ -8,8 +8,8 @@
     >
       <v-card-text class="py-8 text-center">
         <v-icon class="mb-2" color="white" size="60">mdi-account-group</v-icon>
-        <h1 class="text-h4 font-weight-bold text-white mb-2">Staff List</h1>
-        <p class="text-body-1 text-white-darken-1">Meet the team behind mc.benwyw.com</p>
+        <h1 class="text-h4 font-weight-bold text-white mb-2">{{ t('minecraft.staffListTitle') }}</h1>
+        <p class="text-body-1 text-white-darken-1">{{ t('minecraft.staffListSubtitle') }}</p>
       </v-card-text>
     </v-card>
 
@@ -17,7 +17,7 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="red">mdi-shield-crown</v-icon>
-        Global Staff
+        {{ t('minecraft.globalStaff') }}
       </v-card-title>
       <v-card-text>
         <v-row>
@@ -30,12 +30,12 @@
           >
             <v-card class="h-100" rounded="xl" variant="outlined">
               <v-card-text class="text-center pa-6">
-                <v-avatar class="mb-3" :color="getRoleColor(member.role)" size="64">
-                  <v-icon color="white" size="32">{{ getRoleIcon(member.role) }}</v-icon>
+                <v-avatar class="mb-3" :color="getRoleColor(member.roleKey)" size="64">
+                  <v-icon color="white" size="32">{{ getRoleIcon(member.roleKey) }}</v-icon>
                 </v-avatar>
                 <div class="text-h6 font-weight-bold mb-1">{{ member.name }}</div>
-                <v-chip :color="getRoleColor(member.role)" size="small" variant="tonal">
-                  {{ member.role }}
+                <v-chip :color="getRoleColor(member.roleKey)" size="small" variant="tonal">
+                  {{ t(`minecraft.roles.${member.roleKey}`) }}
                 </v-chip>
               </v-card-text>
             </v-card>
@@ -48,7 +48,7 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="blue">mdi-account-voice</v-icon>
-        Public Relations Team
+        {{ t('minecraft.publicRelationsTeam') }}
       </v-card-title>
       <v-card-text>
         <v-row>
@@ -66,7 +66,7 @@
                 </v-avatar>
                 <div class="text-h6 font-weight-bold mb-1">{{ member.name }}</div>
                 <v-chip color="blue" size="small" variant="tonal">
-                  {{ member.role }}
+                  {{ t(`minecraft.roles.${member.roleKey}`) }}
                 </v-chip>
               </v-card-text>
             </v-card>
@@ -79,7 +79,7 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="green">mdi-hammer-wrench</v-icon>
-        Build Team
+        {{ t('minecraft.buildTeam') }}
       </v-card-title>
       <v-card-text>
         <v-row>
@@ -92,12 +92,12 @@
           >
             <v-card class="h-100" rounded="xl" variant="outlined">
               <v-card-text class="text-center pa-6">
-                <v-avatar class="mb-3" :color="member.role.includes('Senior') ? 'amber' : 'green'" size="64">
+                <v-avatar class="mb-3" :color="member.roleKey === 'seniorBuilder' ? 'amber' : 'green'" size="64">
                   <v-icon color="white" size="32">mdi-hammer-wrench</v-icon>
                 </v-avatar>
                 <div class="text-h6 font-weight-bold mb-1">{{ member.name }}</div>
-                <v-chip :color="member.role.includes('Senior') ? 'amber' : 'green'" size="small" variant="tonal">
-                  {{ member.role }}
+                <v-chip :color="member.roleKey === 'seniorBuilder' ? 'amber' : 'green'" size="small" variant="tonal">
+                  {{ t(`minecraft.roles.${member.roleKey}`) }}
                 </v-chip>
               </v-card-text>
             </v-card>
@@ -110,7 +110,7 @@
     <v-card rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="purple">mdi-image</v-icon>
-        Staff Photo
+        {{ t('minecraft.staffPhoto') }}
       </v-card-title>
       <v-card-text>
         <v-img
@@ -125,32 +125,35 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
 
+  const { t } = useI18n()
+
   const globalStaff = [
-    { name: 'Benlien', role: 'Owner' },
-    { name: 'Rykos714', role: 'Owner' },
-    { name: 'willywilly234', role: 'Owner' },
-    { name: 'PoKz98', role: 'Manager' },
+    { name: 'Benlien', roleKey: 'owner' },
+    { name: 'Rykos714', roleKey: 'owner' },
+    { name: 'willywilly234', roleKey: 'owner' },
+    { name: 'PoKz98', roleKey: 'manager' },
   ]
 
   const publicRelationsTeam = [
-    { name: 'Chestpacito', role: 'Public Relations' },
-    { name: 'AhikiroNiwa', role: 'Public Relations' },
+    { name: 'Chestpacito', roleKey: 'publicRelations' },
+    { name: 'AhikiroNiwa', roleKey: 'publicRelations' },
   ]
 
   const buildTeam = [
-    { name: 'keikei0303', role: 'Senior Builder' },
-    { name: 'NLGT', role: 'Senior Builder' },
-    { name: 'IvanXLOL', role: 'Builder' },
+    { name: 'keikei0303', roleKey: 'seniorBuilder' },
+    { name: 'NLGT', roleKey: 'seniorBuilder' },
+    { name: 'IvanXLOL', roleKey: 'builder' },
   ]
 
-  function getRoleColor (role) {
-    switch (role) {
-      case 'Owner': {
+  function getRoleColor (roleKey) {
+    switch (roleKey) {
+      case 'owner': {
         return 'red'
       }
-      case 'Manager': {
+      case 'manager': {
         return 'orange'
       }
       default: {
@@ -159,12 +162,12 @@
     }
   }
 
-  function getRoleIcon (role) {
-    switch (role) {
-      case 'Owner': {
+  function getRoleIcon (roleKey) {
+    switch (roleKey) {
+      case 'owner': {
         return 'mdi-crown'
       }
-      case 'Manager': {
+      case 'manager': {
         return 'mdi-shield-star'
       }
       default: {

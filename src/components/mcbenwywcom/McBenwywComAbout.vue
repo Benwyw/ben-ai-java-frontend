@@ -15,8 +15,8 @@
       >
         <div class="d-flex align-center justify-center fill-height" style="background: rgba(0,0,0,0.4);">
           <div class="text-center">
-            <h1 class="text-h3 font-weight-bold text-white mb-2">Welcome to Ben's Minecraft Server</h1>
-            <p class="text-h6 text-white">A legacy Minecraft server community</p>
+            <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('minecraft.welcomeTitle') }}</h1>
+            <p class="text-h6 text-white">{{ t('minecraft.welcomeSubtitle') }}</p>
           </div>
         </div>
       </v-img>
@@ -28,20 +28,18 @@
         <v-card class="h-100" rounded="xl">
           <v-card-title class="d-flex align-center">
             <v-icon class="mr-2" color="green">mdi-information</v-icon>
-            About the Server
+            {{ t('minecraft.aboutServer') }}
           </v-card-title>
           <v-card-text>
             <p class="text-body-1 mb-4">
-              Ben's Minecraft Server was a Minecraft Java Edition survival server that brought together players
-              from around the world to build, explore, and create memories together.
+              {{ t('minecraft.aboutServerDesc1') }}
             </p>
             <p class="text-body-1 mb-4">
-              Although the server is no longer active, this page preserves the history and
-              achievements of our wonderful community.
+              {{ t('minecraft.aboutServerDesc2') }}
             </p>
             <v-chip class="mr-2" color="red" variant="tonal">
               <v-icon start>mdi-archive</v-icon>
-              Server Archived
+              {{ t('minecraft.serverArchived') }}
             </v-chip>
           </v-card-text>
         </v-card>
@@ -50,7 +48,7 @@
         <v-card class="h-100" rounded="xl">
           <v-card-title class="d-flex align-center">
             <v-icon class="mr-2" color="blue">mdi-server</v-icon>
-            Server Details
+            {{ t('minecraft.serverDetails') }}
           </v-card-title>
           <v-card-text>
             <v-list>
@@ -58,29 +56,29 @@
                 <template #prepend>
                   <v-icon color="green">mdi-web</v-icon>
                 </template>
-                <v-list-item-title>Server Address</v-list-item-title>
+                <v-list-item-title>{{ t('minecraft.serverAddress') }}</v-list-item-title>
                 <v-list-item-subtitle>mc.benwyw.com</v-list-item-subtitle>
               </v-list-item>
               <v-list-item>
                 <template #prepend>
                   <v-icon color="orange">mdi-minecraft</v-icon>
                 </template>
-                <v-list-item-title>Game Version</v-list-item-title>
-                <v-list-item-subtitle>Java Edition</v-list-item-subtitle>
+                <v-list-item-title>{{ t('minecraft.gameVersion') }}</v-list-item-title>
+                <v-list-item-subtitle>{{ t('minecraft.javaEdition') }}</v-list-item-subtitle>
               </v-list-item>
               <v-list-item>
                 <template #prepend>
                   <v-icon color="purple">mdi-gamepad-variant</v-icon>
                 </template>
-                <v-list-item-title>Game Mode</v-list-item-title>
-                <v-list-item-subtitle>Survival</v-list-item-subtitle>
+                <v-list-item-title>{{ t('minecraft.gameMode') }}</v-list-item-title>
+                <v-list-item-subtitle>{{ t('minecraft.survival') }}</v-list-item-subtitle>
               </v-list-item>
               <v-list-item>
                 <template #prepend>
                   <v-icon color="red">mdi-calendar</v-icon>
                 </template>
-                <v-list-item-title>Status</v-list-item-title>
-                <v-list-item-subtitle>Deprecated / Archived</v-list-item-subtitle>
+                <v-list-item-title>{{ t('minecraft.status') }}</v-list-item-title>
+                <v-list-item-subtitle>{{ t('minecraft.deprecatedArchived') }}</v-list-item-subtitle>
               </v-list-item>
             </v-list>
           </v-card-text>
@@ -92,7 +90,7 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="amber">mdi-image-multiple</v-icon>
-        Gallery
+        {{ t('minecraft.gallery') }}
       </v-card-title>
       <v-card-text>
         <v-row>
@@ -106,7 +104,7 @@
                 :src="fullsizeImage"
               />
               <v-card-text class="text-center">
-                <div class="text-subtitle-1 font-weight-bold">Server Spawn</div>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.serverSpawn') }}</div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -120,7 +118,7 @@
                 :src="ownerStatuesImage"
               />
               <v-card-text class="text-center">
-                <div class="text-subtitle-1 font-weight-bold">Owner Statues</div>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.ownerStatues') }}</div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -134,7 +132,7 @@
                 :src="staffListImage"
               />
               <v-card-text class="text-center">
-                <div class="text-subtitle-1 font-weight-bold">Staff Team</div>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.staffTeam') }}</div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -146,7 +144,7 @@
     <v-card rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="green">mdi-link</v-icon>
-        Quick Links
+        {{ t('minecraft.quickLinks') }}
       </v-card-title>
       <v-card-text>
         <v-row>
@@ -161,8 +159,8 @@
             >
               <v-card-text class="d-flex flex-column align-center text-center pa-6">
                 <v-icon class="mb-3" color="amber" size="40">mdi-account-group</v-icon>
-                <div class="text-subtitle-1 font-weight-bold">Staff List</div>
-                <div class="text-caption text-medium-emphasis">Meet our team</div>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.staffList') }}</div>
+                <div class="text-caption text-medium-emphasis">{{ t('minecraft.meetOurTeam') }}</div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -173,10 +171,13 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom_animated-banner.gif'
   import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
   import ownerStatuesImage from '@/assets/mcbenwywcom/mcbenwywcom_owner-statues.webp'
   import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
+
+  const { t } = useI18n()
 </script>
 
 <style scoped>

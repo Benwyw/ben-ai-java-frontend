@@ -11,11 +11,11 @@
         height="120"
         src="@/assets/BenKaneki-120.png"
       />
-      <h1 class="text-h3 font-weight-bold text-white mb-2">Ben Kaneki</h1>
-      <p class="text-h6 text-white-darken-1 mb-4">Discord bot web application</p>
+      <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('benkaneki.title') }}</h1>
+      <p class="text-h6 text-white-darken-1 mb-4">{{ t('benkaneki.heroSubtitle') }}</p>
       <div class="d-flex justify-center ga-3 flex-wrap">
         <v-chip v-if="userBase" color="white" prepend-icon="mdi-account-group" variant="flat">
-          {{ userBase }} Users
+          {{ userBase }} {{ t('benkaneki.users') }}
         </v-chip>
         <v-chip v-if="latestWhityWeight" color="white" prepend-icon="mdi-scale" variant="flat">
           {{ latestWhityWeight }} KG
@@ -26,6 +26,10 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     userBase: {
       type: [String, Number],
