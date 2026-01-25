@@ -14,6 +14,9 @@
 
 <script setup>
   import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 
   const props = defineProps({
     userBase: {
@@ -31,19 +34,19 @@
       icon: 'mdi-account-group',
       color: 'primary',
       value: props.userBase || '...',
-      label: 'Active Users',
+      label: t('benkaneki.stats.activeUsers'),
     },
     {
       icon: 'mdi-scale-bathroom',
       color: 'success',
       value: `${props.latestWhityWeight || '...'} KG`,
-      label: 'Latest Weight',
+      label: t('benkaneki.stats.latestWeight'),
     },
     {
       icon: 'mdi-robot',
       color: 'info',
       value: 'Discord',
-      label: 'Bot',
+      label: t('benkaneki.stats.bot'),
     },
   ])
 </script>

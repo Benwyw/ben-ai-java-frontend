@@ -5,7 +5,7 @@
         <v-card-text class="text-center">
           <v-icon class="mb-2" color="amber" size="40">mdi-star</v-icon>
           <div class="text-h4 font-weight-bold">2019</div>
-          <div class="text-caption text-medium-emphasis">Founded</div>
+          <div class="text-caption text-medium-emphasis">{{ t('minecraft.stats.founded') }}</div>
         </v-card-text>
       </v-card>
     </v-col>
@@ -14,7 +14,7 @@
         <v-card-text class="text-center">
           <v-icon class="mb-2" color="green" size="40">mdi-account-group</v-icon>
           <div class="text-h4 font-weight-bold">100+</div>
-          <div class="text-caption text-medium-emphasis">Players Served</div>
+          <div class="text-caption text-medium-emphasis">{{ t('minecraft.stats.playersServed') }}</div>
         </v-card-text>
       </v-card>
     </v-col>
@@ -23,7 +23,7 @@
         <v-card-text class="text-center">
           <v-icon class="mb-2" color="blue" size="40">mdi-domain</v-icon>
           <div class="text-h4 font-weight-bold">1000+</div>
-          <div class="text-caption text-medium-emphasis">Builds Created</div>
+          <div class="text-caption text-medium-emphasis">{{ t('minecraft.stats.buildsCreated') }}</div>
         </v-card-text>
       </v-card>
     </v-col>
@@ -31,6 +31,9 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 </script>
 
 <style scoped>

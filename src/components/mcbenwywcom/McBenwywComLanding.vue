@@ -15,51 +15,55 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import FeaturesSection from '@/components/mcbenwywcom/FeaturesSection.vue'
   import HeroSection from '@/components/mcbenwywcom/HeroSection.vue'
   import QuickActionsSection from '@/components/mcbenwywcom/QuickActionsSection.vue'
   import StatsSection from '@/components/mcbenwywcom/StatsSection.vue'
 
+  const { t } = useI18n()
+
   /**
    * Quick Actions Configuration
    * Add, remove, or modify actions here to update the Quick Actions section
    */
-  const quickActions = [
-    { title: 'Home', description: 'Server overview', icon: 'mdi-home', to: '/mcbenwywcom/home', color: 'green' },
-    { title: 'Staff List', description: 'Meet our team', icon: 'mdi-account-group', to: '/mcbenwywcom/staff', color: 'amber' },
+  const quickActions = computed(() => [
+    { title: t('minecraft.quickActions.home'), description: t('minecraft.quickActions.homeDesc'), icon: 'mdi-home', to: '/mcbenwywcom/home', color: 'green' },
+    { title: t('minecraft.quickActions.staffList'), description: t('minecraft.quickActions.staffListDesc'), icon: 'mdi-account-group', to: '/mcbenwywcom/staff', color: 'amber' },
     // Hidden for future development
-    // { title: 'Buildings', description: 'Great builds', icon: 'mdi-domain', to: '/mcbenwywcom/buildings', color: 'blue' },
-    // { title: 'Events', description: 'Past events', icon: 'mdi-calendar-star', to: '/mcbenwywcom/events', color: 'purple' },
-  ]
+    // { title: t('minecraft.quickActions.buildings'), description: t('minecraft.quickActions.buildingsDesc'), icon: 'mdi-domain', to: '/mcbenwywcom/buildings', color: 'blue' },
+    // { title: t('minecraft.quickActions.events'), description: t('minecraft.quickActions.eventsDesc'), icon: 'mdi-calendar-star', to: '/mcbenwywcom/events', color: 'purple' },
+  ])
 
   /**
    * Features Configuration
    * Add, remove, or modify features here to update the Features section
    */
-  const features = [
+  const features = computed(() => [
     {
-      title: 'Survival Server',
-      description: 'Classic survival gameplay with quality-of-life improvements and active community.',
+      title: t('minecraft.features.survivalServer'),
+      description: t('minecraft.features.survivalServerDesc'),
       icon: 'mdi-sword-cross',
       color: 'green',
     },
     {
-      title: 'Custom Plugins',
-      description: 'Unique server features and custom-developed plugins for enhanced gameplay.',
+      title: t('minecraft.features.customPlugins'),
+      description: t('minecraft.features.customPluginsDesc'),
       icon: 'mdi-puzzle',
       color: 'blue',
     },
     {
-      title: 'Community Events',
-      description: 'Regular events, competitions, and community gatherings.',
+      title: t('minecraft.features.communityEvents'),
+      description: t('minecraft.features.communityEventsDesc'),
       icon: 'mdi-calendar-star',
       color: 'purple',
     },
     {
-      title: 'Dedicated Staff',
-      description: 'Active and friendly staff team to help players and maintain the server.',
+      title: t('minecraft.features.dedicatedStaff'),
+      description: t('minecraft.features.dedicatedStaffDesc'),
       icon: 'mdi-shield-account',
       color: 'amber',
     },
-  ]
+  ])
 </script>

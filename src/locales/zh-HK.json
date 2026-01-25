@@ -199,6 +199,11 @@
       "apiDocs": "API 文檔",
       "apiDocsDesc": "全面的 Swagger 文檔，實現無縫整合。"
     },
+    "stats": {
+      "activeUsers": "活躍用戶",
+      "latestWeight": "最新體重",
+      "bot": "機器人"
+    },
     "botFeatures": "機器人功能"
   },
   "minecraft": {
@@ -244,7 +249,36 @@
     "eventsTitle": "伺服器活動",
     "eventsSubtitle": "社區的難忘時刻",
     "buildingsTitle": "著名建築",
-    "buildingsSubtitle": "社區的精彩建築"
+    "buildingsSubtitle": "社區的精彩建築",
+    "heroSubtitle": "Minecraft Java 版生存伺服器",
+    "javaEditionChip": "Java 版",
+    "survivalModeChip": "生存模式",
+    "serverArchivedChip": "伺服器已封存",
+    "quickActions": {
+      "home": "主頁",
+      "homeDesc": "伺服器概覽",
+      "staffList": "員工列表",
+      "staffListDesc": "認識我們的團隊",
+      "buildings": "建築物",
+      "buildingsDesc": "精彩建築",
+      "events": "活動",
+      "eventsDesc": "過去的活動"
+    },
+    "features": {
+      "survivalServer": "生存伺服器",
+      "survivalServerDesc": "經典生存遊戲玩法，配有生活質素改進和活躍社區。",
+      "customPlugins": "自訂插件",
+      "customPluginsDesc": "獨特的伺服器功能和自訂開發的插件，增強遊戲體驗。",
+      "communityEvents": "社區活動",
+      "communityEventsDesc": "定期活動、比賽和社區聚會。",
+      "dedicatedStaff": "專業員工",
+      "dedicatedStaffDesc": "活躍且友善的員工團隊，幫助玩家和維護伺服器。"
+    },
+    "stats": {
+      "founded": "成立年份",
+      "playersServed": "服務玩家",
+      "buildsCreated": "建築作品"
+    }
   },
   "messenger": {
     "title": "訊息",

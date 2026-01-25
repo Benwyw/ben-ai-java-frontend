@@ -199,6 +199,11 @@
       "apiDocs": "API Documentation",
       "apiDocsDesc": "Comprehensive Swagger docs for seamless integration."
     },
+    "stats": {
+      "activeUsers": "Active Users",
+      "latestWeight": "Latest Weight",
+      "bot": "Bot"
+    },
     "botFeatures": "Bot Features"
   },
   "minecraft": {
@@ -244,7 +249,36 @@
     "eventsTitle": "Server Events",
     "eventsSubtitle": "Memorable moments from our community",
     "buildingsTitle": "Notable Buildings",
-    "buildingsSubtitle": "Amazing builds from our community"
+    "buildingsSubtitle": "Amazing builds from our community",
+    "heroSubtitle": "Minecraft Java Edition survival server",
+    "javaEditionChip": "Java Edition",
+    "survivalModeChip": "Survival Mode",
+    "serverArchivedChip": "Server Archived",
+    "quickActions": {
+      "home": "Home",
+      "homeDesc": "Server overview",
+      "staffList": "Staff List",
+      "staffListDesc": "Meet our team",
+      "buildings": "Buildings",
+      "buildingsDesc": "Great builds",
+      "events": "Events",
+      "eventsDesc": "Past events"
+    },
+    "features": {
+      "survivalServer": "Survival Server",
+      "survivalServerDesc": "Classic survival gameplay with quality-of-life improvements and active community.",
+      "customPlugins": "Custom Plugins",
+      "customPluginsDesc": "Unique server features and custom-developed plugins for enhanced gameplay.",
+      "communityEvents": "Community Events",
+      "communityEventsDesc": "Regular events, competitions, and community gatherings.",
+      "dedicatedStaff": "Dedicated Staff",
+      "dedicatedStaffDesc": "Active and friendly staff team to help players and maintain the server."
+    },
+    "stats": {
+      "founded": "Founded",
+      "playersServed": "Players Served",
+      "buildsCreated": "Builds Created"
+    }
   },
   "messenger": {
     "title": "Messenger",
