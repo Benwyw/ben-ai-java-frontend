@@ -36,11 +36,11 @@
           class="paypal-cards"
           src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
         />
-        <span class="paypal-powered">
+        <span :class="['paypal-powered', { 'dark-mode': isDark }]">
           Powered by
           <img
             alt="PayPal"
-            :class="['paypal-logo', { 'dark-mode': isDark }]"
+            class="paypal-logo"
             src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
           />
         </span>
@@ -98,14 +98,19 @@
 .paypal-powered {
   font-size: 0.75rem;
   opacity: 0.6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.paypal-powered.dark-mode {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000000;
+  opacity: 1;
 }
 
 .paypal-logo {
   height: 0.875rem;
   vertical-align: middle;
-}
-
-.paypal-logo.dark-mode {
-  filter: brightness(0) invert(1);
 }
 </style>
