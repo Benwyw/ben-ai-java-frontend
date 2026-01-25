@@ -21,13 +21,16 @@
 </template>
 
 <script setup>
-  import { onMounted, ref } from 'vue'
+  import { computed, onMounted, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import * as api from '@/api/misc'
   import * as apiWhity from '@/api/whity'
   import FeaturesSection from '@/components/home/FeaturesSection.vue'
   import HeroSection from '@/components/home/HeroSection.vue'
   import QuickActionsSection from '@/components/home/QuickActionsSection.vue'
   import StatsSection from '@/components/home/StatsSection.vue'
+
+  const { t } = useI18n()
 
   const userBase = ref('')
   const latestWhityWeight = ref('')
@@ -38,30 +41,30 @@
    * Quick Actions Configuration
    * Add, remove, or modify actions here to update the Quick Actions section
    */
-  const quickActions = [
-    { title: 'About', description: 'Learn more about us', icon: 'mdi-information', to: '/about', color: 'primary' },
-    { title: 'Swagger', description: 'API Documentation', icon: 'mdi-api', to: '/swagger', color: 'success' },
-    { title: 'Messenger', description: 'Send messages', icon: 'mdi-message', to: '/messenger', color: 'info' },
-    { title: 'Whity Weight', description: 'Track weight', icon: 'mdi-scale-bathroom', to: '/whityweight', color: 'warning' },
-    { title: 'Report', description: 'View reports', icon: 'mdi-file-chart', to: '/report', color: 'error' },
-    { title: 'Login', description: 'Access your account', icon: 'mdi-login', to: '/login', color: 'secondary' },
-  ]
+  const quickActions = computed(() => [
+    { title: t('benkaneki.about'), description: t('benkaneki.aboutDesc'), icon: 'mdi-information', to: '/benkaneki/about', color: 'primary' },
+    { title: t('benkaneki.swagger'), description: t('benkaneki.swaggerDesc'), icon: 'mdi-api', to: '/benkaneki/swagger', color: 'success' },
+    { title: t('benkaneki.messenger'), description: t('benkaneki.messengerDesc'), icon: 'mdi-message', to: '/benkaneki/messenger', color: 'info' },
+    { title: t('benkaneki.whityWeight'), description: t('benkaneki.whityWeightDesc'), icon: 'mdi-scale-bathroom', to: '/benkaneki/whityweight', color: 'warning' },
+    { title: t('benkaneki.report'), description: t('benkaneki.reportDesc'), icon: 'mdi-file-chart', to: '/benkaneki/report', color: 'error' },
+    { title: t('auth.login'), description: t('auth.accessAccount'), icon: 'mdi-login', to: '/login', color: 'secondary' },
+  ])
 
   /**
    * Features Configuration
    * Add, remove, or modify features here to update the Features section
    */
-  const features = [
+  const features = computed(() => [
     {
-      title: 'Discord Bot',
-      description: 'A multi-purpose Discord bot with a companion web dashboard for utilities and automation.',
+      title: t('benkaneki.features.discordBot'),
+      description: t('benkaneki.features.discordBotDesc'),
       icon: 'mdi-robot',
       color: 'primary',
     },
-    { title: 'Real-time Messaging', description: 'Communicate instantly with our secure messenger platform.', icon: 'mdi-message-flash', color: 'success' },
-    { title: 'Weight Tracking', description: 'Monitor and track weight data with beautiful visualizations.', icon: 'mdi-chart-line', color: 'info' },
-    { title: 'API Documentation', description: 'Comprehensive Swagger docs for seamless integration.', icon: 'mdi-file-document', color: 'warning' },
-  ]
+    { title: t('benkaneki.features.realTimeMessaging'), description: t('benkaneki.features.realTimeMessagingDesc'), icon: 'mdi-message-flash', color: 'success' },
+    { title: t('benkaneki.features.weightTracking'), description: t('benkaneki.features.weightTrackingDesc'), icon: 'mdi-chart-line', color: 'info' },
+    { title: t('benkaneki.features.apiDocs'), description: t('benkaneki.features.apiDocsDesc'), icon: 'mdi-file-document', color: 'warning' },
+  ])
 
   async function getUserBase () {
     try {

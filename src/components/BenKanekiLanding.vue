@@ -42,7 +42,6 @@
    * Add, remove, or modify actions here to update the Quick Actions section
    */
   const quickActions = computed(() => [
-    { title: t('benkaneki.home'), description: t('benkaneki.homeDesc'), icon: 'mdi-home', to: '/benkaneki/home', color: 'primary' },
     { title: t('benkaneki.about'), description: t('benkaneki.aboutDesc'), icon: 'mdi-information', to: '/benkaneki/about', color: 'info' },
     { title: t('benkaneki.messenger'), description: t('benkaneki.messengerDesc'), icon: 'mdi-message', to: '/benkaneki/messenger', color: 'success' },
     { title: t('benkaneki.whityWeight'), description: t('benkaneki.whityWeightDesc'), icon: 'mdi-scale-bathroom', to: '/benkaneki/whityweight', color: 'warning' },
