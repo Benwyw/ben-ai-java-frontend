@@ -1083,6 +1083,32 @@
   }, { immediate: true })
 
   /**
+   * Get translated title for a route
+   * Uses same logic as SidebarNavItem for consistency
+   */
+  function getTranslatedTitle (title) {
+    if (!title) return ''
+
+    // Auto-generate translation key from title
+    // Convert "Docs & FAQ" -> "docsAndFaq", "Whity Weight" -> "whityWeight", etc.
+    const autoKey = 'nav.' + title
+      .replace(/&/g, 'And')
+      .replace(/[^a-zA-Z0-9\s]/g, '')
+      .split(' ')
+      .map((word, index) => index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join('')
+
+    // Check if translation exists using te() equivalent
+    const translated = t(autoKey)
+    if (translated !== autoKey) {
+      return translated
+    }
+
+    // Fall back to original title
+    return title
+  }
+
+  /**
    * Build breadcrumb items from current route's parent chain
    * Traverses up using meta.parent to build full hierarchy path
    */
@@ -1093,8 +1119,9 @@
 
     // Build path from current to root by following parent chain
     while (current) {
+      const title = current.meta?.title || current.name
       items.unshift({
-        title: current.meta?.title || current.name,
+        title: getTranslatedTitle(title),
         to: current.path || '/',
         disabled: current.name === currentName, // Current page is disabled
       })
@@ -1104,8 +1131,8 @@
     }
 
     // Add Home as first item if not already there
-    if (items.length === 0 || items[0].title !== 'Home') {
-      items.unshift({ title: 'Home', to: '/', disabled: false })
+    if (items.length === 0 || items[0].title !== t('nav.home')) {
+      items.unshift({ title: t('nav.home'), to: '/', disabled: false })
     }
 
     return items
