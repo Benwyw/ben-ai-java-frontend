@@ -115,6 +115,76 @@
     "tutorialsDesc": "Learn how to use NoteFormat",
     "tutorialsTitle": "NoteFormat Tutorials",
     "tutorialsSubtitle": "Learn how to get the most from NoteFormat",
+    "tutorials": {
+      "gettingStarted": "Getting Started",
+      "customization": "Customization",
+      "importExport": "Import & Export",
+      "addingFirstNote": "Adding Your First Note",
+      "addingFirstNoteSteps": [
+        "Open NoteFormat and tap the <strong>Notes</strong> tab",
+        "Tap the <strong>+</strong> button in the top right",
+        "Enter your note content, select a category, and optionally add an amount",
+        "Choose tags like \"Card\" or \"Cash\" to track payment methods",
+        "Tap <strong>Save</strong> to create your note"
+      ],
+      "settingUpBudgets": "Setting Up Budgets",
+      "settingUpBudgetsSteps": [
+        "Navigate to the <strong>Budgets</strong> tab",
+        "Tap <strong>Add Budget</strong>",
+        "Enter a name (e.g., \"Monthly Food\")",
+        "Set your budget amount",
+        "Choose a category (or \"All Categories\")",
+        "Select the period: Daily, Weekly, Monthly, or Yearly",
+        "Adjust the alert threshold to get notified before exceeding"
+      ],
+      "viewingReports": "Viewing Reports",
+      "viewingReportsSteps": [
+        "Go to the <strong>Reports</strong> tab",
+        "Select a period: Daily, Weekly, Monthly, or Yearly",
+        "View your spending summary and category breakdown",
+        "Pro users can see detailed pie charts and export to CSV"
+      ],
+      "creatingCustomCategories": "Creating Custom Categories",
+      "creatingCustomCategoriesSteps": [
+        "Go to <strong>Settings</strong> > <strong>Categories</strong>",
+        "Tap <strong>Add Category</strong>",
+        "Enter a name, choose an emoji, and set a template placeholder",
+        "Reorder categories by dragging or using Edit mode"
+      ],
+      "customizingTemplates": "Customizing Format Templates",
+      "customizingTemplatesIntro": "Templates control how your notes are formatted when exported. Available placeholders:",
+      "customizingTemplatesPlaceholders": [
+        "<code>{date}</code> - Entry date",
+        "<code>{category}</code> - Category name",
+        "<code>{content}</code> - Note content",
+        "<code>{amount}</code> or <code>${amount}</code> - Amount with currency",
+        "<code>{tags}</code> - Tags list"
+      ],
+      "customizingTemplatesExample": "Example: <code>{date} {category} - {content} ${amount}</code>",
+      "usingThemes": "Using Themes (Pro)",
+      "usingThemesSteps": [
+        "Go to <strong>Settings</strong> > <strong>Appearance</strong>",
+        "Enable <strong>Themes</strong>",
+        "Choose from preset themes or create custom ones",
+        "Custom themes require a Pro subscription"
+      ],
+      "exportingNotes": "Exporting Notes",
+      "exportingNotesSteps": [
+        "Go to <strong>Notes</strong> tab",
+        "Tap the <strong>Export</strong> button",
+        "Select entries and choose a format template",
+        "Share via Messages, Email, Files, or copy to clipboard",
+        "Pro users can export as CSV for spreadsheet apps"
+      ],
+      "importingNotes": "Importing Notes",
+      "importingNotesSteps": [
+        "Go to <strong>Notes</strong> tab",
+        "Tap <strong>Import</strong>",
+        "Paste your formatted text",
+        "Select the matching template format",
+        "Review parsed entries and confirm import"
+      ]
+    },
     "docs": "Docs & FAQ",
     "docsDesc": "Reference and common questions",
     "docsTitle": "NoteFormat Docs & FAQ",

@@ -10,41 +10,28 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2">mdi-rocket-launch</v-icon>
-        Getting Started
+        {{ t('noteformat.tutorials.gettingStarted') }}
       </v-card-title>
       <v-card-text>
         <v-expansion-panels variant="accordion">
-          <v-expansion-panel title="Adding Your First Note">
+          <v-expansion-panel :title="t('noteformat.tutorials.addingFirstNote')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Open NoteFormat and tap the <strong>Notes</strong> tab</li>
-                <li>Tap the <strong>+</strong> button in the top right</li>
-                <li>Enter your note content, select a category, and optionally add an amount</li>
-                <li>Choose tags like "Card" or "Cash" to track payment methods</li>
-                <li>Tap <strong>Save</strong> to create your note</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.addingFirstNoteSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel title="Setting Up Budgets">
+          <v-expansion-panel :title="t('noteformat.tutorials.settingUpBudgets')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Navigate to the <strong>Budgets</strong> tab</li>
-                <li>Tap <strong>Add Budget</strong></li>
-                <li>Enter a name (e.g., "Monthly Food")</li>
-                <li>Set your budget amount</li>
-                <li>Choose a category (or "All Categories")</li>
-                <li>Select the period: Daily, Weekly, Monthly, or Yearly</li>
-                <li>Adjust the alert threshold to get notified before exceeding</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.settingUpBudgetsSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel title="Viewing Reports">
+          <v-expansion-panel :title="t('noteformat.tutorials.viewingReports')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Go to the <strong>Reports</strong> tab</li>
-                <li>Select a period: Daily, Weekly, Monthly, or Yearly</li>
-                <li>View your spending summary and category breakdown</li>
-                <li>Pro users can see detailed pie charts and export to CSV</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.viewingReportsSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -55,40 +42,30 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2">mdi-cog</v-icon>
-        Customization
+        {{ t('noteformat.tutorials.customization') }}
       </v-card-title>
       <v-card-text>
         <v-expansion-panels variant="accordion">
-          <v-expansion-panel title="Creating Custom Categories">
+          <v-expansion-panel :title="t('noteformat.tutorials.creatingCustomCategories')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Go to <strong>Settings</strong> > <strong>Categories</strong></li>
-                <li>Tap <strong>Add Category</strong></li>
-                <li>Enter a name, choose an emoji, and set a template placeholder</li>
-                <li>Reorder categories by dragging or using Edit mode</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.creatingCustomCategoriesSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel title="Customizing Format Templates">
+          <v-expansion-panel :title="t('noteformat.tutorials.customizingTemplates')">
             <v-expansion-panel-text>
-              <p class="mb-2">Templates control how your notes are formatted when exported. Available placeholders:</p>
+              <p class="mb-2">{{ t('noteformat.tutorials.customizingTemplatesIntro') }}</p>
               <ul class="ml-4 mb-2">
-                <li><code>{date}</code> - Entry date</li>
-                <li><code>{category}</code> - Category name</li>
-                <li><code>{content}</code> - Note content</li>
-                <li><code>{amount}</code> or <code>${amount}</code> - Amount with currency</li>
-                <li><code>{tags}</code> - Tags list</li>
+                <li v-for="(placeholder, index) in tm('noteformat.tutorials.customizingTemplatesPlaceholders')" :key="index" v-html="placeholder" />
               </ul>
-              <p>Example: <code>{date} {category} - {content} ${amount}</code></p>
+              <p v-html="t('noteformat.tutorials.customizingTemplatesExample')" />
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel title="Using Themes (Pro)">
+          <v-expansion-panel :title="t('noteformat.tutorials.usingThemes')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Go to <strong>Settings</strong> > <strong>Appearance</strong></li>
-                <li>Enable <strong>Themes</strong></li>
-                <li>Choose from preset themes or create custom ones</li>
-                <li>Custom themes require a Pro subscription</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.usingThemesSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -99,29 +76,21 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2">mdi-swap-horizontal</v-icon>
-        Import & Export
+        {{ t('noteformat.tutorials.importExport') }}
       </v-card-title>
       <v-card-text>
         <v-expansion-panels variant="accordion">
-          <v-expansion-panel title="Exporting Notes">
+          <v-expansion-panel :title="t('noteformat.tutorials.exportingNotes')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Go to <strong>Notes</strong> tab</li>
-                <li>Tap the <strong>Export</strong> button</li>
-                <li>Select entries and choose a format template</li>
-                <li>Share via Messages, Email, Files, or copy to clipboard</li>
-                <li>Pro users can export as CSV for spreadsheet apps</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.exportingNotesSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
-          <v-expansion-panel title="Importing Notes">
+          <v-expansion-panel :title="t('noteformat.tutorials.importingNotes')">
             <v-expansion-panel-text>
               <ol class="ml-4">
-                <li>Go to <strong>Notes</strong> tab</li>
-                <li>Tap <strong>Import</strong></li>
-                <li>Paste your formatted text</li>
-                <li>Select the matching template format</li>
-                <li>Review parsed entries and confirm import</li>
+                <li v-for="(step, index) in tm('noteformat.tutorials.importingNotesSteps')" :key="index" v-html="step" />
               </ol>
             </v-expansion-panel-text>
           </v-expansion-panel>
@@ -138,5 +107,5 @@
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
-  const { t } = useI18n()
+  const { t, tm } = useI18n()
 </script>

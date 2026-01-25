@@ -115,6 +115,76 @@
     "tutorialsDesc": "學習如何使用 NoteFormat",
     "tutorialsTitle": "NoteFormat 教學",
     "tutorialsSubtitle": "學習如何充分使用 NoteFormat",
+    "tutorials": {
+      "gettingStarted": "入門指南",
+      "customization": "自訂設定",
+      "importExport": "匯入與匯出",
+      "addingFirstNote": "新增您的第一條筆記",
+      "addingFirstNoteSteps": [
+        "打開 NoteFormat 並點擊<strong>筆記</strong>標籤",
+        "點擊右上角的 <strong>+</strong> 按鈕",
+        "輸入筆記內容，選擇分類，並可選擇新增金額",
+        "選擇標籤如「卡」或「現金」來追蹤付款方式",
+        "點擊<strong>儲存</strong>以建立您的筆記"
+      ],
+      "settingUpBudgets": "設定預算",
+      "settingUpBudgetsSteps": [
+        "前往<strong>預算</strong>標籤",
+        "點擊<strong>新增預算</strong>",
+        "輸入名稱（例如「每月餐飲」）",
+        "設定您的預算金額",
+        "選擇分類（或「所有分類」）",
+        "選擇週期：每日、每週、每月或每年",
+        "調整提醒閾值，以便在超支前收到通知"
+      ],
+      "viewingReports": "查看報告",
+      "viewingReportsSteps": [
+        "前往<strong>報告</strong>標籤",
+        "選擇週期：每日、每週、每月或每年",
+        "查看您的消費摘要和分類細目",
+        "Pro 用戶可查看詳細圓餅圖並匯出為 CSV"
+      ],
+      "creatingCustomCategories": "建立自訂分類",
+      "creatingCustomCategoriesSteps": [
+        "前往<strong>設定</strong> > <strong>分類</strong>",
+        "點擊<strong>新增分類</strong>",
+        "輸入名稱，選擇表情符號，並設定範本佔位符",
+        "通過拖曳或使用編輯模式重新排序分類"
+      ],
+      "customizingTemplates": "自訂格式範本",
+      "customizingTemplatesIntro": "範本控制筆記匯出時的格式。可用的佔位符：",
+      "customizingTemplatesPlaceholders": [
+        "<code>{date}</code> - 條目日期",
+        "<code>{category}</code> - 分類名稱",
+        "<code>{content}</code> - 筆記內容",
+        "<code>{amount}</code> 或 <code>${amount}</code> - 帶貨幣的金額",
+        "<code>{tags}</code> - 標籤列表"
+      ],
+      "customizingTemplatesExample": "範例：<code>{date} {category} - {content} ${amount}</code>",
+      "usingThemes": "使用主題（Pro）",
+      "usingThemesSteps": [
+        "前往<strong>設定</strong> > <strong>外觀</strong>",
+        "啟用<strong>主題</strong>",
+        "從預設主題中選擇或建立自訂主題",
+        "自訂主題需要 Pro 訂閱"
+      ],
+      "exportingNotes": "匯出筆記",
+      "exportingNotesSteps": [
+        "前往<strong>筆記</strong>標籤",
+        "點擊<strong>匯出</strong>按鈕",
+        "選擇條目並選擇格式範本",
+        "通過訊息、電郵、檔案分享，或複製到剪貼簿",
+        "Pro 用戶可匯出為 CSV 用於試算表應用程式"
+      ],
+      "importingNotes": "匯入筆記",
+      "importingNotesSteps": [
+        "前往<strong>筆記</strong>標籤",
+        "點擊<strong>匯入</strong>",
+        "貼上您的格式化文字",
+        "選擇匹配的範本格式",
+        "檢視解析的條目並確認匯入"
+      ]
+    },
     "docs": "文檔與常見問題",
     "docsDesc": "參考資料和常見問題",
     "docsTitle": "NoteFormat 文檔與常見問題",
