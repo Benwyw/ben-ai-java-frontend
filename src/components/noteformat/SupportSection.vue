@@ -40,7 +40,7 @@
           Powered by
           <img
             alt="PayPal"
-            class="paypal-logo"
+            :class="['paypal-logo', { 'dark-mode': isDark }]"
             src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
           />
         </span>
@@ -50,7 +50,11 @@
 </template>
 
 <script setup>
-  // Using PayPal official button style with direct form submission
+  import { useTheme } from 'vuetify'
+  import { computed } from 'vue'
+
+  const theme = useTheme()
+  const isDark = computed(() => theme.global.current.value.dark)
 </script>
 
 <style scoped>
@@ -99,5 +103,9 @@
 .paypal-logo {
   height: 0.875rem;
   vertical-align: middle;
+}
+
+.paypal-logo.dark-mode {
+  filter: brightness(0) invert(1);
 }
 </style>
