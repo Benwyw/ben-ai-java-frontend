@@ -21,89 +21,39 @@
         Every contribution helps bring new features and improvements!
       </p>
 
-      <!-- PayPal Button Container -->
-      <div class="d-flex justify-center">
-        <div id="paypal-container-QA5VGCEU9VMKU" class="paypal-button-wrapper" />
-      </div>
+      <!-- PayPal Donate Button - Fully responsive -->
+      <v-hover v-slot="{ isHovering, props }">
+        <v-btn
+          v-bind="props"
+          :elevation="isHovering ? 8 : 2"
+          class="text-none donate-btn"
+          color="#0070ba"
+          href="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
+          rel="noopener"
+          rounded="pill"
+          size="large"
+          target="_blank"
+          variant="flat"
+        >
+          <v-icon class="mr-2" size="20">mdi-heart</v-icon>
+          Donate with PayPal
+        </v-btn>
+      </v-hover>
 
-      <!-- Fallback link if PayPal SDK fails to load -->
-      <v-btn
-        v-if="showFallback"
-        class="mt-4"
-        color="primary"
-        href="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
-        prepend-icon="mdi-heart"
-        rel="noopener"
-        rounded="pill"
-        target="_blank"
-        variant="flat"
-      >
-        Donate via PayPal
-      </v-btn>
+      <p class="text-caption text-medium-emphasis mt-4">
+        Secure payment powered by PayPal
+      </p>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-  import { onMounted, ref } from 'vue'
-
-  const showFallback = ref(false)
-
-  /**
-   * Load PayPal SDK and render hosted button
-   */
-  onMounted(() => {
-    // Check if PayPal SDK is already loaded
-    if (window.paypal?.HostedButtons) {
-      renderPayPalButton()
-      return
-    }
-
-    // Load PayPal SDK dynamically
-    const script = document.createElement('script')
-    script.src = 'https://www.paypal.com/sdk/js?client-id=BAAL3IdxWZm88mH2uRA9GBKjYpdPJ75XTkyP59ty7IgPoRBzVvIZIKLK8EnV9EiMMK7a8GKe8gXEclAxM4&components=hosted-buttons&disable-funding=venmo&currency=HKD'
-    script.async = true
-
-    script.addEventListener('load', () => {
-      renderPayPalButton()
-    })
-
-    script.addEventListener('error', () => {
-      console.warn('PayPal SDK failed to load, showing fallback button')
-      showFallback.value = true
-    })
-
-    document.head.append(script)
-  })
-
-  /**
-   * Render PayPal hosted button into container
-   */
-  function renderPayPalButton () {
-    const container = document.querySelector('#paypal-container-QA5VGCEU9VMKU')
-
-    if (!container) {
-      console.warn('PayPal container not found')
-      showFallback.value = true
-      return
-    }
-
-    if (window.paypal?.HostedButtons) {
-      window.paypal.HostedButtons({
-        hostedButtonId: 'QA5VGCEU9VMKU',
-      }).render('#paypal-container-QA5VGCEU9VMKU').catch(error => {
-        console.warn('PayPal button render failed:', error)
-        showFallback.value = true
-      })
-    } else {
-      showFallback.value = true
-    }
-  }
+  // No SDK needed - using direct link approach
 </script>
 
 <style scoped>
-.paypal-button-wrapper {
-  min-height: 50px;
+.donate-btn {
   min-width: 200px;
+  max-width: 100%;
 }
 </style>
