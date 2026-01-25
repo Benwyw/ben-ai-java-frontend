@@ -16,8 +16,8 @@
       </v-icon>
       <h2 class="text-h5 font-weight-bold mb-2">Support NoteFormat</h2>
       <p class="text-body-2 text-medium-emphasis mb-6 mx-auto" style="max-width: 480px;">
-        NoteFormat is developed with passion as an indie project.<br>
-        If you find the app helpful, consider supporting its continued development.<br>
+        NoteFormat is developed with passion as an indie project.
+        If you find the app helpful, consider supporting its continued development.
         Every contribution helps bring new features and improvements!
       </p>
 
