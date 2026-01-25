@@ -32,20 +32,24 @@
       <div class="d-flex align-center justify-center fill-height hero-overlay">
         <div class="text-center px-4">
           <p class="text-body-2 text-white mb-1 text-shadow">✨ 🕊️ ✨</p>
-          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-0 text-shadow angel-glow">{{ t('cat.title') }}</h1>
-          <p class="text-h6 text-white-darken-1 mb-2 text-shadow">{{ t('cat.chineseName') }}</p>
-          <p class="text-body-1 text-white mb-3 text-shadow">{{ t('cat.dates') }}</p>
-          <p class="text-body-1 text-white mb-4 text-shadow">{{ t('cat.foreverLoved') }}</p>
+          <h1 class="text-h3 text-md-h2 font-weight-bold text-white mb-0 text-shadow angel-glow">Whity</h1>
+          <p class="text-h6 text-white-darken-1 mb-2 text-shadow">小白</p>
+          <p class="text-body-1 text-white mb-3 text-shadow">12 July 2019 — 29 December 2024</p>
+          <p class="text-body-1 text-white mb-1 text-shadow">Forever loved, forever missed 🐱💫</p>
+          <p class="text-body-2 text-white-darken-1 mb-4 text-shadow">永遠愛你，永遠懷念</p>
           <div class="d-flex justify-center ga-2 flex-wrap mb-2">
             <v-chip color="white" prepend-icon="mdi-heart" size="small" variant="flat">
-              {{ t('cat.chip5Years') }}
+              5 Years of Joy ｜ 五年快樂時光
             </v-chip>
             <v-chip color="white" prepend-icon="mdi-star-four-points" size="small" variant="flat">
-              {{ t('cat.chipForeverHeart') }}
+              Forever in My Heart ｜ 永在我心
             </v-chip>
           </div>
           <p class="text-body-2 text-white mt-3 text-shadow font-italic">
-            {{ t('cat.rainbowBridge') }}
+            "Until we meet again at the rainbow bridge" 🌈
+          </p>
+          <p class="text-caption text-white-darken-1 text-shadow font-italic">
+            「直到我們在彩虹橋再重逢」
           </p>
         </div>
       </div>
@@ -55,12 +59,9 @@
 
 <script setup>
   import { ref } from 'vue'
-  import { useI18n } from 'vue-i18n'
   // Use optimized WebP (97%+ browser support)
   import heroImage from '@/assets/cat/Whity_hero.webp'
   import heroVideo from '@/assets/cat/Whity_hero_video.mp4'
-
-  const { t } = useI18n()
 
   const videoRef = ref(null)
   const videoLoaded = ref(false)

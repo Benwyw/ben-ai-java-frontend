@@ -2,9 +2,9 @@
   <v-card class="mb-6" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2" color="pink">mdi-image-multiple</v-icon>
-      Photo Gallery
+      {{ t('cat.photoGallery') }}
       <v-chip class="ml-2" color="pink" size="small" variant="tonal">
-        {{ galleryPhotos.length }} photos
+        {{ galleryPhotos.length }} {{ t('cat.photos') }}
       </v-chip>
     </v-card-title>
     <v-card-text>
@@ -109,6 +109,9 @@
 
 <script setup>
   import { computed, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 
   /**
    * Optimized Image Loading Strategy:

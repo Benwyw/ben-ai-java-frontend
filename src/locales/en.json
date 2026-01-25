@@ -375,7 +375,26 @@
   },
   "cat": {
     "title": "Whity",
-    "subtitle": "Our beloved cat"
+    "subtitle": "Our beloved cat",
+    "chineseName": "小白",
+    "dates": "12 July 2019 — 29 December 2024",
+    "foreverLoved": "Forever loved, forever missed 🐱💫",
+    "rainbowBridge": "\"Until we meet again at the rainbow bridge\" 🌈",
+    "chip5Years": "5 Years of Joy",
+    "chipForeverHeart": "Forever in My Heart",
+    "inLovingMemory": "In Loving Memory",
+    "memoryParagraph1": "This page is dedicated to <strong>Whity</strong>, my beloved cat who was by my side for over 5 wonderful years. From 12 July 2019 to 29 December 2024, Whity filled my life with unconditional love, warmth, and countless precious moments.",
+    "memoryParagraph2": "I will forever love and miss you, Whity. You were more than a pet — you were family, a loyal companion, and a source of comfort through every day. Your memory lives on in my heart, always.",
+    "highlights": {
+      "playfulSpirit": "Playful Spirit",
+      "playfulSpiritDesc": "Always curious and full of life",
+      "cuddleExpert": "Cuddle Expert",
+      "cuddleExpertDesc": "The best lap warmer and companion",
+      "foreverLoved": "Forever Loved",
+      "foreverLovedDesc": "Always in our hearts"
+    },
+    "photoGallery": "Photo Gallery",
+    "photos": "photos"
   },
   "quickActions": {
     "title": "Quick Actions",

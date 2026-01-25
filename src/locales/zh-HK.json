@@ -375,7 +375,26 @@
   },
   "cat": {
     "title": "小白",
-    "subtitle": "我們心愛的貓"
+    "subtitle": "我們心愛的貓",
+    "chineseName": "Whity",
+    "dates": "2019年7月12日 — 2024年12月29日",
+    "foreverLoved": "永遠愛你，永遠懷念 🐱💫",
+    "rainbowBridge": "「直到我們在彩虹橋再重逢」🌈",
+    "chip5Years": "五年快樂時光",
+    "chipForeverHeart": "永在我心",
+    "inLovingMemory": "永遠懷念",
+    "memoryParagraph1": "本頁獻給<strong>小白 (Whity)</strong>，我摯愛的貓咪，陪伴我渡過超過五年美好的時光。從2019年7月12日到2024年12月29日，小白為我的生命帶來了無條件的愛、溫暖和無數珍貴的回憶。",
+    "memoryParagraph2": "我會永遠愛你、懷念你，小白。你不只是一隻寵物——你是家人、忠誠的伙伴，也是我每一天的安慰。你的回憶將永遠留在我心中。",
+    "highlights": {
+      "playfulSpirit": "活潑的心靈",
+      "playfulSpiritDesc": "永遠充滿好奇心和活力",
+      "cuddleExpert": "攬攬專家",
+      "cuddleExpertDesc": "最好的暖腿仔和伙伴",
+      "foreverLoved": "永遠被愛惜",
+      "foreverLovedDesc": "永遠在我們心中"
+    },
+    "photoGallery": "相簿",
+    "photos": "張相片"
   },
   "quickActions": {
     "title": "快速操作",
