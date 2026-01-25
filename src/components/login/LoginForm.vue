@@ -3,7 +3,7 @@
     <v-form @submit.prevent="$emit('submit')">
       <v-text-field
         class="mb-4"
-        label="Username"
+        :label="t('auth.username')"
         :model-value="username"
         prepend-inner-icon="mdi-account"
         required
@@ -13,7 +13,7 @@
       />
       <v-text-field
         class="mb-4"
-        label="Password"
+        :label="t('auth.password')"
         :model-value="password"
         prepend-inner-icon="mdi-lock"
         required
@@ -39,13 +39,17 @@
         type="submit"
       >
         <v-icon class="mr-2">mdi-login</v-icon>
-        Login
+        {{ t('auth.login') }}
       </v-btn>
     </v-form>
   </v-card-text>
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     username: {
       type: String,

@@ -2,7 +2,7 @@
   <v-card rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2">mdi-star</v-icon>
-      Features
+      {{ t('common.features') }}
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -25,6 +25,10 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     features: {
       type: Array,

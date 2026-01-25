@@ -2,7 +2,7 @@
   <v-card class="mb-6" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2">mdi-lightning-bolt</v-icon>
-      Quick Actions
+      {{ t('quickActions.title') }}
     </v-card-title>
     <v-card-text>
       <v-row>
@@ -35,6 +35,10 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     actions: {
       type: Array,

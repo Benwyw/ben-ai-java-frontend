@@ -6,7 +6,8 @@
     "privacy": "私隱政策",
     "terms": "條款",
     "support": "支持",
-    "collapse": "收合"
+    "collapse": "收合",
+    "backToHome": "返回主頁"
   },
   "sections": {
     "noteformat": "NOTEFORMAT",
@@ -19,18 +20,195 @@
   "auth": {
     "login": "登入",
     "logout": "登出",
-    "loggingOut": "正在登出..."
+    "loggingOut": "正在登出...",
+    "welcomeBack": "歡迎回來！",
+    "accessAccount": "登入您的帳戶",
+    "loggedInAs": "已登入為 {name}",
+    "username": "用戶名稱",
+    "password": "密碼",
+    "loginFailed": "登入失敗。請檢查您的登入資料。",
+    "pleaseEnterCredentials": "請輸入用戶名稱和密碼。",
+    "pleaseLoginFirst": "請先登入以存取此頁面。",
+    "noPermission": "您沒有權限存取此頁面。",
+    "userNotLoggedIn": "用戶未登入。請登入以連接。"
   },
   "session": {
     "expiringTitle": "連線即將過期",
-    "expiringMessage": "您的連線即將過期。"
+    "expiringMessage": "您的連線將在 {seconds} 秒後過期。",
+    "prolongQuestion": "您想延長連線嗎？",
+    "prolongSession": "延長連線",
+    "sessionExpired": "您的連線已過期。您已被登出。",
+    "sessionExtendFailed": "無法延長連線。您已被登出。",
+    "loggedOut": "您已登出。"
   },
   "common": {
     "developmentWebsite": "開發網站",
-    "copyright": "Copyright © 2023–{year} WU Yat Wing. All rights reserved."
+    "copyright": "Copyright © 2023–{year} WU Yat Wing. All rights reserved.",
+    "close": "關閉",
+    "loading": "載入中...",
+    "reconnect": "重新連接",
+    "reconnecting": "正在重新連接...",
+    "online": "在線",
+    "connected": "已連接",
+    "disconnected": "已斷開",
+    "donate": "捐款",
+    "contact": "聯繫",
+    "email": "電郵",
+    "lastUpdated": "最後更新",
+    "deprecated": "已停用",
+    "legacyProducts": "舊產品",
+    "chooseProduct": "選擇要探索的產品",
+    "features": "功能",
+    "description": "描述"
   },
   "language": {
     "en": "English",
     "zh-HK": "繁體中文"
+  },
+  "home": {
+    "welcome": "歡迎來到 Benwyw",
+    "chooseProduct": "選擇要探索的產品"
+  },
+  "noteformat": {
+    "title": "NoteFormat",
+    "subtitle": "您的智能筆記與支出夥伴",
+    "description": "記錄支出、使用範本格式化、輕鬆匯入匯出。追蹤消費、預算和報告——簡單、私密、美觀。",
+    "cardDescription": "記錄支出、使用範本格式化、輕鬆匯入匯出。追蹤消費、預算和報告。App Store 免費下載。",
+    "iosApp": "iOS 應用程式",
+    "icloudSync": "iCloud 同步",
+    "gameCenter": "Game Center",
+    "siriShortcuts": "Siri 捷徑",
+    "downloadAppStore": "在 App Store 下載",
+    "appStore": "App Store",
+    "supportTitle": "支持 NoteFormat",
+    "supportDescription": "NoteFormat 是一個充滿熱情的獨立開發項目。如果您覺得這個應用程式有幫助，請考慮支持其持續開發。每一份貢獻都有助於帶來新功能和改進！",
+    "eula": "使用條款",
+    "eulaDesc": "NoteFormat 使用條款",
+    "privacy": "私隱政策",
+    "privacyDesc": "我們如何處理您的資料",
+    "privacyTitle": "NoteFormat 私隱政策",
+    "privacySubtitle": "NoteFormat 如何處理您的資料",
+    "tutorials": "教學",
+    "tutorialsDesc": "學習如何使用 NoteFormat",
+    "tutorialsTitle": "NoteFormat 教學",
+    "tutorialsSubtitle": "學習如何充分使用 NoteFormat",
+    "docs": "文檔與常見問題",
+    "docsDesc": "參考資料和常見問題",
+    "docsTitle": "NoteFormat 文檔與常見問題",
+    "docsSubtitle": "參考資料和常見問題",
+    "faq": "常見問題",
+    "templatePlaceholders": "範本佔位符參考",
+    "defaultTemplates": "預設範本",
+    "placeholder": "佔位符",
+    "exampleOutput": "範例輸出",
+    "template": "範本",
+    "pattern": "模式",
+    "dateFormat": "日期格式",
+    "features": {
+      "noteOrganization": "筆記整理",
+      "noteOrganizationDesc": "使用分類、標籤和可自訂的範本來建立和整理筆記。",
+      "expenseTracking": "支出追蹤",
+      "expenseTrackingDesc": "使用預算、提醒和視覺化報告追蹤每日支出。",
+      "budgetManagement": "預算管理",
+      "budgetManagementDesc": "設定每月、每週或每年的預算，並設定閾值提醒。",
+      "reportsAnalytics": "報告與分析",
+      "reportsAnalyticsDesc": "生成每日、每週、每月報告，包含分類細目。",
+      "icloudSync": "iCloud 同步",
+      "icloudSyncDesc": "在所有 Apple 裝置上無縫同步您的資料。",
+      "gameCenter": "Game Center",
+      "gameCenterDesc": "解鎖成就並在排行榜上競爭。",
+      "siriShortcuts": "Siri 捷徑",
+      "siriShortcutsDesc": "使用 Siri 指令快速新增筆記和取得報告。",
+      "privacyFirst": "私隱優先",
+      "privacyFirstDesc": "Face ID/Touch ID 鎖定，資料保留在裝置上和 iCloud 中。"
+    },
+    "faqItems": {
+      "whatIs": "什麼是 NoteFormat？",
+      "whatIsAnswer": "NoteFormat 是一款用於整理筆記和追蹤支出的 iOS 應用程式。使用分類、標籤和金額建立格式化的條目，然後以可自訂的格式匯出。",
+      "dataSync": "我的資料會跨裝置同步嗎？",
+      "dataSyncAnswer": "是的！如果您在設定中啟用 iCloud 同步，您的筆記、分類、範本和預算會自動在所有使用同一 iCloud 帳戶登入的 Apple 裝置上同步。",
+      "proIncluded": "Pro 版本包含什麼？",
+      "proIncludedAnswer": "Pro 訂閱包括：無廣告體驗、無限匯出、CSV 報告匯出、自訂主題、生物識別鎖定（Face ID/Touch ID）以及報告中的詳細分類細目。",
+      "cancelSubscription": "如何取消訂閱？",
+      "cancelSubscriptionAnswer": "前往裝置的設定 > 點擊您的名字 > 訂閱項目 > 選擇 NoteFormat > 取消訂閱。您將保留 Pro 存取權直到計費週期結束。",
+      "siriUsage": "我可以在 NoteFormat 中使用 Siri 嗎？",
+      "siriUsageAnswer": "可以！NoteFormat 支援 Siri 捷徑。您可以說「用 NoteFormat 新增筆記」來快速建立條目或取得報告。",
+      "budgetAlerts": "預算提醒如何運作？",
+      "budgetAlertsAnswer": "當您建立預算時，您設定一個提醒閾值（例如 80%）。當您的支出達到預算的該百分比時，您將收到應用程式內提醒。預算可以是每日、每週、每月或每年。",
+      "achievements": "什麼是成就？",
+      "achievementsAnswer": "NoteFormat 整合了 Game Center。您可以通過完成里程碑來獲得成就，例如建立第一條筆記、保持連續記錄、匯出資料等。查看成就標籤以了解您的進度。",
+      "deleteData": "如何刪除所有資料？",
+      "deleteDataAnswer": "前往設定 > 資料管理 > 刪除所有資料。這將永久刪除所有筆記、範本、分類、預算和成就。此操作無法撤銷。"
+    }
+  },
+  "benkaneki": {
+    "title": "Ben Kaneki",
+    "subtitle": "Discord 機器人",
+    "description": "一個多功能的 Discord 機器人，配有網頁儀表板，用於實用工具和自動化。",
+    "home": "主頁",
+    "homeDesc": "儀表板概覽",
+    "about": "關於",
+    "aboutDesc": "了解更多關於我們",
+    "aboutSubtitle": "為特定伺服器提供的多功能私人託管機器人。",
+    "messenger": "訊息",
+    "messengerDesc": "發送訊息",
+    "whityWeight": "小白體重",
+    "whityWeightDesc": "追蹤體重",
+    "whityWeightSubtitle": "小白體重記錄",
+    "report": "報告",
+    "reportDesc": "查看報告",
+    "swagger": "Swagger",
+    "swaggerDesc": "API 文檔",
+    "termsOfService": "服務條款",
+    "termsOfServiceDesc": "使用條款",
+    "privacyPolicy": "私隱政策",
+    "privacyPolicyDesc": "資料私隱",
+    "privacyPolicySubtitle": "Ben Kaneki Discord 機器人如何處理您的資料",
+    "features": {
+      "discordBot": "Discord 機器人",
+      "discordBotDesc": "一個多功能的 Discord 機器人，配有網頁儀表板，用於實用工具和自動化。",
+      "realTimeMessaging": "即時通訊",
+      "realTimeMessagingDesc": "使用我們安全的訊息平台即時通訊。",
+      "weightTracking": "體重追蹤",
+      "weightTrackingDesc": "使用美觀的視覺化監控和追蹤體重資料。",
+      "apiDocs": "API 文檔",
+      "apiDocsDesc": "全面的 Swagger 文檔，實現無縫整合。"
+    },
+    "botFeatures": "機器人功能"
+  },
+  "minecraft": {
+    "title": "Ben 的 Minecraft 伺服器",
+    "viewOnInstagram": "在 Instagram 上查看"
+  },
+  "messenger": {
+    "title": "訊息",
+    "subtitle": "即時通訊平台",
+    "errorOccurred": "訊息發生錯誤。",
+    "failedToConnect": "無法開啟 WebSocket 連接。"
+  },
+  "guides": {
+    "title": "指南",
+    "description": "此頁面是我個人項目的文檔和教學起點。如果您是新手，請從 NoteFormat 開始。",
+    "tip": "提示：這些頁面是公開的，包含較長的文檔，這也有助於用戶了解網站。",
+    "noteformatCard": "NoteFormat 應用程式的文檔、常見問題、教學和法律頁面。",
+    "toolsCard": "小型實用工具和演示。",
+    "siteAndLegal": "網站與法律",
+    "siteAndLegalDesc": "私隱和廣告合規所需的透明度頁面。",
+    "landing": "著陸頁",
+    "loginRequired": "需要登入",
+    "contactDesc": "如需支援或商業查詢，請電郵："
+  },
+  "legal": {
+    "termsOfServiceTitle": "服務條款",
+    "termsOfServiceSubtitle": "使用我們的服務前請仔細閱讀",
+    "privacyPolicyTitle": "私隱政策"
+  },
+  "cat": {
+    "title": "小白",
+    "subtitle": "我們心愛的貓"
+  },
+  "quickActions": {
+    "title": "快速操作",
+    "quickLinks": "快速連結"
   }
 }

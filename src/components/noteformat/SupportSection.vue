@@ -14,11 +14,9 @@
       >
         mdi-heart
       </v-icon>
-      <h2 class="text-h5 font-weight-bold mb-2">Support NoteFormat</h2>
+      <h2 class="text-h5 font-weight-bold mb-2">{{ t('noteformat.supportTitle') }}</h2>
       <p class="text-body-2 text-medium-emphasis mb-6 mx-auto" style="max-width: 480px;">
-        NoteFormat is developed with passion as an indie project.
-        If you find the app helpful, consider supporting its continued development.
-        Every contribution helps bring new features and improvements!
+        {{ t('noteformat.supportDescription') }}
       </p>
 
       <!-- PayPal Official Button -->
@@ -29,7 +27,7 @@
         target="_blank"
       >
         <button class="paypal-btn" type="submit">
-          Donate
+          {{ t('common.donate') }}
         </button>
         <img
           alt="Accepted payment methods"
@@ -52,7 +50,9 @@
 <script setup>
   import { useTheme } from 'vuetify'
   import { computed } from 'vue'
+  import { useI18n } from 'vue-i18n'
 
+  const { t } = useI18n()
   const theme = useTheme()
   const isDark = computed(() => theme.global.current.value.dark)
 </script>

@@ -5,8 +5,8 @@
       avatar-src="@/assets/BenKaneki-120.png"
       gradient-class="bg-gradient-purple"
       :show-avatar="true"
-      :subtitle="isLoggedIn ? `Logged in as ${displayName}` : 'Access your account'"
-      :title="isLoggedIn ? 'Welcome Back!' : 'Login'"
+      :subtitle="isLoggedIn ? t('auth.loggedInAs', { name: displayName }) : t('auth.accessAccount')"
+      :title="isLoggedIn ? t('auth.welcomeBack') : t('auth.login')"
     />
 
     <!-- Login/Logout Card -->
@@ -34,6 +34,7 @@
 
 <script setup>
   import { onBeforeUnmount, onMounted, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import { useRouter } from 'vue-router'
   import { login } from '@/api/login'
   import { logout } from '@/api/logout'
@@ -42,6 +43,7 @@
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
+  const { t } = useI18n()
   const router = useRouter()
 
   const loginUsername = ref('')
@@ -85,7 +87,7 @@
       // Redirect to Home after successful login
       router.push('/')
     } catch {
-      loginErrorMsg.value = 'Login failed. Please check your credentials.'
+      loginErrorMsg.value = t('auth.loginFailed')
     } finally {
       isLoginLoading.value = false
     }

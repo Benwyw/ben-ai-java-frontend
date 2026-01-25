@@ -15,25 +15,25 @@
         src="@/assets/NoteFormat-120-transparent.png"
         width="120"
       />
-      <h1 class="text-h3 font-weight-bold text-white mb-2">NoteFormat</h1>
+      <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('noteformat.title') }}</h1>
       <p class="text-h6 text-white-darken-1 mb-4">
-        Your Smart Note & Expense Companion
+        {{ t('noteformat.subtitle') }}
       </p>
       <p class="text-body-2 text-white-darken-2 mb-4 mx-auto" style="max-width: 520px;">
-        Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports—simple, private, and beautiful.
+        {{ t('noteformat.description') }}
       </p>
       <div aria-label="App Features" class="d-flex justify-center ga-3 flex-wrap mb-4" role="list">
         <v-chip color="white" prepend-icon="mdi-apple" role="listitem" variant="flat">
-          iOS App
+          {{ t('noteformat.iosApp') }}
         </v-chip>
         <v-chip color="white" prepend-icon="mdi-cloud-sync" role="listitem" variant="flat">
-          iCloud Sync
+          {{ t('noteformat.icloudSync') }}
         </v-chip>
         <v-chip color="white" prepend-icon="mdi-trophy" role="listitem" variant="flat">
-          Game Center
+          {{ t('noteformat.gameCenter') }}
         </v-chip>
         <v-chip color="white" prepend-icon="mdi-microphone" role="listitem" variant="flat">
-          Siri Shortcuts
+          {{ t('noteformat.siriShortcuts') }}
         </v-chip>
       </div>
       <v-hover v-slot="{ isHovering, props }">
@@ -52,7 +52,7 @@
           target="_blank"
           variant="flat"
         >
-          Download on the App Store
+          {{ t('noteformat.downloadAppStore') }}
         </v-btn>
       </v-hover>
     </v-card-text>
@@ -60,6 +60,9 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
 </script>
 
 <style scoped>

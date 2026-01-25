@@ -21,13 +21,17 @@
 
       <p class="text-caption text-medium-emphasis text-center">
         <v-icon class="mr-1" size="small">mdi-clock-outline</v-icon>
-        Last updated on: {{ lastUpdated }}
+        {{ t('common.lastUpdated') }}: {{ lastUpdated }}
       </p>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     sections: {
       type: Array,

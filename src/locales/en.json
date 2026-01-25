@@ -6,7 +6,8 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "support": "Support",
-    "collapse": "Collapse"
+    "collapse": "Collapse",
+    "backToHome": "Back to Home"
   },
   "sections": {
     "noteformat": "NOTEFORMAT",
@@ -19,18 +20,195 @@
   "auth": {
     "login": "Login",
     "logout": "Logout",
-    "loggingOut": "Logging out..."
+    "loggingOut": "Logging out...",
+    "welcomeBack": "Welcome Back!",
+    "accessAccount": "Access your account",
+    "loggedInAs": "Logged in as {name}",
+    "username": "Username",
+    "password": "Password",
+    "loginFailed": "Login failed. Please check your credentials.",
+    "pleaseEnterCredentials": "Please enter username and password.",
+    "pleaseLoginFirst": "Please login to access this page.",
+    "noPermission": "You do not have permission to access this page.",
+    "userNotLoggedIn": "User not logged in. Please log in to connect."
   },
   "session": {
     "expiringTitle": "Session Expiring Soon",
-    "expiringMessage": "Your session is about to expire."
+    "expiringMessage": "Your session will expire in {seconds} seconds.",
+    "prolongQuestion": "Would you like to prolong your session?",
+    "prolongSession": "Prolong Session",
+    "sessionExpired": "Your session has expired. You have been logged out.",
+    "sessionExtendFailed": "Session could not be extended. You have been logged out.",
+    "loggedOut": "You have been logged out."
   },
   "common": {
     "developmentWebsite": "Development website",
-    "copyright": "Copyright © 2023–{year} WU Yat Wing. All rights reserved."
+    "copyright": "Copyright © 2023–{year} WU Yat Wing. All rights reserved.",
+    "close": "Close",
+    "loading": "Loading...",
+    "reconnect": "Reconnect",
+    "reconnecting": "Reconnecting...",
+    "online": "Online",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "donate": "Donate",
+    "contact": "Contact",
+    "email": "Email",
+    "lastUpdated": "Last updated",
+    "deprecated": "Deprecated",
+    "legacyProducts": "Legacy Products",
+    "chooseProduct": "Choose a product to explore",
+    "features": "Features",
+    "description": "Description"
   },
   "language": {
     "en": "English",
     "zh-HK": "繁體中文"
+  },
+  "home": {
+    "welcome": "Welcome to Benwyw",
+    "chooseProduct": "Choose a product to explore"
+  },
+  "noteformat": {
+    "title": "NoteFormat",
+    "subtitle": "Your Smart Note & Expense Companion",
+    "description": "Capture expenses, format them with templates, and import/export easily. Track spending, budgets and reports—simple, private, and beautiful.",
+    "cardDescription": "Capture expenses, format with templates, import/export easily. Track spending, budgets and reports. Free on the App Store.",
+    "iosApp": "iOS App",
+    "icloudSync": "iCloud Sync",
+    "gameCenter": "Game Center",
+    "siriShortcuts": "Siri Shortcuts",
+    "downloadAppStore": "Download on the App Store",
+    "appStore": "App Store",
+    "supportTitle": "Support NoteFormat",
+    "supportDescription": "NoteFormat is developed with passion as an indie project. If you find the app helpful, consider supporting its continued development. Every contribution helps bring new features and improvements!",
+    "eula": "EULA",
+    "eulaDesc": "Usage terms for NoteFormat",
+    "privacy": "Privacy",
+    "privacyDesc": "How we handle your data",
+    "privacyTitle": "NoteFormat Privacy Policy",
+    "privacySubtitle": "How NoteFormat handles your data",
+    "tutorials": "Tutorials",
+    "tutorialsDesc": "Learn how to use NoteFormat",
+    "tutorialsTitle": "NoteFormat Tutorials",
+    "tutorialsSubtitle": "Learn how to get the most from NoteFormat",
+    "docs": "Docs & FAQ",
+    "docsDesc": "Reference and common questions",
+    "docsTitle": "NoteFormat Docs & FAQ",
+    "docsSubtitle": "Reference and frequently asked questions",
+    "faq": "Frequently Asked Questions",
+    "templatePlaceholders": "Template Placeholders Reference",
+    "defaultTemplates": "Default Templates",
+    "placeholder": "Placeholder",
+    "exampleOutput": "Example Output",
+    "template": "Template",
+    "pattern": "Pattern",
+    "dateFormat": "Date Format",
+    "features": {
+      "noteOrganization": "Note Organization",
+      "noteOrganizationDesc": "Create and organize notes with categories, tags, and customizable templates.",
+      "expenseTracking": "Expense Tracking",
+      "expenseTrackingDesc": "Track daily expenses with budgets, alerts, and visual reports.",
+      "budgetManagement": "Budget Management",
+      "budgetManagementDesc": "Set monthly, weekly, or yearly budgets with threshold alerts.",
+      "reportsAnalytics": "Reports & Analytics",
+      "reportsAnalyticsDesc": "Generate daily, weekly, monthly reports with category breakdowns.",
+      "icloudSync": "iCloud Sync",
+      "icloudSyncDesc": "Seamlessly sync your data across all your Apple devices.",
+      "gameCenter": "Game Center",
+      "gameCenterDesc": "Unlock achievements and compete on leaderboards.",
+      "siriShortcuts": "Siri Shortcuts",
+      "siriShortcutsDesc": "Quick add notes and get reports using Siri commands.",
+      "privacyFirst": "Privacy First",
+      "privacyFirstDesc": "Face ID/Touch ID lock with your data staying on-device and iCloud."
+    },
+    "faqItems": {
+      "whatIs": "What is NoteFormat?",
+      "whatIsAnswer": "NoteFormat is an iOS app for organizing notes and tracking expenses. Create formatted entries with categories, tags, and amounts, then export them in customizable formats.",
+      "dataSync": "Is my data synced across devices?",
+      "dataSyncAnswer": "Yes! If you enable iCloud sync in Settings, your notes, categories, templates, and budgets sync automatically across all your Apple devices signed into the same iCloud account.",
+      "proIncluded": "What's included in Pro?",
+      "proIncludedAnswer": "Pro subscription includes: ad-free experience, unlimited exports, CSV report exports, custom themes, biometric lock (Face ID/Touch ID), and detailed category breakdowns in reports.",
+      "cancelSubscription": "How do I cancel my subscription?",
+      "cancelSubscriptionAnswer": "Go to your device's Settings > tap your name > Subscriptions > select NoteFormat > Cancel Subscription. You'll retain Pro access until the end of your billing period.",
+      "siriUsage": "Can I use Siri with NoteFormat?",
+      "siriUsageAnswer": "Yes! NoteFormat supports Siri Shortcuts. You can say things like \"Add a note with NoteFormat\" to quickly create entries or get reports.",
+      "budgetAlerts": "How do budget alerts work?",
+      "budgetAlertsAnswer": "When you create a budget, you set an alert threshold (e.g., 80%). When your spending reaches that percentage of your budget, you'll receive an in-app alert. Budgets can be daily, weekly, monthly, or yearly.",
+      "achievements": "What are achievements?",
+      "achievementsAnswer": "NoteFormat integrates with Game Center. You can earn achievements for milestones like creating your first note, maintaining streaks, exporting data, and more. Check the Achievements tab to see your progress.",
+      "deleteData": "How do I delete all my data?",
+      "deleteDataAnswer": "Go to Settings > Data Management > Delete All Data. This permanently removes all notes, templates, categories, budgets, and achievements. This action cannot be undone."
+    }
+  },
+  "benkaneki": {
+    "title": "Ben Kaneki",
+    "subtitle": "Discord Bot",
+    "description": "A multi-purpose Discord bot with web dashboard for utilities and automation.",
+    "home": "Home",
+    "homeDesc": "Dashboard overview",
+    "about": "About",
+    "aboutDesc": "Learn more about us",
+    "aboutSubtitle": "Multi-purpose private hosted bot for selected servers.",
+    "messenger": "Messenger",
+    "messengerDesc": "Send messages",
+    "whityWeight": "Whity Weight",
+    "whityWeightDesc": "Track weight",
+    "whityWeightSubtitle": "Whity Weight Record",
+    "report": "Report",
+    "reportDesc": "View reports",
+    "swagger": "Swagger",
+    "swaggerDesc": "API Documentation",
+    "termsOfService": "Terms of Service",
+    "termsOfServiceDesc": "Usage terms",
+    "privacyPolicy": "Privacy Policy",
+    "privacyPolicyDesc": "Data privacy",
+    "privacyPolicySubtitle": "How Ben Kaneki Discord Bot handles your data",
+    "features": {
+      "discordBot": "Discord Bot",
+      "discordBotDesc": "A multi-purpose Discord bot with a companion web dashboard for utilities and automation.",
+      "realTimeMessaging": "Real-time Messaging",
+      "realTimeMessagingDesc": "Communicate instantly with our secure messenger platform.",
+      "weightTracking": "Weight Tracking",
+      "weightTrackingDesc": "Monitor and track weight data with beautiful visualizations.",
+      "apiDocs": "API Documentation",
+      "apiDocsDesc": "Comprehensive Swagger docs for seamless integration."
+    },
+    "botFeatures": "Bot Features"
+  },
+  "minecraft": {
+    "title": "Ben's Minecraft Server",
+    "viewOnInstagram": "View on Instagram"
+  },
+  "messenger": {
+    "title": "Messenger",
+    "subtitle": "Real-time messaging platform",
+    "errorOccurred": "Messenger error occurred.",
+    "failedToConnect": "Failed to open WebSocket connection."
+  },
+  "guides": {
+    "title": "Guides",
+    "description": "This page is a starting point for documentation and tutorials across my personal projects. If you're new here, start with NoteFormat.",
+    "tip": "Tip: these pages are public and include longer-form documentation, which also helps user understand the site.",
+    "noteformatCard": "Documentation, FAQ, tutorials, and legal pages for the NoteFormat app.",
+    "toolsCard": "Small utilities and demos.",
+    "siteAndLegal": "Site & legal",
+    "siteAndLegalDesc": "Transparency pages required for privacy and advertising compliance.",
+    "landing": "Landing",
+    "loginRequired": "login required",
+    "contactDesc": "For support or business enquiries, email:"
+  },
+  "legal": {
+    "termsOfServiceTitle": "Terms of Service",
+    "termsOfServiceSubtitle": "Please read carefully before using our services",
+    "privacyPolicyTitle": "Privacy Policy"
+  },
+  "cat": {
+    "title": "Whity",
+    "subtitle": "Our beloved cat"
+  },
+  "quickActions": {
+    "title": "Quick Actions",
+    "quickLinks": "Quick Links"
   }
 }

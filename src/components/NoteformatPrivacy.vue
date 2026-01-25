@@ -3,8 +3,8 @@
     <PageHeader
       gradient-class="bg-gradient-indigo"
       icon="mdi-shield-lock"
-      subtitle="How NoteFormat handles your data"
-      title="NoteFormat Privacy Policy"
+      :subtitle="t('noteformat.privacySubtitle')"
+      :title="t('noteformat.privacyTitle')"
     />
 
     <SectionsPanel :last-updated="lastUpdated" :sections="sections" />
@@ -14,9 +14,12 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import SectionsPanel from '@/components/legal/SectionsPanel.vue'
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
+
+  const { t } = useI18n()
 
   const lastUpdated = '25 JAN 2026'
 

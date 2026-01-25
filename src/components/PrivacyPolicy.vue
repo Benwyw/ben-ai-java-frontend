@@ -4,8 +4,8 @@
     <PageHeader
       gradient-class="bg-gradient-indigo"
       icon="mdi-shield-lock"
-      subtitle="How Ben Kaneki Discord Bot handles your data"
-      title="Ben Kaneki Privacy Policy"
+      :subtitle="t('benkaneki.privacyPolicySubtitle')"
+      :title="t('legal.privacyPolicyTitle')"
     />
 
     <!-- Privacy Policy Content -->
@@ -17,9 +17,12 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import SectionsPanel from '@/components/legal/SectionsPanel.vue'
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
+
+  const { t } = useI18n()
 
   // Keep this date in sync with your public policy URL.
   const lastUpdated = '25 JAN 2026'

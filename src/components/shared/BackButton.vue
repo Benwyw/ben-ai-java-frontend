@@ -5,12 +5,16 @@
       :to="to"
       variant="text"
     >
-      {{ label }}
+      {{ label || t('nav.backToHome') }}
     </v-btn>
   </div>
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     to: {
       type: String,
@@ -18,7 +22,7 @@
     },
     label: {
       type: String,
-      default: 'Back to Home',
+      default: '',
     },
   })
 </script>

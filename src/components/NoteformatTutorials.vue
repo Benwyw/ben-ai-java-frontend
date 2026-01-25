@@ -3,8 +3,8 @@
     <PageHeader
       gradient-class="bg-gradient-success"
       icon="mdi-school"
-      subtitle="Learn how to get the most from NoteFormat"
-      title="NoteFormat Tutorials"
+      :subtitle="t('noteformat.tutorialsSubtitle')"
+      :title="t('noteformat.tutorialsTitle')"
     />
 
     <v-card class="mb-6" rounded="xl">
@@ -134,6 +134,9 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
+
+  const { t } = useI18n()
 </script>

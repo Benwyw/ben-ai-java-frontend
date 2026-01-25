@@ -19,7 +19,7 @@
           variant="tonal"
           @click="reconnectNow"
         >
-          Reconnect
+          {{ t('common.reconnect') }}
         </v-btn>
       </template>
     </v-alert>
@@ -28,8 +28,8 @@
     <PageHeader
       gradient-class="bg-gradient-success"
       icon="mdi-message"
-      subtitle="Real-time messaging platform"
-      title="Messenger"
+      :subtitle="t('messenger.subtitle')"
+      :title="t('messenger.title')"
     >
       <template #chips>
         <div class="d-flex justify-center ga-3 mt-4">
@@ -40,11 +40,11 @@
             variant="flat"
             @click="clientStatus === 'Disconnected' ? reconnectNow() : null"
           >
-            {{ clientStatus }}
+            {{ clientStatus === 'Connected' ? t('common.connected') : t('common.disconnected') }}
             <v-icon v-if="clientStatus === 'Disconnected'" class="ml-1" size="small">mdi-refresh</v-icon>
           </v-chip>
           <v-chip color="white" prepend-icon="mdi-account-multiple" variant="flat">
-            {{ onlineUserCountDisplay }} Online
+            {{ onlineUserCountDisplay }} {{ t('common.online') }}
           </v-chip>
         </div>
       </template>
@@ -65,6 +65,7 @@
 
 <script setup>
   import { computed, onMounted, onUnmounted, reactive, ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import * as api from '@/api/messenger'
   import { buildUserWebSocketUrl, webSocketUrl } from '@/api/messenger'
   import ChatCard from '@/components/messenger/ChatCard.vue'
@@ -72,6 +73,8 @@
   import ErrorAlert from '@/components/shared/ErrorAlert.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
   import { lastError } from '@/stores/errorStore'
+
+  const { t } = useI18n()
 
   // Alert state for WebSocket status messages
   const alertState = reactive({

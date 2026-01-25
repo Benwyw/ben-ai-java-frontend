@@ -4,8 +4,8 @@
     <PageHeader
       gradient-class="bg-gradient-cyan"
       icon="mdi-file-document"
-      subtitle="Please read carefully before using our services"
-      title="Terms of Service"
+      :subtitle="t('legal.termsOfServiceSubtitle')"
+      :title="t('legal.termsOfServiceTitle')"
     />
 
     <!-- Terms of Service Content -->
@@ -17,9 +17,12 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import SectionsPanel from '@/components/legal/SectionsPanel.vue'
   import BackButton from '@/components/shared/BackButton.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
+
+  const { t } = useI18n()
 
   const lastUpdated = '5 JUL 2024'
 

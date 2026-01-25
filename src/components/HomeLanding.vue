@@ -5,10 +5,10 @@
         <!-- Title Section -->
         <div class="text-center mb-8">
           <h1 class="text-h3 text-md-h2 font-weight-bold mb-4">
-            Welcome to Benwyw
+            {{ t('home.welcome') }}
           </h1>
           <p class="text-body-1 text-medium-emphasis">
-            Choose a product to explore
+            {{ t('home.chooseProduct') }}
           </p>
         </div>
       </v-col>
@@ -35,17 +35,17 @@
               width="128"
             />
             <v-card-title class="text-h4 font-weight-bold justify-center" tag="h2">
-              NoteFormat
+              {{ t('noteformat.title') }}
             </v-card-title>
             <v-card-subtitle class="text-body-1 mt-2">
-              Your Smart Note & Expense Companion
+              {{ t('noteformat.subtitle') }}
             </v-card-subtitle>
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              Capture expenses, format with templates, import/export easily. Track spending, budgets and reports. Free on the App Store.
+              {{ t('noteformat.cardDescription') }}
             </v-card-text>
             <v-chip class="mt-2" color="primary" variant="tonal">
               <v-icon start>mdi-apple</v-icon>
-              App Store
+              {{ t('noteformat.appStore') }}
             </v-chip>
           </v-card>
         </v-hover>
@@ -72,13 +72,13 @@
               width="128"
             />
             <v-card-title class="text-h4 font-weight-bold justify-center">
-              Ben Kaneki
+              {{ t('benkaneki.title') }}
             </v-card-title>
             <v-card-subtitle class="text-body-1 mt-2">
-              Discord Bot
+              {{ t('benkaneki.subtitle') }}
             </v-card-subtitle>
             <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              A multi-purpose Discord bot with web dashboard for utilities and automation.
+              {{ t('benkaneki.description') }}
             </v-card-text>
             <v-chip class="mt-2" color="info" variant="tonal">
               <img alt="Discord" class="discord-icon mr-2" :src="discordIcon">
@@ -92,7 +92,7 @@
       <v-col class="mt-8" cols="12">
         <v-divider class="mb-4" />
         <p class="text-body-2 text-medium-emphasis text-center mb-4">
-          Legacy Products
+          {{ t('common.legacyProducts') }}
         </p>
       </v-col>
 
@@ -114,14 +114,14 @@
             width="48"
           />
           <v-card-title class="text-subtitle-1 font-weight-medium justify-center text-grey">
-            Ben's Minecraft Server
+            {{ t('minecraft.title') }}
           </v-card-title>
           <v-card-subtitle class="text-caption text-grey-darken-1">
-            Deprecated
+            {{ t('common.deprecated') }}
           </v-card-subtitle>
           <v-chip class="mt-2" color="grey" size="small" variant="outlined">
             <v-icon size="small" start>mdi-instagram</v-icon>
-            View on Instagram
+            {{ t('minecraft.viewOnInstagram') }}
           </v-chip>
         </v-card>
       </v-col>
@@ -130,12 +130,14 @@
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
   import { useRouter } from 'vue-router'
   import benkanekiIcon from '@/assets/BenKaneki-120.png'
   import discordIcon from '@/assets/discord.svg'
   import mcbenwywIcon from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
   import noteformatIcon from '@/assets/NoteFormat-120-transparent.png'
 
+  const { t } = useI18n()
   const router = useRouter()
 
   function navigateTo (path) {

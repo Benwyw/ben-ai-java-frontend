@@ -2,7 +2,7 @@
   <v-card class="mb-6" rounded="xl">
     <v-card-title class="d-flex align-center">
       <v-icon class="mr-2">mdi-feature-search</v-icon>
-      Bot Features
+      {{ t('benkaneki.botFeatures') }}
     </v-card-title>
     <v-card-text>
       <v-data-table-server
@@ -26,19 +26,22 @@
 
 <script setup>
   import { ref } from 'vue'
+  import { useI18n } from 'vue-i18n'
   import * as api from '@/api/misc'
+
+  const { t } = useI18n()
 
   const page = ref(1)
   const itemsPerPage = ref(10)
   const headers = ref([
     {
-      title: 'Features',
+      title: t('common.features'),
       align: 'start',
       sortable: true,
       key: 'featureName',
     },
     {
-      title: 'Description',
+      title: t('common.description'),
       align: 'end',
       sortable: true,
       key: 'featureDescription',

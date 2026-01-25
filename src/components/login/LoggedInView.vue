@@ -4,7 +4,7 @@
       <v-icon color="white" size="40">mdi-account</v-icon>
     </v-avatar>
     <div class="text-h6 mb-2">{{ displayName }}</div>
-    <div class="text-body-2 text-medium-emphasis mb-6">You are currently logged in</div>
+    <div class="text-body-2 text-medium-emphasis mb-6">{{ t('auth.loggedInAs', { name: displayName }) }}</div>
     <v-btn
       block
       color="error"
@@ -14,12 +14,16 @@
       @click="$emit('logout')"
     >
       <v-icon class="mr-2">mdi-logout</v-icon>
-      Logout
+      {{ t('auth.logout') }}
     </v-btn>
   </v-card-text>
 </template>
 
 <script setup>
+  import { useI18n } from 'vue-i18n'
+
+  const { t } = useI18n()
+
   defineProps({
     displayName: {
       type: String,
