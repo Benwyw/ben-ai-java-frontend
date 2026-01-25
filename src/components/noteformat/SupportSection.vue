@@ -21,39 +21,83 @@
         Every contribution helps bring new features and improvements!
       </p>
 
-      <!-- PayPal Donate Button - Fully responsive -->
-      <v-hover v-slot="{ isHovering, props }">
-        <v-btn
-          v-bind="props"
-          :elevation="isHovering ? 8 : 2"
-          class="text-none donate-btn"
-          color="#0070ba"
-          href="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
-          rel="noopener"
-          rounded="pill"
-          size="large"
-          target="_blank"
-          variant="flat"
-        >
-          <v-icon class="mr-2" size="20">mdi-heart</v-icon>
-          Donate with PayPal
-        </v-btn>
-      </v-hover>
-
-      <p class="text-caption text-medium-emphasis mt-4">
-        Secure payment powered by PayPal
-      </p>
+      <!-- PayPal Official Button -->
+      <form
+        action="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
+        class="paypal-form"
+        method="post"
+        target="_blank"
+      >
+        <button class="paypal-btn" type="submit">
+          Donate
+        </button>
+        <img
+          alt="Accepted payment methods"
+          class="paypal-cards"
+          src="https://www.paypalobjects.com/images/Debit_Credit_APM.svg"
+        />
+        <span class="paypal-powered">
+          Powered by
+          <img
+            alt="PayPal"
+            class="paypal-logo"
+            src="https://www.paypalobjects.com/paypal-ui/logos/svg/paypal-wordmark-color.svg"
+          />
+        </span>
+      </form>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-  // No SDK needed - using direct link approach
+  // Using PayPal official button style with direct form submission
 </script>
 
 <style scoped>
-.donate-btn {
-  min-width: 200px;
-  max-width: 100%;
+.paypal-form {
+  display: inline-grid;
+  justify-items: center;
+  align-content: start;
+  gap: 0.5rem;
+}
+
+.paypal-btn {
+  text-align: center;
+  border: none;
+  border-radius: 1.5rem;
+  min-width: 11.625rem;
+  padding: 0 2rem;
+  height: 2.625rem;
+  font-weight: bold;
+  background-color: #FFD140;
+  color: #000000;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.paypal-btn:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.paypal-btn:active {
+  transform: scale(0.98);
+}
+
+.paypal-cards {
+  height: 1.25rem;
+}
+
+.paypal-powered {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+.paypal-logo {
+  height: 0.875rem;
+  vertical-align: middle;
 }
 </style>
