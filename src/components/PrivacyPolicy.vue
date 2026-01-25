@@ -66,7 +66,7 @@
         'We take reasonable measures to protect information processed by the App. No method of storage or transmission is 100% secure, so we cannot guarantee absolute security.',
     },
     {
-      title: 'Children's Privacy',
+      title: 'Children’s Privacy',
       content:
         'NoteFormat is not directed to children under 13. We do not knowingly collect personal information from children. If you believe a child has provided personal information, contact us and we will take appropriate steps.',
     },
