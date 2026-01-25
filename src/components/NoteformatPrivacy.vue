@@ -24,12 +24,12 @@
     {
       title: 'Overview',
       content:
-        'NoteFormat is designed to work primarily on-device and through Apple services you enable (such as iCloud). We collect and use data only as needed to provide app features and subscriptions. For the free tier, ads are provided by Appodeal and its mediation partners (including Google AdMob), which may collect and process certain device and usage data as described below. We do not sell your personal data.',
+        'NoteFormat is designed to work primarily on-device and through Apple services you enable (such as iCloud). We collect and use data only as needed to provide app features and subscriptions. For the free tier, ads are provided by Appodeal and its mediation partners (including Google AdMob and other ad networks), which may collect and process certain device and usage data as described below. We do not sell your personal data.',
     },
     {
       title: 'Data We Collect',
       content:
-        'On-device app data: notes, categories, templates, budgets, and achievements stored on your device. iCloud sync (optional): if enabled, your app data may be stored in your iCloud/CloudKit account. Purchases: subscription status and purchase history via Apple StoreKit; we do not receive or store your full payment card details. Advertising (free tier): Appodeal and its mediation partners (such as Google AdMob) may collect data such as device identifiers (including IDFA if you allow tracking), IP address, device type and operating system, general location (derived from IP), and app interaction information for ad delivery, frequency capping, fraud prevention, measurement, and (if enabled) personalized ads. Optional features: biometric capability (Face ID/Touch ID availability only; we do not collect or store biometric data) and Game Center identifiers for achievements/leaderboards.',
+        'On-device app data: notes, categories, templates, budgets, and achievements stored on your device. iCloud sync (optional): if enabled, your app data may be stored in your iCloud/CloudKit account. Purchases: subscription status and purchase history via Apple StoreKit; we do not receive or store your full payment card details. Advertising (free tier): Appodeal and its mediation partners (including Google AdMob) may collect data such as device identifiers (including the advertising identifier / IDFA if you allow tracking), IP address, general location (derived from IP), and app interaction information for ad delivery, frequency capping, fraud prevention, measurement, and (if enabled) personalized ads. Optional features: biometric capability (Face ID/Touch ID availability only; we do not collect or store biometric data) and Game Center identifiers for achievements/leaderboards.',
     },
     {
       title: 'How We Use Data',
@@ -44,7 +44,7 @@
     {
       title: 'Third-Party Services',
       content:
-        'Apple services: iCloud/CloudKit (sync) and StoreKit (purchases/subscriptions), Game Center (achievements/leaderboards). Appodeal and its mediation partners including Google AdMob (free tier): ad delivery, measurement, and (depending on your choices) personalization. These providers may process data under their own terms and privacy policies. For more information, see: Appodeal (https://appodeal.com/privacy-policy/), Google AdMob (https://policies.google.com/privacy).',
+        'Apple services: iCloud/CloudKit (sync) and StoreKit (purchases/subscriptions), Game Center (achievements/leaderboards). Appodeal (free tier): ad mediation platform that works with multiple ad networks including Google AdMob for ad delivery, measurement, and (depending on your choices) personalization. For more information, see the privacy policies of Appodeal (https://appodeal.com/privacy-policy/) and Google (https://policies.google.com/privacy). These providers may process data under their own terms and privacy policies.',
     },
     {
       title: 'Sharing',
@@ -64,22 +64,22 @@
     {
       title: 'Data Security',
       content:
-        'We rely on Apple platform security features (such as device encryption and iCloud security controls) to protect data stored on your device and in your iCloud (if enabled). NoteFormat does not require you to create an online account with us, and we do not operate a general-purpose cloud database for your notes. Third-party providers (Apple/Google) may process data as described in their policies.',
+        'We rely on Apple platform security features (such as device encryption and iCloud security controls) to protect data stored on your device and in your iCloud (if enabled). NoteFormat does not require you to create an online account with us, and we do not operate a general-purpose cloud database for your notes. Third-party providers (Apple, Appodeal, Google) may process data as described in their policies.',
     },
     {
       title: 'Retention',
       content:
-        'On-device data is retained until you delete it or remove the app. If iCloud sync is enabled, related data may remain in your iCloud until you delete it from iCloud or disable sync and remove the data according to your iCloud settings. Data processed by Appodeal and Google AdMob is handled under their respective retention practices and controls as described in their policies.',
+        'On-device data is retained until you delete it or remove the app. If iCloud sync is enabled, related data may remain in your iCloud until you delete it from iCloud or disable sync and remove the data according to your iCloud settings. Data processed by Appodeal and its mediation partners (including Google AdMob) is handled under their respective retention practices and controls as described in their policies.',
     },
     {
       title: 'International Transfers',
       content:
-        'Because Apple and Google operate globally, data processed by iCloud/CloudKit, StoreKit, Game Center, and AdMob may be transferred to and processed in countries/regions outside Hong Kong, including places that may have different data protection laws.',
+        'Because Apple, Appodeal, and Google operate globally, data processed by iCloud/CloudKit, StoreKit, Game Center, Appodeal, and its mediation partners (including Google AdMob) may be transferred to and processed in countries/regions outside Hong Kong, including places that may have different data protection laws.',
     },
     {
       title: 'Your Rights & Requests',
       content:
-        'Depending on where you live, you may have rights to request access to or correction of personal data. If you have questions or requests about this policy, contact us at the email below. For data processed by Apple/Google services (such as iCloud or AdMob), you may also need to use their privacy tools and settings.',
+        'Depending on where you live, you may have rights to request access to or correction of personal data. If you have questions or requests about this policy, contact us at the email below. For data processed by Apple, Appodeal, or Google services (such as iCloud, Appodeal mediation, or AdMob), you may also need to use their privacy tools and settings.',
     },
     {
       title: "Children's Privacy",
