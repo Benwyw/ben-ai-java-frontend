@@ -308,8 +308,8 @@
           <div class="mb-2">
             <v-btn class="mx-1" size="small" :to="{ path: '/about' }" variant="text">About</v-btn>
             <v-btn class="mx-1" size="small" :to="{ path: '/guides' }" variant="text">Guides</v-btn>
-            <v-btn class="mx-1" size="small" :to="{ path: '/noteformat/privacy' }" variant="text">Privacy</v-btn>
-            <v-btn append-icon="mdi-open-in-new" class="mx-1" size="small" :to="{ path: '/noteformat/eula' }" variant="text">Terms</v-btn>
+            <v-btn class="mx-1" size="small" :to="{ path: '/privacy' }" variant="text">Privacy</v-btn>
+            <v-btn append-icon="mdi-open-in-new" class="mx-1" size="small" variant="text" @click="openInNewTab('/noteformat/eula')">Terms</v-btn>
           </div>
           <span class="text-body-2 text-medium-emphasis">
             Copyright &copy; 2023–{{ new Date().getFullYear() }} WU Yat Wing. All rights reserved.
@@ -596,6 +596,13 @@
     } finally {
       isLoggingOut.value = false
     }
+  }
+
+  /**
+   * Open a URL in a new tab
+   */
+  function openInNewTab (url) {
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
 
   /**

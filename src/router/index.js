@@ -202,17 +202,25 @@ const routes = [
       {
         path: '/about',
         name: 'About',
-        redirect: '/benkaneki/about',
+        redirect: '/noteformat',
         meta: {
-          navHidden: true, // Redirect to Ben Kaneki section
+          navHidden: true, // Redirect to NoteFormat section
         },
       },
       {
         path: '/guides',
         name: 'Guides',
-        redirect: '/benkaneki',
+        redirect: '/noteformat/tutorials',
         meta: {
-          navHidden: true, // Redirect to Ben Kaneki section
+          navHidden: true, // Redirect to NoteFormat section
+        },
+      },
+      {
+        path: '/privacy',
+        name: 'Privacy',
+        redirect: '/noteformat/privacy',
+        meta: {
+          navHidden: true, // Redirect to NoteFormat section
         },
       },
       {
