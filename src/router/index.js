@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 // Import SEO composable
 import { generateBreadcrumbData, generateFaqData, updateSeoMeta } from '@/composables/useSeoMeta'
+import { translate, onLocaleChange } from '@/plugins/i18n'
 
 /**
  * ============================================================================
@@ -196,8 +197,10 @@ const routes = [
           icon: 'mdi-home',
           navSection: 'main',
           navOrder: 1,
-          seoTitle: 'Benwyw — Home',
-          seoDescription: 'Welcome to Benwyw. Explore NoteFormat iOS App or Ben Kaneki Discord Bot.',
+          seoKey: 'home', // Key for locale translations in seo.home.*
+          seoTitle: 'Benwyw — iOS Apps, Tools & Projects',
+          seoDescription: 'Welcome to Benwyw. Explore NoteFormat iOS App for expense tracking and note organization, or Ben Kaneki Discord Bot.',
+          seoKeywords: 'NoteFormat, expense formatter, iOS app, expense tracker, note taking, budget management, iCloud sync, Benwyw',
           canonicalPath: '/',
           // No auth required - public page
         },
@@ -274,6 +277,7 @@ const routes = [
           navSection: 'noteformat',
           navOrder: 1,
           defaultExpanded: true,
+          seoKey: 'noteformat', // Key for locale translations in seo.noteformat.*
           seoTitle: 'NoteFormat - Expense Formatter | Flexible Import/Export for iOS',
           seoDescription: 'NoteFormat – Your Smart Note & Expense Companion. Flexible expense import/export with custom templates. Track spending, budgets, and reports. Free on the App Store with iCloud sync.',
           seoKeywords: 'NoteFormat, expense formatter, flexible import export, iOS app, expense tracker, note taking, budget tracker, iCloud sync, CSV export, Siri shortcuts, Game Center, free iOS app',
@@ -435,6 +439,7 @@ const routes = [
           navSection: 'benkaneki',
           navOrder: 1,
           defaultExpanded: true,
+          seoKey: 'benkaneki', // Key for locale translations in seo.benkaneki.*
           seoTitle: 'Ben Kaneki Discord Bot — Benwyw',
           seoDescription: 'Ben Kaneki Discord Bot - A multi-purpose bot with web dashboard for utilities and automation.',
           seoImage: 'https://www.benwyw.com/assets/BenKaneki-seo.png',
@@ -577,6 +582,7 @@ const routes = [
           navSection: 'mcbenwywcom',
           navOrder: 1,
           defaultExpanded: true,
+          seoKey: 'minecraft', // Key for locale translations in seo.minecraft.*
           seoTitle: 'Ben\'s Minecraft Server — Benwyw',
           seoDescription: 'Ben\'s Minecraft Server - A deprecated Minecraft Java Edition server preserved for historical purposes.',
           seoImage: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom_logo.png',
@@ -658,6 +664,7 @@ const routes = [
           navSection: 'main',
           navOrder: 2,
           glowEffect: 'angel', // Options: 'angel' | 'angel-soft' | 'pulse' | false
+          seoKey: 'whity', // Key for locale translations in seo.whity.*
           seoTitle: 'Whity — In Loving Memory (2019-2024)',
           seoDescription: 'A tribute to Whity (小白), my beloved cat (12 Jul 2019 - 29 Dec 2024). Forever loved, forever missed. View photos, memories, and a heartfelt memorial.',
           seoImage: 'https://www.benwyw.com/assets/cat/Whity_hero.webp',
@@ -727,7 +734,15 @@ const router = createRouter({
 
 router.afterEach(to => {
   // Use the enhanced SEO meta composable with matched routes for image inheritance
-  updateSeoMeta(to.meta, to.path, to.matched)
+  // Pass translate function for locale-aware SEO (title, description, keywords)
+  updateSeoMeta(to.meta, to.path, to.matched, translate)
+})
+
+// Register callback to refresh SEO when locale changes
+// This ensures social media preview text updates when user switches language
+onLocaleChange(() => {
+  const currentRoute = router.currentRoute.value
+  updateSeoMeta(currentRoute.meta, currentRoute.path, currentRoute.matched, translate)
 })
 
 // Export children for use in layout navigation

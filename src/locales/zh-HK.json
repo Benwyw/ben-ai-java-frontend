@@ -1,4 +1,33 @@
 {
+  "seo": {
+    "siteName": "Benwyw",
+    "defaultDescription": "Benwyw 個人網站，包含項目、工具和文檔。",
+    "home": {
+      "title": "Benwyw — iOS 應用程式、工具與項目",
+      "description": "歡迎來到 Benwyw。探索 NoteFormat iOS 應用程式用於記帳和筆記整理，或 Ben Kaneki Discord 機器人。",
+      "keywords": "NoteFormat, 記帳, iOS 應用程式, 支出追蹤, 筆記, 預算管理, iCloud 同步, Benwyw, 繁體中文"
+    },
+    "noteformat": {
+      "title": "NoteFormat - 記帳格式化工具 | 靈活匯入匯出 iOS 應用程式",
+      "description": "NoteFormat 是你的智能筆記及記帳助手。記帳、管理預算，配合自訂範本匯入匯出。App Store 免費下載。",
+      "keywords": "NoteFormat, 記帳, iOS 應用程式, 預算管理, 筆記, iCloud 同步, 記帳格式化, App Store, 繁體中文"
+    },
+    "benkaneki": {
+      "title": "Ben Kaneki Discord 機器人 — Benwyw",
+      "description": "一個多功能的 Discord 機器人，配有網頁儀表板，用於實用工具和自動化。",
+      "keywords": "Discord 機器人, Ben Kaneki, 實用工具, 自動化, 網頁儀表板"
+    },
+    "minecraft": {
+      "title": "Ben's Minecraft 伺服器 — Benwyw",
+      "description": "一個傳統的 Minecraft Java 版生存伺服器社區。",
+      "keywords": "Minecraft 伺服器, Java 版, 生存模式, 遊戲社區"
+    },
+    "whity": {
+      "title": "小白 — 永遠懷念",
+      "description": "一個獻給小白的紀念頁面，一隻帶來超過五年歡樂和愛的貓咪。",
+      "keywords": "小白, 貓咪紀念, 永遠懷念, Whity"
+    }
+  },
   "nav": {
     "home": "主頁",
     "about": "關於",

@@ -3,14 +3,36 @@
  *
  * Provides dynamic SEO meta tag management for Vue Router routes.
  * Handles Open Graph, Twitter Cards, and structured data for better search visibility.
+ * Supports locale-aware SEO for proper translations in social media previews.
  *
  * Usage in router afterEach:
  *   import { updateSeoMeta } from '@/composables/useSeoMeta'
  *   router.afterEach(to => updateSeoMeta(to.meta, to.path, to.matched))
+ *
+ * For locale-aware SEO:
+ *   import { updateSeoMetaWithLocale } from '@/composables/useSeoMeta'
+ *   updateSeoMetaWithLocale(to.meta, to.path, to.matched, locale, t)
  */
+
+import { getLocale } from '@/plugins/i18n'
 
 const CANONICAL_ORIGIN = 'https://www.benwyw.com'
 const DEFAULT_IMAGE = 'https://www.benwyw.com/Benwyw-1024.png'
+
+/**
+ * Map locale codes to Open Graph locale format
+ */
+const OG_LOCALE_MAP = {
+  'en': 'en_US',
+  'zh-HK': 'zh_HK',
+}
+
+/**
+ * Get the Open Graph locale for the current language
+ */
+function getOgLocale(locale) {
+  return OG_LOCALE_MAP[locale] || 'en_US'
+}
 
 /**
  * Resolve the SEO image by checking the current route's meta,
@@ -126,16 +148,41 @@ function removeJsonLd (id) {
  * @param {string} meta.robots - Robots directive (optional)
  * @param {string} meta.ogType - Open Graph type (default: 'website')
  * @param {Object} meta.structuredData - Page-specific JSON-LD data (optional)
+ * @param {string} meta.seoKey - Translation key for locale-aware SEO (e.g., 'home', 'noteformat')
  * @param {string} path - Current route path
  * @param {Array} matched - Array of matched route records for image inheritance
+ * @param {Function} t - Optional translation function for locale-aware SEO
  */
-export function updateSeoMeta (meta = {}, path = '/', matched = []) {
-  const title = meta.seoTitle || meta.title || 'Benwyw'
-  const description = meta.seoDescription || 'Benwyw personal website with projects, tools, and documentation.'
+export function updateSeoMeta (meta = {}, path = '/', matched = [], t = null) {
+  const locale = getLocale()
+  const ogLocale = getOgLocale(locale)
+
+  // Get localized SEO content if translation function and seoKey are provided
+  let title = meta.seoTitle || meta.title || 'Benwyw'
+  let description = meta.seoDescription || 'Benwyw personal website with projects, tools, and documentation.'
+  let keywords = meta.seoKeywords || ''
+
+  // Use translated SEO content if available
+  if (t && meta.seoKey) {
+    const translatedTitle = t(`seo.${meta.seoKey}.title`)
+    const translatedDesc = t(`seo.${meta.seoKey}.description`)
+    const translatedKeywords = t(`seo.${meta.seoKey}.keywords`)
+
+    // Only use translations if they're not the fallback key
+    if (translatedTitle && !translatedTitle.startsWith('seo.')) {
+      title = translatedTitle
+    }
+    if (translatedDesc && !translatedDesc.startsWith('seo.')) {
+      description = translatedDesc
+    }
+    if (translatedKeywords && !translatedKeywords.startsWith('seo.')) {
+      keywords = translatedKeywords
+    }
+  }
+
   const canonicalPath = meta.canonicalPath || path
   const fullUrl = `${CANONICAL_ORIGIN}${canonicalPath}`
   const image = resolveImage(meta, matched)
-  const keywords = meta.seoKeywords || ''
   const ogType = meta.ogType || 'website'
 
   // Update document title
@@ -161,7 +208,10 @@ export function updateSeoMeta (meta = {}, path = '/', matched = []) {
   upsertMetaProperty('og:description', description)
   upsertMetaProperty('og:image', image)
   upsertMetaProperty('og:site_name', 'Benwyw')
-  upsertMetaProperty('og:locale', 'en_US')
+  upsertMetaProperty('og:locale', ogLocale)
+
+  // Add alternate locales for better international SEO
+  upsertMetaProperty('og:locale:alternate', ogLocale === 'en_US' ? 'zh_HK' : 'en_US')
 
   // Twitter Card meta tags
   upsertMeta('twitter:card', 'summary_large_image')

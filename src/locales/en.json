@@ -1,4 +1,33 @@
 {
+  "seo": {
+    "siteName": "Benwyw",
+    "defaultDescription": "Benwyw personal website with projects, tools, and documentation.",
+    "home": {
+      "title": "Benwyw — iOS Apps, Tools & Projects",
+      "description": "Welcome to Benwyw. Explore NoteFormat iOS App for expense tracking and note organization, or Ben Kaneki Discord Bot.",
+      "keywords": "NoteFormat, expense formatter, iOS app, expense tracker, note taking, budget management, iCloud sync, Benwyw"
+    },
+    "noteformat": {
+      "title": "NoteFormat - Expense Formatter | Flexible Import/Export for iOS",
+      "description": "NoteFormat is your smart note & expense companion. Track expenses, manage budgets, import/export with custom templates. Free on the App Store.",
+      "keywords": "NoteFormat, expense tracker, iOS app, budget management, note taking, iCloud sync, expense formatter, App Store"
+    },
+    "benkaneki": {
+      "title": "Ben Kaneki Discord Bot — Benwyw",
+      "description": "A multipurpose Discord bot with a web dashboard for utilities and automation.",
+      "keywords": "Discord bot, Ben Kaneki, utilities, automation, web dashboard"
+    },
+    "minecraft": {
+      "title": "Ben's Minecraft Server — Benwyw",
+      "description": "A legacy Minecraft Java Edition survival server community.",
+      "keywords": "Minecraft server, Java Edition, survival, gaming community"
+    },
+    "whity": {
+      "title": "Whity — In Loving Memory",
+      "description": "A memorial page dedicated to Whity, a beloved cat who brought joy and love for over five years.",
+      "keywords": "Whity, cat memorial, in loving memory"
+    }
+  },
   "nav": {
     "home": "Home",
     "about": "About",

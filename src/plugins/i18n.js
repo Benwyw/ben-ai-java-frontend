@@ -54,6 +54,14 @@ if (!getLocaleFromUrl() && savedLocale !== 'en') {
 
 export default i18n
 
+// Callback for refreshing SEO when locale changes
+let onLocaleChangeCallback = null
+
+// Register a callback to be called when locale changes (used by router for SEO refresh)
+export function onLocaleChange(callback) {
+  onLocaleChangeCallback = callback
+}
+
 // Helper function to change locale and persist to localStorage
 export function setLocale(locale) {
   i18n.global.locale.value = locale
@@ -62,6 +70,11 @@ export function setLocale(locale) {
 
   // Update URL with lang parameter (without page reload)
   updateUrlLocale(locale)
+
+  // Trigger SEO refresh callback if registered
+  if (onLocaleChangeCallback) {
+    onLocaleChangeCallback(locale)
+  }
 }
 
 // Helper function to update URL with locale parameter
@@ -93,6 +106,11 @@ export function getShareableUrl(locale = null) {
 // Helper function to get current locale
 export function getLocale() {
   return i18n.global.locale.value
+}
+
+// Helper function to translate outside Vue components (for SEO, etc.)
+export function translate(key, params = {}) {
+  return i18n.global.t(key, params)
 }
 
 // Available locales for the language switcher
