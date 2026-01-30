@@ -55,6 +55,40 @@
           {{ t('noteformat.downloadAppStore') }}
         </v-btn>
       </v-hover>
+
+      <!-- Social Media Links -->
+      <div aria-label="Follow NoteFormat on Social Media" class="d-flex justify-center ga-2 mt-4" role="navigation">
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+            v-bind="props"
+            aria-label="Follow NoteFormat on Instagram"
+            :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+            color="white"
+            :elevation="isHovering ? 4 : 1"
+            href="https://www.instagram.com/noteformatapp/"
+            icon="mdi-instagram"
+            rel="noopener"
+            size="small"
+            target="_blank"
+            variant="flat"
+          />
+        </v-hover>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+            v-bind="props"
+            aria-label="Follow NoteFormat on Facebook"
+            :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+            color="white"
+            :elevation="isHovering ? 4 : 1"
+            href="https://www.facebook.com/noteformatapp"
+            icon="mdi-facebook"
+            rel="noopener"
+            size="small"
+            target="_blank"
+            variant="flat"
+          />
+        </v-hover>
+      </div>
     </v-card-text>
   </v-card>
 </template>

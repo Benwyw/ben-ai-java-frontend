@@ -24,23 +24,56 @@
           {{ t('minecraft.serverArchivedChip') }}
         </v-chip>
       </div>
-      <v-hover v-slot="{ isHovering, props }">
-        <v-btn
-          v-bind="props"
-          :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
-          class="text-none"
-          color="white"
-          :elevation="isHovering ? 8 : 2"
-          href="https://www.instagram.com/mcbenwywcom/"
-          prepend-icon="mdi-instagram"
-          rounded="pill"
-          size="large"
-          target="_blank"
-          variant="flat"
-        >
-          {{ t('minecraft.viewOnInstagram') }}
-        </v-btn>
-      </v-hover>
+      <!-- Social Media Links -->
+      <div aria-label="Follow Ben's Minecraft Server on Social Media" class="d-flex justify-center ga-2 mt-4" role="navigation">
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+            v-bind="props"
+            aria-label="Follow Ben's Minecraft Server on Instagram"
+            :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+            color="white"
+            :elevation="isHovering ? 4 : 1"
+            href="https://www.instagram.com/mcbenwywcom/"
+            icon="mdi-instagram"
+            rel="noopener"
+            size="small"
+            target="_blank"
+            variant="flat"
+          />
+        </v-hover>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+            v-bind="props"
+            aria-label="Follow Ben's Minecraft Server on Facebook"
+            :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+            color="white"
+            :elevation="isHovering ? 4 : 1"
+            href="https://www.facebook.com/mcbenwyw.com"
+            icon="mdi-facebook"
+            rel="noopener"
+            size="small"
+            target="_blank"
+            variant="flat"
+          />
+        </v-hover>
+      </div>
+<!--      <v-hover v-slot="{ isHovering, props }">-->
+<!--        <v-btn-->
+<!--          v-bind="props"-->
+<!--          :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"-->
+<!--          class="text-none"-->
+<!--          color="white"-->
+<!--          :elevation="isHovering ? 8 : 2"-->
+<!--          href="https://www.instagram.com/mcbenwywcom/"-->
+<!--          prepend-icon="mdi-instagram"-->
+<!--          rounded="pill"-->
+<!--          size="large"-->
+<!--          target="_blank"-->
+<!--          variant="flat"-->
+<!--        >-->
+<!--          {{ t('minecraft.viewOnInstagram') }}-->
+<!--        </v-btn>-->
+<!--      </v-hover>-->
     </v-card-text>
   </v-card>
 </template>
