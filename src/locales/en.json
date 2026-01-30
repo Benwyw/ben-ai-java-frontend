@@ -150,6 +150,13 @@
     "tutorialsTitle": "NoteFormat Tutorials",
     "tutorialsSubtitle": "Learn how to get the most from NoteFormat",
     "tutorials": {
+      "videoTutorials": "Video Tutorials",
+      "videoTutorialsIntro": "Watch quick video guides to learn NoteFormat features in action.",
+      "quickOverview": "Quick Overview",
+      "budgetSetup": "Budget Setup",
+      "exportingData": "Exporting Data",
+      "importingData": "Importing Data",
+      "appleShortcuts": "Apple Shortcuts",
       "gettingStarted": "Getting Started",
       "customization": "Customization",
       "importExport": "Import & Export",

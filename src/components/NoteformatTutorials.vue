@@ -7,6 +7,36 @@
       :title="t('noteformat.tutorialsTitle')"
     />
 
+    <!-- Video Tutorials Section -->
+    <v-card class="mb-6" rounded="xl">
+      <v-card-title class="d-flex align-center">
+        <v-icon class="mr-2">mdi-play-circle</v-icon>
+        {{ t('noteformat.tutorials.videoTutorials') }}
+      </v-card-title>
+      <v-card-text>
+        <p class="text-body-1 mb-4">{{ t('noteformat.tutorials.videoTutorialsIntro') }}</p>
+        <v-row>
+          <v-col
+            v-for="(video, index) in videoTutorials"
+            :key="index"
+            cols="12"
+            md="6"
+            lg="4"
+          >
+            <v-card variant="outlined" rounded="lg" class="h-100">
+              <v-card-title class="text-subtitle-1">
+                <v-icon class="mr-2" size="small">{{ video.icon }}</v-icon>
+                {{ video.title }}
+              </v-card-title>
+              <v-card-text>
+                <InstagramEmbed :url="video.url" :captioned="true" />
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card-text>
+    </v-card>
+
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2">mdi-rocket-launch</v-icon>
@@ -103,9 +133,36 @@
 </template>
 
 <script setup>
+  import { computed } from 'vue'
   import { useI18n } from 'vue-i18n'
   import BackButton from '@/components/shared/BackButton.vue'
+  import InstagramEmbed from '@/components/shared/InstagramEmbed.vue'
   import PageHeader from '@/components/shared/PageHeader.vue'
 
   const { t, tm } = useI18n()
+
+  // Video tutorials from Instagram Reels
+  const videoTutorials = computed(() => [
+    {
+      title: t('noteformat.tutorials.appleShortcuts'),
+      url: 'https://www.instagram.com/reel/DUIEsbJATST/',
+      icon: 'mdi-lightning-bolt',
+    },
+    {
+      title: t('noteformat.tutorials.importingData'),
+      url: 'https://www.instagram.com/reel/DUFV3X7gT4G/',
+      icon: 'mdi-import',
+    },
+    // {
+    //   title: t('noteformat.tutorials.quickOverview'),
+    //   url: 'https://www.instagram.com/reel/DUFV3X7gT4G/',
+    //   icon: 'mdi-rocket-launch',
+    // },
+    // Add more reels here as needed:
+    // {
+    //   title: t('noteformat.tutorials.budgetSetup'),
+    //   url: 'https://www.instagram.com/reel/YOUR_REEL_ID/',
+    //   icon: 'mdi-wallet',
+    // },
+  ])
 </script>

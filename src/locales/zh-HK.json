@@ -150,6 +150,13 @@
     "tutorialsTitle": "NoteFormat 教學",
     "tutorialsSubtitle": "學習如何充分使用 NoteFormat",
     "tutorials": {
+      "videoTutorials": "影片教學",
+      "videoTutorialsIntro": "觀看快速影片指南，了解 NoteFormat 功能的實際操作。",
+      "quickOverview": "快速概覽",
+      "budgetSetup": "預算設定",
+      "exportingData": "匯出資料",
+      "importingData": "匯入資料",
+      "appleShortcuts": "Apple 捷徑",
       "gettingStarted": "入門指南",
       "customization": "自訂設定",
       "importExport": "匯入與匯出",
