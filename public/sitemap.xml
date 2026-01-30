@@ -4,63 +4,57 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Home -->
   <url>
     <loc>https://www.benwyw.com/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-
-  <!-- ==================== NoteFormat iOS App Pages ==================== -->
-  <!-- Primary landing page for NoteFormat - highest priority for the app -->
   <url>
     <loc>https://www.benwyw.com/noteformat</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://www.benwyw.com/noteformat/docs</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat/docs"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat/docs?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat/docs"/>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.benwyw.com/noteformat/tutorials</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat/tutorials"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat/tutorials?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat/tutorials"/>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.benwyw.com/noteformat/privacy</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat/privacy"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat/privacy?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat/privacy"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-
-  <!-- ==================== Ben Kaneki Discord Bot Pages ==================== -->
+  <url>
+    <loc>https://www.benwyw.com/noteformat/tutorials</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat/tutorials"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat/tutorials?lang=zh-HK"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat/tutorials"/>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.benwyw.com/noteformat/docs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/noteformat/docs"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/noteformat/docs?lang=zh-HK"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/noteformat/docs"/>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <url>
     <loc>https://www.benwyw.com/benkaneki</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/benkaneki"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/benkaneki?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/benkaneki"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -69,7 +63,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/benkaneki/about"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/benkaneki/about?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/benkaneki/about"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -78,29 +72,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/benkaneki/whityweight"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/benkaneki/whityweight?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/benkaneki/whityweight"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
-
-  <!-- ==================== Whity Memorial Page ==================== -->
-  <url>
-    <loc>https://www.benwyw.com/whity</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/whity"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/whity?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/whity"/>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- ==================== Minecraft Server Pages ==================== -->
   <url>
     <loc>https://www.benwyw.com/mcbenwywcom</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/mcbenwywcom"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/mcbenwywcom?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/mcbenwywcom"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
@@ -109,7 +90,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/mcbenwywcom/about"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/mcbenwywcom/about?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/mcbenwywcom/about"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
@@ -118,27 +99,17 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/mcbenwywcom/staff"/>
     <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/mcbenwywcom/staff?lang=zh-HK"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/mcbenwywcom/staff"/>
-    <lastmod>2025-01-27</lastmod>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://www.benwyw.com/mcbenwywcom/buildings</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/mcbenwywcom/buildings"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/mcbenwywcom/buildings?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/mcbenwywcom/buildings"/>
-    <lastmod>2025-01-27</lastmod>
+    <loc>https://www.benwyw.com/whity</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/whity"/>
+    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/whity?lang=zh-HK"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/whity"/>
+    <lastmod>2026-01-30</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://www.benwyw.com/mcbenwywcom/events</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.benwyw.com/mcbenwywcom/events"/>
-    <xhtml:link rel="alternate" hreflang="zh-HK" href="https://www.benwyw.com/mcbenwywcom/events?lang=zh-HK"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.benwyw.com/mcbenwywcom/events"/>
-    <lastmod>2025-01-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <priority>0.7</priority>
   </url>
 </urlset>
-
