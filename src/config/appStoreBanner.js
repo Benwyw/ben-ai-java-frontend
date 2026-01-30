@@ -36,8 +36,14 @@ export const appStoreBannerConfig = {
   /**
    * Whether to attempt fetching live data from App Store API
    * Set to false to always use fallbackData (more reliable, less maintenance)
+   *
+   * RECOMMENDATION: Keep this false for production to avoid:
+   * - Slow loading / dark icon during API fetch
+   * - CORS issues
+   * - API rate limits
+   * Edit translations in src/locales/en.json & zh-HK.json for text customization.
    */
-  fetchFromAppStore: true,
+  fetchFromAppStore: false,
 
   /**
    * iTunes Lookup API endpoint (Apple's public API)
@@ -70,18 +76,20 @@ export const appStoreBannerConfig = {
   dismissCountKey: 'appStoreBanner_dismissCount',
 
   /**
-   * Fallback data used when:
-   * - App Store API fetch fails
-   * - fetchFromAppStore is set to false
-   * - Network is unavailable
+   * Static app data (used when fetchFromAppStore is false - RECOMMENDED)
    *
-   * UPDATE THIS when your app details change significantly
+   * ⚡ HOW TEXT IS DISPLAYED:
+   * - appName & description: Uses translations from locale files (en.json, zh-HK.json)
+   *   Edit: src/locales/en.json -> appStoreBanner.appName, appStoreBanner.subtitle
+   * - appIcon: Set below (local path recommended for fast loading)
+   * - appPrice, appRating: Set below
    */
   fallbackData: {
-    appName: 'NoteFormat',
-    appSubtitle: 'Expense Formatter',
-    appDescription: 'Flexible Expense Import/Export. Track spending, budgets and reports.',
-    appIcon: 'https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/9a/3d/3a/9a3d3a1d-8b8b-6e7a-3a3a-8b8b6e7a3a3a/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg',
+    // Fallback if translation is missing
+    appName: 'NoteFormat - Expense Formatter',
+    appDescription: 'Flexible Expense Import/Export',
+    // Local icon for instant loading (no API fetch delay)
+    appIcon: '/assets/NoteFormat-seo.png',
     appPrice: 'Free',
     appRating: '5.0',
     sellerName: 'WU Yat Wing',
@@ -117,33 +125,6 @@ export const appStoreBannerConfig = {
     iconSize: 48,
   },
 
-  /**
-   * Custom text overrides (set to null to use App Store data)
-   * Use these to customize the banner text without changing App Store listing
-   */
-  textOverrides: {
-    /**
-     * Override the app name displayed in banner
-     * Set to null to use App Store data
-     */
-    appName: null,
-
-    /**
-     * Override the description/subtitle
-     * Set to null to use App Store data
-     */
-    description: null,
-
-    /**
-     * Custom call-to-action button text
-     */
-    buttonText: null,
-
-    /**
-     * Custom "Available on" text
-     */
-    availableOnText: null,
-  },
 
   /**
    * Target platforms - which platforms should show the banner

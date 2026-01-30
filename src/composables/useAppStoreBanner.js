@@ -244,24 +244,24 @@ export function useAppStoreBanner () {
 
   const appearance = computed(() => config.appearance)
   const countryCode = computed(() => getCountryCodeForLocale(locale.value, config))
+  const translatedAppName = computed(() => resolveTranslatedText(t, 'appStoreBanner.appName'))
   const translatedSubtitle = computed(() => resolveTranslatedText(t, 'appStoreBanner.subtitle'))
   const translatedButtonText = computed(() => resolveTranslatedText(t, 'appStoreBanner.viewButton'))
   const translatedAvailableOnText = computed(() => resolveTranslatedText(t, 'appStoreBanner.availableOn'))
 
   const displayData = computed(() => {
     const data = appData.value || config.fallbackData
-    const storeSubtitle = appData.value?.appSubtitle || null
-    const descriptionFallback = appData.value?.appDescription || config.fallbackData.appDescription
 
     return {
-      appName: config.textOverrides.appName || data.appName,
-      description: config.textOverrides.description || storeSubtitle || translatedSubtitle.value || descriptionFallback,
-      appIcon: data.appIcon,
+      // Priority: translation > config fallback > API data
+      appName: translatedAppName.value || config.fallbackData.appName || data.appName,
+      description: translatedSubtitle.value || config.fallbackData.appDescription || data.appDescription,
+      appIcon: config.fallbackData.appIcon || data.appIcon,
       appPrice: data.appPrice,
       appRating: data.appRating,
       ratingCount: data.ratingCount || 0,
-      buttonText: config.textOverrides.buttonText || translatedButtonText.value || 'View',
-      availableOnText: config.textOverrides.availableOnText || translatedAvailableOnText.value || 'Available on the App Store',
+      buttonText: translatedButtonText.value || 'View',
+      availableOnText: translatedAvailableOnText.value || 'Available on the App Store',
       appStoreUrl: config.appStoreUrl,
     }
   })

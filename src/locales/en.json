@@ -114,6 +114,7 @@
     "description": "Description"
   },
   "appStoreBanner": {
+    "appName": "NoteFormat - Expense Formatter",
     "subtitle": "Flexible Expense Import/Export",
     "viewButton": "View",
     "availableOn": "Available on the App Store"

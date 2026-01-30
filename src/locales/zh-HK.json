@@ -114,6 +114,7 @@
     "description": "描述"
   },
   "appStoreBanner": {
+    "appName": "NoteFormat - 記帳格式神器",
     "subtitle": "自訂範本，靈活匯出匯入，安心離線",
     "viewButton": "查看",
     "availableOn": "於 App Store 下載"
