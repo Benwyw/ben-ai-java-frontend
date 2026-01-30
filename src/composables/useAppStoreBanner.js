@@ -5,8 +5,9 @@
  * Handles platform detection, App Store API fetching, and dismissal persistence.
  */
 
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useLocale } from '@/composables/useLocale'
 import appStoreBannerConfig from '@/config/appStoreBanner'
 
 /**
@@ -146,16 +147,35 @@ function saveDismissal (config) {
 }
 
 /**
+ * Resolve App Store country code from locale
+ */
+function getCountryCodeForLocale (localeValue, config) {
+  const normalized = (localeValue || '').toLowerCase()
+  if (normalized === 'zh-hk') {
+    return 'hk'
+  }
+  if (normalized.startsWith('en')) {
+    return 'us'
+  }
+  return config.countryCode
+}
+
+function resolveTranslatedText (t, key) {
+  const value = t(key)
+  return value === key ? null : value
+}
+
+/**
  * Fetch app data from iTunes Lookup API
  */
-async function fetchAppStoreData (config) {
+async function fetchAppStoreData (config, countryCode) {
   if (!config.fetchFromAppStore) {
     return null
   }
 
   try {
     // Use iTunes Lookup API - this is a public Apple API
-    const url = `${config.appStoreLookupUrl}?id=${config.appId}&country=${config.countryCode}`
+    const url = `${config.appStoreLookupUrl}?id=${config.appId}&country=${countryCode}`
 
     // Note: This API has CORS restrictions, so we use a simple fetch
     // In production, you might need a proxy or use the fallback data
@@ -177,7 +197,7 @@ async function fetchAppStoreData (config) {
 
     return {
       appName: app.trackName || config.fallbackData.appName,
-      appSubtitle: app.subtitle || config.fallbackData.appSubtitle,
+      appSubtitle: app.subtitle || null,
       appDescription: app.description?.slice(0, 100) + '...' || config.fallbackData.appDescription,
       appIcon: app.artworkUrl512 || app.artworkUrl100 || config.fallbackData.appIcon,
       appPrice: app.formattedPrice || (app.price === 0 ? 'Free' : `$${app.price}`),
@@ -197,6 +217,7 @@ async function fetchAppStoreData (config) {
 export function useAppStoreBanner () {
   const route = useRoute()
   const config = appStoreBannerConfig
+  const { locale, t } = useLocale()
 
   // Reactive state
   const isVisible = ref(false)
@@ -221,23 +242,29 @@ export function useAppStoreBanner () {
     return !isDismissed(config)
   })
 
+  const appearance = computed(() => config.appearance)
+  const countryCode = computed(() => getCountryCodeForLocale(locale.value, config))
+  const translatedSubtitle = computed(() => resolveTranslatedText(t, 'appStoreBanner.subtitle'))
+  const translatedButtonText = computed(() => resolveTranslatedText(t, 'appStoreBanner.viewButton'))
+  const translatedAvailableOnText = computed(() => resolveTranslatedText(t, 'appStoreBanner.availableOn'))
+
   const displayData = computed(() => {
     const data = appData.value || config.fallbackData
+    const storeSubtitle = appData.value?.appSubtitle || null
+    const descriptionFallback = appData.value?.appDescription || config.fallbackData.appDescription
 
     return {
       appName: config.textOverrides.appName || data.appName,
-      description: config.textOverrides.description || data.appSubtitle || data.appDescription,
+      description: config.textOverrides.description || storeSubtitle || translatedSubtitle.value || descriptionFallback,
       appIcon: data.appIcon,
       appPrice: data.appPrice,
       appRating: data.appRating,
       ratingCount: data.ratingCount || 0,
-      buttonText: config.textOverrides.buttonText,
-      availableOnText: config.textOverrides.availableOnText,
+      buttonText: config.textOverrides.buttonText || translatedButtonText.value || 'View',
+      availableOnText: config.textOverrides.availableOnText || translatedAvailableOnText.value || 'Available on the App Store',
       appStoreUrl: config.appStoreUrl,
     }
   })
-
-  const appearance = computed(() => config.appearance)
 
   // Methods
   const dismiss = () => {
@@ -252,7 +279,7 @@ export function useAppStoreBanner () {
     platform.value = detectPlatform()
 
     // Fetch app data (or use fallback)
-    appData.value = await fetchAppStoreData(config)
+    appData.value = await fetchAppStoreData(config, countryCode.value)
 
     // Show banner if conditions are met
     isVisible.value = shouldShow.value
@@ -264,6 +291,17 @@ export function useAppStoreBanner () {
   onMounted(() => {
     // Small delay to not block initial render
     setTimeout(initialize, 500)
+  })
+
+  watch(locale, async () => {
+    if (!config.fetchFromAppStore) {
+      return
+    }
+
+    isLoading.value = true
+    appData.value = await fetchAppStoreData(config, countryCode.value)
+    isVisible.value = shouldShow.value
+    isLoading.value = false
   })
 
   return {

@@ -137,12 +137,12 @@ export const appStoreBannerConfig = {
     /**
      * Custom call-to-action button text
      */
-    buttonText: 'View',
+    buttonText: null,
 
     /**
      * Custom "Available on" text
      */
-    availableOnText: 'Available on the App Store',
+    availableOnText: null,
   },
 
   /**

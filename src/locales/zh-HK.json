@@ -113,6 +113,11 @@
     "features": "功能",
     "description": "描述"
   },
+  "appStoreBanner": {
+    "subtitle": "自訂範本，靈活匯出匯入，安心離線",
+    "viewButton": "查看",
+    "availableOn": "於 App Store 下載"
+  },
   "language": {
     "en": "English",
     "zh-HK": "繁體中文"

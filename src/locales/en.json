@@ -113,6 +113,11 @@
     "features": "Features",
     "description": "Description"
   },
+  "appStoreBanner": {
+    "subtitle": "Flexible Expense Import/Export",
+    "viewButton": "View",
+    "availableOn": "Available on the App Store"
+  },
   "language": {
     "en": "English",
     "zh-HK": "繁體中文"
