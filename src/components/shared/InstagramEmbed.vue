@@ -72,9 +72,9 @@ const createEmbed = () => {
     border: 0;
     border-radius: 12px;
     box-shadow: 0 0 1px 0 rgba(0,0,0,0.5), 0 1px 10px 0 rgba(0,0,0,0.15);
-    margin: 0;
+    margin: 0 auto;
     max-width: ${props.maxWidth};
-    min-width: 326px;
+    min-width: 280px;
     padding: 0;
     width: 100%;
   `
@@ -117,10 +117,11 @@ onUnmounted(() => {
 .instagram-embed-container {
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .instagram-embed--centered {
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
@@ -128,9 +129,12 @@ onUnmounted(() => {
 .instagram-embed-wrapper {
   width: 100%;
   max-width: v-bind(maxWidth);
+  display: flex;
+  justify-content: center;
 }
 
-.instagram-embed-wrapper :deep(.instagram-media) {
+.instagram-embed-wrapper :deep(.instagram-media),
+.instagram-embed-wrapper :deep(iframe) {
   margin: 0 auto !important;
 }
 
