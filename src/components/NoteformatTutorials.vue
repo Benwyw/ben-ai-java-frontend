@@ -165,6 +165,11 @@
       url: 'https://www.instagram.com/reel/DUFV3X7gT4G/',
       icon: 'mdi-import',
     },
+    {
+      title: t('noteformat.tutorials.importingData'),
+      url: 'https://www.instagram.com/reel/DUSQgdNAW0J/',
+      icon: 'mdi-import',
+    },
     // {
     //   title: t('noteformat.tutorials.quickOverview'),
     //   url: 'https://www.instagram.com/reel/DUFV3X7gT4G/',
