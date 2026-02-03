@@ -22,7 +22,7 @@
             <v-list density="compact">
               <v-list-item :title="t('guides.landing')" :to="{ path: '/noteformat' }" />
               <v-list-item :title="t('noteformat.docs')" :to="{ path: '/noteformat/docs' }" />
-              <v-list-item :title="t('noteformat.tutorials')" :to="{ path: '/noteformat/tutorials' }" />
+              <v-list-item :title="t('noteformat.tutorials.tutorials')" :to="{ path: '/noteformat/tutorials' }" />
               <v-list-item :title="t('noteformat.privacy')" :to="{ path: '/noteformat/privacy' }" />
               <v-list-item :title="t('noteformat.eula')" :to="{ path: '/noteformat/eula' }" />
             </v-list>

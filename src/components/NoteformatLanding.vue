@@ -35,7 +35,7 @@
   const quickActions = computed(() => [
     { title: t('noteformat.eula'), description: t('noteformat.eulaDesc'), icon: 'mdi-file-document-outline', to: '/noteformat/eula', color: 'primary' },
     { title: t('noteformat.privacy'), description: t('noteformat.privacyDesc'), icon: 'mdi-shield-lock', to: '/noteformat/privacy', color: 'info' },
-    { title: t('noteformat.tutorials'), description: t('noteformat.tutorialsDesc'), icon: 'mdi-school', to: '/noteformat/tutorials', color: 'success' },
+    { title: t('noteformat.tutorials.tutorials'), description: t('noteformat.tutorialsDesc'), icon: 'mdi-school', to: '/noteformat/tutorials', color: 'success' },
     { title: t('noteformat.docs'), description: t('noteformat.docsDesc'), icon: 'mdi-file-tree', to: '/noteformat/docs', color: 'warning' },
   ])
 

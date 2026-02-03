@@ -146,11 +146,11 @@
     "privacyDesc": "我們如何處理你的資料",
     "privacyTitle": "NoteFormat 私隱政策",
     "privacySubtitle": "NoteFormat 如何處理你的資料",
-    "tutorials": "教學",
     "tutorialsDesc": "學習如何使用 NoteFormat",
     "tutorialsTitle": "NoteFormat 教學",
     "tutorialsSubtitle": "學習如何充分使用 NoteFormat",
     "tutorials": {
+      "tutorials": "教學",
       "videoTutorials": "影片教學",
       "videoTutorialsIntro": "觀看快速影片指南，了解 NoteFormat 功能的實際操作。",
       "quickOverview": "快速概覽",
