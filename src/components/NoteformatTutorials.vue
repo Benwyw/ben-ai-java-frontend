@@ -166,7 +166,7 @@
       icon: 'mdi-import',
     },
     {
-      title: t('noteformat.tutorials.importingData'),
+      title: t('noteformat.tutorials.manageBudgets'),
       url: 'https://www.instagram.com/reel/DUSQgdNAW0J/',
       icon: 'mdi-import',
     },
