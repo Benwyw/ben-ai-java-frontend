@@ -1,9 +1,10 @@
 import { createI18n } from 'vue-i18n'
 import en from '@/locales/en.json'
 import zhHK from '@/locales/zh-HK.json'
+import zhCN from '@/locales/zh-CN.json'
 
 // Valid locales
-const validLocales = ['en', 'zh-HK']
+const validLocales = ['en', 'zh-HK', 'zh-CN']
 
 // Check URL query parameter for locale (for shared links)
 function getLocaleFromUrl() {
@@ -35,6 +36,7 @@ const i18n = createI18n({
   messages: {
     en,
     'zh-HK': zhHK,
+    'zh-CN': zhCN,
   },
 })
 
@@ -117,4 +119,5 @@ export function translate(key, params = {}) {
 export const availableLocales = [
   { code: 'en', name: 'English', flag: '🇬🇧' },
   { code: 'zh-HK', name: '繁體中文', flag: '🇭🇰' },
+  { code: 'zh-CN', name: '简体中文', flag: '🇨🇳' },
 ]

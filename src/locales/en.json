@@ -121,7 +121,8 @@
   },
   "language": {
     "en": "English",
-    "zh-HK": "繁體中文"
+    "zh-HK": "繁體中文",
+    "zh-CN": "简体中文"
   },
   "home": {
     "welcome": "Welcome to Benwyw",
@@ -146,11 +147,11 @@
     "privacyDesc": "How we handle your data",
     "privacyTitle": "NoteFormat Privacy Policy",
     "privacySubtitle": "How NoteFormat handles your data",
-    "tutorials": "Tutorials",
     "tutorialsDesc": "Learn how to use NoteFormat",
     "tutorialsTitle": "NoteFormat Tutorials",
     "tutorialsSubtitle": "Learn how to get the most from NoteFormat",
     "tutorials": {
+      "tutorials": "Tutorials",
       "videoTutorials": "Video Tutorials",
       "videoTutorialsIntro": "Watch quick video guides to learn NoteFormat features in action.",
       "quickOverview": "Quick Overview",
