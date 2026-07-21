@@ -6,6 +6,12 @@ VueJs Frontend for [Ben-AI-Java](https://github.com/Benwyw/Ben-AI-Java).
 
 ---
 
+## Supply Chain Security
+
+- See `docs/supply-chain-security.md` for lockfile enforcement and lifecycle-script hardening workflows.
+
+---
+
 ## 🚀 Quick Start
 
 ```bash
