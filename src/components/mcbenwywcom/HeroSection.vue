@@ -56,6 +56,23 @@
             variant="flat"
           />
         </v-hover>
+        <v-hover v-slot="{ isHovering, props }">
+          <v-btn
+            v-bind="props"
+            aria-label="Join Ben's Minecraft Server on Discord"
+            :border="isHovering ? 'md opacity-100' : 'sm opacity-50'"
+            color="white"
+            :elevation="isHovering ? 4 : 1"
+            href="https://discord.benwyw.com/"
+            icon
+            rel="noopener"
+            size="small"
+            target="_blank"
+            variant="flat"
+          >
+            <img alt="Discord" :src="discordIcon" style="width: 20px; height: 20px;" />
+          </v-btn>
+        </v-hover>
       </div>
 <!--      <v-hover v-slot="{ isHovering, props }">-->
 <!--        <v-btn-->
@@ -80,6 +97,7 @@
 
 <script setup>
   import { useI18n } from 'vue-i18n'
+  import discordIcon from '@/assets/discord.svg'
 
   const { t } = useI18n()
 </script>
@@ -87,5 +105,11 @@
 <style scoped>
 .bg-gradient-minecraft {
   background: linear-gradient(135deg, #4CAF50 0%, #1B5E20 100%);
+}
+
+.discord-icon {
+  width: 18px;
+  height: 18px;
+  filter: invert(37%) sepia(98%) saturate(1285%) hue-rotate(196deg) brightness(95%) contrast(87%);
 }
 </style>
