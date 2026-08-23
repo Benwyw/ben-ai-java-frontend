@@ -20,8 +20,8 @@
         <v-chip color="white" prepend-icon="mdi-tree" variant="flat">
           {{ t('minecraft.survivalModeChip') }}
         </v-chip>
-        <v-chip color="white" prepend-icon="mdi-archive" variant="flat">
-          {{ t('minecraft.serverArchivedChip') }}
+        <v-chip color="white" prepend-icon="mdi-ip" variant="flat">
+          {{ t('minecraft.serverIp') }}
         </v-chip>
       </div>
       <!-- Social Media Links -->

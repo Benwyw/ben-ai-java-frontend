@@ -88,14 +88,58 @@
         </v-hover>
       </v-col>
 
+      <v-col class="d-flex justify-center px-4" cols="12" md="6">
+        <v-hover v-slot="{ isHovering, props }">
+          <v-card
+            v-bind="props"
+            class="product-card pa-4 pa-sm-8 text-center transition-swing"
+            :class="{ 'on-hover': isHovering }"
+            :elevation="isHovering ? 16 : 4"
+            max-width="400"
+            rounded="xl"
+            tag="article"
+            width="100%"
+            @click="navigateTo('/mcbenwywcom')"
+          >
+            <v-img
+              alt="Ben Kaneki Discord Bot"
+              class="mx-auto mb-4"
+              height="128"
+              :src="mcbenwywIcon"
+              width="128"
+            />
+            <v-card-title class="text-h4 font-weight-bold justify-center">
+              {{ t('minecraft.title') }}
+            </v-card-title>
+            <v-card-subtitle class="text-body-1 mt-2">
+              {{ t('minecraft.welcomeSubtitle') }}
+            </v-card-subtitle>
+            <v-card-text class="text-body-2 text-medium-emphasis mt-4">
+              {{ t('minecraft.aboutServerDesc1') }}
+            </v-card-text>
+            <v-chip class="mt-2" color="info" variant="tonal">
+              <img alt="Discord" class="discord-icon mr-2" :src="discordIcon">
+              Discord
+            </v-chip>
+            <v-chip class="mt-2" color="info" variant="tonal">
+              <v-icon size="small" start>mdi-instagram</v-icon>
+              {{ t('minecraft.instagram') }}
+            </v-chip>
+          </v-card>
+        </v-hover>
+      </v-col>
+
       <!-- Deprecated Products Section -->
+      <!--
       <v-col class="mt-8" cols="12">
         <v-divider class="mb-4" />
         <p class="text-body-2 text-medium-emphasis text-center mb-4">
           {{ t('common.legacyProducts') }}
         </p>
       </v-col>
+      -->
 
+      <!--
       <v-col class="d-flex justify-center px-4" cols="12" md="4" sm="6">
         <v-card
           class="deprecated-card pa-4 text-center"
@@ -105,7 +149,9 @@
           width="100%"
           @click="navigateTo('/mcbenwywcom')"
         >
+      -->
           <!--          <v-icon size="48" color="grey" class="mb-2">mdi-instagram</v-icon>-->
+      <!--
           <v-img
             alt="mcbenwywcom"
             class="mx-auto mb-2"
@@ -125,6 +171,7 @@
           </v-chip>
         </v-card>
       </v-col>
+      -->
     </v-row>
   </div>
 </template>

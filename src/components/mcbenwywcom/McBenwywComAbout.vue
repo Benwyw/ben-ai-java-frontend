@@ -38,8 +38,8 @@
               {{ t('minecraft.aboutServerDesc2') }}
             </p>
             <v-chip class="mr-2" color="red" variant="tonal">
-              <v-icon start>mdi-archive</v-icon>
-              {{ t('minecraft.serverArchived') }}
+              <v-icon start>mdi-ip</v-icon>
+              {{ t('minecraft.serverIp') }}
             </v-chip>
           </v-card-text>
         </v-card>
@@ -73,6 +73,7 @@
                 <v-list-item-title>{{ t('minecraft.gameMode') }}</v-list-item-title>
                 <v-list-item-subtitle>{{ t('minecraft.survival') }}</v-list-item-subtitle>
               </v-list-item>
+              <!--
               <v-list-item>
                 <template #prepend>
                   <v-icon color="red">mdi-calendar</v-icon>
@@ -80,6 +81,7 @@
                 <v-list-item-title>{{ t('minecraft.status') }}</v-list-item-title>
                 <v-list-item-subtitle>{{ t('minecraft.deprecatedArchived') }}</v-list-item-subtitle>
               </v-list-item>
+              -->
             </v-list>
           </v-card-text>
         </v-card>
