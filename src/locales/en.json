@@ -373,6 +373,8 @@
     "quickActions": {
       "home": "Home",
       "homeDesc": "Server overview",
+      "about": "About",
+      "aboutDesc": "Learn more about us",
       "staffList": "Staff List",
       "staffListDesc": "Meet our team",
       "buildings": "Buildings",

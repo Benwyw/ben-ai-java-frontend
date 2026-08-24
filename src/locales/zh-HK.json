@@ -373,6 +373,8 @@
     "quickActions": {
       "home": "主頁",
       "homeDesc": "伺服器概覽",
+      "about": "關於",
+      "aboutDesc": "了解更多關於我們",
       "staffList": "員工列表",
       "staffListDesc": "認識我們的團隊",
       "buildings": "建築物",

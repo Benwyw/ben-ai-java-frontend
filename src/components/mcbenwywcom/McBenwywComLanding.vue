@@ -29,7 +29,7 @@
    * Add, remove, or modify actions here to update the Quick Actions section
    */
   const quickActions = computed(() => [
-    { title: t('minecraft.quickActions.home'), description: t('minecraft.quickActions.homeDesc'), icon: 'mdi-home', to: '/mcbenwywcom/home', color: 'green' },
+    { title: t('minecraft.quickActions.about'), description: t('minecraft.quickActions.aboutDesc'), icon: 'mdi-information', to: '/mcbenwywcom/about', color: 'green' },
     { title: t('minecraft.quickActions.staffList'), description: t('minecraft.quickActions.staffListDesc'), icon: 'mdi-account-group', to: '/mcbenwywcom/staff', color: 'amber' },
     // Hidden for future development
     // { title: t('minecraft.quickActions.buildings'), description: t('minecraft.quickActions.buildingsDesc'), icon: 'mdi-domain', to: '/mcbenwywcom/buildings', color: 'blue' },
