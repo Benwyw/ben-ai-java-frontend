@@ -121,16 +121,16 @@
 
       <v-divider />
 
-      <!-- BEN KANEKI Section -->
+      <!-- MC.BENWYW.COM Section -->
       <v-list
         v-model:opened="openedGroups"
         density="compact"
         nav
         open-strategy="multiple"
       >
-        <v-list-subheader v-if="!rail">BEN KANEKI</v-list-subheader>
+        <v-list-subheader v-if="!rail">BEN'S MINECRAFT SERVER</v-list-subheader>
         <SidebarNavItem
-          v-for="item in benkanekiSectionItems"
+          v-for="item in mcbenwywcomSectionItems"
           :key="item.name"
           :children="childrenMap.get(item.name) || []"
           :children-map="childrenMap"
@@ -146,16 +146,16 @@
 
       <v-divider />
 
-      <!-- MC.BENWYW.COM Section -->
+      <!-- BEN KANEKI Section -->
       <v-list
         v-model:opened="openedGroups"
         density="compact"
         nav
         open-strategy="multiple"
       >
-        <v-list-subheader v-if="!rail">BEN'S MINECRAFT SERVER</v-list-subheader>
+        <v-list-subheader v-if="!rail">BEN KANEKI</v-list-subheader>
         <SidebarNavItem
-          v-for="item in mcbenwywcomSectionItems"
+          v-for="item in benkanekiSectionItems"
           :key="item.name"
           :children="childrenMap.get(item.name) || []"
           :children-map="childrenMap"

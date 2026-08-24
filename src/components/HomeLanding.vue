@@ -62,43 +62,6 @@
             rounded="xl"
             tag="article"
             width="100%"
-            @click="navigateTo('/benkaneki')"
-          >
-            <v-img
-              alt="Ben Kaneki Discord Bot"
-              class="mx-auto mb-4"
-              height="128"
-              :src="benkanekiIcon"
-              width="128"
-            />
-            <v-card-title class="text-h4 font-weight-bold justify-center">
-              {{ t('benkaneki.title') }}
-            </v-card-title>
-            <v-card-subtitle class="text-body-1 mt-2">
-              {{ t('benkaneki.subtitle') }}
-            </v-card-subtitle>
-            <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              {{ t('benkaneki.description') }}
-            </v-card-text>
-            <v-chip class="mt-2" color="info" variant="tonal">
-              <img alt="Discord" class="discord-icon mr-2" :src="discordIcon">
-              Discord
-            </v-chip>
-          </v-card>
-        </v-hover>
-      </v-col>
-
-      <v-col class="d-flex justify-center px-4" cols="12" md="6">
-        <v-hover v-slot="{ isHovering, props }">
-          <v-card
-            v-bind="props"
-            class="product-card pa-4 pa-sm-8 text-center transition-swing"
-            :class="{ 'on-hover': isHovering }"
-            :elevation="isHovering ? 16 : 4"
-            max-width="400"
-            rounded="xl"
-            tag="article"
-            width="100%"
             @click="navigateTo('/mcbenwywcom')"
           >
             <v-img
@@ -128,6 +91,43 @@
           </v-card>
         </v-hover>
       </v-col>
+
+      <v-col class="d-flex justify-center px-4" cols="12" md="6">
+              <v-hover v-slot="{ isHovering, props }">
+                <v-card
+                  v-bind="props"
+                  class="product-card pa-4 pa-sm-8 text-center transition-swing"
+                  :class="{ 'on-hover': isHovering }"
+                  :elevation="isHovering ? 16 : 4"
+                  max-width="400"
+                  rounded="xl"
+                  tag="article"
+                  width="100%"
+                  @click="navigateTo('/benkaneki')"
+                >
+                  <v-img
+                    alt="Ben Kaneki Discord Bot"
+                    class="mx-auto mb-4"
+                    height="128"
+                    :src="benkanekiIcon"
+                    width="128"
+                  />
+                  <v-card-title class="text-h4 font-weight-bold justify-center">
+                    {{ t('benkaneki.title') }}
+                  </v-card-title>
+                  <v-card-subtitle class="text-body-1 mt-2">
+                    {{ t('benkaneki.subtitle') }}
+                  </v-card-subtitle>
+                  <v-card-text class="text-body-2 text-medium-emphasis mt-4">
+                    {{ t('benkaneki.description') }}
+                  </v-card-text>
+                  <v-chip class="mt-2" color="info" variant="tonal">
+                    <img alt="Discord" class="discord-icon mr-2" :src="discordIcon">
+                    Discord
+                  </v-chip>
+                </v-card>
+              </v-hover>
+            </v-col>
 
       <!-- Deprecated Products Section -->
       <!--
