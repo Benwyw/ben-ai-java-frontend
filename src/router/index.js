@@ -607,13 +607,15 @@ const routes = [
       {
         path: '/mcbenwywcom/staff',
         name: 'McBenwywCom Staff',
-        component: () => import('@/views/mcbenwywcom/McBenwywComStaff.vue'),
+        redirect: '/mcbenwywcom',
+        // component: () => import('@/views/mcbenwywcom/McBenwywComStaff.vue'),
         meta: {
           title: 'Staff List',
           icon: 'mdi-account-group',
           navSection: 'mcbenwywcom',
           navOrder: 2,
           parent: 'McBenwywCom',
+          navHidden: true,
           seoTitle: 'Ben\'s Minecraft Server Staff List — Benwyw',
           seoDescription: 'Staff list for Ben\'s Minecraft Server - meet the team behind Ben\'s Minecraft Server.',
           canonicalPath: '/mcbenwywcom/staff',

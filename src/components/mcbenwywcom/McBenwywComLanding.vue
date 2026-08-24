@@ -30,7 +30,7 @@
    */
   const quickActions = computed(() => [
     { title: t('minecraft.quickActions.about'), description: t('minecraft.quickActions.aboutDesc'), icon: 'mdi-information', to: '/mcbenwywcom/about', color: 'green' },
-    { title: t('minecraft.quickActions.staffList'), description: t('minecraft.quickActions.staffListDesc'), icon: 'mdi-account-group', to: '/mcbenwywcom/staff', color: 'amber' },
+    // { title: t('minecraft.quickActions.staffList'), description: t('minecraft.quickActions.staffListDesc'), icon: 'mdi-account-group', to: '/mcbenwywcom/staff', color: 'amber' },
     // Hidden for future development
     // { title: t('minecraft.quickActions.buildings'), description: t('minecraft.quickActions.buildingsDesc'), icon: 'mdi-domain', to: '/mcbenwywcom/buildings', color: 'blue' },
     // { title: t('minecraft.quickActions.events'), description: t('minecraft.quickActions.eventsDesc'), icon: 'mdi-calendar-star', to: '/mcbenwywcom/events', color: 'purple' },
@@ -53,17 +53,17 @@
       icon: 'mdi-puzzle',
       color: 'blue',
     },
-    {
-      title: t('minecraft.features.communityEvents'),
-      description: t('minecraft.features.communityEventsDesc'),
-      icon: 'mdi-calendar-star',
-      color: 'purple',
-    },
-    {
-      title: t('minecraft.features.dedicatedStaff'),
-      description: t('minecraft.features.dedicatedStaffDesc'),
-      icon: 'mdi-shield-account',
-      color: 'amber',
-    },
+    // {
+    //   title: t('minecraft.features.communityEvents'),
+    //   description: t('minecraft.features.communityEventsDesc'),
+    //   icon: 'mdi-calendar-star',
+    //   color: 'purple',
+    // },
+    // {
+    //   title: t('minecraft.features.dedicatedStaff'),
+    //   description: t('minecraft.features.dedicatedStaffDesc'),
+    //   icon: 'mdi-shield-account',
+    //   color: 'amber',
+    // },
   ])
 </script>

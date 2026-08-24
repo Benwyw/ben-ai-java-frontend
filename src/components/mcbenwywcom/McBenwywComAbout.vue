@@ -37,9 +37,12 @@
             <!-- <p class="text-body-1 mb-4">
               {{ t('minecraft.aboutServerDesc2') }}
             </p> -->
-            <v-chip class="mr-2" color="red" variant="tonal">
+            <v-chip class="mr-2" color="red" variant="tonal" @click="copyIp">
               <v-icon start>mdi-ip</v-icon>
               {{ t('minecraft.serverIp') }}
+              <v-tooltip activator="parent" location="top">
+                {{ t('minecraft.clickToCopyIp') }}
+              </v-tooltip>
             </v-chip>
           </v-card-text>
         </v-card>
@@ -134,7 +137,7 @@
                 :src="staffListImage"
               />
               <v-card-text class="text-center">
-                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.staffTeam') }}</div>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.historicStaffTeam') }}</div>
               </v-card-text>
             </v-card>
           </v-col>
@@ -156,6 +159,24 @@
               color="amber"
               hover
               rounded="xl"
+              href="https://map.benwyw.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              variant="tonal"
+            >
+              <v-card-text class="d-flex flex-column align-center text-center pa-6">
+                <v-icon class="mb-3" color="amber" size="40">mdi-account-group</v-icon>
+                <div class="text-subtitle-1 font-weight-bold">{{ t('minecraft.map') }}</div>
+                <div class="text-caption text-medium-emphasis">{{ t('minecraft.livemap') }}</div>
+              </v-card-text>
+            </v-card>
+          </v-col>
+          <!-- <v-col cols="12" md="3" sm="6">
+            <v-card
+              class="h-100 action-card"
+              color="amber"
+              hover
+              rounded="xl"
               to="/mcbenwywcom/staff"
               variant="tonal"
             >
@@ -165,14 +186,27 @@
                 <div class="text-caption text-medium-emphasis">{{ t('minecraft.meetOurTeam') }}</div>
               </v-card-text>
             </v-card>
-          </v-col>
+          </v-col> -->
         </v-row>
+        <!-- 補上 Snackbar 彈出提示 -->
+        <v-snackbar
+          v-model="snackbar"
+          color="success"
+          location="bottom"
+          :timeout="2000"
+          rounded="pill"
+        >
+          <div class="text-center font-weight-medium">
+            {{ t('minecraft.copySuccess') }}
+          </div>
+        </v-snackbar>
       </v-card-text>
     </v-card>
   </div>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom_animated-banner.gif'
   import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
@@ -180,6 +214,17 @@
   import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
 
   const { t } = useI18n()
+  const snackbar = ref(false)
+
+  const copyIp = async () => {
+    try {
+      const ipText = t('minecraft.serverIp')
+      await navigator.clipboard.writeText(ipText)
+      snackbar.value = true
+    } catch (err) {
+      console.error('Copy failed:', err)
+    }
+  }
 </script>
 
 <style scoped>

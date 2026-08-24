@@ -20,8 +20,11 @@
         <v-chip color="white" prepend-icon="mdi-tree" variant="flat">
           {{ t('minecraft.survivalModeChip') }}
         </v-chip>
-        <v-chip color="white" prepend-icon="mdi-ip" variant="flat">
+        <v-chip color="white" prepend-icon="mdi-ip" variant="flat" @click="copyIp">
           {{ t('minecraft.serverIp') }}
+          <v-tooltip activator="parent" location="top">
+            {{ t('minecraft.clickToCopyIp') }}
+          </v-tooltip>
         </v-chip>
       </div>
       <!-- Social Media Links -->
@@ -91,15 +94,40 @@
 <!--          {{ t('minecraft.viewOnInstagram') }}-->
 <!--        </v-btn>-->
 <!--      </v-hover>-->
+
+      <!-- 補上 Snackbar 彈出提示 -->
+      <v-snackbar
+        v-model="snackbar"
+        color="success"
+        location="bottom"
+        :timeout="2000"
+        rounded="pill"
+      >
+        <div class="text-center font-weight-medium">
+          {{ t('minecraft.copySuccess') }}
+        </div>
+      </v-snackbar>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
+  import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
   import discordIcon from '@/assets/discord.svg'
 
   const { t } = useI18n()
+  const snackbar = ref(false)
+
+  const copyIp = async () => {
+    try {
+      const ipText = t('minecraft.serverIp')
+      await navigator.clipboard.writeText(ipText)
+      snackbar.value = true
+    } catch (err) {
+      console.error('Copy failed:', err)
+    }
+  }
 </script>
 
 <style scoped>

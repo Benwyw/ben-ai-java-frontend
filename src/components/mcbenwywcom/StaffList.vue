@@ -17,12 +17,12 @@
     <v-card class="mb-6" rounded="xl">
       <v-card-title class="d-flex align-center">
         <v-icon class="mr-2" color="red">mdi-shield-crown</v-icon>
-        {{ t('minecraft.globalStaff') }}
+        {{ t('minecraft.ingameStaff') }}
       </v-card-title>
       <v-card-text>
         <v-row>
           <v-col
-            v-for="member in globalStaff"
+            v-for="member in ingameStaff"
             :key="member.name"
             cols="12"
             md="4"
@@ -130,7 +130,7 @@
 
   const { t } = useI18n()
 
-  const globalStaff = [
+  const ingameStaff = [
     { name: 'Benlien', roleKey: 'owner' },
     { name: 'Rykos714', roleKey: 'owner' },
     { name: 'willywilly234', roleKey: 'owner' },
