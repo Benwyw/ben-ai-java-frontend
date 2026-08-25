@@ -17,6 +17,9 @@
         <v-chip color="white" prepend-icon="mdi-minecraft" variant="flat">
           {{ t('minecraft.javaEditionChip') }}
         </v-chip>
+        <v-chip color="white" prepend-icon="mdi-cellphone-play" variant="flat">
+          {{ t('minecraft.bedrockEditionChip') }}
+        </v-chip>
         <v-chip color="white" prepend-icon="mdi-tree" variant="flat">
           {{ t('minecraft.survivalModeChip') }}
         </v-chip>

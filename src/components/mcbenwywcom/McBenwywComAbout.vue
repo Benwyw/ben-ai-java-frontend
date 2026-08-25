@@ -67,7 +67,7 @@
                   <v-icon color="orange">mdi-minecraft</v-icon>
                 </template>
                 <v-list-item-title>{{ t('minecraft.gameVersion') }}</v-list-item-title>
-                <v-list-item-subtitle>{{ t('minecraft.javaEdition') }}</v-list-item-subtitle>
+                <v-list-item-subtitle>{{ t('minecraft.javaEdition') }}, {{ t('minecraft.bedrockEditionChip') }}</v-list-item-subtitle>
               </v-list-item>
               <v-list-item>
                 <template #prepend>

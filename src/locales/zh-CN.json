@@ -325,7 +325,7 @@
     "welcomeTitle": "欢迎来到 Ben 的 Minecraft 服务器",
     "welcomeSubtitle": "一个传统的 Minecraft 服务器社区",
     "aboutServer": "关于服务器",
-    "aboutServerDesc1": "Ben 的 Minecraft 服务器曾是一个 Minecraft Java 版生存服务器，汇聚了来自世界各地的玩家一起建造、探索和创造回忆。",
+    "aboutServerDesc1": "Ben 的 Minecraft 服务器曾是一个 Minecraft Java & Bedrock 版生存服务器，汇聚了来自世界各地的玩家一起建造、探索和创造回忆。",
     "aboutServerDesc2": "虽然服务器已不再活跃，但此页面保留了我们精彩社区的历史和成就。",
     "serverArchived": "服务器已归档",
     "serverIp": "mc.benwyw.com",
@@ -371,6 +371,7 @@
     "buildingsSubtitle": "社区的精彩建筑",
     "heroSubtitle": "Minecraft Java 版生存服务器",
     "javaEditionChip": "Java 版",
+    "bedrockEditionChip": "Bedrock 版",
     "survivalModeChip": "生存模式",
     "serverArchivedChip": "服务器已归档",
     "quickActions": {
