@@ -37,7 +37,7 @@
             <!-- <p class="text-body-1 mb-4">
               {{ t('minecraft.aboutServerDesc2') }}
             </p> -->
-            <v-chip class="mr-2" color="red" variant="tonal" @click="copyIp">
+            <v-chip class="mr-2" color="green" variant="tonal" @click="copyIp">
               <v-icon start>mdi-ip</v-icon>
               {{ t('minecraft.serverIp') }}
               <v-tooltip activator="parent" location="top">
