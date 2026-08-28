@@ -353,6 +353,13 @@
               {{ t('nav.support') }}
             </v-btn>
           </div>
+          
+          <!-- Mojang 免責聲明（只在 Minecraft 頁面顯示） -->
+          <div v-if="isMcRoute" class="text-caption text-medium-emphasis mb-3 px-4" style="font-size: 0.75rem; line-height: 1.4;">
+            <div>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</div>
+            <div>Server Owner: Benlien | Contact: support@benwyw.com</div>
+          </div>
+          
           <span class="text-body-2 text-medium-emphasis">
             {{ t('common.copyright', { year: new Date().getFullYear() }) }}
           </span>
@@ -543,6 +550,11 @@
     color: 'info',
     timeout: 4000,
   })
+  
+  // 判斷當前路由是否屬於 Minecraft 相關頁面
+const isMcRoute = computed(() => {
+  return route.path?.includes('mcbenwywcom') || route.path?.startsWith('/mc') || false
+})
 
   let sessionWarningInterval = null
 
