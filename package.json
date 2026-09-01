@@ -1,6 +1,6 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.7.57",
+  "version": "0.7.58",
   "private": true,
   "type": "module",
   "scripts": {
@@ -15,6 +15,7 @@
     "optimize:images": "node scripts/optimize-images.js",
     "optimize:seo-images": "node scripts/optimize-seo-images.js",
     "sitemap:generate": "node scripts/generate-sitemap.js",
+    "verify:ssg": "node scripts/verify-prerender.js",
     "safe:update": "sh ./scripts/safe-update.sh"
   },
 
