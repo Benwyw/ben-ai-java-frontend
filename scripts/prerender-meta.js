@@ -207,20 +207,19 @@ function upsertLink(html, rel, href) {
 
 function escapeReg (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') }
 
-function sanitizeRouteForFs(route) {
-  // turn route like '/:pathMatch(.*)*' into a safe directory name
-  if (!route || route === '/') return ''
-  let s = route.replace(/^\//, '')
+function sanitizeSegmentForFs(segment) {
+  // sanitize a single path segment (preserve directory structure)
+  if (!segment) return 'param'
+  let s = segment
   // remove characters that are universally invalid on filesystems
-  s = s.replace(/[:"<>\\|\r\n]/g, '')
-  // remove parentheses and asterisks and question marks
+  s = s.replace(/[:\"<>\\|\r\n]/g, '')
+  // remove parentheses, asterisks, question marks
   s = s.replace(/[()\*\?]/g, '')
   // replace any remaining non-alphanum, non -,_ with '-'
   s = s.replace(/[^a-zA-Z0-9\-_]/g, '-')
-  // collapse multiple dashes
-  s = s.replace(/-+/g, '-')
-  s = s.replace(/(^-+|-+$)/g, '')
-  if (!s) s = 'param' // fallback name
+  // collapse multiple dashes and trim
+  s = s.replace(/-+/g, '-').replace(/(^-+|-+$)/g, '')
+  if (!s) s = 'param'
   return s
 }
 
@@ -229,11 +228,13 @@ function writeOut(dist, route, content) {
     fs.writeFileSync(path.join(dist, 'index.html'), content, 'utf8')
     return
   }
-  const safe = sanitizeRouteForFs(route)
-  const outDir = path.join(dist, safe)
+
+  // Preserve directory structure: /mcbenwywcom/about -> dist/mcbenwywcom/about/index.html
+  const segments = route.split('/').filter(Boolean).map(sanitizeSegmentForFs)
+  const outDir = path.join(dist, ...segments)
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), content, 'utf8')
-  console.log(`Wrote file for ${route} -> ${path.join('/', safe, 'index.html')}`)
+  console.log(`Wrote file for ${route} -> ${path.join('/', ...segments, 'index.html')}`)
 }
 
 function main() {
