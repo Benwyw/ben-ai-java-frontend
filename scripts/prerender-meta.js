@@ -207,14 +207,33 @@ function upsertLink(html, rel, href) {
 
 function escapeReg (s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') }
 
+function sanitizeRouteForFs(route) {
+  // turn route like '/:pathMatch(.*)*' into a safe directory name
+  if (!route || route === '/') return ''
+  let s = route.replace(/^\//, '')
+  // remove characters that are universally invalid on filesystems
+  s = s.replace(/[:"<>\\|\r\n]/g, '')
+  // remove parentheses and asterisks and question marks
+  s = s.replace(/[()\*\?]/g, '')
+  // replace any remaining non-alphanum, non -,_ with '-'
+  s = s.replace(/[^a-zA-Z0-9\-_]/g, '-')
+  // collapse multiple dashes
+  s = s.replace(/-+/g, '-')
+  s = s.replace(/(^-+|-+$)/g, '')
+  if (!s) s = 'param' // fallback name
+  return s
+}
+
 function writeOut(dist, route, content) {
   if (route === '/' || route === '') {
     fs.writeFileSync(path.join(dist, 'index.html'), content, 'utf8')
     return
   }
-  const outDir = path.join(dist, route.replace(/^\//, ''))
+  const safe = sanitizeRouteForFs(route)
+  const outDir = path.join(dist, safe)
   fs.mkdirSync(outDir, { recursive: true })
   fs.writeFileSync(path.join(outDir, 'index.html'), content, 'utf8')
+  console.log(`Wrote file for ${route} -> ${path.join('/', safe, 'index.html')}`)
 }
 
 function main() {
