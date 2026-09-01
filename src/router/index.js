@@ -199,8 +199,8 @@ const routes = [
           navOrder: 1,
           seoKey: 'home', // Key for locale translations in seo.home.*
           seoTitle: 'Benwyw — iOS Apps, Tools & Projects',
-          seoDescription: 'Welcome to Benwyw. Explore NoteFormat iOS App for expense tracking and note organization, or Ben Kaneki Discord Bot.',
-          seoKeywords: 'NoteFormat, expense formatter, iOS app, expense tracker, note taking, budget management, iCloud sync, Benwyw',
+          seoDescription: 'Welcome to Benwyw. Explore the NoteFormat iOS expense tracker, 24/7 crossplay Minecraft SMP server, and our Ben Kaneki Discord bot.',
+          seoKeywords: 'Benwyw, NoteFormat, expense tracker, iOS app, budget management, Minecraft server, crossplay survival, Java Bedrock, developer portfolio',
           canonicalPath: '/',
           // No auth required - public page
         },
@@ -273,6 +273,9 @@ const routes = [
         component: () => import('@/views/noteformat/NoteformatLanding.vue'),
         meta: {
           title: 'NoteFormat',
+          faviconHref: 'https://www.benwyw.com/assets/NoteFormat.ico',
+          iconHref: 'https://www.benwyw.com/assets/NoteFormat-seo.png',
+          appleTouchIcon: 'https://www.benwyw.com/assets/NoteFormat-seo.png',
           iconImage: new URL('@/assets/NoteFormat-120-transparent.png', import.meta.url).href,
           navSection: 'noteformat',
           navOrder: 1,
@@ -435,6 +438,9 @@ const routes = [
         component: () => import('@/views/benkaneki/BenKanekiLanding.vue'),
         meta: {
           title: 'Ben Kaneki',
+          faviconHref: 'https://www.benwyw.com/assets/BenKaneki.ico',
+          iconHref: 'https://www.benwyw.com/assets/BenKaneki-icon.png',
+          appleTouchIcon: 'https://www.benwyw.com/assets/BenKaneki-icon.png',
           iconImage: new URL('@/assets/BenKaneki-120.png', import.meta.url).href,
           navSection: 'benkaneki',
           navOrder: 1,
@@ -578,6 +584,9 @@ const routes = [
         component: () => import('@/views/mcbenwywcom/McBenwywComLanding.vue'),
         meta: {
           title: 'Ben\'s Minecraft Server',
+          faviconHref: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom.ico',
+          iconHref: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom-icon.png',
+          appleTouchIcon: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom-icon.png',
           iconImage: new URL('@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp', import.meta.url).href,
           navSection: 'mcbenwywcom',
           navOrder: 1,
@@ -585,6 +594,7 @@ const routes = [
           seoKey: 'minecraft', // Key for locale translations in seo.minecraft.*
           seoTitle: 'Ben\'s Minecraft Server — Benwyw',
           seoDescription: 'Ben\'s Minecraft Server - 24/7 Vanilla+ Survival SMP with Java & Bedrock crossplay. Land claims, zero P2W, and a friendly community!',
+          seoKeywords: 'Minecraft server, Java Edition, Bedrock Edition, crossplay survival, SMP, survival multiplayer, gaming community, Benwyw Minecraft',
           seoImage: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom_logo.png',
           canonicalPath: '/mcbenwywcom',
         },

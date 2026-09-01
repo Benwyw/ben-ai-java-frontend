@@ -4,8 +4,8 @@
     "defaultDescription": "Benwyw 个人网站，包含项目、工具和文档。",
     "home": {
       "title": "Benwyw — iOS 应用程序、工具与项目",
-      "description": "欢迎来到 Benwyw。探索 NoteFormat iOS 应用程序用于记账和笔记整理，或 Ben Kaneki Discord 机器人。",
-      "keywords": "NoteFormat, 记账, iOS 应用程序, 支出追踪, 笔记, 预算管理, iCloud 同步, Benwyw, 简体中文"
+      "description": "欢迎来到 Benwyw。探索 NoteFormat iOS 记账应用程序、Ben Kaneki Discord 机器人，以及我们的 24/7 跨平台 Minecraft SMP 服务器。",
+      "keywords": "Benwyw, NoteFormat, 记账 App, iOS 应用程序, 预算管理, Minecraft 服务器, 跨平台生存, Java 基岩版, 开发者作品集"
     },
     "noteformat": {
       "title": "NoteFormat - 记账格式化工具 | 灵活导入导出 iOS 应用程序",
@@ -19,8 +19,8 @@
     },
     "minecraft": {
       "title": "Ben's Minecraft 服务器 — Benwyw",
-      "description": "一个 Minecraft 24/7 版生存服务器社区。",
-      "keywords": "Minecraft 服务器, Java 版, Bedrock 版, 生存模式, 游戏社区"
+      "description": "Ben 的 Minecraft 服务器 - 24/7 原版+ 生存 SMP，支持 Java 与基岩版跨平台联机。设有领地保护、绝对无 P2W（零氪金破坏平衡），以及友好的游戏社区！",
+      "keywords": "Minecraft 服务器, Java 版, 基岩版, 跨平台生存, SMP, 多人生存, 游戏社区, Benwyw Minecraft"
     },
     "whity": {
       "title": "小白 — 永远怀念",

@@ -174,13 +174,47 @@ function applyMetaToHtml(template, values) {
     html = upsertMetaTag(html, 'property', 'og:url', values.ogUrl)
     html = upsertMetaTag(html, 'name', 'twitter:url', values.ogUrl)
   }
-  if (values.seoImage) {
-    html = upsertMetaTag(html, 'property', 'og:image', values.seoImage)
-    html = upsertMetaTag(html, 'name', 'twitter:image', values.seoImage)
+
+  // images: og/twitter image
+  const imageHref = values.seoImage || values.iconHref || 'https://www.benwyw.com/Benwyw-1024.png'
+  if (imageHref) {
+    html = upsertMetaTag(html, 'property', 'og:image', imageHref)
+    html = upsertMetaTag(html, 'name', 'twitter:image', imageHref)
   }
+
   if (values.ogType) {
     html = upsertMetaTag(html, 'property', 'og:type', values.ogType)
   }
+
+  // Icons: prefer explicit iconHref/appleTouchIcon, then seoImage, then site default
+  const iconHref = values.iconHref || values.seoImage || '/Benwyw-1024.png'
+  const faviconHref = values.faviconHref || '/favicon.ico'
+  const appleHref = values.appleTouchIcon || values.seoImage || '/Benwyw-1024.png'
+  // insert PNG icon (with type)
+  html = upsertLinkWithAttrs(html, { rel: 'icon', href: iconHref, type: 'image/png' })
+
+  // ensure favicon is explicitly set/overwritten to faviconHref if provided (replace .ico link), else keep existing
+  if (faviconHref) {
+    const icoRe = /<link\s+[^>]*rel=(?:"|')icon(?:"|')[^>]*href=(?:"|')[^"']*\.ico[^"']*(?:"|')[^>]*>/i
+    const icoTag = `<link rel="icon" href="${escapeHtml(faviconHref)}" />`
+    if (icoRe.test(html)) {
+      html = html.replace(icoRe, icoTag)
+    } else {
+      html = addLinkIfMissing(html, { rel: 'icon', href: faviconHref })
+    }
+  }
+
+  // ensure apple-touch-icon replaced/appended
+  if (appleHref) {
+    const appleRe = /<link\s+[^>]*rel=(?:"|')apple-touch-icon(?:"|')[^>]*>/i
+    const appleTag = `<link rel="apple-touch-icon" href="${escapeHtml(appleHref)}" />`
+    if (appleRe.test(html)) {
+      html = html.replace(appleRe, appleTag)
+    } else {
+      html = addLinkIfMissing(html, { rel: 'apple-touch-icon', href: appleHref })
+    }
+  }
+
   return html
 }
 
@@ -202,6 +236,47 @@ function upsertLink(html, rel, href) {
   const re = new RegExp(`<link\\s+rel=\\"${escapeReg(rel)}\\"[\\s\\S]*?>`, 'i')
   const tag = `<link rel="${rel}" href="${escapeHtml(href)}" />`
   if (re.test(html)) return html.replace(re, tag)
+  return html.replace(/<\/head>/i, `  ${tag}\n</head>`)
+}
+
+function upsertLinkWithAttrs(html, attrs) {
+  // Insert a link tag with attrs.rel/attrs.href/attrs.type.
+  // If exact rel+href exists, do nothing. If a rel+type match exists, replace it. Otherwise append a new tag (don't clobber other rel entries).
+  if (!attrs || !attrs.rel || !attrs.href) return html
+  const rel = attrs.rel
+  const href = attrs.href
+  const type = attrs.type
+
+  const relHrefRe = new RegExp(`<link\\s+[^>]*rel=\\"${escapeReg(rel)}\\"[^>]*href=\\"${escapeReg(href)}\\"[\\s\\S]*?>`, 'i')
+  if (relHrefRe.test(html)) return html // exact tag already present
+
+  // Build tag string
+  const parts = Object.keys(attrs).map(k => `${k}="${escapeHtml(attrs[k])}"`).join(' ')
+  const tag = `<link ${parts} />`
+
+  // If a tag with same rel AND same type exists, replace it
+  if (type) {
+    const relTypeRe = new RegExp(`<link\\s+[^>]*rel=\\"${escapeReg(rel)}\\"[^>]*type=\\"${escapeReg(type)}\\"[\\s\\S]*?>`, 'i')
+    if (relTypeRe.test(html)) return html.replace(relTypeRe, tag)
+  }
+
+  // If no tag with same rel exists at all, insert before </head>
+  const relAnyRe = new RegExp(`<link\\s+[^>]*rel=\\"${escapeReg(rel)}\\"[\\s\\S]*?>`, 'i')
+  if (!relAnyRe.test(html)) return html.replace(/<\/head>/i, `  ${tag}\n</head>`)
+
+  // There are existing rel tags but none match type/href: append new tag (don't replace existing rel entries)
+  return html.replace(/<\/head>/i, `  ${tag}\n</head>`)
+}
+
+function addLinkIfMissing(html, attrs) {
+  // Add a link tag only if the exact rel+href pair is missing; do not replace existing rel entries.
+  if (!attrs || !attrs.rel || !attrs.href) return html
+  const rel = attrs.rel
+  const href = attrs.href
+  const relHrefRe = new RegExp(`<link\\s+[^>]*rel=\\"${escapeReg(rel)}\\"[^>]*href=\\"${escapeReg(href)}\\"[\\s\\S]*?>`, 'i')
+  if (relHrefRe.test(html)) return html
+  const parts = Object.keys(attrs).map(k => `${k}="${escapeHtml(attrs[k])}"`).join(' ')
+  const tag = `<link ${parts} />`
   return html.replace(/<\/head>/i, `  ${tag}\n</head>`)
 }
 
@@ -245,6 +320,37 @@ function main() {
   const routes = extractRoutesAndMeta(ROUTER_SRC)
   console.log('Found routes:', routes.map(r=>r.path))
 
+  // Inherit metadata from nearest parent path when missing.
+  // Generic approach: copy parent.meta keys that are missing on the child, except excluded keys.
+  const routeMap = new Map(routes.map(r => [r.path, r]))
+  const excludeKeys = new Set(['canonicalPath', 'path', 'name', 'redirect', 'component', 'seoKey'])
+  for (const r of routes) {
+    r.meta = r.meta || {}
+    // Only inherit from the immediate parent path (one level up). Do NOT climb to root.
+    const idx = r.path.lastIndexOf('/')
+    if (idx > 0 || (idx === 0 && r.path !== '/')) {
+      const parentPath = idx === 0 ? '/' : r.path.slice(0, idx)
+      const parent = routeMap.get(parentPath)
+      if (parent && parent.meta) {
+        for (const [k, v] of Object.entries(parent.meta)) {
+          if (excludeKeys.has(k)) continue
+          if (r.meta[k] == null || r.meta[k] === '') {
+            r.meta[k] = v
+          }
+        }
+        // If parent defines seoKey, inherit computed seoKeywords from its locale translations
+        if (!r.meta.seoKeywords) {
+          if (parent.meta.seoKeywords) {
+            r.meta.seoKeywords = parent.meta.seoKeywords
+          } else if (parent.meta.seoKey) {
+            const t = loadLocaleSeo(parent.meta.seoKey)
+            if (t.seoKeywords) r.meta.seoKeywords = t.seoKeywords
+          }
+        }
+      }
+    }
+  }
+
   for (const r of routes) {
     const meta = r.meta || {}
     let values = {}
@@ -256,6 +362,10 @@ function main() {
     values.seoKeywords = meta.seoKeywords || null
     values.canonical = meta.canonicalPath ? `https://www.benwyw.com${meta.canonicalPath}` : `https://www.benwyw.com${r.path}`
     values.ogUrl = `https://www.benwyw.com${r.path}`
+    // icon/fav/apple-touch from meta (may be inherited already)
+    values.iconHref = meta.iconHref || meta.iconImage || meta.seoImage || null
+    values.faviconHref = meta.faviconHref || null
+    values.appleTouchIcon = meta.appleTouchIcon || meta.iconImage || meta.seoImage || null
 
     // If seoKey present, try to read translations from en.json
     if (meta.seoKey) {

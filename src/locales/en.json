@@ -4,8 +4,8 @@
     "defaultDescription": "Benwyw personal website with projects, tools, and documentation.",
     "home": {
       "title": "Benwyw — iOS Apps, Tools & Projects",
-      "description": "Welcome to Benwyw. Explore NoteFormat iOS App for expense tracking and note organization, or Ben Kaneki Discord Bot.",
-      "keywords": "NoteFormat, expense formatter, iOS app, expense tracker, note taking, budget management, iCloud sync, Benwyw"
+      "description": "Welcome to Benwyw. Explore the NoteFormat iOS expense tracker, Ben Kaneki Discord bot, and our 24/7 crossplay Minecraft SMP server.",
+      "keywords": "Benwyw, NoteFormat, expense tracker, iOS app, budget management, Minecraft server, crossplay survival, Java Bedrock, developer portfolio"
     },
     "noteformat": {
       "title": "NoteFormat - Expense Formatter | Flexible Import/Export for iOS",
@@ -19,8 +19,8 @@
     },
     "minecraft": {
       "title": "Ben's Minecraft Server — Benwyw",
-      "description": "A Minecraft 24/7 survival server community.",
-      "keywords": "Minecraft server, Java Edition, Bedrock, crossplay survival, gaming community"
+      "description": "Ben's Minecraft Server - 24/7 Vanilla+ Survival SMP with Java & Bedrock crossplay. Land claims, zero P2W, and a friendly community!",
+      "keywords": "Minecraft server, Java Edition, Bedrock Edition, crossplay survival, SMP, survival multiplayer, gaming community, Benwyw Minecraft"
     },
     "whity": {
       "title": "Whity — In Loving Memory",
