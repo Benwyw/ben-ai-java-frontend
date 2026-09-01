@@ -1,12 +1,13 @@
 {
   "name": "ben-ai-java-frontend",
-  "version": "0.7.54",
+  "version": "0.7.55",
   "private": true,
   "type": "module",
   "scripts": {
     "serve": "vite",
     "build:dev": "vite build --mode development",
     "build:prod": "vite build --mode production",
+    "build:ssg": "npm run build:prod && node scripts/prerender-meta.js",
     "build:prod:gzip": "vite build --mode production && npm run compress",
     "compress": "find dist -type f \\( -name '*.js' -o -name '*.css' -o -name '*.html' -o -name '*.json' -o -name '*.svg' \\) -exec gzip -9 -k {} \\;",
     "preview": "vite preview",
@@ -16,6 +17,7 @@
     "sitemap:generate": "node scripts/generate-sitemap.js",
     "safe:update": "sh ./scripts/safe-update.sh"
   },
+
   "dependencies": {
     "@mdi/font": "7.4.47",
     "axios": "^1.11.0",

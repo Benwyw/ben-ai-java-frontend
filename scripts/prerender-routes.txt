@@ -1,0 +1,20 @@
+# Prerender routes override file
+# Each non-empty line is a route to include or exclude in prerendering.
+# Examples:
+#   /custom-page           -> add /custom-page
+#   custom-page            -> add /custom-page
+#   -/skip-this            -> remove /skip-this from prerender list
+#   -old-route             -> remove /old-route
+# Lines starting with # are comments.
+
+# Add any dynamic or programmatic routes here:
+# /blog/post-1
+# /blog/post-2
+
+# Example: explicitly ensure Minecraft pages are included
+/mcbenwywcom
+/mcbenwywcom/about
+/mcbenwywcom/staff
+
+# Example: exclude a route discovered by regex you don't want prerendered
+# -/benkaneki/messenger

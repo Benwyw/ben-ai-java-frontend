@@ -55,8 +55,8 @@ jobs:
       - name: Optimize images (WebP conversion)
         run: npm run optimize:images
 
-      - name: Build application
-        run: npm run build:prod
+      - name: Build application and prerender (SSG)
+        run: npm run build:ssg
         
       - name: Save artifacts
         uses: actions/upload-artifact@v4

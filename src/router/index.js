@@ -571,7 +571,7 @@ const routes = [
       },
 
       // ==================== Ben's Minecraft Server SECTION ====================
-      // Ben's Minecraft Server (Deprecated) - preserved history and information
+      // Ben's Minecraft Server - 24/7 Vanilla+ Survival SMP with Java & Bedrock crossplay. Land claims, zero P2W, and a friendly community!
       {
         path: '/mcbenwywcom',
         name: 'McBenwywCom',
@@ -584,7 +584,7 @@ const routes = [
           defaultExpanded: true,
           seoKey: 'minecraft', // Key for locale translations in seo.minecraft.*
           seoTitle: 'Ben\'s Minecraft Server — Benwyw',
-          seoDescription: 'Ben\'s Minecraft Server - A deprecated Minecraft Java Edition server preserved for historical purposes.',
+          seoDescription: 'Ben\'s Minecraft Server - 24/7 Vanilla+ Survival SMP with Java & Bedrock crossplay. Land claims, zero P2W, and a friendly community!',
           seoImage: 'https://www.benwyw.com/assets/mcbenwywcom/mcbenwywcom_logo.png',
           canonicalPath: '/mcbenwywcom',
         },
