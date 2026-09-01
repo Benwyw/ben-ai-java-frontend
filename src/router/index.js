@@ -724,6 +724,9 @@ const routes = [
         redirect: '/',
       },
     ],
+    meta: {
+      seoKeywords: 'Benwyw, NoteFormat, expense tracker, iOS app, budget management, Minecraft server, crossplay survival, Java Bedrock, developer portfolio'
+    }
   },
 ]
 

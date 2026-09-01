@@ -159,7 +159,7 @@ export function updateSeoMeta (meta = {}, path = '/', matched = [], t = null) {
 
   // Get localized SEO content if translation function and seoKey are provided
   let title = meta.seoTitle || meta.title || 'Benwyw'
-  let description = meta.seoDescription || 'Benwyw personal website with projects, tools, and documentation.'
+  let description = meta.seoDescription || 'Welcome to Benwyw. Explore the NoteFormat iOS expense tracker, Ben Kaneki Discord bot, and our 24/7 crossplay Minecraft SMP server.'
   let keywords = meta.seoKeywords || ''
 
   // Use translated SEO content if available

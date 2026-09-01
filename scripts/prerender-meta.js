@@ -377,7 +377,7 @@ function main() {
 
     // Fallbacks
     if (!values.seoTitle) values.seoTitle = 'Benwyw — iOS Apps, Tools & Projects'
-    if (!values.seoDescription) values.seoDescription = 'Benwyw personal website with projects, tools, and documentation.'
+    if (!values.seoDescription) values.seoDescription = 'Welcome to Benwyw. Explore the NoteFormat iOS expense tracker, Ben Kaneki Discord bot, and our 24/7 crossplay Minecraft SMP server.'
     if (!values.seoImage) values.seoImage = 'https://www.benwyw.com/Benwyw-1024.png'
 
     const outHtml = applyMetaToHtml(template, values)
