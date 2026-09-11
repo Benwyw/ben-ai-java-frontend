@@ -25,43 +25,6 @@
             rounded="xl"
             tag="article"
             width="100%"
-            @click="navigateTo('/noteformat')"
-          >
-            <v-img
-              alt="NoteFormat iOS App - Expense Tracker and Note Taking"
-              class="mx-auto mb-4"
-              height="128"
-              :src="noteformatIcon"
-              width="128"
-            />
-            <v-card-title class="text-h4 font-weight-bold justify-center" tag="h2">
-              {{ t('noteformat.title') }}
-            </v-card-title>
-            <v-card-subtitle class="text-body-1 mt-2">
-              {{ t('noteformat.subtitle') }}
-            </v-card-subtitle>
-            <v-card-text class="text-body-2 text-medium-emphasis mt-4">
-              {{ t('noteformat.cardDescription') }}
-            </v-card-text>
-            <v-chip class="mt-2" color="primary" variant="tonal">
-              <v-icon start>mdi-apple</v-icon>
-              {{ t('noteformat.appStore') }}
-            </v-chip>
-          </v-card>
-        </v-hover>
-      </v-col>
-
-      <v-col class="d-flex justify-center px-4" cols="12" md="6">
-        <v-hover v-slot="{ isHovering, props }">
-          <v-card
-            v-bind="props"
-            class="product-card pa-4 pa-sm-8 text-center transition-swing"
-            :class="{ 'on-hover': isHovering }"
-            :elevation="isHovering ? 16 : 4"
-            max-width="400"
-            rounded="xl"
-            tag="article"
-            width="100%"
             @click="navigateTo('/mcbenwywcom')"
           >
             <v-img
@@ -87,6 +50,43 @@
             <v-chip class="mt-2" color="info" variant="tonal">
               <v-icon size="small" start>mdi-instagram</v-icon>
               {{ t('minecraft.instagram') }}
+            </v-chip>
+          </v-card>
+        </v-hover>
+      </v-col>
+
+      <v-col class="d-flex justify-center px-4" cols="12" md="6">
+        <v-hover v-slot="{ isHovering, props }">
+          <v-card
+            v-bind="props"
+            class="product-card pa-4 pa-sm-8 text-center transition-swing"
+            :class="{ 'on-hover': isHovering }"
+            :elevation="isHovering ? 16 : 4"
+            max-width="400"
+            rounded="xl"
+            tag="article"
+            width="100%"
+            @click="navigateTo('/noteformat')"
+          >
+            <v-img
+              alt="NoteFormat iOS App - Expense Tracker and Note Taking"
+              class="mx-auto mb-4"
+              height="128"
+              :src="noteformatIcon"
+              width="128"
+            />
+            <v-card-title class="text-h4 font-weight-bold justify-center" tag="h2">
+              {{ t('noteformat.title') }}
+            </v-card-title>
+            <v-card-subtitle class="text-body-1 mt-2">
+              {{ t('noteformat.subtitle') }}
+            </v-card-subtitle>
+            <v-card-text class="text-body-2 text-medium-emphasis mt-4">
+              {{ t('noteformat.cardDescription') }}
+            </v-card-text>
+            <v-chip class="mt-2" color="primary" variant="tonal">
+              <v-icon start>mdi-apple</v-icon>
+              {{ t('noteformat.appStore') }}
             </v-chip>
           </v-card>
         </v-hover>

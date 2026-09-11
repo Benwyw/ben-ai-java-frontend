@@ -34,9 +34,9 @@
             <p class="text-body-1 mb-4">
               {{ t('minecraft.aboutServerDesc1') }}
             </p>
-            <!-- <p class="text-body-1 mb-4">
+            <p class="text-body-1 mb-4">
               {{ t('minecraft.aboutServerDesc2') }}
-            </p> -->
+            </p>
             <v-chip class="mr-2" color="green" variant="tonal" @click="copyIp">
               <v-icon start>mdi-ip</v-icon>
               {{ t('minecraft.serverIp') }}
