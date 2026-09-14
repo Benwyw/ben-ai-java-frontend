@@ -225,7 +225,7 @@
 <script setup>
   import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom-cover-img-h.png'
+  import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom-cover-img-h.webp'
   import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
   import ownerStatuesImage from '@/assets/mcbenwywcom/mcbenwywcom_owner-statues.webp'
   import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
