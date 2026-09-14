@@ -214,13 +214,11 @@
     lightboxOpen.value = true
     lightboxLoading.value = true
 
-    // Load current and adjacent images for smooth navigation
-    await Promise.all([
-      loadFullImage(index),
-      loadFullImage(index - 1),
-      loadFullImage(index + 1),
-    ])
+    // Show the selected image as soon as it is ready; preload neighbors in the background.
+    await loadFullImage(index)
     lightboxLoading.value = false
+    loadFullImage(index - 1)
+    loadFullImage(index + 1)
   }
 
   async function prevPhoto () {
