@@ -27,7 +27,7 @@
       >
 
       <div class="d-flex align-center justify-center fill-height hero-overlay">
-        <div class="text-center px-4">
+        <div class="text-center px-4 hero-content">
           <v-img
             alt="Ben's Minecraft Server logo"
             class="mb-4 mx-auto drop-shadow"
@@ -156,6 +156,8 @@
   min-height: 430px;
   overflow: hidden;
   background: #1b5e20;
+  --hero-content-opacity: 0.48;
+  --hero-content-blur: 8px;
 }
 
 .hero-background {
@@ -184,6 +186,18 @@ video.hero-background {
     rgba(0, 0, 0, 0.18),
     rgba(0, 0, 0, 0.58)
   );
+}
+
+.hero-content {
+  max-width: min(720px, 100%);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, var(--hero-content-opacity));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(var(--hero-content-blur));
+  backdrop-filter: blur(var(--hero-content-blur));
 }
 
 .text-shadow {
