@@ -6,20 +6,39 @@
       rounded="xl"
       variant="flat"
     >
-      <v-img
-        alt="Ben's Minecraft Server Banner"
-        class="rounded-xl"
-        cover
-        height="300"
-        :src="bannerImage"
-      >
-        <div class="d-flex align-center justify-center fill-height" style="background: rgba(0,0,0,0.4);">
-          <div class="text-center">
-            <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('minecraft.welcomeTitle') }}</h1>
-            <p class="text-h6 text-white">{{ t('minecraft.welcomeSubtitle') }}</p>
+      <div class="hero-container round-xl">
+        <v-img
+          alt="Ben's Minecraft Server Banner"
+          class="rounded-xl"
+          cover
+          height="100%"
+          :src="bannerImage"
+        >
+          <!-- <div class="d-flex align-center justify-center fill-height hero-overlay" style="background: rgba(0,0,0,0.4);">
+            <div class="text-center hero-content">
+              <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('minecraft.welcomeTitle') }}</h1>
+              <p class="text-h6 text-white">{{ t('minecraft.welcomeSubtitle') }}</p>
+            </div>
+          </div> -->
+          <div class="hero-chips d-flex justify-center ga-3 flex-wrap">
+            <v-chip class="glass-chip" prepend-icon="mdi-minecraft" variant="flat">
+              {{ t('minecraft.javaEditionChip') }}
+            </v-chip>
+            <v-chip class="glass-chip" prepend-icon="mdi-cellphone-play" variant="flat">
+              {{ t('minecraft.bedrockEditionChip') }}
+            </v-chip>
+            <v-chip class="glass-chip" prepend-icon="mdi-tree" variant="flat">
+              {{ t('minecraft.survivalModeChip') }}
+            </v-chip>
+            <v-chip class="glass-chip" prepend-icon="mdi-ip" variant="flat" @click="copyIp">
+              {{ t('minecraft.serverIp') }}
+              <v-tooltip activator="parent" location="top">
+                {{ t('minecraft.clickToCopyIp') }}
+              </v-tooltip>
+            </v-chip>
           </div>
-        </div>
-      </v-img>
+        </v-img>
+      </div>
     </v-card>
 
     <!-- Server Info -->
@@ -208,7 +227,7 @@
 <script setup>
   import { ref } from 'vue'
   import { useI18n } from 'vue-i18n'
-  import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom_animated-banner.gif'
+  import bannerImage from '@/assets/mcbenwywcom/mcbenwywcom-cover-img-h.png'
   import fullsizeImage from '@/assets/mcbenwywcom/mcbenwywcom_fullsize-1000.webp'
   import ownerStatuesImage from '@/assets/mcbenwywcom/mcbenwywcom_owner-statues.webp'
   import staffListImage from '@/assets/mcbenwywcom/mcbenwywcom_staff-list.webp'
@@ -238,5 +257,63 @@
 
 .action-card:hover {
   transform: translateY(-4px);
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 1;
+  min-height: 430px;
+  padding: 2rem 1rem 5rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.18),
+    rgba(0, 0, 0, 0.58)
+  );
+}
+
+.hero-chips {
+  position: absolute;
+  right: 1rem;
+  bottom: 1.6rem;
+  left: 1rem;
+  z-index: 1;
+}
+
+.glass-chip {
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.38) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+}
+
+@media (max-width: 600px) {
+  .hero-chips {
+    bottom: 1rem;
+  }
+}
+
+.hero-content {
+  max-width: min(720px, 100%);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, var(--hero-content-opacity));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(var(--hero-content-blur));
+  backdrop-filter: blur(var(--hero-content-blur));
+}
+
+.hero-container {
+  /* position: relative; */
+  /* width: 100%; */
+  /* min-height: 430px; */
+  /* overflow: hidden; */
+  /* background: #1b5e20; */
+  --hero-content-opacity: 0.18;
+  --hero-content-blur: 3px;
 }
 </style>
