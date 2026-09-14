@@ -14,12 +14,10 @@
           height="100%"
           :src="bannerImage"
         >
-          <!-- <div class="d-flex align-center justify-center fill-height hero-overlay" style="background: rgba(0,0,0,0.4);">
-            <div class="text-center hero-content">
-              <h1 class="text-h3 font-weight-bold text-white mb-2">{{ t('minecraft.welcomeTitle') }}</h1>
-              <p class="text-h6 text-white">{{ t('minecraft.welcomeSubtitle') }}</p>
-            </div>
-          </div> -->
+          <div class="visually-hidden">
+            <h1>{{ t('minecraft.welcomeTitle') }}</h1>
+            <p>{{ t('minecraft.welcomeSubtitle') }}</p>
+          </div>
           <div class="hero-chips d-flex justify-center ga-3 flex-wrap">
             <v-chip class="glass-chip" prepend-icon="mdi-minecraft" variant="flat">
               {{ t('minecraft.javaEditionChip') }}
@@ -277,6 +275,18 @@
   bottom: 1.6rem;
   left: 1rem;
   z-index: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .glass-chip {
