@@ -9,9 +9,9 @@
       <div class="hero-container round-xl">
         <v-img
           alt="Ben's Minecraft Server Banner"
-          class="rounded-xl"
+          class="rounded-xl hero-image"
           cover
-          height="100%"
+          :aspect-ratio="1376 / 768"
           :src="bannerImage"
         >
           <div class="visually-hidden">
@@ -318,12 +318,14 @@
 }
 
 .hero-container {
-  /* position: relative; */
-  /* width: 100%; */
-  /* min-height: 430px; */
-  /* overflow: hidden; */
-  /* background: #1b5e20; */
+  width: 100%;
+  max-height: min(70vh, 650px);
+  overflow: hidden;
   --hero-content-opacity: 0.18;
   --hero-content-blur: 3px;
+}
+
+.hero-image {
+  max-height: min(70vh, 650px);
 }
 </style>
