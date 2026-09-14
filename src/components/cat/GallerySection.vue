@@ -56,8 +56,9 @@
   <v-dialog
     v-model="lightboxOpen"
     max-width="900"
+    width="900"
   >
-    <v-card rounded="xl">
+    <v-card class="lightbox-card" rounded="xl">
       <v-toolbar color="transparent" density="compact">
         <v-btn
           :disabled="currentIndex === 0"
@@ -87,6 +88,7 @@
         :alt="`Whity photo ${currentIndex + 1}`"
         :class="{ 'opacity-50': lightboxLoading }"
         contain
+        height="70vh"
         max-height="70vh"
         :src="getFullImageSrc(currentIndex)"
       >
@@ -241,5 +243,9 @@
 <style scoped>
 .cursor-pointer {
   cursor: pointer;
+}
+
+.lightbox-card {
+  width: 100%;
 }
 </style>
