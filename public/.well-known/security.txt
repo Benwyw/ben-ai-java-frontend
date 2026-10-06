@@ -1,0 +1,9 @@
+ benwyw.com - Personal Web & Infrastructure Security
+# 
+# Thank you for helping keep this website and server infrastructure safe.
+# If you find a security vulnerability, please report it responsibly.
+
+Contact: mailto:support@benwyw.com
+Preferred-Languages: en, zh-HK, zh-TW
+Canonical: https://benwyw.com/.well-known/security.txt
+Expires: 2027-10-31T23:59:59.000Z
