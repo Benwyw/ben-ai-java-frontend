@@ -1,4 +1,4 @@
- benwyw.com - Personal Web & Infrastructure Security
+# benwyw.com - Personal Web & Infrastructure Security
 # 
 # Thank you for helping keep this website and server infrastructure safe.
 # If you find a security vulnerability, please report it responsibly.
