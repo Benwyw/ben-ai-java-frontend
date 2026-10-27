@@ -344,7 +344,7 @@
               append-icon="mdi-heart"
               class="mx-1"
               color="pink"
-              href="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
+              href="https://donate.benwyw.com"
               rel="noopener"
               size="small"
               target="_blank"

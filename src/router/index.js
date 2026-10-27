@@ -417,13 +417,13 @@ const routes = [
         name: 'Noteformat Support',
         // External link - redirect to PayPal donation page
         beforeEnter () {
-          window.open('https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU', '_blank', 'noopener')
+          window.open('https://donate.benwyw.com', '_blank', 'noopener')
           return false // Prevent navigation
         },
         meta: {
           title: 'Support',
           icon: 'mdi-heart',
-          externalLink: 'https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU',
+          externalLink: 'https://donate.benwyw.com',
           navSection: 'noteformat',
           navOrder: 5,
           parent: 'Noteformat',
@@ -636,13 +636,13 @@ const routes = [
         name: 'McBenwywCom Support',
         // External link - redirect to PayPal donation page
         beforeEnter () {
-          window.open('https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU', '_blank', 'noopener')
+          window.open('https://donate.benwyw.com', '_blank', 'noopener')
           return false // Prevent navigation
         },
         meta: {
           title: 'Support',
           icon: 'mdi-heart',
-          externalLink: 'https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU',
+          externalLink: 'https://donate.benwyw.com',
           navSection: 'mcbenwywcom',
           navOrder: 5,
           parent: 'McBenwywCom',

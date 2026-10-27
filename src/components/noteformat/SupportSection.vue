@@ -21,7 +21,7 @@
 
       <!-- PayPal Official Button -->
       <form
-        action="https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU"
+        action="https://donate.benwyw.com"
         class="paypal-form"
         method="post"
         target="_blank"
