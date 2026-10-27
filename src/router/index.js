@@ -632,6 +632,23 @@ const routes = [
         },
       },
       {
+        path: '/mcbenwywcom/support',
+        name: 'McBenwywCom Support',
+        // External link - redirect to PayPal donation page
+        beforeEnter () {
+          window.open('https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU', '_blank', 'noopener')
+          return false // Prevent navigation
+        },
+        meta: {
+          title: 'Support',
+          icon: 'mdi-heart',
+          externalLink: 'https://www.paypal.com/ncp/payment/QA5VGCEU9VMKU',
+          navSection: 'mcbenwywcom',
+          navOrder: 5,
+          parent: 'McBenwywCom',
+        },
+      },
+      {
         path: '/mcbenwywcom/buildings',
         name: 'McBenwywCom Buildings',
         component: () => import('@/views/mcbenwywcom/McBenwywComBuildings.vue'),
