@@ -632,6 +632,23 @@ const routes = [
         },
       },
       {
+        path: '/mcbenwywcom/appeal',
+        name: 'McBenwywCom Appeal',
+        // External link - redirect to PayPal donation page
+        beforeEnter () {
+          window.open('https://appeal.benwyw.com', '_blank', 'noopener')
+          return false // Prevent navigation
+        },
+        meta: {
+          title: 'Appeal',
+          icon: 'mdi-gavel',
+          externalLink: 'https://appeal.benwyw.com',
+          navSection: 'mcbenwywcom',
+          navOrder: 5,
+          parent: 'McBenwywCom',
+        },
+      },
+      {
         path: '/mcbenwywcom/support',
         name: 'McBenwywCom Support',
         // External link - redirect to PayPal donation page
